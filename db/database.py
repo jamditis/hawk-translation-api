@@ -21,4 +21,6 @@ def get_db():
 
 
 def create_tables():
+    """Create all tables directly from models. For development and testing only.
+    In production, use Alembic migrations: `alembic upgrade head`."""
     Base.metadata.create_all(bind=engine)

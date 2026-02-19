@@ -36,8 +36,13 @@ def test_get_languages():
     assert response.status_code == 200
     data = response.json()
     assert "languages" in data
-    assert any(lang["code"] == "es" for lang in data["languages"])
     assert len(data["languages"]) == 10
+    assert any(lang["code"] == "es" for lang in data["languages"])
+    # Verify all languages have a status field
+    assert all("status" in lang for lang in data["languages"])
+    # Verify limited languages are flagged
+    ht = next(lang for lang in data["languages"] if lang["code"] == "ht")
+    assert ht["status"] == "limited"
 
 
 def test_translate_requires_auth(mock_db):

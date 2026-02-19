@@ -1,6 +1,5 @@
 import json
 from dataclasses import dataclass
-import hmac as _hmac
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
 from redis import Redis

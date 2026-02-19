@@ -25,16 +25,16 @@ redis_client = Redis(connection_pool=_redis_pool)
 
 
 LANGUAGES = [
-    {"code": "es", "name": "Spanish", "native": "Español"},
-    {"code": "pt", "name": "Portuguese", "native": "Português"},
-    {"code": "ht", "name": "Haitian Creole", "native": "Kreyòl ayisyen"},
-    {"code": "zh", "name": "Chinese (Simplified)", "native": "中文"},
-    {"code": "ko", "name": "Korean", "native": "한국어"},
-    {"code": "ar", "name": "Arabic", "native": "العربية"},
-    {"code": "fr", "name": "French", "native": "Français"},
-    {"code": "pl", "name": "Polish", "native": "Polski"},
-    {"code": "hi", "name": "Hindi", "native": "हिन्दी"},
-    {"code": "ur", "name": "Urdu", "native": "اردو"},
+    {"code": "es", "name": "Spanish", "native": "Español", "status": "available"},
+    {"code": "pt", "name": "Portuguese", "native": "Português", "status": "available"},
+    {"code": "ht", "name": "Haitian Creole", "native": "Kreyòl ayisyen", "status": "limited"},
+    {"code": "zh", "name": "Chinese (Simplified)", "native": "中文", "status": "available"},
+    {"code": "ko", "name": "Korean", "native": "한국어", "status": "available"},
+    {"code": "ar", "name": "Arabic", "native": "العربية", "status": "available"},
+    {"code": "fr", "name": "French", "native": "Français", "status": "available"},
+    {"code": "pl", "name": "Polish", "native": "Polski", "status": "available"},
+    {"code": "hi", "name": "Hindi", "native": "हिन्दी", "status": "limited"},
+    {"code": "ur", "name": "Urdu", "native": "اردو", "status": "limited"},
 ]
 
 

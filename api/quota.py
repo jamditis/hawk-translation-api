@@ -14,6 +14,11 @@ def _midnight_timestamp() -> int:
     return int(midnight.timestamp())
 
 
+# Note: check_quota + increment_quota is not atomic. Two simultaneous requests
+# from the same org can both pass the check before either increments the counter,
+# allowing a brief overage at the quota boundary. For daily translation quotas
+# this is an acceptable trade-off vs. the complexity of a Lua script or
+# distributed lock.
 def check_quota(org_id: str, daily_quota: int, redis_client: Redis) -> None:
     """Raise 429 if org has hit its daily translation quota."""
     key = _quota_key(org_id)
