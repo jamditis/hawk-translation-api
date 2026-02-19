@@ -203,19 +203,15 @@ def test_error_webhook_fired_on_final_failure():
     exc = RuntimeError("Unrecoverable error")
     mock_deliver = MagicMock()
 
-    def fake_retry(**kwargs):
-        raise Exception("retry sentinel")
-
     with patch("workers.tasks.get_db_session", return_value=mock_db), \
          patch("workers.tasks.translate_segments", side_effect=exc), \
          patch("workers.tasks.deliver_webhook", mock_deliver):
         from workers.tasks import run_translation_pipeline
         run_translation_pipeline.push_request(retries=3)  # retries == max_retries == 3
-        with patch.object(run_translation_pipeline, "retry", side_effect=fake_retry):
-            try:
-                run_translation_pipeline.run("job-123")
-            except Exception:
-                pass
+        try:
+            run_translation_pipeline.run("job-123")
+        except RuntimeError:
+            pass
 
     mock_deliver.delay.assert_called_once()
     payload = mock_deliver.delay.call_args[0][2]

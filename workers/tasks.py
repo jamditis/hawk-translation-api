@@ -133,6 +133,8 @@ def run_translation_pipeline(self, job_id: str) -> None:
                     })
         except Exception:
             pass
+        if is_final_failure:
+            raise exc
         raise self.retry(exc=exc, countdown=RETRY_COUNTDOWNS[min(self.request.retries, len(RETRY_COUNTDOWNS) - 1)])
     finally:
         if db is not None:
