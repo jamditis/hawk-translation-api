@@ -74,6 +74,7 @@ def test_translate_with_valid_key_returns_202_and_job_id(mock_db, mock_auth_ctx)
     assert data["target_language"] == "es"
     assert "links" in data
     assert "self" in data["links"]
+    assert "created_at" in data
 
 
 def test_translate_rejects_unsupported_language(mock_db, mock_auth_ctx):

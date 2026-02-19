@@ -110,7 +110,7 @@ def create_translation_job(
         "tier": request.tier,
         "source_language": request.source_language,
         "target_language": request.target_language,
-        "created_at": job.created_at.isoformat() if job.created_at else datetime.now(UTC).isoformat(),
+        "created_at": job.created_at.isoformat() if job.created_at else None,
         "links": {"self": f"/v1/translate/{job_id}"},
     }
 
