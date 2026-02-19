@@ -55,7 +55,6 @@ def test_translate_with_valid_key_returns_202_and_job_id(mock_db, mock_auth_ctx)
          patch("api.routes.translate.check_quota"), \
          patch("api.routes.translate.increment_quota"), \
          patch("api.routes.translate.run_translation_pipeline") as mock_task:
-        mock_task.delay = MagicMock()
         response = client.post(
             "/v1/translate",
             headers={"Authorization": "Bearer hawk_live_test123"},
@@ -67,7 +66,14 @@ def test_translate_with_valid_key_returns_202_and_job_id(mock_db, mock_auth_ctx)
             },
         )
     assert response.status_code == 202
-    assert "job_id" in response.json()
+    data = response.json()
+    assert "job_id" in data
+    assert data["status"] == "queued"
+    assert data["tier"] == "instant"
+    assert data["source_language"] == "en"
+    assert data["target_language"] == "es"
+    assert "links" in data
+    assert "self" in data["links"]
 
 
 def test_translate_rejects_unsupported_language(mock_db, mock_auth_ctx):
@@ -179,3 +185,57 @@ def test_get_job_returns_404_for_different_org(mock_db):
         )
     assert response.status_code == 404
     assert response.json()["detail"]["error"] == "job_not_found"
+
+
+def test_translate_rejects_invalid_tier(mock_db, mock_auth_ctx):
+    with patch("api.routes.translate.authenticate_request", return_value=mock_auth_ctx), \
+         patch("api.routes.translate.check_quota"):
+        response = client.post(
+            "/v1/translate",
+            headers={"Authorization": "Bearer hawk_live_test123"},
+            json={
+                "content": "<p>Hello</p>",
+                "source_language": "en",
+                "target_language": "es",
+                "tier": "not_a_real_tier",
+            },
+        )
+    assert response.status_code == 422
+
+
+def test_translate_rejects_non_http_callback_url(mock_db, mock_auth_ctx):
+    with patch("api.routes.translate.authenticate_request", return_value=mock_auth_ctx), \
+         patch("api.routes.translate.check_quota"):
+        response = client.post(
+            "/v1/translate",
+            headers={"Authorization": "Bearer hawk_live_test123"},
+            json={
+                "content": "<p>Hello</p>",
+                "source_language": "en",
+                "target_language": "es",
+                "tier": "instant",
+                "callback_url": "file:///etc/passwd",
+            },
+        )
+    assert response.status_code == 422
+
+
+def test_translate_returns_503_when_celery_unavailable(mock_db, mock_auth_ctx):
+    mock_db.refresh = MagicMock()  # make refresh a no-op
+    with patch("api.routes.translate.authenticate_request", return_value=mock_auth_ctx), \
+         patch("api.routes.translate.check_quota"), \
+         patch("api.routes.translate.increment_quota"), \
+         patch("api.routes.translate.run_translation_pipeline") as mock_task:
+        mock_task.delay.side_effect = Exception("Celery broker unavailable")
+        response = client.post(
+            "/v1/translate",
+            headers={"Authorization": "Bearer hawk_live_test123"},
+            json={
+                "content": "<p>Hello</p>",
+                "source_language": "en",
+                "target_language": "es",
+                "tier": "instant",
+            },
+        )
+    assert response.status_code == 503
+    assert response.json()["detail"]["error"] == "service_unavailable"
