@@ -51,7 +51,6 @@ class TestInstantSpanishTranslation:
             pytest.skip("No job_id from previous test")
 
         for attempt in range(30):
-            time.sleep(2)
             response = httpx.get(
                 f"{BASE_URL}/v1/translate/{job_id}",
                 headers=HEADERS,
@@ -60,6 +59,7 @@ class TestInstantSpanishTranslation:
             data = response.json()
             if data["status"] in ("complete", "failed"):
                 break
+            time.sleep(2)
 
         assert data["status"] == "complete", f"Job did not complete: {data}"
 
@@ -71,6 +71,7 @@ class TestInstantSpanishTranslation:
 
         response = httpx.get(f"{BASE_URL}/v1/translate/{job_id}", headers=HEADERS)
         data = response.json()
+        assert data["status"] == "complete", f"Job not complete (status: {data['status']}): {data}"
         translated = data.get("translated_content", "")
         assert "<h1>" in translated, "h1 tag missing from translation"
         assert "<p>" in translated, "p tag missing from translation"
@@ -83,6 +84,7 @@ class TestInstantSpanishTranslation:
 
         response = httpx.get(f"{BASE_URL}/v1/translate/{job_id}", headers=HEADERS)
         data = response.json()
+        assert data["status"] == "complete", f"Job not complete (status: {data['status']}): {data}"
         translated = data.get("translated_content", "")
         assert "Montclair" in translated, "Proper noun 'Montclair' was not preserved"
 
@@ -94,6 +96,7 @@ class TestInstantSpanishTranslation:
 
         response = httpx.get(f"{BASE_URL}/v1/translate/{job_id}", headers=HEADERS)
         data = response.json()
+        assert data["status"] == "complete", f"Job not complete (status: {data['status']}): {data}"
         translated = data.get("translated_content", "")
         # Common Spanish words that should appear in a translation of this article
         spanish_indicators = ["de", "la", "el", "los", "del", "por", "en", "que"]

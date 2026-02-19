@@ -12,3 +12,7 @@ HAWK_API_KEY=hawk_test_xxx HAWK_API_BASE_URL=http://localhost:8090 pytest tests/
 ```
 
 These tests are excluded from the standard test suite because they require a running API server, live Redis, PostgreSQL, and a valid DeepL key. Do not run them in CI without those dependencies.
+
+## Test ordering
+
+The `TestInstantSpanishTranslation` class tests are order-dependent — `test_submit_translation_job` must run first to set the `job_id` used by subsequent tests. Run the full class together, not individual methods in isolation.
