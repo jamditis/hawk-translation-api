@@ -28,10 +28,15 @@ def check_quota(org_id: str, daily_quota: int, redis_client: Redis) -> None:
 
 
 def increment_quota(org_id: str, redis_client: Redis) -> int:
-    """Increment the org's daily usage counter. Sets TTL to midnight UTC on first increment."""
+    """Increment the org's daily usage counter. Always sets TTL to midnight UTC.
+
+    Uses a pipeline so INCR and EXPIREAT execute in the same network roundtrip,
+    preventing the key from persisting without a TTL if the process is killed between calls.
+    """
     key = _quota_key(org_id)
-    count = redis_client.incr(key)
-    if count == 1:
-        # First increment today — set expiry to midnight UTC so counter auto-resets
-        redis_client.expireat(key, _midnight_timestamp())
-    return count
+    midnight = _midnight_timestamp()
+    pipe = redis_client.pipeline()
+    pipe.incr(key)
+    pipe.expireat(key, midnight)
+    results = pipe.execute()
+    return results[0]

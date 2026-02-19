@@ -30,8 +30,20 @@ def test_no_existing_count_passes():
 
 
 def test_increment_sets_expiry():
+    import time
     redis = MagicMock()
-    redis.incr.return_value = 1  # first increment of the day
-    increment_quota(org_id="org-1", redis_client=redis)
-    redis.incr.assert_called_once()
-    redis.expireat.assert_called_once()
+    mock_pipe = MagicMock()
+    mock_pipe.execute.return_value = [1, True]  # [incr result, expireat result]
+    redis.pipeline.return_value = mock_pipe
+
+    count = increment_quota(org_id="org-1", redis_client=redis)
+
+    assert count == 1
+    mock_pipe.incr.assert_called_once()
+    mock_pipe.expireat.assert_called_once()
+
+    # Verify the expiry timestamp is within a reasonable window (now → 25h from now)
+    _, kwargs = mock_pipe.expireat.call_args
+    ts_arg = mock_pipe.expireat.call_args[0][1]  # second positional arg
+    now = time.time()
+    assert now < ts_arg <= now + 90000  # 25 hours in seconds
