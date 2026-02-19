@@ -1,0 +1,15 @@
+[Unit]
+Description=Hawk News Service translation API
+After=network.target postgresql.service redis.service
+
+[Service]
+Type=simple
+User=joe
+WorkingDirectory=/home/joe/projects/hawk-translation-api
+EnvironmentFile=/home/joe/projects/hawk-translation-api/.env
+ExecStart=/home/joe/projects/hawk-translation-api/venv/bin/uvicorn api.main:app --host 127.0.0.1 --port 8090
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
