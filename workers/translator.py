@@ -2,22 +2,22 @@ import httpx
 
 DEEPL_API_URL = "https://api-free.deepl.com/v2/translate"
 
-SUPPORTED_TARGET_LANGUAGES = {
-    "es": "ES",       # Spanish
-    "pt": "PT-BR",    # Portuguese (Brazil)
-    "ht": "HT",       # Haitian Creole (Google fallback — DeepL doesn't support HT)
-    "zh": "ZH",       # Chinese Simplified
-    "ko": "KO",       # Korean
-    "ar": "AR",       # Arabic
-    "fr": "FR",       # French
-    "pl": "PL",       # Polish
-    "hi": "HI",       # Hindi
-    "ur": "UR",       # Urdu (Google fallback)
+# All 10 language codes the API layer accepts
+SUPPORTED_TARGET_LANGUAGES = {"es", "pt", "ht", "zh", "ko", "ar", "fr", "pl", "hi", "ur"}
+
+# Mapping from our codes to DeepL's target language codes (only for DEEPL_SUPPORTED languages)
+DEEPL_LANGUAGE_CODES = {
+    "es": "ES",
+    "pt": "PT-BR",
+    "zh": "ZH",
+    "ko": "KO",
+    "ar": "AR",
+    "fr": "FR",
+    "pl": "PL",
 }
 
-# Languages DeepL natively supports vs. those needing a Google fallback
-DEEPL_SUPPORTED = {"es", "pt", "zh", "ko", "fr", "pl"}
-GOOGLE_FALLBACK = {"ht", "ar", "hi", "ur"}
+DEEPL_SUPPORTED = set(DEEPL_LANGUAGE_CODES.keys())
+GOOGLE_FALLBACK = {"ht", "hi", "ur"}
 
 
 def translate_segments(
@@ -33,11 +33,17 @@ def translate_segments(
     if not segments:
         return segments
 
+    if target_language not in SUPPORTED_TARGET_LANGUAGES:
+        raise ValueError(
+            f"Unsupported target language: {target_language!r}. "
+            f"Supported: {sorted(SUPPORTED_TARGET_LANGUAGES)}"
+        )
+
     if target_language in GOOGLE_FALLBACK:
         return _translate_via_google(segments, target_language)
 
     texts = [s["text"] for s in segments]
-    deepl_lang = SUPPORTED_TARGET_LANGUAGES[target_language]
+    deepl_lang = DEEPL_LANGUAGE_CODES[target_language]
 
     response = httpx.post(
         DEEPL_API_URL,
@@ -46,7 +52,6 @@ def translate_segments(
             "text": texts,
             "source_lang": "EN",
             "target_lang": deepl_lang,
-            "tag_handling": "xml",
             "preserve_formatting": True,
         },
         timeout=30.0,
@@ -56,6 +61,10 @@ def translate_segments(
         raise Exception(f"DeepL API error {response.status_code}: {response.text}")
 
     data = response.json()
+    if len(data["translations"]) != len(texts):
+        raise Exception(
+            f"DeepL returned {len(data['translations'])} translations for {len(texts)} segments"
+        )
     for i, translation in enumerate(data["translations"]):
         segments[i]["translated"] = translation["text"]
 
