@@ -40,3 +40,33 @@ def test_malformed_json_returns_none():
     with patch("subprocess.run", return_value=make_mock_run("not json")):
         result = score_translation(original="Hello.", translated="Hola.", target_lang="es")
     assert result is None
+
+
+def test_null_overall_score_returns_none():
+    """Model returning null for a numeric field should return None, not raise TypeError."""
+    mock_output = '{"overall": null, "fluency": 4, "accuracy": 4, "flags": []}'
+    with patch("subprocess.run", return_value=make_mock_run(mock_output)):
+        result = score_translation(original="Hello.", translated="Hola.", target_lang="es")
+    assert result is None
+
+
+def test_null_flags_returns_empty_list():
+    """flags: null in JSON should produce an empty list, not None."""
+    mock_output = '{"overall": 4.0, "fluency": 4, "accuracy": 4, "flags": null}'
+    with patch("subprocess.run", return_value=make_mock_run(mock_output)):
+        result = score_translation(original="Hello.", translated="Hola.", target_lang="es")
+    assert result is not None
+    assert result.flags == []
+
+
+def test_curly_braces_in_content_do_not_raise():
+    """Content containing { or } should not break the prompt .format() call."""
+    mock_output = '{"overall": 4.0, "fluency": 4, "accuracy": 4, "flags": []}'
+    with patch("subprocess.run", return_value=make_mock_run(mock_output)):
+        result = score_translation(
+            original='The {"key": "value"} JSON was published.',
+            translated='El {"key": "value"} JSON fue publicado.',
+            target_lang="es",
+        )
+    assert result is not None
+    assert result.overall == 4.0

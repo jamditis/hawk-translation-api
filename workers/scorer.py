@@ -49,8 +49,8 @@ def score_translation(original: str, translated: str, target_lang: str) -> "Scor
     """
     prompt = SCORING_PROMPT_TEMPLATE.format(
         target_lang=target_lang,
-        original=original[:2000],
-        translated=translated[:2000],
+        original=original[:2000].replace("{", "{{").replace("}", "}}"),
+        translated=translated[:2000].replace("{", "{{").replace("}", "}}"),
     )
 
     try:
@@ -65,11 +65,11 @@ def score_translation(original: str, translated: str, target_lang: str) -> "Scor
             overall=float(data["overall"]),
             fluency=float(data["fluency"]),
             accuracy=float(data["accuracy"]),
-            flags=data.get("flags", []),
+            flags=data.get("flags") or [],
         )
     except subprocess.TimeoutExpired:
         logger.warning("Quality scoring timed out for translation to %s", target_lang)
         return None
-    except (json.JSONDecodeError, KeyError, ValueError) as e:
+    except (json.JSONDecodeError, KeyError, ValueError, TypeError) as e:
         logger.warning("Quality scoring returned invalid output: %s", e)
         return None
