@@ -42,7 +42,10 @@ def authenticate_request(
         data = json.loads(cached)
         return AuthContext(**data)
 
-    # DB lookup on cache miss
+    # DB lookup on cache miss.
+    # NOTE: timing side channel accepted — DB response time varies for valid vs invalid keys.
+    # Fixing this would require always fetching a row and comparing in Python, adding complexity
+    # not warranted at this stage. Low practical risk for a rate-limited API key service.
     api_key = db.query(APIKey).filter(
         APIKey.key_hash == key_hash,
         APIKey.active == True,
