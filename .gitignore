@@ -13,3 +13,6 @@ celerybeat.pid
 *.log
 .DS_Store
 *.swp
+*.db
+.ruff_cache/
+.mypy_cache/
