@@ -20,6 +20,9 @@ def get_db_session():
 
 
 def send_webhook(callback_url: str, job_id: str, payload: dict) -> None:
+    if not callback_url.startswith(("http://", "https://")):
+        logger.warning("Skipping webhook for job %s: invalid URL scheme", job_id)
+        return
     try:
         httpx.post(callback_url, json=payload, timeout=10.0)
     except Exception as e:
@@ -28,8 +31,10 @@ def send_webhook(callback_url: str, job_id: str, payload: dict) -> None:
 
 @celery_app.task(bind=True, max_retries=3, default_retry_delay=30)
 def run_translation_pipeline(self, job_id: str) -> None:
-    db = get_db_session()
+    db = None
     try:
+        db = get_db_session()
+        job = None
         job = db.get(TranslationJob, job_id)
         if not job:
             logger.error("Job %s not found", job_id)
@@ -102,11 +107,14 @@ def run_translation_pipeline(self, job_id: str) -> None:
 
     except Exception as exc:
         logger.exception("Pipeline failed for job %s", job_id)
-        job = db.get(TranslationJob, job_id)
-        if job:
-            job.status = "failed"
-            job.error_message = str(exc)
-            db.commit()
+        try:
+            if job is not None:
+                job.status = "failed"
+                job.error_message = str(exc)
+                db.commit()
+        except Exception:
+            pass
         raise self.retry(exc=exc)
     finally:
-        db.close()
+        if db is not None:
+            db.close()
