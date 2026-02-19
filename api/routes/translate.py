@@ -1,8 +1,9 @@
 import uuid
 from datetime import datetime, UTC
-from fastapi import APIRouter, Header, HTTPException
+from fastapi import APIRouter, Header, Depends, HTTPException
 from pydantic import BaseModel
 from redis import Redis
+from sqlalchemy.orm import Session
 import os
 
 from api.auth import authenticate_request
@@ -53,10 +54,10 @@ def get_languages():
 def create_translation_job(
     request: TranslateRequest,
     authorization: str | None = Header(default=None),
+    db: Session = Depends(get_db),
 ):
     if not authorization:
         raise HTTPException(status_code=401, detail={"error": "missing_auth_header"})
-    db = next(get_db())
     redis_client = _get_redis()
     ctx = authenticate_request(authorization=authorization, db=db, redis_client=redis_client)
     check_quota(org_id=ctx.org_id, daily_quota=ctx.daily_quota, redis_client=redis_client)
@@ -87,6 +88,7 @@ def create_translation_job(
     )
     db.add(job)
     db.commit()
+    db.refresh(job)  # ensure created_at is populated from DB
 
     increment_quota(org_id=ctx.org_id, redis_client=redis_client)
     run_translation_pipeline.delay(job_id)
@@ -97,7 +99,7 @@ def create_translation_job(
         "tier": request.tier,
         "source_language": request.source_language,
         "target_language": request.target_language,
-        "created_at": datetime.now(UTC).isoformat(),
+        "created_at": job.created_at.isoformat() if job.created_at else datetime.now(UTC).isoformat(),
         "links": {"self": f"/v1/translate/{job_id}"},
     }
 
@@ -106,10 +108,10 @@ def create_translation_job(
 def get_job(
     job_id: str,
     authorization: str | None = Header(default=None),
+    db: Session = Depends(get_db),
 ):
     if not authorization:
         raise HTTPException(status_code=401, detail={"error": "missing_auth_header"})
-    db = next(get_db())
     redis_client = _get_redis()
     ctx = authenticate_request(authorization=authorization, db=db, redis_client=redis_client)
     job = db.get(TranslationJob, job_id)

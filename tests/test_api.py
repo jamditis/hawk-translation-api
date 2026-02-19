@@ -2,8 +2,27 @@ import pytest
 from fastapi.testclient import TestClient
 from unittest.mock import patch, MagicMock
 from api.main import app
+from db.database import get_db
 
 client = TestClient(app)
+
+
+@pytest.fixture(autouse=False)
+def mock_db():
+    db = MagicMock()
+    app.dependency_overrides[get_db] = lambda: db
+    yield db
+    app.dependency_overrides.clear()
+
+
+@pytest.fixture(autouse=False)
+def mock_auth_ctx():
+    ctx = MagicMock()
+    ctx.org_id = "org-123"
+    ctx.tier = "instant"
+    ctx.daily_quota = 100
+    ctx.api_key_id = "key-456"
+    return ctx
 
 
 def test_health_check():
@@ -21,7 +40,7 @@ def test_get_languages():
     assert len(data["languages"]) == 10
 
 
-def test_translate_requires_auth():
+def test_translate_requires_auth(mock_db):
     response = client.post("/v1/translate", json={
         "content": "<p>Hello</p>",
         "source_language": "en",
@@ -31,22 +50,11 @@ def test_translate_requires_auth():
     assert response.status_code == 401
 
 
-def test_translate_with_valid_key_returns_202_and_job_id():
-    mock_ctx = MagicMock()
-    mock_ctx.org_id = "org-123"
-    mock_ctx.tier = "instant"
-    mock_ctx.daily_quota = 100
-    mock_ctx.api_key_id = "key-456"
-
-    mock_db = MagicMock()
-    mock_db.__enter__ = MagicMock(return_value=mock_db)
-    mock_db.__exit__ = MagicMock(return_value=False)
-
-    with patch("api.routes.translate.authenticate_request", return_value=mock_ctx), \
+def test_translate_with_valid_key_returns_202_and_job_id(mock_db, mock_auth_ctx):
+    with patch("api.routes.translate.authenticate_request", return_value=mock_auth_ctx), \
          patch("api.routes.translate.check_quota"), \
          patch("api.routes.translate.increment_quota"), \
-         patch("api.routes.translate.run_translation_pipeline") as mock_task, \
-         patch("api.routes.translate.get_db", return_value=iter([mock_db])):
+         patch("api.routes.translate.run_translation_pipeline") as mock_task:
         mock_task.delay = MagicMock()
         response = client.post(
             "/v1/translate",
@@ -62,18 +70,9 @@ def test_translate_with_valid_key_returns_202_and_job_id():
     assert "job_id" in response.json()
 
 
-def test_translate_rejects_unsupported_language():
-    mock_ctx = MagicMock()
-    mock_ctx.org_id = "org-123"
-    mock_ctx.tier = "instant"
-    mock_ctx.daily_quota = 100
-    mock_ctx.api_key_id = "key-456"
-
-    mock_db = MagicMock()
-
-    with patch("api.routes.translate.authenticate_request", return_value=mock_ctx), \
-         patch("api.routes.translate.check_quota"), \
-         patch("api.routes.translate.get_db", return_value=iter([mock_db])):
+def test_translate_rejects_unsupported_language(mock_db, mock_auth_ctx):
+    with patch("api.routes.translate.authenticate_request", return_value=mock_auth_ctx), \
+         patch("api.routes.translate.check_quota"):
         response = client.post(
             "/v1/translate",
             headers={"Authorization": "Bearer hawk_live_test123"},
@@ -88,18 +87,9 @@ def test_translate_rejects_unsupported_language():
     assert response.json()["detail"]["error"] == "unsupported_language"
 
 
-def test_translate_rejects_oversized_content():
-    mock_ctx = MagicMock()
-    mock_ctx.org_id = "org-123"
-    mock_ctx.tier = "instant"
-    mock_ctx.daily_quota = 100
-    mock_ctx.api_key_id = "key-456"
-
-    mock_db = MagicMock()
-
-    with patch("api.routes.translate.authenticate_request", return_value=mock_ctx), \
-         patch("api.routes.translate.check_quota"), \
-         patch("api.routes.translate.get_db", return_value=iter([mock_db])):
+def test_translate_rejects_oversized_content(mock_db, mock_auth_ctx):
+    with patch("api.routes.translate.authenticate_request", return_value=mock_auth_ctx), \
+         patch("api.routes.translate.check_quota"):
         response = client.post(
             "/v1/translate",
             headers={"Authorization": "Bearer hawk_live_test123"},
@@ -114,7 +104,7 @@ def test_translate_rejects_oversized_content():
     assert response.json()["detail"]["error"] == "content_too_large"
 
 
-def test_get_job_status():
+def test_get_job_status(mock_db):
     mock_ctx = MagicMock()
     mock_ctx.org_id = "org-123"
 
@@ -131,11 +121,9 @@ def test_get_job_status():
     mock_job.created_at = None
     mock_job.completed_at = None
 
-    mock_db = MagicMock()
     mock_db.get.return_value = mock_job
 
-    with patch("api.routes.translate.authenticate_request", return_value=mock_ctx), \
-         patch("api.routes.translate.get_db", return_value=iter([mock_db])):
+    with patch("api.routes.translate.authenticate_request", return_value=mock_ctx):
         response = client.get(
             "/v1/translate/job-abc",
             headers={"Authorization": "Bearer hawk_live_test123"},
@@ -146,17 +134,48 @@ def test_get_job_status():
     assert data["translated_content"] == "<p>Hola mundo.</p>"
 
 
-def test_get_job_not_found():
+def test_get_job_not_found(mock_db):
     mock_ctx = MagicMock()
     mock_ctx.org_id = "org-123"
 
-    mock_db = MagicMock()
     mock_db.get.return_value = None
 
-    with patch("api.routes.translate.authenticate_request", return_value=mock_ctx), \
-         patch("api.routes.translate.get_db", return_value=iter([mock_db])):
+    with patch("api.routes.translate.authenticate_request", return_value=mock_ctx):
         response = client.get(
             "/v1/translate/nonexistent",
             headers={"Authorization": "Bearer hawk_live_test123"},
         )
     assert response.status_code == 404
+
+
+def test_translate_returns_429_when_quota_exceeded(mock_db, mock_auth_ctx):
+    from fastapi import HTTPException
+    with patch("api.routes.translate.authenticate_request", return_value=mock_auth_ctx), \
+         patch("api.routes.translate.check_quota", side_effect=HTTPException(
+             status_code=429,
+             detail={"error": "quota_exceeded", "reset_at": "2026-02-20T00:00:00Z", "limit": 50}
+         )):
+        response = client.post(
+            "/v1/translate",
+            headers={"Authorization": "Bearer hawk_live_test123"},
+            json={"content": "<p>Hello</p>", "source_language": "en", "target_language": "es", "tier": "instant"},
+        )
+    assert response.status_code == 429
+    assert response.json()["detail"]["error"] == "quota_exceeded"
+
+
+def test_get_job_returns_404_for_different_org(mock_db):
+    mock_ctx = MagicMock()
+    mock_ctx.org_id = "org-abc"  # different from job's org
+
+    mock_job = MagicMock()
+    mock_job.org_id = "org-xyz"  # different org owns this job
+    mock_db.get.return_value = mock_job
+
+    with patch("api.routes.translate.authenticate_request", return_value=mock_ctx):
+        response = client.get(
+            "/v1/translate/job-abc",
+            headers={"Authorization": "Bearer hawk_live_test123"},
+        )
+    assert response.status_code == 404
+    assert response.json()["detail"]["error"] == "job_not_found"
