@@ -320,3 +320,97 @@ def test_deliver_webhook_succeeds_on_2xx():
 
         assert result is None
         assert not retry_called, f"retry should not be called on 2xx, got: {retry_called}"
+
+
+def test_pipeline_returns_early_when_job_not_found():
+    """When db.get returns None for the job, the task returns early without calling translate_segments."""
+    mock_db = MagicMock()
+    mock_db.get.return_value = None
+
+    with patch("workers.tasks.get_db_session", return_value=mock_db), \
+         patch("workers.tasks.translate_segments") as mock_translate, \
+         patch("workers.tasks.deliver_webhook"):
+        from workers.tasks import run_translation_pipeline
+        result = run_translation_pipeline("job-missing")
+
+    mock_translate.assert_not_called()
+    assert result is None
+
+
+def test_pipeline_applies_glossary_when_glossary_id_set():
+    """When job.glossary_id is set, apply_glossary is called with the glossary's terms."""
+    from db.models import Glossary, TranslationJob
+
+    mock_db = MagicMock()
+    mock_job = _make_mock_job(glossary_id="gloss-1")
+
+    mock_glossary = MagicMock()
+    mock_glossary.terms_json = {"Assembly": "Asamblea"}
+
+    def get_side_effect(model, id):
+        if model == TranslationJob:
+            return mock_job
+        if model == Glossary:
+            return mock_glossary
+        return None
+
+    mock_db.get.side_effect = get_side_effect
+
+    with patch("workers.tasks.get_db_session", return_value=mock_db), \
+         patch("workers.tasks.translate_segments", return_value=[SEGMENT]), \
+         patch("workers.tasks.score_translation", return_value=None), \
+         patch("workers.tasks.apply_glossary") as mock_apply_glossary, \
+         patch("workers.tasks.deliver_webhook"):
+        mock_apply_glossary.side_effect = lambda text, terms: text
+        from workers.tasks import run_translation_pipeline
+        run_translation_pipeline("job-123")
+
+    assert mock_apply_glossary.called, "apply_glossary was never called"
+    called_terms = mock_apply_glossary.call_args[0][1]
+    assert called_terms == {"Assembly": "Asamblea"}, (
+        f"Expected apply_glossary called with glossary terms, got: {called_terms}"
+    )
+
+
+def test_pipeline_does_not_fire_webhook_for_review_tier():
+    """When job.tier is 'reviewed', status is set to 'in_review' and webhook is not fired."""
+    mock_db = MagicMock()
+    mock_job = _make_mock_job(tier="reviewed", callback_url="https://example.com/webhook")
+    mock_db.get.return_value = mock_job
+
+    mock_deliver = MagicMock()
+
+    with patch("workers.tasks.get_db_session", return_value=mock_db), \
+         patch("workers.tasks.translate_segments", return_value=[SEGMENT]), \
+         patch("workers.tasks.score_translation", return_value=None), \
+         patch("workers.tasks.deliver_webhook", mock_deliver):
+        from workers.tasks import run_translation_pipeline
+        run_translation_pipeline("job-123")
+
+    mock_deliver.delay.assert_not_called()
+    assert mock_job.status == "in_review", (
+        f"Expected job.status='in_review' for reviewed tier, got: {mock_job.status}"
+    )
+
+
+def test_pipeline_handles_empty_segments():
+    """When segment_html returns [], task completes with word_count=0 and status='complete'."""
+    mock_db = MagicMock()
+    mock_job = _make_mock_job()
+    mock_db.get.return_value = mock_job
+
+    with patch("workers.tasks.get_db_session", return_value=mock_db), \
+         patch("workers.tasks.segment_html", return_value=[]), \
+         patch("workers.tasks.translate_segments", return_value=[]), \
+         patch("workers.tasks.reassemble_html", return_value="") as mock_reassemble, \
+         patch("workers.tasks.score_translation", return_value=None), \
+         patch("workers.tasks.deliver_webhook"):
+        from workers.tasks import run_translation_pipeline
+        run_translation_pipeline("job-123")
+
+    assert mock_job.word_count == 0, (
+        f"Expected word_count=0 for empty segments, got: {mock_job.word_count}"
+    )
+    assert mock_job.status == "complete", (
+        f"Expected status='complete', got: {mock_job.status}"
+    )

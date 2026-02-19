@@ -72,6 +72,7 @@ def run_translation_pipeline(self, job_id: str) -> None:
 
         # Stage 4: reassemble translated HTML
         job.translated_content = reassemble_html(segments)
+        # word_count reflects source segment word count (post-glossary, pre-translation) for billing
         job.word_count = sum(len(s["text"].split()) for s in segments)
         job.status = "machine_translated"
         db.commit()
@@ -131,8 +132,8 @@ def run_translation_pipeline(self, job_id: str) -> None:
                         "status": "failed",
                         "error": str(exc),
                     })
-        except Exception:
-            pass
+        except Exception as db_exc:
+            logger.warning("Failed to persist failure status for job %s: %s", job_id, db_exc)
         if is_final_failure:
             raise exc
         raise self.retry(exc=exc, countdown=RETRY_COUNTDOWNS[min(self.request.retries, len(RETRY_COUNTDOWNS) - 1)])
