@@ -14,34 +14,44 @@ from workers.translator import translate_segments
 
 logger = logging.getLogger(__name__)
 
+RETRY_COUNTDOWNS = [30, 120, 600]
+WEBHOOK_RETRY_COUNTDOWNS = [300, 1800, 7200, 28800, 57600]
+
 
 def get_db_session():
     return SessionLocal()
 
 
-def send_webhook(callback_url: str, job_id: str, payload: dict) -> None:
+@celery_app.task(bind=True, max_retries=5)
+def deliver_webhook(self, callback_url: str, job_id: str, payload: dict) -> None:
     if not callback_url.startswith(("http://", "https://")):
         logger.warning("Skipping webhook for job %s: invalid URL scheme", job_id)
         return
     try:
-        httpx.post(callback_url, json=payload, timeout=10.0)
-    except Exception as e:
-        logger.warning("Webhook delivery failed for job %s: %s", job_id, e)
+        response = httpx.post(callback_url, json=payload, timeout=10.0)
+        if response.status_code >= 300:
+            raise ValueError(f"Webhook returned {response.status_code}")
+    except Exception as exc:
+        if self.request.retries >= self.max_retries:
+            logger.warning("Webhook delivery abandoned for job %s", job_id)
+            return
+        countdown = WEBHOOK_RETRY_COUNTDOWNS[min(self.request.retries, len(WEBHOOK_RETRY_COUNTDOWNS) - 1)]
+        raise self.retry(exc=exc, countdown=countdown)
 
 
-@celery_app.task(bind=True, max_retries=3, default_retry_delay=30)
+@celery_app.task(bind=True, max_retries=3)
 def run_translation_pipeline(self, job_id: str) -> None:
     db = None
+    job = None
     try:
         db = get_db_session()
-        job = None
         job = db.get(TranslationJob, job_id)
         if not job:
             logger.error("Job %s not found", job_id)
             return
 
         # Stage 1: segment HTML content
-        job.status = "machine_translated"
+        job.status = "translating"
         db.commit()
         segments = segment_html(job.content)
 
@@ -63,6 +73,8 @@ def run_translation_pipeline(self, job_id: str) -> None:
         # Stage 4: reassemble translated HTML
         job.translated_content = reassemble_html(segments)
         job.word_count = sum(len(s["text"].split()) for s in segments)
+        job.status = "machine_translated"
+        db.commit()
 
         # Stage 5: quality scoring (non-blocking — None result is fine)
         job.status = "scoring"
@@ -98,7 +110,7 @@ def run_translation_pipeline(self, job_id: str) -> None:
 
         # Stage 7: fire webhook if job is complete
         if job.callback_url and job.status == "complete":
-            send_webhook(job.callback_url, job_id, {
+            deliver_webhook.delay(job.callback_url, job_id, {
                 "job_id": job_id,
                 "status": job.status,
                 "translated_content": job.translated_content,
@@ -107,14 +119,21 @@ def run_translation_pipeline(self, job_id: str) -> None:
 
     except Exception as exc:
         logger.exception("Pipeline failed for job %s", job_id)
+        is_final_failure = self.request.retries >= self.max_retries
         try:
             if job is not None:
                 job.status = "failed"
                 job.error_message = str(exc)
                 db.commit()
+                if is_final_failure and job.callback_url:
+                    deliver_webhook.delay(job.callback_url, job_id, {
+                        "job_id": job_id,
+                        "status": "failed",
+                        "error": str(exc),
+                    })
         except Exception:
             pass
-        raise self.retry(exc=exc)
+        raise self.retry(exc=exc, countdown=RETRY_COUNTDOWNS[min(self.request.retries, len(RETRY_COUNTDOWNS) - 1)])
     finally:
         if db is not None:
             db.close()
