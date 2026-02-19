@@ -1,6 +1,16 @@
+import re
+
 from bs4 import BeautifulSoup
 
 TRANSLATABLE_TAGS = {"p", "h1", "h2", "h3", "h4", "h5", "h6", "li", "blockquote", "figcaption", "td", "th"}
+
+
+def _has_translatable_descendant(element) -> bool:
+    """Return True if element contains any nested translatable tag."""
+    for tag in TRANSLATABLE_TAGS:
+        if element.find(tag):
+            return True
+    return False
 
 
 def segment_html(html: str) -> list[dict]:
@@ -17,7 +27,9 @@ def segment_html(html: str) -> list[dict]:
     index = 0
 
     for element in soup.find_all(TRANSLATABLE_TAGS):
-        text = element.get_text(strip=True)
+        if _has_translatable_descendant(element):
+            continue  # translatable children will be picked up in their own iterations
+        text = element.get_text(separator=" ", strip=True)
         if not text:
             continue
         segments.append({
@@ -35,10 +47,14 @@ def segment_html(html: str) -> list[dict]:
 def reassemble_html(segments: list[dict]) -> str:
     """
     Reassemble translated segments into HTML.
-    Uses the translated text (or original if untranslated), wrapped in the original tag.
+    Preserves original tag attributes (class, id, lang, etc.) from inner_html.
     """
     parts = []
     for seg in segments:
-        translated = seg.get("translated") or seg["text"]
-        parts.append(f"<{seg['tag']}>{translated}</{seg['tag']}>")
+        translated = seg["translated"] if seg.get("translated") is not None else seg["text"]
+        # Extract the opening tag with its original attributes from inner_html
+        open_tag_match = re.match(r"<[^>]+>", seg["inner_html"])
+        open_tag = open_tag_match.group(0) if open_tag_match else f"<{seg['tag']}>"
+        close_tag = f"</{seg['tag']}>"
+        parts.append(f"{open_tag}{translated}{close_tag}")
     return "\n".join(parts)
