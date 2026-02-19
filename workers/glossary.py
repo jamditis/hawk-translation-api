@@ -17,7 +17,8 @@ def apply_glossary(text: str, terms: dict[str, str]) -> str:
     sorted_terms = sorted(terms.items(), key=lambda x: len(x[0]), reverse=True)
 
     for source, target in sorted_terms:
-        pattern = re.compile(r"\b" + re.escape(source) + r"\b", re.IGNORECASE)
-        result = pattern.sub(target, result)
+        escaped_source = re.escape(source)
+        pattern = re.compile(r"(?<!\w)" + escaped_source + r"(?!\w)", re.IGNORECASE)
+        result = pattern.sub(lambda m: target, result)
 
     return result

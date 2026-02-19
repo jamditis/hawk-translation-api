@@ -34,3 +34,20 @@ def test_empty_terms_returns_original():
     text = "Hello world."
     result = apply_glossary(text, {})
     assert result == text
+
+
+def test_period_ending_abbreviation_matches():
+    """Terms like 'U.S.' should be matched and replaced correctly."""
+    text = "U.S. Congress passed the bill."
+    terms = {"U.S.": "United States"}
+    result = apply_glossary(text, terms)
+    assert "United States" in result
+    assert "U.S." not in result
+
+
+def test_backslash_in_replacement_does_not_raise():
+    """Backslash in a replacement value should not cause re.error."""
+    text = "The Governor spoke."
+    terms = {"Governor": r"Gobernador\a"}  # \a would crash non-lambda re.sub
+    result = apply_glossary(text, terms)
+    assert r"Gobernador\a" in result
