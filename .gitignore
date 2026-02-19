@@ -7,3 +7,9 @@ dist/
 .pytest_cache/
 htmlcov/
 .coverage
+.env.*
+celerybeat-schedule
+celerybeat.pid
+*.log
+.DS_Store
+*.swp
