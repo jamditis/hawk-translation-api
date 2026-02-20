@@ -77,12 +77,14 @@
       text-decoration: none;
       letter-spacing: .02em;
       margin-right: .25rem;
+      font-style: italic;
     }
     .nav-links {
       display: flex;
       align-items: center;
       gap: .6rem;
       flex: 1;
+      justify-content: center;
     }
     .nav-links a {
       font-family: 'DM Sans', system-ui, sans-serif;
@@ -235,6 +237,12 @@
     .dpde3 { animation: dotEcho   7.2s linear 3.35s infinite; }
     .dpde4 { animation: dotEcho   7.2s linear 4.55s infinite; }
     .dpde5 { animation: dotEcho   7.2s linear 5.75s infinite; }
+
+    .dpd1, .dpd2, .dpd3, .dpd4, .dpd5,
+    .dpde1, .dpde2, .dpde3, .dpde4, .dpde5 {
+      transform-box: fill-box;
+      transform-origin: center;
+    }
 
     /* App frame */
     .frame-wrap {
