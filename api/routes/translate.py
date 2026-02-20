@@ -10,7 +10,7 @@ from redis import Redis, ConnectionPool
 from sqlalchemy.orm import Session
 
 from api.auth import authenticate_request
-from api.quota import check_quota, increment_quota
+from api.quota import check_and_increment_quota
 from db.database import get_db
 from db.models import TranslationJob
 from workers.tasks import run_translation_pipeline
@@ -63,7 +63,6 @@ def create_translation_job(
     if not authorization:
         raise HTTPException(status_code=401, detail={"error": "missing_auth_header"})
     ctx = authenticate_request(authorization=authorization, db=db, redis_client=redis_client)
-    check_quota(org_id=ctx.org_id, daily_quota=ctx.daily_quota, redis_client=redis_client)
 
     if request.target_language not in SUPPORTED_TARGET_LANGUAGES:
         raise HTTPException(
@@ -93,7 +92,7 @@ def create_translation_job(
     db.commit()
     db.refresh(job)  # ensure created_at is populated from DB
 
-    increment_quota(org_id=ctx.org_id, redis_client=redis_client)
+    check_and_increment_quota(org_id=ctx.org_id, daily_quota=ctx.daily_quota, redis_client=redis_client)
 
     try:
         run_translation_pipeline.delay(job_id)

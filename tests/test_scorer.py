@@ -1,7 +1,7 @@
 import pytest
 import subprocess
-from unittest.mock import patch, MagicMock
-from workers.scorer import score_translation, ScoreResult
+from unittest.mock import patch, MagicMock, call
+from workers.scorer import score_translation, ScoreResult, MAX_RETRIES
 
 
 def make_mock_run(stdout: str, returncode: int = 0):
@@ -30,16 +30,33 @@ def test_low_score_segment_flagged():
     assert result.needs_review is True
 
 
-def test_timeout_returns_none():
-    with patch("subprocess.run", side_effect=subprocess.TimeoutExpired("claude", 30)):
+def test_timeout_retries_then_returns_none():
+    """Timeouts are retried MAX_RETRIES times before returning None."""
+    with patch("subprocess.run", side_effect=subprocess.TimeoutExpired("claude", 30)) as mock_run:
         result = score_translation(original="Hello.", translated="Hola.", target_lang="es")
     assert result is None
+    assert mock_run.call_count == MAX_RETRIES + 1
 
 
-def test_malformed_json_returns_none():
-    with patch("subprocess.run", return_value=make_mock_run("not json")):
+def test_timeout_succeeds_on_retry():
+    """If the first attempt times out but the second succeeds, return the score."""
+    mock_output = '{"overall": 4.0, "fluency": 4, "accuracy": 4, "flags": []}'
+    with patch("subprocess.run", side_effect=[
+        subprocess.TimeoutExpired("claude", 30),
+        make_mock_run(mock_output),
+    ]) as mock_run:
+        result = score_translation(original="Hello.", translated="Hola.", target_lang="es")
+    assert result is not None
+    assert result.overall == 4.0
+    assert mock_run.call_count == 2
+
+
+def test_malformed_json_does_not_retry():
+    """Parse errors bail immediately without retrying."""
+    with patch("subprocess.run", return_value=make_mock_run("not json")) as mock_run:
         result = score_translation(original="Hello.", translated="Hola.", target_lang="es")
     assert result is None
+    assert mock_run.call_count == 1
 
 
 def test_null_overall_score_returns_none():

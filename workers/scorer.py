@@ -7,6 +7,7 @@ logger = logging.getLogger(__name__)
 
 SCORE_THRESHOLD = 3.0   # segments below this get flagged for human review
 SUBPROCESS_TIMEOUT = 30  # seconds — non-blocking: timeout returns None, not a job failure
+MAX_RETRIES = 2          # retry up to 2 times on transient failures (3 attempts total)
 
 
 @dataclass
@@ -46,6 +47,7 @@ def score_translation(original: str, translated: str, target_lang: str) -> "Scor
 
     Returns None on timeout or invalid output — scoring is advisory.
     A None result means the job still completes; scores are just absent.
+    Retries up to MAX_RETRIES times on timeouts or transient failures.
     """
     prompt = SCORING_PROMPT_TEMPLATE.format(
         target_lang=target_lang,
@@ -53,23 +55,35 @@ def score_translation(original: str, translated: str, target_lang: str) -> "Scor
         translated=translated[:2000].replace("{", "{{").replace("}", "}}"),
     )
 
-    try:
-        result = subprocess.run(
-            ["claude", "-p", prompt],
-            capture_output=True,
-            text=True,
-            timeout=SUBPROCESS_TIMEOUT,
-        )
-        data = json.loads(result.stdout.strip())
-        return ScoreResult(
-            overall=float(data["overall"]),
-            fluency=float(data["fluency"]),
-            accuracy=float(data["accuracy"]),
-            flags=data.get("flags") or [],
-        )
-    except subprocess.TimeoutExpired:
-        logger.warning("Quality scoring timed out for translation to %s", target_lang)
-        return None
-    except (json.JSONDecodeError, KeyError, ValueError, TypeError) as e:
-        logger.warning("Quality scoring returned invalid output: %s", e)
-        return None
+    last_error = None
+    for attempt in range(MAX_RETRIES + 1):
+        try:
+            result = subprocess.run(
+                ["claude", "-p", prompt],
+                capture_output=True,
+                text=True,
+                timeout=SUBPROCESS_TIMEOUT,
+            )
+            data = json.loads(result.stdout.strip())
+            return ScoreResult(
+                overall=float(data["overall"]),
+                fluency=float(data["fluency"]),
+                accuracy=float(data["accuracy"]),
+                flags=data.get("flags") or [],
+            )
+        except subprocess.TimeoutExpired:
+            last_error = "timeout"
+            logger.warning(
+                "Quality scoring timed out for %s (attempt %d/%d)",
+                target_lang, attempt + 1, MAX_RETRIES + 1,
+            )
+        except (json.JSONDecodeError, KeyError, ValueError, TypeError) as e:
+            # Parse errors are unlikely to succeed on retry — bail immediately
+            logger.warning("Quality scoring returned invalid output: %s", e)
+            return None
+
+    logger.warning(
+        "Quality scoring exhausted %d attempts for %s (last: %s)",
+        MAX_RETRIES + 1, target_lang, last_error,
+    )
+    return None
