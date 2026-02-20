@@ -2,7 +2,9 @@
 
 ## What this is
 
-A production REST API for translating journalism content into 10 languages. Built for the Center for Cooperative Media's Spanish Translation News Service (STNS) and NJ News Commons partner newsrooms.
+A human translator-centered REST API for translating journalism content into 10 languages. Machine translation and AI quality scoring generate a first draft; **professional human translators** review, edit, and certify the final output. Built for the Center for Cooperative Media's Spanish Translation News Service (STNS) and NJ News Commons partner newsrooms.
+
+The technology in this pipeline exists to make human translators faster and more effective — not to replace them. Every design decision should be evaluated through that lens.
 
 Live at: `api.hawknewsservice.org` (via Cloudflare Tunnel → officejawn)
 
@@ -18,24 +20,35 @@ POST /v1/translate
     → enqueue Celery task
     → return 202 + job_id
 
-Celery worker (officejawn)
+Machine draft (Celery worker, officejawn)
     → segment HTML (BeautifulSoup4)
     → apply NJ journalism glossary
-    → translate via DeepL API
+    → generate machine draft via DeepL / Google Translate
     → reassemble HTML
-    → score quality via `claude -p` subprocess
-    → mark complete, fire webhook
+    → AI quality scoring flags segments for human attention
+
+Human translator review (reviewed/certified tiers)
+    → assign translator by language pair + availability
+    → side-by-side editor: machine draft vs. source
+    → translator edits, approves, or rewrites segments
+    → certified tier: second translator verifies
+    → all edits tracked for quality feedback loop
+
+Delivery
+    → fire webhook when translation is ready
+    → result available at GET /v1/translate/{job_id}
 ```
 
 ## Stack
 
 | Component | Technology |
 |---|---|
+| **Human translators** | Professional bilingual journalists and translators, matched by language pair |
 | API server | FastAPI + uvicorn (port 8090) |
 | Task queue | Celery 5.3 + Redis |
 | Database | PostgreSQL 15 + SQLAlchemy 2.0 + Alembic |
-| Translation | DeepL API (7 languages); Google Cloud Translation API (`ht`, `hi`, `ur`) |
-| Quality scoring | `claude -p` subprocess — non-blocking, 30s timeout, retries on timeout |
+| Machine draft | DeepL API (7 languages); Google Cloud Translation API (`ht`, `hi`, `ur`) |
+| AI quality scoring | `claude -p` subprocess — flags segments for human translator attention (non-blocking, 30s timeout) |
 | Deployment | officejawn (100.84.214.24) via `scripts/deploy-officejawn.sh` |
 
 ---
@@ -67,7 +80,11 @@ HAWK_API_KEY=hawk_test_xxx HAWK_API_BASE_URL=http://localhost:8090 pytest tests/
 
 ## Key design decisions
 
-**No direct LLM API calls.** Quality scoring uses `claude -p` subprocess, not the Anthropic SDK. This keeps costs on existing subscriptions. Timeouts (30s) produce null scores — jobs still complete.
+**Human translators are the core of the pipeline.** Machine translation produces a draft; AI scoring highlights problem areas; human translators make the final editorial decisions. The "instant" tier (machine-only) exists for time-sensitive content, but the reviewed and certified tiers — where human translators edit and approve — are the standard for publication-quality journalism.
+
+**Three tiers control human involvement.** `instant` = machine draft + AI scoring only. `reviewed` = machine draft reviewed and edited by one human translator. `certified` = reviewed by one translator, certified by a second, with full edit tracking. The tier system ensures every newsroom can choose the right balance of speed and human oversight.
+
+**AI scoring serves human translators.** Quality scoring via `claude -p` subprocess flags segments that likely need human attention (score < 3.0), so translators can focus their effort where it matters most. Scoring is advisory — timeouts (30s) produce null scores and jobs still complete. Uses subprocess, not direct API calls, to keep costs on existing subscriptions.
 
 **API key format:** `hawk_live_<32 chars>` or `hawk_test_<32 chars>`. Stored as SHA-256 hash. Auth uses `hmac.compare_digest` for constant-time comparison.
 
@@ -75,7 +92,7 @@ HAWK_API_KEY=hawk_test_xxx HAWK_API_BASE_URL=http://localhost:8090 pytest tests/
 
 **Webhook delivery** is a separate Celery task (`deliver_webhook`) with its own retry schedule (5x over 24h). This decouples delivery retries from pipeline retries.
 
-**`ht`, `hi`, `ur` use Google Cloud Translation API.** Requires `GOOGLE_TRANSLATE_API_KEY` env var. If the key is missing or the API fails, falls back gracefully to untranslated text flagged with `needs_review: true`. These three languages are marked `"status": "limited"` in `GET /v1/languages` until the translations are validated for quality.
+**`ht`, `hi`, `ur` use Google Cloud Translation API.** Requires `GOOGLE_TRANSLATE_API_KEY` env var. If the key is missing or the API fails, falls back gracefully to untranslated text flagged with `needs_review: true`. These three languages are marked `"status": "limited"` in `GET /v1/languages` until human translators have validated the machine output quality.
 
 ---
 
@@ -83,7 +100,8 @@ HAWK_API_KEY=hawk_test_xxx HAWK_API_BASE_URL=http://localhost:8090 pytest tests/
 
 ```
 api/          FastAPI app, routes, auth, quota
-workers/      Celery tasks, segmenter, glossary, translator, scorer
+workers/      Celery tasks — machine draft pipeline (segmenter, glossary, translator, scorer)
+review/       Human translator review workflow (assignment, web UI, certification)
 db/           SQLAlchemy models, Alembic migrations
 tests/        Unit tests (pytest)
 tests/acceptance/  Live API tests (skipped in standard run)

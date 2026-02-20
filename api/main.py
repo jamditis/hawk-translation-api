@@ -3,7 +3,11 @@ from api.routes.translate import router as translate_router
 
 app = FastAPI(
     title="Hawk News Service translation API",
-    description="Translation API for local and nonprofit newsrooms",
+    description=(
+        "Human translator-centered API for translating journalism content. "
+        "Machine translation generates a first draft; professional human translators "
+        "review, edit, and certify the final output."
+    ),
     version="1.0.0",
 )
 

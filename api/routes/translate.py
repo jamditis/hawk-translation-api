@@ -42,6 +42,10 @@ class TranslateRequest(BaseModel):
     content: str
     source_language: Literal["en"] = "en"
     target_language: str
+    # Tier controls human translator involvement:
+    #   "instant"    — machine draft + AI scoring only, no human review
+    #   "reviewed"   — machine draft reviewed and edited by a human translator
+    #   "certified"  — reviewed by one translator, certified by a second
     tier: Literal["instant", "reviewed", "certified"] = "instant"
     content_type: Literal["article", "broadcast", "social"] = "article"
     metadata: dict | None = None
@@ -51,6 +55,13 @@ class TranslateRequest(BaseModel):
 
 @router.get("/languages")
 def get_languages():
+    """List supported target languages.
+
+    Status reflects human translator availability and machine translation quality
+    for each language. "available" = full pipeline with human translators ready.
+    "limited" = machine draft available but human translator coverage still
+    being established.
+    """
     return {"languages": LANGUAGES}
 
 

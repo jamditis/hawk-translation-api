@@ -5,7 +5,7 @@ from dataclasses import dataclass, field
 
 logger = logging.getLogger(__name__)
 
-SCORE_THRESHOLD = 3.0   # segments below this get flagged for human review
+SCORE_THRESHOLD = 3.0   # segments below this get flagged for human translator review
 SUBPROCESS_TIMEOUT = 30  # seconds — non-blocking: timeout returns None, not a job failure
 MAX_RETRIES = 2          # retry up to 2 times on transient failures (3 attempts total)
 
@@ -44,6 +44,11 @@ Respond with ONLY valid JSON, no other text:
 def score_translation(original: str, translated: str, target_lang: str) -> "ScoreResult | None":
     """
     Score a translation using claude -p subprocess.
+
+    This scoring exists to help human translators prioritize their review work.
+    Segments that score below SCORE_THRESHOLD (3.0) are flagged as needs_review,
+    directing human translators to the parts of the machine draft that need the
+    most attention.
 
     Returns None on timeout or invalid output — scoring is advisory.
     A None result means the job still completes; scores are just absent.
