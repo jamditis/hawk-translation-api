@@ -26,7 +26,7 @@
       --surface: #ffffff;
       --text: #0e1a12;
       --text-muted: #4a6b55;
-      --text-faint: #8aaa95;
+      --text-faint: #597164;
       --accent: #1a6b4a;
       --accent-light: #e8f5ee;
       --accent-dark: #0e3d2a;
@@ -46,6 +46,8 @@
       line-height: 1.8;
       -webkit-font-smoothing: antialiased;
     }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+
     @keyframes fadeSlideIn {
       from { opacity: 0; transform: translateY(16px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -141,7 +143,7 @@
       font-weight: 600;
       letter-spacing: .12em;
       text-transform: uppercase;
-      color: var(--text-faint);
+      color: var(--accent);
       margin-bottom: .5rem;
     }
     .page-header h1 {
@@ -283,7 +285,7 @@
       font-weight: 600;
       letter-spacing: .1em;
       text-transform: uppercase;
-      color: rgba(255,255,255,.6);
+      color: rgba(255,255,255,.85);
       margin-top: .2rem;
     }
 
