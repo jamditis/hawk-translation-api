@@ -24,16 +24,16 @@
 
   <style>
     :root {
-      --bg: #faf8f4;
+      --bg: #fefcf8;
       --surface: #ffffff;
-      --surface-2: #f3ede3;
-      --border: #d9cebe;
+      --surface-2: #f5f0e8;
+      --border: #ddd6c2;
       --text: #1a1510;
-      --text-muted: #6b5e4e;
-      --text-faint: #9b8c7c;
-      --accent: #8b2e0f;
-      --accent-light: #c4541f;
-      --accent-bg: #fdf0eb;
+      --text-muted: #6b5840;
+      --text-faint: #9b8870;
+      --accent: #b07020;
+      --accent-light: #d09030;
+      --accent-bg: #fdf5e3;
       --teal: #0f6b6b;
       --teal-bg: #e8f5f5;
       --amber: #92600a;
@@ -580,6 +580,92 @@
       border-radius: 2px;
     }
 
+    /* ── Suite nav bar ── */
+    .suite-nav-bar {
+      background: rgba(26,46,74,0.97);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: .45rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      flex-wrap: wrap;
+      font-size: .78rem;
+      font-family: 'Source Serif 4', Georgia, serif;
+    }
+    .snav-brand { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; color: #fff; font-size: .85rem; margin-right: .2rem; }
+    .snav-link { color: rgba(255,255,255,.55); text-decoration: none; }
+    .snav-link:hover { color: #fff; }
+    .snav-sep { color: rgba(255,255,255,.2); }
+    .snav-label { color: rgba(255,255,255,.3); font-size: .72rem; }
+
+    /* ── Pipeline SVG animation ── */
+    .pipeline-anim-wrap {
+      margin: 1.5rem 0 2rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0,0,0,.15);
+    }
+    .pipeline-anim-wrap svg { min-width: 620px; width: 100%; display: block; }
+    @keyframes nodeGlow {
+      0%, 1%  { fill: rgba(255,255,255,0.05); stroke: rgba(255,255,255,0.1); stroke-width: 1; }
+      8%      { fill: rgba(176,112,32,0.35); stroke: #b07020; stroke-width: 1.5; }
+      14%     { fill: rgba(176,112,32,0.08); stroke: rgba(255,255,255,0.12); stroke-width: 1; }
+      100%    { fill: rgba(255,255,255,0.05); stroke: rgba(255,255,255,0.1); stroke-width: 1; }
+    }
+    @keyframes labelGlow {
+      0%, 1%, 14%, 100% { fill: rgba(255,255,255,0.6); }
+      8% { fill: #fff; }
+    }
+    @keyframes subGlow {
+      0%, 1%, 14%, 100% { fill: rgba(255,255,255,0.3); }
+      8% { fill: rgba(255,255,255,0.72); }
+    }
+    @keyframes numGlow {
+      0%, 1%, 14%, 100% { fill: rgba(255,255,255,0.2); }
+      8% { fill: #d09030; }
+    }
+    @keyframes dotTravel {
+      0%, 7%, 100% { opacity: 0; transform: translateX(0); }
+      9%  { opacity: 1; transform: translateX(0); }
+      12% { opacity: 1; transform: translateX(24px); }
+      14% { opacity: 0; transform: translateX(24px); }
+    }
+    .na1 .nr { animation: nodeGlow 7s ease-in-out 0s infinite; }
+    .na1 .nl { animation: labelGlow 7s ease-in-out 0s infinite; }
+    .na1 .ns { animation: subGlow 7s ease-in-out 0s infinite; }
+    .na1 .nn { animation: numGlow 7s ease-in-out 0s infinite; }
+    .na2 .nr { animation: nodeGlow 7s ease-in-out 1s infinite; }
+    .na2 .nl { animation: labelGlow 7s ease-in-out 1s infinite; }
+    .na2 .ns { animation: subGlow 7s ease-in-out 1s infinite; }
+    .na2 .nn { animation: numGlow 7s ease-in-out 1s infinite; }
+    .na3 .nr { animation: nodeGlow 7s ease-in-out 2s infinite; }
+    .na3 .nl { animation: labelGlow 7s ease-in-out 2s infinite; }
+    .na3 .ns { animation: subGlow 7s ease-in-out 2s infinite; }
+    .na3 .nn { animation: numGlow 7s ease-in-out 2s infinite; }
+    .na4 .nr { animation: nodeGlow 7s ease-in-out 3s infinite; }
+    .na4 .nl { animation: labelGlow 7s ease-in-out 3s infinite; }
+    .na4 .ns { animation: subGlow 7s ease-in-out 3s infinite; }
+    .na4 .nn { animation: numGlow 7s ease-in-out 3s infinite; }
+    .na5 .nr { animation: nodeGlow 7s ease-in-out 4s infinite; }
+    .na5 .nl { animation: labelGlow 7s ease-in-out 4s infinite; }
+    .na5 .ns { animation: subGlow 7s ease-in-out 4s infinite; }
+    .na5 .nn { animation: numGlow 7s ease-in-out 4s infinite; }
+    .na6 .nr { animation: nodeGlow 7s ease-in-out 5s infinite; }
+    .na6 .nl { animation: labelGlow 7s ease-in-out 5s infinite; }
+    .na6 .ns { animation: subGlow 7s ease-in-out 5s infinite; }
+    .na6 .nn { animation: numGlow 7s ease-in-out 5s infinite; }
+    .na7 .nr { animation: nodeGlow 7s ease-in-out 6s infinite; }
+    .na7 .nl { animation: labelGlow 7s ease-in-out 6s infinite; }
+    .na7 .ns { animation: subGlow 7s ease-in-out 6s infinite; }
+    .na7 .nn { animation: numGlow 7s ease-in-out 6s infinite; }
+    .pd1 { animation: dotTravel 7s ease-in-out 0.5s infinite; }
+    .pd2 { animation: dotTravel 7s ease-in-out 1.5s infinite; }
+    .pd3 { animation: dotTravel 7s ease-in-out 2.5s infinite; }
+    .pd4 { animation: dotTravel 7s ease-in-out 3.5s infinite; }
+    .pd5 { animation: dotTravel 7s ease-in-out 4.5s infinite; }
+    .pd6 { animation: dotTravel 7s ease-in-out 5.5s infinite; }
+
     /* ── Section numbers ── */
     .section-number {
       font-family: 'Playfair Display', Georgia, serif;
@@ -610,6 +696,18 @@
     <span class="badge">Urdu</span>
   </div>
 </header>
+
+<nav class="suite-nav-bar" role="navigation" aria-label="Hawk suite navigation">
+  <span class="snav-brand">Hawk</span>
+  <span class="snav-link" aria-current="page">How it works</span>
+  <span class="snav-sep" aria-hidden="true">·</span>
+  <span class="snav-label">Mockups:</span>
+  <a href="mockups/index.html" class="snav-link">Overview</a>
+  <a href="mockups/review.html" class="snav-link">Review</a>
+  <a href="mockups/dashboard.html" class="snav-link">Dashboard</a>
+  <a href="mockups/glossary.html" class="snav-link">Glossary</a>
+  <a href="mockups/wp-plugin.html" class="snav-link">WP plugin</a>
+</nav>
 
 <main>
 
@@ -643,6 +741,76 @@
       When a newsroom partner sends a story to Hawk, it moves through a pipeline —
       a set of automated stages that each do one specific job. Here's what happens at each stage.
     </p>
+
+    <div class="pipeline-anim-wrap" aria-hidden="true">
+      <!-- 7 nodes × 108px + 6 connectors × 24px = 900px. Dots travel exactly 24px to match dotTravel keyframe. -->
+      <svg viewBox="0 0 900 140" xmlns="http://www.w3.org/2000/svg">
+        <rect width="900" height="140" rx="10" fill="#1a2e4a"/>
+        <!-- Connector lines (24px gaps between nodes) -->
+        <line x1="108" y1="70" x2="132" y2="70" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
+        <line x1="240" y1="70" x2="264" y2="70" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
+        <line x1="372" y1="70" x2="396" y2="70" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
+        <line x1="504" y1="70" x2="528" y2="70" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
+        <line x1="636" y1="70" x2="660" y2="70" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
+        <line x1="768" y1="70" x2="792" y2="70" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
+        <!-- Node 1: Submit — x=0, cx=54 -->
+        <g class="na1">
+          <rect class="nr" x="2" y="20" width="104" height="100" rx="6" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+          <text class="nn" x="10" y="37" font-size="8" font-family="'DM Sans',sans-serif" font-weight="600" fill="rgba(255,255,255,0.2)">01</text>
+          <text class="nl" x="54" y="70" font-size="10.5" font-family="'DM Sans',sans-serif" font-weight="600" text-anchor="middle" fill="rgba(255,255,255,0.6)">Submit</text>
+          <text class="ns" x="54" y="86" font-size="8.5" font-family="'DM Sans',sans-serif" text-anchor="middle" fill="rgba(255,255,255,0.3)">API request</text>
+        </g>
+        <!-- Node 2: Validate — x=132, cx=186 -->
+        <g class="na2">
+          <rect class="nr" x="134" y="20" width="104" height="100" rx="6" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+          <text class="nn" x="142" y="37" font-size="8" font-family="'DM Sans',sans-serif" font-weight="600" fill="rgba(255,255,255,0.2)">02</text>
+          <text class="nl" x="186" y="70" font-size="10.5" font-family="'DM Sans',sans-serif" font-weight="600" text-anchor="middle" fill="rgba(255,255,255,0.6)">Validate</text>
+          <text class="ns" x="186" y="86" font-size="8.5" font-family="'DM Sans',sans-serif" text-anchor="middle" fill="rgba(255,255,255,0.3)">auth + quota</text>
+        </g>
+        <!-- Node 3: Segment — x=264, cx=318 -->
+        <g class="na3">
+          <rect class="nr" x="266" y="20" width="104" height="100" rx="6" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+          <text class="nn" x="274" y="37" font-size="8" font-family="'DM Sans',sans-serif" font-weight="600" fill="rgba(255,255,255,0.2)">03</text>
+          <text class="nl" x="318" y="70" font-size="10.5" font-family="'DM Sans',sans-serif" font-weight="600" text-anchor="middle" fill="rgba(255,255,255,0.6)">Segment</text>
+          <text class="ns" x="318" y="86" font-size="8.5" font-family="'DM Sans',sans-serif" text-anchor="middle" fill="rgba(255,255,255,0.3)">HTML parsing</text>
+        </g>
+        <!-- Node 4: Glossary — x=396, cx=450 -->
+        <g class="na4">
+          <rect class="nr" x="398" y="20" width="104" height="100" rx="6" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+          <text class="nn" x="406" y="37" font-size="8" font-family="'DM Sans',sans-serif" font-weight="600" fill="rgba(255,255,255,0.2)">04</text>
+          <text class="nl" x="450" y="70" font-size="10.5" font-family="'DM Sans',sans-serif" font-weight="600" text-anchor="middle" fill="rgba(255,255,255,0.6)">Glossary</text>
+          <text class="ns" x="450" y="86" font-size="8.5" font-family="'DM Sans',sans-serif" text-anchor="middle" fill="rgba(255,255,255,0.3)">term protect</text>
+        </g>
+        <!-- Node 5: Translate — x=528, cx=582 -->
+        <g class="na5">
+          <rect class="nr" x="530" y="20" width="104" height="100" rx="6" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+          <text class="nn" x="538" y="37" font-size="8" font-family="'DM Sans',sans-serif" font-weight="600" fill="rgba(255,255,255,0.2)">05</text>
+          <text class="nl" x="582" y="70" font-size="10.5" font-family="'DM Sans',sans-serif" font-weight="600" text-anchor="middle" fill="rgba(255,255,255,0.6)">Translate</text>
+          <text class="ns" x="582" y="86" font-size="8.5" font-family="'DM Sans',sans-serif" text-anchor="middle" fill="rgba(255,255,255,0.3)">DeepL API</text>
+        </g>
+        <!-- Node 6: Score — x=660, cx=714 -->
+        <g class="na6">
+          <rect class="nr" x="662" y="20" width="104" height="100" rx="6" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+          <text class="nn" x="670" y="37" font-size="8" font-family="'DM Sans',sans-serif" font-weight="600" fill="rgba(255,255,255,0.2)">06</text>
+          <text class="nl" x="714" y="70" font-size="10.5" font-family="'DM Sans',sans-serif" font-weight="600" text-anchor="middle" fill="rgba(255,255,255,0.6)">Score</text>
+          <text class="ns" x="714" y="86" font-size="8.5" font-family="'DM Sans',sans-serif" text-anchor="middle" fill="rgba(255,255,255,0.3)">quality check</text>
+        </g>
+        <!-- Node 7: Deliver — x=792, cx=846 -->
+        <g class="na7">
+          <rect class="nr" x="794" y="20" width="104" height="100" rx="6" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+          <text class="nn" x="802" y="37" font-size="8" font-family="'DM Sans',sans-serif" font-weight="600" fill="rgba(255,255,255,0.2)">07</text>
+          <text class="nl" x="846" y="70" font-size="10.5" font-family="'DM Sans',sans-serif" font-weight="600" text-anchor="middle" fill="rgba(255,255,255,0.6)">Deliver</text>
+          <text class="ns" x="846" y="86" font-size="8.5" font-family="'DM Sans',sans-serif" text-anchor="middle" fill="rgba(255,255,255,0.3)">webhook/CMS</text>
+        </g>
+        <!-- Traveling dots — positioned at connector start, travel +24px via dotTravel keyframe -->
+        <g class="pd1"><circle cx="108" cy="70" r="4" fill="#b07020"/></g>
+        <g class="pd2"><circle cx="240" cy="70" r="4" fill="#b07020"/></g>
+        <g class="pd3"><circle cx="372" cy="70" r="4" fill="#b07020"/></g>
+        <g class="pd4"><circle cx="504" cy="70" r="4" fill="#b07020"/></g>
+        <g class="pd5"><circle cx="636" cy="70" r="4" fill="#b07020"/></g>
+        <g class="pd6"><circle cx="768" cy="70" r="4" fill="#b07020"/></g>
+      </svg>
+    </div>
 
     <div class="pipeline" role="list" aria-label="Translation pipeline steps">
 

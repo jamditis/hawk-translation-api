@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glossary editor — Hawk mockup</title>
+  <meta name="description" content="Mockup of the NJ journalism glossary editor for STNS editors.">
+  <meta property="og:title" content="Glossary editor — Hawk mockup">
+  <meta property="og:description" content="STNS glossary editor mockup — manage NJ journalism terms that translate consistently across every story.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jamditis.github.io/hawk-translation-api/mockups/glossary.html">
+  <meta property="og:image" content="https://hawknewsservice.org/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="Glossary editor — Hawk mockup">
+  <meta property="twitter:description" content="STNS glossary editor mockup for Hawk.">
+  <meta property="twitter:image" content="https://hawknewsservice.org/og-image.png">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231a2e4a'/><text y='.85em' x='10' font-size='75' fill='white'>H</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fefcf8; --surface: #ffffff; --border: #ddd6c2;
+      --text: #1a1510; --text-muted: #6b5840; --text-faint: #9b8870;
+      --accent: #b07020; --accent-bg: #fdf5e3; --accent-border: #d4a040;
+      --navy: #1a2e4a;
+      --green: #2d6a32; --green-bg: #edf7ee; --green-border: #a0d0a8;
+      --red: #9b2a2a; --red-bg: #fdf0ee; --red-border: #e09090;
+      --amber: #92600a; --amber-bg: #fff3dc; --amber-border: #d4a050;
+      --blue: #1a4faa; --blue-bg: #e8edf8;
+      --app-bg: #f1f3f5; --app-border: #d4d8dc;
+      --radius: 8px; --radius-sm: 4px;
+      --shadow: 0 2px 10px rgba(0,0,0,.07);
+      --shadow-lg: 0 4px 24px rgba(0,0,0,.11);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: 'DM Sans', system-ui, sans-serif; font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+    .suite-nav { background: var(--navy); padding: .5rem 1.5rem; display: flex; align-items: center; gap: .75rem; flex-wrap: wrap; font-size: .8rem; }
+    .nav-brand { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; color: #fff; font-size: .9rem; }
+    .suite-nav a { color: rgba(255,255,255,.65); text-decoration: none; }
+    .suite-nav a:hover, .suite-nav a.active { color: #fff; }
+    .nav-sep { color: rgba(255,255,255,.3); }
+    .nav-label { color: rgba(255,255,255,.4); font-size: .75rem; }
+    .mockup-badge { margin-left: auto; background: var(--accent); color: #fff; font-size: .65rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: .2rem .55rem; border-radius: 3px; }
+
+    .page-context { max-width: 1100px; margin: 0 auto; padding: 1.75rem 1.5rem .5rem; }
+    .page-label { font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: .25rem; }
+    .page-context h1 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.5rem; font-weight: 700; color: var(--text); margin-bottom: .25rem; }
+    .page-context p { font-size: .88rem; color: var(--text-muted); }
+
+    /* Glossary substitution animation */
+    .gloss-anim-wrap { max-width: 1100px; margin: 1rem auto 0; padding: 0 1.5rem; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .gloss-anim-wrap svg { min-width: 500px; width: 100%; display: block; border-radius: 8px; box-shadow: var(--shadow-lg); }
+
+    /* SVG animation keyframes for glossary */
+    @keyframes termHighlight {
+      0%, 5%, 28%, 100% { opacity: 0; }
+      8%, 22% { opacity: 1; }
+    }
+    @keyframes arrowAppear {
+      0%, 10%, 28%, 100% { opacity: 0; }
+      13%, 22% { opacity: 1; }
+    }
+    @keyframes spanishAppear {
+      0%, 12%, 28%, 100% { opacity: 0; }
+      16%, 22% { opacity: 1; }
+    }
+    @keyframes spanishHighlight {
+      0%, 12%, 28%, 100% { opacity: 0; }
+      16%, 22% { opacity: 1; }
+    }
+    @keyframes rowPulse {
+      0%, 5% { opacity: 0; fill: rgba(255,255,255,0.03); }
+      10% { opacity: 1; fill: rgba(176,112,32,0.28); }
+      22% { opacity: 1; fill: rgba(176,112,32,0.08); }
+      28%, 100% { opacity: 0; fill: rgba(255,255,255,0.03); }
+    }
+    /* Term 1: Board of Education (cycle 1: 0-10s) */
+    .h-t1 { animation: termHighlight 10s ease-in-out 0s infinite; }
+    .a-t1 { animation: arrowAppear 10s ease-in-out 0s infinite; }
+    .s-t1 { animation: spanishAppear 10s ease-in-out 0s infinite; }
+    .sh-t1 { animation: spanishHighlight 10s ease-in-out 0s infinite; }
+    /* Term 2: Governor (cycle 2: delay 10s) */
+    .h-t2 { animation: termHighlight 10s ease-in-out 3.3s infinite; }
+    .a-t2 { animation: arrowAppear 10s ease-in-out 3.3s infinite; }
+    .s-t2 { animation: spanishAppear 10s ease-in-out 3.3s infinite; }
+    .sh-t2 { animation: spanishHighlight 10s ease-in-out 3.3s infinite; }
+    /* Term 3: Superintendent (cycle 3: delay 20s) */
+    .h-t3 { animation: termHighlight 10s ease-in-out 6.6s infinite; }
+    .a-t3 { animation: arrowAppear 10s ease-in-out 6.6s infinite; }
+    .s-t3 { animation: spanishAppear 10s ease-in-out 6.6s infinite; }
+    .sh-t3 { animation: spanishHighlight 10s ease-in-out 6.6s infinite; }
+
+    /* Row pulse in glossary table area of SVG */
+    @keyframes rowGlow {
+      0%, 1%, 28%, 100% { fill: rgba(255,255,255,0.03); stroke: rgba(255,255,255,0.08); }
+      8%, 22% { fill: rgba(176,112,32,0.22); stroke: #b07020; }
+    }
+    @keyframes rowLabelGlow {
+      0%, 1%, 28%, 100% { fill: rgba(255,255,255,0.55); }
+      8%, 22% { fill: #fff; }
+    }
+    .gr1 .gbox { animation: rowGlow 10s ease-in-out 0s infinite; }
+    .gr1 .gtxt { animation: rowLabelGlow 10s ease-in-out 0s infinite; }
+    .gr2 .gbox { animation: rowGlow 10s ease-in-out 3.3s infinite; }
+    .gr2 .gtxt { animation: rowLabelGlow 10s ease-in-out 3.3s infinite; }
+    .gr3 .gbox { animation: rowGlow 10s ease-in-out 6.6s infinite; }
+    .gr3 .gtxt { animation: rowLabelGlow 10s ease-in-out 6.6s infinite; }
+
+    /* Mockup frame */
+    .mockup-frame { max-width: 1100px; margin: 1.5rem auto 2rem; padding: 0 1.5rem; }
+    .interface { background: var(--surface); border: 1px solid var(--app-border); border-radius: var(--radius); box-shadow: var(--shadow-lg); overflow: hidden; }
+
+    /* Glossary header */
+    .gloss-header { background: var(--navy); padding: .75rem 1.25rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .75rem; }
+    .gloss-title { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; color: #fff; font-size: 1rem; }
+    .lang-selector { display: flex; align-items: center; gap: .5rem; }
+    .lang-badge { font-size: .8rem; color: rgba(255,255,255,.8); background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2); padding: .3rem .75rem; border-radius: 4px; cursor: pointer; }
+    .lang-arrow { color: rgba(255,255,255,.5); font-size: .9rem; }
+    .stats-pill { font-size: .72rem; color: rgba(255,255,255,.5); background: rgba(255,255,255,.07); padding: .2rem .6rem; border-radius: 3px; }
+
+    /* Toolbar */
+    .gloss-toolbar { background: #f5f0e8; border-bottom: 1px solid var(--border); padding: .6rem 1.25rem; display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; }
+    .search-input { flex: 1; min-width: 160px; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: .4rem .75rem; font-family: 'DM Sans', sans-serif; font-size: .85rem; color: var(--text); background: #fff; }
+    .filter-select { border: 1px solid var(--border); border-radius: var(--radius-sm); padding: .4rem .6rem; font-family: 'DM Sans', sans-serif; font-size: .82rem; color: var(--text-muted); background: #fff; cursor: pointer; }
+    .btn-outline { font-family: 'DM Sans', sans-serif; font-size: .78rem; font-weight: 500; padding: .35rem .75rem; border-radius: var(--radius-sm); cursor: pointer; border: 1px solid var(--border); background: #fff; color: var(--text-muted); }
+    .btn-primary { font-family: 'DM Sans', sans-serif; font-size: .78rem; font-weight: 600; padding: .35rem .85rem; border-radius: var(--radius-sm); cursor: pointer; border: none; background: var(--accent); color: #fff; }
+    .toolbar-right { margin-left: auto; display: flex; gap: .4rem; }
+
+    /* Term table */
+    .terms-table { width: 100%; border-collapse: collapse; font-size: .87rem; }
+    .terms-table thead th { text-align: left; font-size: .7rem; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--text-faint); padding: .5rem 1.25rem; border-bottom: 2px solid var(--border); background: #faf8f4; white-space: nowrap; }
+    .terms-table tbody td { padding: .6rem 1.25rem; border-bottom: 1px solid var(--border); vertical-align: middle; }
+    .terms-table tbody tr:last-child td { border-bottom: none; }
+    .terms-table tbody tr:hover { background: #faf8f4; }
+    .term-en { font-weight: 500; color: var(--text); }
+    .term-es { color: var(--text); }
+    .term-type { display: inline-block; font-size: .68rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; padding: .15rem .5rem; border-radius: 3px; white-space: nowrap; }
+    .type-gov { background: var(--blue-bg); color: var(--blue); }
+    .type-place { background: var(--green-bg); color: var(--green); }
+    .type-brand { background: var(--amber-bg); color: var(--amber); }
+    .type-title { background: #f2eaf8; color: #5b2d82; }
+    .scope-global { font-size: .75rem; color: var(--text-faint); }
+    .scope-specific { font-size: .75rem; color: var(--accent); font-style: italic; }
+    .term-date { font-size: .75rem; color: var(--text-faint); white-space: nowrap; }
+    .term-actions { display: flex; gap: .3rem; white-space: nowrap; }
+    .action-btn { font-family: 'DM Sans', sans-serif; font-size: .72rem; padding: .2rem .55rem; border-radius: 3px; cursor: pointer; border: 1px solid var(--border); background: #fff; color: var(--text-muted); }
+    .action-btn.del { color: var(--red); border-color: var(--red-border); }
+
+    /* Add term row */
+    .add-row { background: var(--accent-bg); border-top: 2px solid var(--accent-border); }
+    .add-row td { padding: .75rem 1.25rem; }
+    .add-input { width: 100%; border: 1px solid var(--accent-border); border-radius: var(--radius-sm); padding: .35rem .6rem; font-family: 'DM Sans', sans-serif; font-size: .85rem; background: #fff; }
+    .add-select { width: 100%; border: 1px solid var(--accent-border); border-radius: var(--radius-sm); padding: .35rem .4rem; font-family: 'DM Sans', sans-serif; font-size: .82rem; background: #fff; cursor: pointer; }
+    .btn-add-save { font-family: 'DM Sans', sans-serif; font-size: .78rem; font-weight: 600; padding: .35rem .85rem; border-radius: var(--radius-sm); border: none; background: var(--accent); color: #fff; cursor: pointer; }
+    .btn-cancel { font-family: 'DM Sans', sans-serif; font-size: .78rem; padding: .35rem .7rem; border-radius: var(--radius-sm); border: 1px solid var(--border); background: #fff; color: var(--text-muted); cursor: pointer; margin-left: .3rem; }
+
+    /* Annotation */
+    .annotation { max-width: 1100px; margin: 0 auto 3rem; padding: 0 1.5rem; }
+    .annotation-box { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: var(--radius); padding: 1.25rem 1.5rem; }
+    .annotation-box h2 { font-family: 'Playfair Display', Georgia, serif; font-size: 1rem; font-weight: 700; margin-bottom: .6rem; }
+    .annotation-box p { font-size: .88rem; color: var(--text-muted); margin-bottom: .5rem; line-height: 1.6; }
+    .annotation-box p:last-child { margin-bottom: 0; }
+    footer { text-align: center; padding: 1.5rem; border-top: 1px solid var(--border); font-size: .8rem; color: var(--text-faint); }
+    footer a { color: var(--accent); text-decoration: none; }
+    @media (max-width: 700px) {
+      .terms-table thead th:nth-child(n+4), .terms-table tbody td:nth-child(n+4) { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="suite-nav" role="navigation" aria-label="Hawk suite navigation">
+  <span class="nav-brand">Hawk</span>
+  <a href="../explainer.html">How it works</a>
+  <span class="nav-sep" aria-hidden="true">·</span>
+  <span class="nav-label">Mockups:</span>
+  <a href="index.html">Overview</a>
+  <a href="review.html">Review</a>
+  <a href="dashboard.html">Dashboard</a>
+  <a href="glossary.html" class="active">Glossary</a>
+  <a href="wp-plugin.html">WP plugin</a>
+  <span class="mockup-badge">mockup</span>
+</nav>
+
+<div class="page-context">
+  <div class="page-label">STNS editor interface</div>
+  <h1>Glossary editor</h1>
+  <p>Where STNS editors manage NJ journalism-specific terms. The animation shows how the glossary protects terms before any text reaches the translation engine.</p>
+</div>
+
+<!-- Glossary substitution animation -->
+<div class="gloss-anim-wrap">
+  <svg viewBox="0 0 780 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Animated illustration of glossary term substitution: English terms are highlighted and replaced with their protected translations before the text reaches DeepL">
+    <!-- Background -->
+    <rect width="780" height="150" rx="8" fill="#1a2e4a"/>
+    <text x="390" y="14" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-size="8" font-family="'DM Sans', sans-serif" letter-spacing="3">GLOSSARY PROTECTION IN ACTION</text>
+
+    <!-- LEFT: English text area -->
+    <rect x="12" y="22" width="370" height="118" rx="6" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+    <text x="22" y="38" fill="rgba(255,255,255,0.35)" font-size="8" font-family="'DM Sans', sans-serif" font-weight="600" letter-spacing="2">ENGLISH (BEFORE GLOSSARY)</text>
+
+    <!-- English text lines -->
+    <text x="22" y="60" fill="rgba(255,255,255,0.7)" font-size="12" font-family="'DM Sans', sans-serif">The Newark </text>
+    <text x="104" y="60" fill="rgba(255,255,255,0.7)" font-size="12" font-family="'DM Sans', sans-serif">Board of Education</text>
+    <text x="252" y="60" fill="rgba(255,255,255,0.7)" font-size="12" font-family="'DM Sans', sans-serif"> voted.</text>
+    <text x="22" y="80" fill="rgba(255,255,255,0.7)" font-size="12" font-family="'DM Sans', sans-serif">The </text>
+    <text x="44" y="80" fill="rgba(255,255,255,0.7)" font-size="12" font-family="'DM Sans', sans-serif">Governor</text>
+    <text x="104" y="80" fill="rgba(255,255,255,0.7)" font-size="12" font-family="'DM Sans', sans-serif"> signed the bill.</text>
+    <text x="22" y="100" fill="rgba(255,255,255,0.7)" font-size="12" font-family="'DM Sans', sans-serif">The </text>
+    <text x="44" y="100" fill="rgba(255,255,255,0.7)" font-size="12" font-family="'DM Sans', sans-serif">Superintendent</text>
+    <text x="154" y="100" fill="rgba(255,255,255,0.7)" font-size="12" font-family="'DM Sans', sans-serif"> spoke.</text>
+
+    <!-- Term highlights (animated) -->
+    <rect class="h-t1" x="101" y="49" width="153" height="17" rx="3" fill="rgba(176,112,32,0.4)" stroke="#b07020" stroke-width="1" opacity="0"/>
+    <rect class="h-t2" x="41" y="69" width="64" height="17" rx="3" fill="rgba(176,112,32,0.4)" stroke="#b07020" stroke-width="1" opacity="0"/>
+    <rect class="h-t3" x="41" y="89" width="115" height="17" rx="3" fill="rgba(176,112,32,0.4)" stroke="#b07020" stroke-width="1" opacity="0"/>
+
+    <!-- Protected labels -->
+    <text class="h-t1" x="177" y="118" text-anchor="middle" fill="#d09030" font-size="8" font-family="'DM Sans', sans-serif" font-weight="600" opacity="0">PROTECTED</text>
+    <text class="h-t2" x="73" y="118" text-anchor="middle" fill="#d09030" font-size="8" font-family="'DM Sans', sans-serif" font-weight="600" opacity="0">PROTECTED</text>
+    <text class="h-t3" x="99" y="118" text-anchor="middle" fill="#d09030" font-size="8" font-family="'DM Sans', sans-serif" font-weight="600" opacity="0">PROTECTED</text>
+
+    <!-- CENTER: Glossary table mini -->
+    <rect x="390" y="22" width="180" height="118" rx="6" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+    <text x="480" y="35" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="8" font-family="'DM Sans', sans-serif" font-weight="600" letter-spacing="2">GLOSSARY</text>
+
+    <!-- Glossary rows (animate in sequence) -->
+    <g class="gr1">
+      <rect class="gbox" x="398" y="42" width="164" height="24" rx="3" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+      <text class="gtxt" x="405" y="56" fill="rgba(255,255,255,0.55)" font-size="9.5" font-family="'DM Sans', sans-serif">Board of Ed. → Junta de Ed.</text>
+    </g>
+    <g class="gr2">
+      <rect class="gbox" x="398" y="70" width="164" height="24" rx="3" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+      <text class="gtxt" x="405" y="84" fill="rgba(255,255,255,0.55)" font-size="9.5" font-family="'DM Sans', sans-serif">Governor → Gobernador</text>
+    </g>
+    <g class="gr3">
+      <rect class="gbox" x="398" y="98" width="164" height="24" rx="3" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+      <text class="gtxt" x="405" y="112" fill="rgba(255,255,255,0.55)" font-size="9.5" font-family="'DM Sans', sans-serif">Superintendent → Superintendente</text>
+    </g>
+
+    <!-- Arrows from glossary to right panel -->
+    <line class="a-t1" x1="572" y1="54" x2="598" y2="60" stroke="#d09030" stroke-width="1.5" opacity="0"/>
+    <line class="a-t2" x1="572" y1="82" x2="598" y2="80" stroke="#d09030" stroke-width="1.5" opacity="0"/>
+    <line class="a-t3" x1="572" y1="110" x2="598" y2="100" stroke="#d09030" stroke-width="1.5" opacity="0"/>
+    <polygon class="a-t1" points="598,57 598,63 604,60" fill="#d09030" opacity="0"/>
+    <polygon class="a-t2" points="598,77 598,83 604,80" fill="#d09030" opacity="0"/>
+    <polygon class="a-t3" points="598,97 598,103 604,100" fill="#d09030" opacity="0"/>
+
+    <!-- RIGHT: Protected output -->
+    <rect x="588" y="22" width="182" height="118" rx="6" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+    <text x="679" y="35" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="8" font-family="'DM Sans', sans-serif" font-weight="600" letter-spacing="2">PROTECTED (TO DEEPL)</text>
+
+    <!-- Spanish text appears with highlights -->
+    <text x="598" y="60" fill="rgba(255,255,255,0.45)" font-size="11" font-family="'DM Sans', sans-serif">La Newark </text>
+    <text class="s-t1" x="655" y="60" fill="#d09030" font-size="11" font-family="'DM Sans', sans-serif" font-weight="500" opacity="0">Junta de Educación</text>
+    <text x="598" y="80" fill="rgba(255,255,255,0.45)" font-size="11" font-family="'DM Sans', sans-serif">El </text>
+    <text class="s-t2" x="615" y="80" fill="#d09030" font-size="11" font-family="'DM Sans', sans-serif" font-weight="500" opacity="0">Gobernador</text>
+    <text x="598" y="100" fill="rgba(255,255,255,0.45)" font-size="11" font-family="'DM Sans', sans-serif">El </text>
+    <text class="s-t3" x="615" y="100" fill="#d09030" font-size="11" font-family="'DM Sans', sans-serif" font-weight="500" opacity="0">Superintendente</text>
+  </svg>
+</div>
+
+<!-- Interface mockup -->
+<div class="mockup-frame">
+  <div class="interface" role="main" aria-label="Glossary editor mockup">
+
+    <!-- Header -->
+    <div class="gloss-header">
+      <span class="gloss-title">NJ journalism glossary</span>
+      <div class="lang-selector" role="group" aria-label="Language pair selector">
+        <span class="lang-badge">English</span>
+        <span class="lang-arrow" aria-hidden="true">→</span>
+        <span class="lang-badge" style="background:rgba(176,112,32,0.25);border-color:#b07020;color:#d4a040;">Spanish (es) &#9660;</span>
+      </div>
+      <span class="stats-pill">28 terms &nbsp;&middot;&nbsp; 16 global &nbsp;&middot;&nbsp; 12 newsroom-specific</span>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="gloss-toolbar">
+      <input class="search-input" type="search" placeholder="Search terms..." value="" aria-label="Search glossary terms">
+      <select class="filter-select" aria-label="Filter by term type">
+        <option>All types</option>
+        <option>Governing body</option>
+        <option>Official title</option>
+        <option>Place name</option>
+        <option>Brand name</option>
+      </select>
+      <select class="filter-select" aria-label="Filter by scope">
+        <option>All scopes</option>
+        <option>Global only</option>
+        <option>Newsroom-specific</option>
+      </select>
+      <div class="toolbar-right">
+        <button class="btn-outline">Import</button>
+        <button class="btn-outline">Export</button>
+        <button class="btn-primary">+ Add term</button>
+      </div>
+    </div>
+
+    <!-- Term table -->
+    <table class="terms-table" role="table" aria-label="Glossary terms">
+      <thead>
+        <tr>
+          <th scope="col">English term</th>
+          <th scope="col">Spanish translation</th>
+          <th scope="col">Type</th>
+          <th scope="col">Scope</th>
+          <th scope="col">Added</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="term-en">Board of Education</td>
+          <td class="term-es">Junta de Educación</td>
+          <td><span class="term-type type-gov">Gov. body</span></td>
+          <td><span class="scope-global">Global</span></td>
+          <td class="term-date">Jan 15, 2026</td>
+          <td><div class="term-actions"><button class="action-btn">Edit</button><button class="action-btn del">Delete</button></div></td>
+        </tr>
+        <tr>
+          <td class="term-en">NJ Transit</td>
+          <td class="term-es">NJ Transit</td>
+          <td><span class="term-type type-brand">Brand</span></td>
+          <td><span class="scope-global">Global</span></td>
+          <td class="term-date">Jan 15, 2026</td>
+          <td><div class="term-actions"><button class="action-btn">Edit</button><button class="action-btn del">Delete</button></div></td>
+        </tr>
+        <tr>
+          <td class="term-en">Governor</td>
+          <td class="term-es">Gobernador</td>
+          <td><span class="term-type type-title">Title</span></td>
+          <td><span class="scope-global">Global</span></td>
+          <td class="term-date">Jan 15, 2026</td>
+          <td><div class="term-actions"><button class="action-btn">Edit</button><button class="action-btn del">Delete</button></div></td>
+        </tr>
+        <tr>
+          <td class="term-en">Essex County</td>
+          <td class="term-es">Condado de Essex</td>
+          <td><span class="term-type type-place">Place</span></td>
+          <td><span class="scope-global">Global</span></td>
+          <td class="term-date">Jan 18, 2026</td>
+          <td><div class="term-actions"><button class="action-btn">Edit</button><button class="action-btn del">Delete</button></div></td>
+        </tr>
+        <tr>
+          <td class="term-en">Passaic County</td>
+          <td class="term-es">Condado de Passaic</td>
+          <td><span class="term-type type-place">Place</span></td>
+          <td><span class="scope-global">Global</span></td>
+          <td class="term-date">Jan 18, 2026</td>
+          <td><div class="term-actions"><button class="action-btn">Edit</button><button class="action-btn del">Delete</button></div></td>
+        </tr>
+        <tr>
+          <td class="term-en">City Council</td>
+          <td class="term-es">Concejo Municipal</td>
+          <td><span class="term-type type-gov">Gov. body</span></td>
+          <td><span class="scope-global">Global</span></td>
+          <td class="term-date">Feb 1, 2026</td>
+          <td><div class="term-actions"><button class="action-btn">Edit</button><button class="action-btn del">Delete</button></div></td>
+        </tr>
+        <tr>
+          <td class="term-en">Superintendent</td>
+          <td class="term-es">Superintendente</td>
+          <td><span class="term-type type-title">Title</span></td>
+          <td><span class="scope-global">Global</span></td>
+          <td class="term-date">Feb 3, 2026</td>
+          <td><div class="term-actions"><button class="action-btn">Edit</button><button class="action-btn del">Delete</button></div></td>
+        </tr>
+        <tr>
+          <td class="term-en">Assembly member</td>
+          <td class="term-es">Miembro de la Asamblea</td>
+          <td><span class="term-type type-title">Title</span></td>
+          <td><span class="scope-global">Global</span></td>
+          <td class="term-date">Feb 5, 2026</td>
+          <td><div class="term-actions"><button class="action-btn">Edit</button><button class="action-btn del">Delete</button></div></td>
+        </tr>
+        <tr>
+          <td class="term-en">Department of Education</td>
+          <td class="term-es">Departamento de Educación</td>
+          <td><span class="term-type type-gov">Gov. body</span></td>
+          <td><span class="scope-global">Global</span></td>
+          <td class="term-date">Feb 12, 2026</td>
+          <td><div class="term-actions"><button class="action-btn">Edit</button><button class="action-btn del">Delete</button></div></td>
+        </tr>
+        <tr>
+          <td class="term-en">Newark Ledger</td>
+          <td class="term-es">Newark Ledger</td>
+          <td><span class="term-type type-brand">Brand</span></td>
+          <td><span class="scope-specific">Newark Ledger only</span></td>
+          <td class="term-date">Feb 15, 2026</td>
+          <td><div class="term-actions"><button class="action-btn">Edit</button><button class="action-btn del">Delete</button></div></td>
+        </tr>
+
+        <!-- Add term row -->
+        <tr class="add-row" role="row" aria-label="Add new glossary term">
+          <td><input class="add-input" type="text" placeholder="English term..." aria-label="New English term"></td>
+          <td><input class="add-input" type="text" placeholder="Spanish translation..." aria-label="Spanish translation"></td>
+          <td>
+            <select class="add-select" aria-label="Term type">
+              <option>Gov. body</option>
+              <option>Title</option>
+              <option>Place</option>
+              <option>Brand</option>
+            </select>
+          </td>
+          <td>
+            <select class="add-select" aria-label="Scope">
+              <option>Global</option>
+              <option>Newsroom-specific</option>
+            </select>
+          </td>
+          <td colspan="2">
+            <button class="btn-add-save">Save term</button>
+            <button class="btn-cancel">Cancel</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+<div class="annotation">
+  <div class="annotation-box">
+    <h2>What's shown in this mockup</h2>
+    <p>The animated diagram above shows how three terms — "Board of Education," "Governor," and "Superintendent" — get highlighted in the original English text, matched against the glossary, and replaced with their protected translations before the text reaches DeepL. The replaced terms appear in amber in the output panel, showing they were handled by the glossary rather than machine-translated.</p>
+    <p>The term table shows the actual NJ journalism glossary in edit mode. The bottom row is the "add term" form. Newsroom-specific terms (like "Newark Ledger") appear italicized in the Scope column and only apply to jobs from that newsroom's API key.</p>
+  </div>
+</div>
+
+<footer>
+  <a href="index.html">Back to mockups</a> &nbsp;&middot;&nbsp; <a href="../explainer.html">How Hawk works</a>
+</footer>
+
+</body>
+</html>

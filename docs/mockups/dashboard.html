@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Partner dashboard — Hawk mockup</title>
+  <meta name="description" content="Mockup of the newsroom partner dashboard for the Hawk translation API.">
+  <meta property="og:title" content="Partner dashboard — Hawk mockup">
+  <meta property="og:description" content="Partner dashboard mockup for Hawk — job tracking, quota, API keys.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jamditis.github.io/hawk-translation-api/mockups/dashboard.html">
+  <meta property="og:image" content="https://hawknewsservice.org/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="Partner dashboard — Hawk mockup">
+  <meta property="twitter:description" content="Partner dashboard mockup for Hawk.">
+  <meta property="twitter:image" content="https://hawknewsservice.org/og-image.png">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231a2e4a'/><text y='.85em' x='10' font-size='75' fill='white'>H</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fefcf8; --surface: #ffffff; --border: #ddd6c2;
+      --text: #1a1510; --text-muted: #6b5840; --text-faint: #9b8870;
+      --accent: #b07020; --accent-bg: #fdf5e3; --accent-border: #d4a040;
+      --navy: #1a2e4a; --navy-light: #243d5e;
+      --green: #2d6a32; --green-bg: #edf7ee; --green-border: #a0d0a8;
+      --red: #9b2a2a; --red-bg: #fdf0ee; --red-border: #e09090;
+      --amber: #92600a; --amber-bg: #fff3dc; --amber-border: #d4a050;
+      --teal: #2b7a6a; --teal-bg: #e8f5f2; --teal-border: #80c4b8;
+      --blue: #1a4faa; --blue-bg: #e8edf8; --blue-border: #90aae0;
+      --app-bg: #f1f3f5; --app-border: #d4d8dc;
+      --radius: 8px; --radius-sm: 4px;
+      --shadow: 0 2px 10px rgba(0,0,0,.07);
+      --shadow-lg: 0 4px 24px rgba(0,0,0,.11);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: 'DM Sans', system-ui, sans-serif; font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+    /* Suite nav */
+    .suite-nav { background: var(--navy); padding: .5rem 1.5rem; display: flex; align-items: center; gap: .75rem; flex-wrap: wrap; font-size: .8rem; }
+    .nav-brand { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; color: #fff; font-size: .9rem; }
+    .suite-nav a { color: rgba(255,255,255,.65); text-decoration: none; }
+    .suite-nav a:hover, .suite-nav a.active { color: #fff; }
+    .nav-sep { color: rgba(255,255,255,.3); }
+    .nav-label { color: rgba(255,255,255,.4); font-size: .75rem; }
+    .mockup-badge { margin-left: auto; background: var(--accent); color: #fff; font-size: .65rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: .2rem .55rem; border-radius: 3px; }
+
+    /* Page context */
+    .page-context { max-width: 1100px; margin: 0 auto; padding: 1.75rem 1.5rem .5rem; }
+    .page-label { font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: .25rem; }
+    .page-context h1 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.5rem; font-weight: 700; color: var(--text); margin-bottom: .25rem; }
+    .page-context p { font-size: .88rem; color: var(--text-muted); }
+
+    /* Job lifecycle SVG */
+    .lifecycle-wrap { max-width: 1100px; margin: 1rem auto 0; padding: 0 1.5rem; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .lifecycle-wrap svg { min-width: 500px; width: 100%; display: block; border-radius: 8px; box-shadow: var(--shadow-lg); }
+
+    /* SVG animation keyframes */
+    @keyframes jobNodeGlow {
+      0%, 1% { fill: rgba(255,255,255,0.05); stroke: rgba(255,255,255,0.1); }
+      10% { fill: rgba(176,112,32,0.3); stroke: #b07020; stroke-width: 1.5; }
+      20% { fill: rgba(255,255,255,0.05); stroke: rgba(255,255,255,0.1); stroke-width: 1; }
+      100% { fill: rgba(255,255,255,0.05); stroke: rgba(255,255,255,0.1); }
+    }
+    @keyframes jobLabelGlow { 0%, 1%, 20%, 100% { fill: rgba(255,255,255,0.6); } 10% { fill: #fff; } }
+    @keyframes jobSubGlow { 0%, 1%, 20%, 100% { fill: rgba(255,255,255,0.3); } 10% { fill: rgba(255,255,255,0.7); } }
+    @keyframes jobDot { 0%, 8%, 100% { opacity: 0; transform: translateX(0); } 10% { opacity: 1; transform: translateX(0); } 17% { opacity: 1; transform: translateX(28px); } 20% { opacity: 0; transform: translateX(28px); } }
+    @keyframes branchDot { 0%, 45%, 100% { opacity: 0; transform: translateY(0); } 47% { opacity: 1; transform: translateY(0); } 53% { opacity: 1; transform: translateY(22px); } 56% { opacity: 0; transform: translateY(22px); } }
+    .jn1 .jr { animation: jobNodeGlow 8s ease-in-out 0s infinite; }
+    .jn1 .jl { animation: jobLabelGlow 8s ease-in-out 0s infinite; }
+    .jn1 .js { animation: jobSubGlow 8s ease-in-out 0s infinite; }
+    .jn2 .jr { animation: jobNodeGlow 8s ease-in-out 1.2s infinite; }
+    .jn2 .jl { animation: jobLabelGlow 8s ease-in-out 1.2s infinite; }
+    .jn2 .js { animation: jobSubGlow 8s ease-in-out 1.2s infinite; }
+    .jn3 .jr { animation: jobNodeGlow 8s ease-in-out 2.4s infinite; }
+    .jn3 .jl { animation: jobLabelGlow 8s ease-in-out 2.4s infinite; }
+    .jn3 .js { animation: jobSubGlow 8s ease-in-out 2.4s infinite; }
+    .jn4 .jr { animation: jobNodeGlow 8s ease-in-out 3.6s infinite; }
+    .jn4 .jl { animation: jobLabelGlow 8s ease-in-out 3.6s infinite; }
+    .jn4 .js { animation: jobSubGlow 8s ease-in-out 3.6s infinite; }
+    .jn5 .jr { animation: jobNodeGlow 8s ease-in-out 4.8s infinite; }
+    .jn5 .jl { animation: jobLabelGlow 8s ease-in-out 4.8s infinite; }
+    .jn5 .js { animation: jobSubGlow 8s ease-in-out 4.8s infinite; }
+    .jn6 .jr { animation: jobNodeGlow 8s ease-in-out 6.0s infinite; }
+    .jn6 .jl { animation: jobLabelGlow 8s ease-in-out 6.0s infinite; }
+    .jn6 .js { animation: jobSubGlow 8s ease-in-out 6.0s infinite; }
+    .jd1 { animation: jobDot 8s ease-in-out 0.6s infinite; }
+    .jd2 { animation: jobDot 8s ease-in-out 1.8s infinite; }
+    .jd3 { animation: jobDot 8s ease-in-out 3.0s infinite; }
+    .jd4 { animation: branchDot 8s ease-in-out 4.4s infinite; }
+    .jd5 { animation: jobDot 8s ease-in-out 3.0s infinite; }
+
+    /* Mockup frame */
+    .mockup-frame { max-width: 1100px; margin: 1.5rem auto 2rem; padding: 0 1.5rem; }
+    .interface { background: var(--app-bg); border: 1px solid var(--app-border); border-radius: var(--radius); box-shadow: var(--shadow-lg); overflow: hidden; }
+
+    /* Top bar */
+    .top-bar { background: var(--navy); padding: .75rem 1.25rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .75rem; }
+    .top-bar-org { display: flex; align-items: center; gap: .75rem; }
+    .org-name { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; color: #fff; font-size: 1rem; }
+    .org-type { font-size: .72rem; color: rgba(255,255,255,.5); background: rgba(255,255,255,.1); padding: .15rem .5rem; border-radius: 3px; }
+    .top-bar-right { display: flex; align-items: center; gap: .75rem; }
+    .api-key-display { font-family: 'DM Sans', monospace; font-size: .72rem; color: rgba(255,255,255,.6); background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12); padding: .3rem .75rem; border-radius: 4px; letter-spacing: .04em; }
+    .btn-sm { font-family: 'DM Sans', sans-serif; font-size: .72rem; font-weight: 500; padding: .3rem .7rem; border-radius: 3px; cursor: pointer; border: 1px solid rgba(255,255,255,.25); background: rgba(255,255,255,.1); color: rgba(255,255,255,.8); }
+
+    /* Stats bar */
+    .stats-bar { background: var(--navy-light); padding: .75rem 1.25rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; border-bottom: 1px solid rgba(255,255,255,.08); }
+    .stat { text-align: center; padding: .5rem .25rem; }
+    .stat-num { font-size: 1.6rem; font-weight: 700; font-family: 'Playfair Display', Georgia, serif; line-height: 1; color: #fff; }
+    .stat-label { font-size: .72rem; color: rgba(255,255,255,.45); margin-top: .2rem; }
+    .stat-num.accent { color: #d4a040; }
+    .stat-num.green { color: #6ab870; }
+    .stat-num.teal { color: #6ac8b8; }
+
+    /* Content area */
+    .content-area { background: var(--surface); padding: 1.25rem; }
+
+    /* Job table */
+    .table-header-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: .75rem; flex-wrap: wrap; gap: .5rem; }
+    .table-title { font-size: .78rem; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--text-faint); }
+    .table-actions { display: flex; gap: .4rem; }
+    .btn-outline { font-family: 'DM Sans', sans-serif; font-size: .75rem; font-weight: 500; padding: .3rem .7rem; border-radius: 3px; cursor: pointer; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); }
+    .btn-primary { font-family: 'DM Sans', sans-serif; font-size: .75rem; font-weight: 600; padding: .3rem .8rem; border-radius: 3px; cursor: pointer; border: none; background: var(--accent); color: #fff; }
+
+    /* Table */
+    .jobs-table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+    .jobs-table thead th { text-align: left; font-size: .7rem; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--text-faint); padding: .4rem .6rem; border-bottom: 2px solid var(--border); white-space: nowrap; }
+    .jobs-table tbody td { padding: .6rem .6rem; border-bottom: 1px solid var(--border); vertical-align: middle; }
+    .jobs-table tbody tr:last-child td { border-bottom: none; }
+    .jobs-table tbody tr:hover { background: var(--bg); }
+    .job-id-cell { font-family: 'DM Sans', monospace; font-size: .75rem; color: var(--text-faint); letter-spacing: .03em; }
+    .job-title-cell { font-size: .87rem; color: var(--text); max-width: 220px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .job-lang-cell { font-size: .82rem; color: var(--text-muted); white-space: nowrap; }
+    .job-time-cell { font-size: .78rem; color: var(--text-faint); white-space: nowrap; }
+    .job-duration { font-size: .78rem; color: var(--text-faint); }
+    .status-badge { display: inline-block; font-size: .68rem; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; padding: .2rem .55rem; border-radius: 3px; white-space: nowrap; }
+    .s-review { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-border); }
+    .s-complete { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+    .s-failed { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
+    .s-certified { background: var(--teal-bg); color: var(--teal); border: 1px solid var(--teal-border); }
+    .s-active { background: var(--blue-bg); color: var(--blue); border: 1px solid var(--blue-border); }
+    .tier-cell { font-size: .75rem; color: var(--text-faint); }
+
+    /* Annotation */
+    .annotation { max-width: 1100px; margin: 0 auto 3rem; padding: 0 1.5rem; }
+    .annotation-box { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: var(--radius); padding: 1.25rem 1.5rem; }
+    .annotation-box h2 { font-family: 'Playfair Display', Georgia, serif; font-size: 1rem; font-weight: 700; margin-bottom: .6rem; }
+    .annotation-box p { font-size: .88rem; color: var(--text-muted); margin-bottom: .5rem; line-height: 1.6; }
+    .annotation-box p:last-child { margin-bottom: 0; }
+    footer { text-align: center; padding: 1.5rem; border-top: 1px solid var(--border); font-size: .8rem; color: var(--text-faint); }
+    footer a { color: var(--accent); text-decoration: none; }
+    @media (max-width: 720px) {
+      .stats-bar { grid-template-columns: repeat(2, 1fr); }
+      .top-bar { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 540px) {
+      .jobs-table thead th:nth-child(n+4), .jobs-table tbody td:nth-child(n+4) { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="suite-nav" role="navigation" aria-label="Hawk suite navigation">
+  <span class="nav-brand">Hawk</span>
+  <a href="../explainer.html">How it works</a>
+  <span class="nav-sep" aria-hidden="true">·</span>
+  <span class="nav-label">Mockups:</span>
+  <a href="index.html">Overview</a>
+  <a href="review.html">Review</a>
+  <a href="dashboard.html" class="active">Dashboard</a>
+  <a href="glossary.html">Glossary</a>
+  <a href="wp-plugin.html">WP plugin</a>
+  <span class="mockup-badge">mockup</span>
+</nav>
+
+<div class="page-context">
+  <div class="page-label">Newsroom partner interface</div>
+  <h1>Partner dashboard</h1>
+  <p>Where newsrooms track jobs, check quota, and manage API keys. The job lifecycle SVG shows how a translation moves through the system.</p>
+</div>
+
+<!-- Job lifecycle animation -->
+<div class="lifecycle-wrap">
+  <svg viewBox="0 0 780 115" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Animated diagram of job lifecycle: queued to translating to scoring, then branching to complete (instant) or in review then reviewed or certified">
+    <!-- Background -->
+    <rect width="780" height="115" rx="8" fill="#1a2e4a"/>
+    <!-- Label -->
+    <text x="390" y="14" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-size="8" font-family="'DM Sans', sans-serif" letter-spacing="3">JOB LIFECYCLE</text>
+
+    <!-- Main path connectors -->
+    <line x1="108" y1="52" x2="136" y2="52" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+    <line x1="246" y1="52" x2="274" y2="52" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+    <line x1="384" y1="52" x2="412" y2="52" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+    <!-- Branch down to In Review -->
+    <path d="M449 68 L449 82" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+    <line x1="449" y1="82" x2="590" y2="82" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+    <!-- Arrow to Complete (top path) -->
+    <line x1="449" y1="52" x2="590" y2="52" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+    <!-- Complete and Certified connectors -->
+    <line x1="700" y1="52" x2="780" y2="52" stroke="rgba(255,255,255,0.08)" stroke-width="1" stroke-dasharray="3,3"/>
+
+    <!-- Arrowheads -->
+    <polygon points="133,49 133,55 139,52" fill="rgba(255,255,255,0.15)"/>
+    <polygon points="271,49 271,55 277,52" fill="rgba(255,255,255,0.15)"/>
+    <polygon points="409,49 409,55 415,52" fill="rgba(255,255,255,0.15)"/>
+    <polygon points="587,49 587,55 593,52" fill="rgba(255,255,255,0.15)"/>
+    <polygon points="587,79 587,85 593,82" fill="rgba(255,255,255,0.15)"/>
+
+    <!-- Tier labels -->
+    <text x="517" y="44" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="7.5" font-family="'DM Sans', sans-serif">instant tier</text>
+    <text x="517" y="77" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="7.5" font-family="'DM Sans', sans-serif">reviewed / certified</text>
+
+    <!-- Traveling dots -->
+    <circle class="jd1" cx="108" cy="52" r="3" fill="#d09030" opacity="0"/>
+    <circle class="jd2" cx="246" cy="52" r="3" fill="#d09030" opacity="0"/>
+    <circle class="jd3" cx="384" cy="52" r="3" fill="#d09030" opacity="0"/>
+    <circle class="jd4" cx="449" cy="68" r="3" fill="#d09030" opacity="0"/>
+
+    <!-- Node 1: Queued -->
+    <g class="jn1">
+      <rect class="jr" x="8" y="28" width="100" height="48" rx="5" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+      <text class="jl" x="58" y="50" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="11" font-family="'DM Sans', sans-serif" font-weight="500">Queued</text>
+      <text class="js" x="58" y="64" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="9" font-family="'DM Sans', sans-serif">Job accepted</text>
+    </g>
+    <!-- Node 2: Translating -->
+    <g class="jn2">
+      <rect class="jr" x="136" y="28" width="110" height="48" rx="5" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+      <text class="jl" x="191" y="50" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="11" font-family="'DM Sans', sans-serif" font-weight="500">Translating</text>
+      <text class="js" x="191" y="64" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="9" font-family="'DM Sans', sans-serif">DeepL + glossary</text>
+    </g>
+    <!-- Node 3: Scoring -->
+    <g class="jn3">
+      <rect class="jr" x="274" y="28" width="110" height="48" rx="5" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+      <text class="jl" x="329" y="50" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="11" font-family="'DM Sans', sans-serif" font-weight="500">Scoring</text>
+      <text class="js" x="329" y="64" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="9" font-family="'DM Sans', sans-serif">Claude quality check</text>
+    </g>
+    <!-- Node 4: Decision (branch) -->
+    <g class="jn4">
+      <rect class="jr" x="412" y="28" width="74" height="48" rx="5" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+      <text class="jl" x="449" y="48" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="10" font-family="'DM Sans', sans-serif" font-weight="500">Tier?</text>
+      <text class="js" x="449" y="62" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="8.5" font-family="'DM Sans', sans-serif">Route job</text>
+    </g>
+    <!-- Node 5: Complete (top branch) -->
+    <g class="jn5">
+      <rect class="jr" x="590" y="28" width="110" height="48" rx="5" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+      <text class="jl" x="645" y="50" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="11" font-family="'DM Sans', sans-serif" font-weight="500">Complete</text>
+      <text class="js" x="645" y="64" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="9" font-family="'DM Sans', sans-serif">Webhook delivered</text>
+    </g>
+    <!-- Node 6: In Review (bottom branch) -->
+    <g class="jn6">
+      <rect class="jr" x="590" y="58" width="110" height="48" rx="5" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+      <text class="jl" x="645" y="80" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="11" font-family="'DM Sans', sans-serif" font-weight="500">In Review</text>
+      <text class="js" x="645" y="94" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="9" font-family="'DM Sans', sans-serif">STNS editor assigned</text>
+    </g>
+  </svg>
+</div>
+
+<!-- Interface mockup -->
+<div class="mockup-frame">
+  <div class="interface" role="main" aria-label="Partner dashboard mockup">
+
+    <!-- Top bar -->
+    <div class="top-bar">
+      <div class="top-bar-org">
+        <span class="org-name">Newark Ledger</span>
+        <span class="org-type">NJ News Commons partner</span>
+      </div>
+      <div class="top-bar-right">
+        <span class="api-key-display">hawk_live_••••••••••••••••••••ab3c</span>
+        <button class="btn-sm">Copy</button>
+        <button class="btn-sm">Rotate key</button>
+      </div>
+    </div>
+
+    <!-- Stats bar -->
+    <div class="stats-bar" role="region" aria-label="Usage statistics">
+      <div class="stat">
+        <div class="stat-num">47</div>
+        <div class="stat-label">Jobs this month</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num accent">153<span style="font-size:.9rem;font-weight:400;opacity:.6;"> / 200</span></div>
+        <div class="stat-label">Quota remaining today</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num teal">2</div>
+        <div class="stat-label">Active now</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num green">44</div>
+        <div class="stat-label">Complete</div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="content-area">
+      <div class="table-header-row">
+        <span class="table-title">Recent translations</span>
+        <div class="table-actions">
+          <button class="btn-outline">Export CSV</button>
+          <button class="btn-primary">+ Submit new job</button>
+        </div>
+      </div>
+
+      <table class="jobs-table" role="table" aria-label="Recent translation jobs">
+        <thead>
+          <tr>
+            <th scope="col">Job ID</th>
+            <th scope="col">Article</th>
+            <th scope="col">Language</th>
+            <th scope="col">Tier</th>
+            <th scope="col">Status</th>
+            <th scope="col">Submitted</th>
+            <th scope="col">Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="job-id-cell">a3f892b1</td>
+            <td class="job-title-cell">Newark BOE approves $2.1B budget</td>
+            <td class="job-lang-cell">EN → ES</td>
+            <td class="tier-cell">Reviewed</td>
+            <td><span class="status-badge s-review">In review</span></td>
+            <td class="job-time-cell">8 min ago</td>
+            <td class="job-duration">—</td>
+          </tr>
+          <tr>
+            <td class="job-id-cell">c8d23a00</td>
+            <td class="job-title-cell">NJ Transit service changes, March</td>
+            <td class="job-lang-cell">EN → KO</td>
+            <td class="tier-cell">Instant</td>
+            <td><span class="status-badge s-complete">Complete</span></td>
+            <td class="job-time-cell">1h 12m ago</td>
+            <td class="job-duration">2m 14s</td>
+          </tr>
+          <tr>
+            <td class="job-id-cell">f1b45e3a</td>
+            <td class="job-title-cell">Hudson County election results</td>
+            <td class="job-lang-cell">EN → ES</td>
+            <td class="tier-cell">Instant</td>
+            <td><span class="status-badge s-complete">Complete</span></td>
+            <td class="job-time-cell">3h ago</td>
+            <td class="job-duration">1m 48s</td>
+          </tr>
+          <tr>
+            <td class="job-id-cell">99ab2d11</td>
+            <td class="job-title-cell">Mayor's affordable housing plan</td>
+            <td class="job-lang-cell">EN → ZH</td>
+            <td class="tier-cell">Instant</td>
+            <td><span class="status-badge s-complete">Complete</span></td>
+            <td class="job-time-cell">Yesterday</td>
+            <td class="job-duration">3m 02s</td>
+          </tr>
+          <tr>
+            <td class="job-id-cell">7ee831f2</td>
+            <td class="job-title-cell">Paterson school board special vote</td>
+            <td class="job-lang-cell">EN → ES</td>
+            <td class="tier-cell">Certified</td>
+            <td><span class="status-badge s-certified">Certified</span></td>
+            <td class="job-time-cell">2 days ago</td>
+            <td class="job-duration">—</td>
+          </tr>
+          <tr>
+            <td class="job-id-cell">3dc92a47</td>
+            <td class="job-title-cell">Asbury Park casino expansion vote</td>
+            <td class="job-lang-cell">EN → PT</td>
+            <td class="tier-cell">Instant</td>
+            <td><span class="status-badge s-failed">Failed</span></td>
+            <td class="job-time-cell">3 days ago</td>
+            <td class="job-duration">—</td>
+          </tr>
+          <tr>
+            <td class="job-id-cell">bb120c44</td>
+            <td class="job-title-cell">NJ vaccine availability update</td>
+            <td class="job-lang-cell">EN → AR</td>
+            <td class="tier-cell">Certified</td>
+            <td><span class="status-badge s-complete">Complete</span></td>
+            <td class="job-time-cell">4 days ago</td>
+            <td class="job-duration">8m 30s</td>
+          </tr>
+          <tr>
+            <td class="job-id-cell">12ef4519</td>
+            <td class="job-title-cell">Newark mayoral race — full wrap</td>
+            <td class="job-lang-cell">EN → ES</td>
+            <td class="tier-cell">Reviewed</td>
+            <td><span class="status-badge s-complete">Complete</span></td>
+            <td class="job-time-cell">5 days ago</td>
+            <td class="job-duration">4m 51s</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+<div class="annotation">
+  <div class="annotation-box">
+    <h2>What's shown in this mockup</h2>
+    <p>The partner dashboard is what newsroom partners would see when they log in — a view of their translation activity, quota, and API key. The job lifecycle animation above shows how a translation moves through the system, branching at the "Tier?" decision point: instant jobs go straight to Complete, reviewed/certified jobs route to an STNS editor.</p>
+    <p><strong>The failed job (3dc92a47):</strong> After 3 retry attempts, DeepL couldn't be reached. The newsroom gets an error webhook at their callback URL so they can resubmit when the service recovers. A failed job doesn't count against quota.</p>
+  </div>
+</div>
+
+<footer>
+  <a href="index.html">Back to mockups</a> &nbsp;&middot;&nbsp; <a href="../explainer.html">How Hawk works</a>
+</footer>
+
+</body>
+</html>

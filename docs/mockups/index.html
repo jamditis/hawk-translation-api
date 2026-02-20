@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interface mockups — Hawk</title>
+  <meta name="description" content="Static interface mockups for the Hawk News Service translation API — for team review.">
+  <meta property="og:title" content="Interface mockups — Hawk">
+  <meta property="og:description" content="Static interface mockups for the Hawk translation API.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jamditis.github.io/hawk-translation-api/mockups/">
+  <meta property="og:image" content="https://hawknewsservice.org/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="Interface mockups — Hawk">
+  <meta property="twitter:description" content="Static interface mockups for the Hawk translation API.">
+  <meta property="twitter:image" content="https://hawknewsservice.org/og-image.png">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231a2e4a'/><text y='.85em' x='10' font-size='75'>H</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fefcf8;
+      --surface: #ffffff;
+      --border: #ddd6c2;
+      --text: #1a1510;
+      --text-muted: #6b5840;
+      --text-faint: #9b8870;
+      --accent: #b07020;
+      --accent-bg: #fdf5e3;
+      --navy: #1a2e4a;
+      --green: #2d6a32;
+      --green-bg: #edf7ee;
+      --teal: #2b7a6a;
+      --teal-bg: #e8f5f2;
+      --purple: #5b2d82;
+      --purple-bg: #f2eaf8;
+      --red: #9b2a2a;
+      --red-bg: #fdf0ee;
+      --shadow: 0 2px 12px rgba(0,0,0,.07);
+      --shadow-lg: 0 6px 28px rgba(0,0,0,.11);
+      --radius: 10px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    /* Suite nav */
+    .suite-nav {
+      background: var(--navy);
+      padding: .5rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      flex-wrap: wrap;
+      font-size: .8rem;
+    }
+    .nav-brand {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 700;
+      color: #fff;
+      font-size: .9rem;
+      margin-right: .25rem;
+    }
+    .suite-nav a {
+      color: rgba(255,255,255,.65);
+      text-decoration: none;
+      transition: color .15s;
+    }
+    .suite-nav a:hover, .suite-nav a.active { color: #fff; }
+    .nav-sep { color: rgba(255,255,255,.3); }
+    .nav-label { color: rgba(255,255,255,.4); font-size: .75rem; }
+    .mockup-badge {
+      margin-left: auto;
+      background: var(--accent);
+      color: #fff;
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .2rem .55rem;
+      border-radius: 3px;
+    }
+    /* Header */
+    header {
+      background: var(--navy);
+      color: #fff;
+      padding: 3rem 1.5rem 2.5rem;
+      text-align: center;
+    }
+    .eyebrow {
+      font-size: .8rem;
+      font-weight: 300;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.5);
+      margin-bottom: .6rem;
+    }
+    header h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: .6rem;
+    }
+    header p {
+      color: rgba(255,255,255,.65);
+      font-size: 1rem;
+      font-weight: 300;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    /* Main */
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 4rem;
+    }
+    .section-label {
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: .4rem;
+    }
+    h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: .5rem;
+    }
+    .intro {
+      font-size: .95rem;
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+      max-width: 600px;
+    }
+    /* Cards */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+      gap: 1.5rem;
+    }
+    @media (max-width: 520px) {
+      .card-grid { grid-template-columns: 1fr; }
+    }
+    .mockup-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow .2s, transform .2s;
+    }
+    .mockup-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-2px);
+    }
+    /* Interface previews (CSS art) */
+    .card-preview {
+      height: 160px;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    /* Review preview */
+    .preview-review {
+      background: #f1f3f5;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .prev-jobbar {
+      background: #fff;
+      border-radius: 4px;
+      padding: 6px 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 9px;
+      color: #555;
+      border: 1px solid #ddd;
+    }
+    .prev-tag { background: #e0f0e8; color: #2d6a32; border-radius: 3px; padding: 1px 5px; font-size: 8px; font-weight: 600; }
+    .prev-tag.flagged { background: #fdf0ee; color: #9b2a2a; }
+    .prev-row {
+      background: #fff;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+      padding: 6px 8px;
+      display: grid;
+      grid-template-columns: 18px 1fr 1fr 50px;
+      gap: 6px;
+      align-items: center;
+    }
+    .prev-row.flagged { border-color: #e08080; background: #fff8f8; }
+    .prev-row.approved { border-color: #80c080; background: #f8fff8; }
+    .prev-num { font-size: 8px; color: #999; font-weight: 600; }
+    .prev-text { height: 8px; background: #eee; border-radius: 3px; }
+    .prev-text.dark { background: #ddd; }
+    .prev-score { width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 7px; font-weight: 700; color: #fff; }
+    .score-g { background: #2d6a32; }
+    .score-r { background: #9b2a2a; }
+    .score-a { background: #92600a; }
+    /* Dashboard preview */
+    .preview-dashboard {
+      background: #f1f3f5;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .prev-statsbar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px;
+    }
+    .prev-stat {
+      background: #fff;
+      border-radius: 4px;
+      padding: 6px 4px;
+      text-align: center;
+      border: 1px solid #ddd;
+    }
+    .prev-stat-num { font-size: 11px; font-weight: 700; color: #1a2e4a; }
+    .prev-stat-label { font-size: 7px; color: #999; }
+    .prev-table { background: #fff; border-radius: 4px; border: 1px solid #ddd; overflow: hidden; }
+    .prev-table-header { background: #f5f0e8; padding: 4px 8px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4px; }
+    .prev-th { height: 6px; background: #ddd; border-radius: 2px; }
+    .prev-table-row { padding: 4px 8px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4px; border-top: 1px solid #f0f0f0; align-items: center; }
+    .prev-td { height: 5px; background: #eee; border-radius: 2px; }
+    .prev-badge { height: 10px; border-radius: 3px; }
+    .b-green { background: #edf7ee; }
+    .b-amber { background: #fff3dc; }
+    .b-blue { background: #e8edf5; }
+    .b-red { background: #fdf0ee; }
+    /* Glossary preview */
+    .preview-glossary {
+      background: #f1f3f5;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .prev-toolbar {
+      background: #fff;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+      padding: 5px 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .prev-search { flex: 1; height: 8px; background: #f0f0f0; border-radius: 3px; }
+    .prev-btn { height: 16px; width: 40px; border-radius: 3px; background: #b07020; }
+    .prev-glossary-table { background: #fff; border-radius: 4px; border: 1px solid #ddd; overflow: hidden; }
+    .prev-gt-header { background: #f5f0e8; padding: 4px 8px; display: grid; grid-template-columns: 2fr 2fr 1fr 1fr; gap: 4px; }
+    .prev-gt-row { padding: 4px 8px; display: grid; grid-template-columns: 2fr 2fr 1fr 1fr; gap: 4px; border-top: 1px solid #f0f0f0; align-items: center; }
+    /* WP preview */
+    .preview-wp {
+      background: #f0f0f1;
+      display: flex;
+      flex-direction: column;
+    }
+    .prev-wp-adminbar { background: #1d2327; height: 18px; display: flex; align-items: center; padding: 0 8px; gap: 6px; }
+    .prev-wp-logo { width: 10px; height: 10px; border-radius: 50%; background: #fff; opacity: .7; }
+    .prev-wp-bar-item { height: 5px; width: 30px; background: rgba(255,255,255,.3); border-radius: 2px; }
+    .prev-wp-toolbar { background: #fff; border-bottom: 1px solid #ddd; height: 20px; display: flex; align-items: center; padding: 0 8px; gap: 4px; }
+    .prev-wp-tool { height: 5px; width: 18px; background: #ddd; border-radius: 2px; }
+    .prev-wp-body { flex: 1; display: grid; grid-template-columns: 1fr 80px; }
+    .prev-wp-editor { background: #fff; padding: 8px; display: flex; flex-direction: column; gap: 4px; }
+    .prev-wp-title { height: 8px; background: #eee; border-radius: 3px; width: 80%; }
+    .prev-wp-para { height: 5px; background: #f5f5f5; border-radius: 2px; }
+    .prev-wp-sidebar { background: #fff; border-left: 1px solid #ddd; padding: 6px; display: flex; flex-direction: column; gap: 4px; }
+    .prev-wp-panel-title { height: 6px; background: #b07020; border-radius: 2px; width: 60%; margin-bottom: 2px; }
+    .prev-wp-check { height: 5px; background: #eee; border-radius: 2px; }
+    .prev-wp-submit { height: 14px; background: #b07020; border-radius: 3px; margin-top: 2px; }
+    /* Card body */
+    .card-body {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .card-who {
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: .4rem;
+    }
+    .card-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: .4rem;
+    }
+    .card-desc {
+      font-size: .88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      flex: 1;
+      margin-bottom: 1rem;
+    }
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: .88rem;
+      font-weight: 600;
+    }
+    .card-link:hover { text-decoration: underline; }
+    /* Explainer link */
+    .explainer-link {
+      text-align: center;
+      padding: 2rem 0 0;
+      font-size: .9rem;
+      color: var(--text-muted);
+    }
+    .explainer-link a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .explainer-link a:hover { text-decoration: underline; }
+    footer {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: .82rem;
+      color: var(--text-faint);
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<nav class="suite-nav" role="navigation" aria-label="Hawk suite navigation">
+  <span class="nav-brand">Hawk</span>
+  <a href="../explainer.html">How it works</a>
+  <span class="nav-sep" aria-hidden="true">·</span>
+  <span class="nav-label">Mockups:</span>
+  <a href="index.html" class="active">Overview</a>
+  <a href="review.html">Review</a>
+  <a href="dashboard.html">Dashboard</a>
+  <a href="glossary.html">Glossary</a>
+  <a href="wp-plugin.html">WP plugin</a>
+  <span class="mockup-badge" aria-label="These are static mockups">mockup</span>
+</nav>
+
+<header>
+  <p class="eyebrow">Hawk News Service — interface mockups</p>
+  <h1>Static mockups for team review</h1>
+  <p>Four proposed interfaces for CCM colleagues and STNS translation partners. Not interactive — for review and discussion only.</p>
+</header>
+
+<main>
+  <div class="section-label">All interfaces</div>
+  <h2>What we're building</h2>
+  <p class="intro">Each mockup shows a different part of the Hawk system. Click any card to open the full mockup.</p>
+
+  <div class="card-grid" role="list">
+
+    <!-- Review interface -->
+    <article class="mockup-card" role="listitem">
+      <div class="card-preview preview-review" aria-hidden="true">
+        <div class="prev-jobbar">
+          <span style="font-weight:600;color:#1a2e4a;">Job a3f892b1</span>
+          <span style="color:#bbb;">·</span>
+          Newark Ledger → Spanish
+          <span class="prev-tag">Reviewed</span>
+          <span style="margin-left:auto;font-size:8px;color:#999;">2 of 5 reviewed</span>
+        </div>
+        <div class="prev-row approved">
+          <span class="prev-num">¶1</span>
+          <div class="prev-score score-g">4.4</div>
+          <div class="prev-text"></div>
+          <div class="prev-text dark"></div>
+          <div style="font-size:8px;color:#2d6a32;font-weight:600;">Approved</div>
+        </div>
+        <div class="prev-row flagged">
+          <span class="prev-num">¶2</span>
+          <div class="prev-score score-r">2.1</div>
+          <div class="prev-text"></div>
+          <div style="background:#fff3f3;border:1px solid #e08080;border-radius:3px;height:24px;"></div>
+          <span class="prev-tag flagged" style="font-size:7px;">Editing</span>
+        </div>
+        <div class="prev-row">
+          <span class="prev-num">¶3</span>
+          <div class="prev-score score-a">3.7</div>
+          <div class="prev-text"></div>
+          <div class="prev-text dark"></div>
+          <div style="font-size:8px;color:#2d6a32;font-weight:600;">Approved</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-who">STNS editors</div>
+        <div class="card-title">Review interface</div>
+        <p class="card-desc">Side-by-side editor where STNS translators review machine-translated paragraphs before delivery. Flagged passages open an editable textarea with AI-identified issues listed.</p>
+        <a href="review.html" class="card-link">View mockup →</a>
+      </div>
+    </article>
+
+    <!-- Partner dashboard -->
+    <article class="mockup-card" role="listitem">
+      <div class="card-preview preview-dashboard" aria-hidden="true">
+        <div class="prev-statsbar">
+          <div class="prev-stat"><div class="prev-stat-num">47</div><div class="prev-stat-label">Jobs</div></div>
+          <div class="prev-stat"><div class="prev-stat-num" style="color:#b07020;">153</div><div class="prev-stat-label">Quota left</div></div>
+          <div class="prev-stat"><div class="prev-stat-num" style="color:#2b7a6a;">2</div><div class="prev-stat-label">Active</div></div>
+          <div class="prev-stat"><div class="prev-stat-num" style="color:#2d6a32;">44</div><div class="prev-stat-label">Done</div></div>
+        </div>
+        <div class="prev-table">
+          <div class="prev-table-header">
+            <div class="prev-th"></div><div class="prev-th"></div><div class="prev-th"></div><div class="prev-th"></div>
+          </div>
+          <div class="prev-table-row">
+            <div class="prev-td" style="background:#ccc;"></div>
+            <div class="prev-td"></div>
+            <div class="prev-td"></div>
+            <div class="prev-badge b-amber"></div>
+          </div>
+          <div class="prev-table-row">
+            <div class="prev-td" style="background:#ccc;"></div>
+            <div class="prev-td"></div>
+            <div class="prev-td"></div>
+            <div class="prev-badge b-green"></div>
+          </div>
+          <div class="prev-table-row">
+            <div class="prev-td" style="background:#ccc;"></div>
+            <div class="prev-td"></div>
+            <div class="prev-td"></div>
+            <div class="prev-badge b-green"></div>
+          </div>
+          <div class="prev-table-row">
+            <div class="prev-td" style="background:#ccc;"></div>
+            <div class="prev-td"></div>
+            <div class="prev-td"></div>
+            <div class="prev-badge b-red"></div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-who">Newsroom partners</div>
+        <div class="card-title">Partner dashboard</div>
+        <p class="card-desc">Job tracker and usage overview for NJ News Commons newsrooms. Shows quota remaining, active jobs, recent translation history, and API key management.</p>
+        <a href="dashboard.html" class="card-link">View mockup →</a>
+      </div>
+    </article>
+
+    <!-- Glossary editor -->
+    <article class="mockup-card" role="listitem">
+      <div class="card-preview preview-glossary" aria-hidden="true">
+        <div class="prev-toolbar">
+          <div class="prev-search"></div>
+          <div class="prev-btn"></div>
+        </div>
+        <div class="prev-glossary-table">
+          <div class="prev-gt-header">
+            <div class="prev-th"></div><div class="prev-th"></div><div class="prev-th"></div><div class="prev-th"></div>
+          </div>
+          <div class="prev-gt-row">
+            <div style="font-size:8px;color:#333;font-weight:500;">Board of Education</div>
+            <div style="font-size:8px;color:#333;">Junta de Educación</div>
+            <div class="prev-badge b-blue" style="height:10px;"></div>
+            <div style="font-size:7px;color:#999;">Global</div>
+          </div>
+          <div class="prev-gt-row">
+            <div style="font-size:8px;color:#333;font-weight:500;">NJ Transit</div>
+            <div style="font-size:8px;color:#333;">NJ Transit</div>
+            <div class="prev-badge b-amber" style="height:10px;"></div>
+            <div style="font-size:7px;color:#999;">Global</div>
+          </div>
+          <div class="prev-gt-row">
+            <div style="font-size:8px;color:#333;font-weight:500;">Governor</div>
+            <div style="font-size:8px;color:#333;">Gobernador</div>
+            <div class="prev-badge b-blue" style="height:10px;"></div>
+            <div style="font-size:7px;color:#999;">Global</div>
+          </div>
+          <div class="prev-gt-row">
+            <div style="font-size:8px;color:#333;font-weight:500;">Passaic County</div>
+            <div style="font-size:8px;color:#333;">Condado de Passaic</div>
+            <div class="prev-badge b-green" style="height:10px;"></div>
+            <div style="font-size:7px;color:#999;">Global</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-who">STNS editors</div>
+        <div class="card-title">Glossary editor</div>
+        <p class="card-desc">Term management for NJ journalism-specific vocabulary. STNS editors add proper nouns, government titles, and place names that should translate consistently across every newsroom's stories.</p>
+        <a href="glossary.html" class="card-link">View mockup →</a>
+      </div>
+    </article>
+
+    <!-- WordPress plugin -->
+    <article class="mockup-card" role="listitem">
+      <div class="card-preview preview-wp" aria-hidden="true">
+        <div class="prev-wp-adminbar">
+          <div class="prev-wp-logo"></div>
+          <div class="prev-wp-bar-item"></div>
+          <div class="prev-wp-bar-item" style="width:50px;margin-left:auto;"></div>
+        </div>
+        <div class="prev-wp-toolbar">
+          <div class="prev-wp-tool"></div>
+          <div class="prev-wp-tool"></div>
+          <div class="prev-wp-tool" style="width:60px;margin-left:auto;background:#b07020;"></div>
+        </div>
+        <div class="prev-wp-body">
+          <div class="prev-wp-editor">
+            <div class="prev-wp-title"></div>
+            <div class="prev-wp-para" style="width:95%;"></div>
+            <div class="prev-wp-para" style="width:88%;"></div>
+            <div class="prev-wp-para" style="width:92%;"></div>
+            <div class="prev-wp-para" style="width:75%;"></div>
+          </div>
+          <div class="prev-wp-sidebar">
+            <div class="prev-wp-panel-title"></div>
+            <div class="prev-wp-check"></div>
+            <div class="prev-wp-check" style="width:80%;"></div>
+            <div class="prev-wp-check" style="width:70%;"></div>
+            <div class="prev-wp-check" style="width:75%;"></div>
+            <div class="prev-wp-check" style="width:60%;margin-top:4px;background:#ddd;"></div>
+            <div class="prev-wp-check" style="background:#eee;"></div>
+            <div class="prev-wp-check" style="background:#eee;width:80%;"></div>
+            <div class="prev-wp-submit"></div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-who">Newsroom partners</div>
+        <div class="card-title">WordPress plugin</div>
+        <p class="card-desc">Hawk panel in the WordPress block editor sidebar. Newsrooms select target languages and quality tier, then submit a post for translation directly from the post editing screen.</p>
+        <a href="wp-plugin.html" class="card-link">View mockup →</a>
+      </div>
+    </article>
+
+  </div>
+
+  <div class="explainer-link">
+    Not sure what these interfaces do? Read <a href="../explainer.html">how Hawk works →</a>
+  </div>
+</main>
+
+<footer>
+  Hawk News Service — Center for Cooperative Media at Montclair State University
+  <br>Static mockups for internal team review. Not production interfaces.
+</footer>
+
+</body>
+</html>
