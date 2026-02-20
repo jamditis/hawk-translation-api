@@ -4,484 +4,634 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Partner dashboard — Hawk mockup</title>
-  <meta name="description" content="Mockup of the newsroom partner dashboard for the Hawk translation API.">
+  <meta name="description" content="Mockup of the partner translation dashboard for the Hawk News Service API.">
   <meta property="og:title" content="Partner dashboard — Hawk mockup">
-  <meta property="og:description" content="Partner dashboard mockup for Hawk — job tracking, quota, API keys.">
+  <meta property="og:description" content="Job management dashboard for NJ News Commons partner newsrooms.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://jamditis.github.io/hawk-translation-api/mockups/dashboard.html">
   <meta property="og:image" content="https://hawknewsservice.org/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:title" content="Partner dashboard — Hawk mockup">
-  <meta property="twitter:description" content="Partner dashboard mockup for Hawk.">
-  <meta property="twitter:image" content="https://hawknewsservice.org/og-image.png">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231a2e4a'/><text y='.85em' x='10' font-size='75' fill='white'>H</text></svg>">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Partner dashboard — Hawk mockup">
+  <meta name="twitter:description" content="Job management dashboard for NJ News Commons partner newsrooms.">
+  <meta name="twitter:image" content="https://hawknewsservice.org/og-image.png">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%231a6b4a'/><text x='16' y='23' font-family='serif' font-size='18' font-weight='700' fill='white' text-anchor='middle'>H</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #fefcf8; --surface: #ffffff; --border: #ddd6c2;
-      --text: #1a1510; --text-muted: #6b5840; --text-faint: #9b8870;
-      --accent: #b07020; --accent-bg: #fdf5e3; --accent-border: #d4a040;
-      --navy: #1a2e4a; --navy-light: #243d5e;
-      --green: #2d6a32; --green-bg: #edf7ee; --green-border: #a0d0a8;
-      --red: #9b2a2a; --red-bg: #fdf0ee; --red-border: #e09090;
-      --amber: #92600a; --amber-bg: #fff3dc; --amber-border: #d4a050;
-      --teal: #2b7a6a; --teal-bg: #e8f5f2; --teal-border: #80c4b8;
-      --blue: #1a4faa; --blue-bg: #e8edf8; --blue-border: #90aae0;
-      --app-bg: #f1f3f5; --app-border: #d4d8dc;
-      --radius: 8px; --radius-sm: 4px;
-      --shadow: 0 2px 10px rgba(0,0,0,.07);
-      --shadow-lg: 0 4px 24px rgba(0,0,0,.11);
+      --bg: #f8f8f6;
+      --surface: #ffffff;
+      --text: #0e1a12;
+      --text-muted: #4a6b55;
+      --text-faint: #8aaa95;
+      --accent: #1a6b4a;
+      --accent-light: #e8f5ee;
+      --accent-dark: #0e3d2a;
+      --border: #d8e0da;
+      --red: #8b2020;
+      --red-bg: #fdf0f0;
+      --shadow: 0 2px 12px rgba(14,26,18,.07);
+      --shadow-lg: 0 6px 28px rgba(14,26,18,.11);
+      --radius: 8px;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: var(--bg); color: var(--text); font-family: 'DM Sans', system-ui, sans-serif; font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 18px;
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+    @keyframes fadeSlideIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
 
-    /* ── Suite nav ── */
-    .suite-nav {
-      background: var(--navy);
-      height: 46px;
+    /* Nav */
+    .site-nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-inner {
+      max-width: 1080px;
+      margin: 0 auto;
       padding: 0 2rem;
+      height: 52px;
       display: flex;
       align-items: center;
-      gap: 0;
-      font-family: 'DM Sans', system-ui, sans-serif;
+      gap: 1.25rem;
     }
-    .nav-brand {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-weight: 700;
-      color: #fff;
+    .nav-wordmark {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--accent-dark);
       text-decoration: none;
-      font-size: .92rem;
-      letter-spacing: .03em;
-      flex-shrink: 0;
-      padding-right: 1.25rem;
-      border-right: 1px solid rgba(255,255,255,.15);
+      letter-spacing: .02em;
+      margin-right: .25rem;
     }
     .nav-links {
-      flex: 1;
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: .65rem;
-      font-size: .8rem;
-      flex-wrap: wrap;
+      gap: .6rem;
+      flex: 1;
     }
     .nav-links a {
-      color: rgba(255,255,255,.58);
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: .8rem;
+      font-weight: 400;
+      color: var(--text-muted);
       text-decoration: none;
+      padding: .2rem .1rem;
       transition: color .15s;
-      white-space: nowrap;
-      padding: .15rem 0;
     }
-    .nav-links a:hover { color: rgba(255,255,255,.9); }
-    .nav-links a.active { color: #fff; font-weight: 500; }
-    .nav-sep { color: rgba(255,255,255,.2); }
-    .nav-label { color: rgba(255,255,255,.3); font-size: .73rem; letter-spacing: .04em; }
-    .mockup-badge {
-      flex-shrink: 0;
-      background: var(--accent);
-      color: #fff;
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a.active {
+      color: var(--accent);
+      font-weight: 600;
+      border-bottom: 2px solid var(--accent);
+    }
+    .nav-sep {
+      color: var(--border);
+      font-size: .85rem;
+      user-select: none;
+    }
+    .nav-label {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+    }
+    .nav-badge {
+      font-family: 'DM Sans', system-ui, sans-serif;
       font-size: .62rem;
       font-weight: 600;
       letter-spacing: .1em;
       text-transform: uppercase;
-      padding: .22rem .6rem;
+      background: var(--accent-light);
+      color: var(--accent);
+      border: 1px solid var(--border);
+      padding: .15rem .5rem;
       border-radius: 3px;
+      margin-left: auto;
     }
 
-    /* Page context */
-    .page-context { max-width: 1100px; margin: 0 auto; padding: 2.5rem 2rem 1rem; }
-    .page-label { font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: .25rem; }
-    .page-context h1 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.65rem; font-weight: 700; color: var(--text); margin-bottom: .25rem; }
-    .page-context p { font-size: .88rem; color: var(--text-muted);   margin-bottom: 1rem;
+    /* Page header */
+    .page-header {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 3rem 2rem 2rem;
+      animation: fadeSlideIn .5s ease .1s both;
+    }
+    .page-eyebrow {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: .5rem;
+    }
+    .page-header h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 2.6rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.15;
+      margin-bottom: .6rem;
+    }
+    .page-header p {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: .95rem;
+      color: var(--text-muted);
+      max-width: 560px;
+      line-height: 1.6;
     }
 
-    /* Job lifecycle SVG */
-    .lifecycle-wrap { max-width: 1100px; margin: 1rem auto 0; padding: 0 2rem; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-    .lifecycle-wrap svg { min-width: 500px; width: 100%; display: block; border-radius: 8px; box-shadow: var(--shadow-lg); }
-
-    /* SVG animation keyframes */
-    @keyframes jobNodeGlow {
-      0%, 1% { fill: rgba(255,255,255,0.05); stroke: rgba(255,255,255,0.1); }
-      10% { fill: rgba(176,112,32,0.5); stroke: #d09030; stroke-width: 2; }
-      20% { fill: rgba(255,255,255,0.05); stroke: rgba(255,255,255,0.1); stroke-width: 1; }
-      100% { fill: rgba(255,255,255,0.05); stroke: rgba(255,255,255,0.1); }
+    /* Lifecycle SVG wrap */
+    .full-wrap {
+      max-width: 1080px;
+      margin: 0 auto 2rem;
+      padding: 0 2rem;
+      animation: fadeSlideIn .5s ease .25s both;
     }
-    @keyframes jobLabelGlow { 0%, 1%, 20%, 100% { fill: rgba(255,255,255,0.6); } 10% { fill: #fff; } }
-    @keyframes jobSubGlow { 0%, 1%, 20%, 100% { fill: rgba(255,255,255,0.3); } 10% { fill: rgba(255,255,255,0.7); } }
-    @keyframes jobDot { 0%, 8%, 100% { opacity: 0; transform: translateX(0); } 10% { opacity: 1; transform: translateX(0); } 17% { opacity: 1; transform: translateX(28px); } 20% { opacity: 0; transform: translateX(28px); } }
-    @keyframes branchDot { 0%, 45%, 100% { opacity: 0; transform: translateY(0); } 47% { opacity: 1; transform: translateY(0); } 53% { opacity: 1; transform: translateY(22px); } 56% { opacity: 0; transform: translateY(22px); } }
-    .jn1 .jr { animation: jobNodeGlow 8s ease-in-out 0s infinite; }
-    .jn1 .jl { animation: jobLabelGlow 8s ease-in-out 0s infinite; }
-    .jn1 .js { animation: jobSubGlow 8s ease-in-out 0s infinite; }
-    .jn2 .jr { animation: jobNodeGlow 8s ease-in-out 1.2s infinite; }
-    .jn2 .jl { animation: jobLabelGlow 8s ease-in-out 1.2s infinite; }
-    .jn2 .js { animation: jobSubGlow 8s ease-in-out 1.2s infinite; }
-    .jn3 .jr { animation: jobNodeGlow 8s ease-in-out 2.4s infinite; }
-    .jn3 .jl { animation: jobLabelGlow 8s ease-in-out 2.4s infinite; }
-    .jn3 .js { animation: jobSubGlow 8s ease-in-out 2.4s infinite; }
-    .jn4 .jr { animation: jobNodeGlow 8s ease-in-out 3.6s infinite; }
-    .jn4 .jl { animation: jobLabelGlow 8s ease-in-out 3.6s infinite; }
-    .jn4 .js { animation: jobSubGlow 8s ease-in-out 3.6s infinite; }
-    .jn5 .jr { animation: jobNodeGlow 8s ease-in-out 4.8s infinite; }
-    .jn5 .jl { animation: jobLabelGlow 8s ease-in-out 4.8s infinite; }
-    .jn5 .js { animation: jobSubGlow 8s ease-in-out 4.8s infinite; }
-    .jn6 .jr { animation: jobNodeGlow 8s ease-in-out 6.0s infinite; }
-    .jn6 .jl { animation: jobLabelGlow 8s ease-in-out 6.0s infinite; }
-    .jn6 .js { animation: jobSubGlow 8s ease-in-out 6.0s infinite; }
-    .jd1 { animation: jobDot 8s ease-in-out 0.6s infinite; }
-    .jd2 { animation: jobDot 8s ease-in-out 1.8s infinite; }
-    .jd3 { animation: jobDot 8s ease-in-out 3.0s infinite; }
-    .jd4 { animation: branchDot 8s ease-in-out 4.4s infinite; }
-    .jd5 { animation: jobDot 8s ease-in-out 3.0s infinite; }
-    /* Enhanced glow on node groups */
-    @keyframes jobGroupShadow {
-      0%, 4%   { filter: none; }
-      10%      { filter: drop-shadow(0 0 8px rgba(176,112,32,0.8)) drop-shadow(0 0 20px rgba(176,112,32,0.4)); }
-      22%      { filter: none; }
-      100%     { filter: none; }
-    }
-    .jn1 { animation: jobGroupShadow 8s ease-in-out 0s infinite; }
-    .jn2 { animation: jobGroupShadow 8s ease-in-out 1.2s infinite; }
-    .jn3 { animation: jobGroupShadow 8s ease-in-out 2.4s infinite; }
-    .jn4 { animation: jobGroupShadow 8s ease-in-out 3.6s infinite; }
-    .jn5 { animation: jobGroupShadow 8s ease-in-out 4.8s infinite; }
-    .jn6 { animation: jobGroupShadow 8s ease-in-out 6.0s infinite; }
 
-    /* Echo dots */
-    @keyframes jobDotEcho {
-      0%, 9%, 100% { opacity: 0; transform: translateX(0); }
-      11%  { opacity: 0.4; transform: translateX(4px); }
-      20%  { opacity: 0; transform: translateX(28px); }
+    /* SVG animations */
+    @keyframes nodeGlow {
+      0%,100% { rx: 6; ry: 6; fill-opacity: .18; }
+      50%      { rx: 9; ry: 9; fill-opacity: .35; }
     }
-    .jde1 { animation: jobDotEcho 8s ease-in-out 0.9s infinite; }
-    .jde2 { animation: jobDotEcho 8s ease-in-out 2.1s infinite; }
-    .jde3 { animation: jobDotEcho 8s ease-in-out 3.3s infinite; }
-
-    /* Mockup frame */
-    .mockup-frame { max-width: 1100px; margin: 1.5rem auto 2rem; padding: 0 2rem;   margin-bottom: 3rem;
+    @keyframes labelBright {
+      0%,100% { fill: rgba(255,255,255,.75); }
+      50%      { fill: rgba(255,255,255,1); }
     }
-    .interface { background: var(--app-bg); border: 1px solid var(--app-border); border-radius: var(--radius); box-shadow: var(--shadow-lg); overflow: hidden; }
+    @keyframes subBright {
+      0%,100% { fill: rgba(255,255,255,.4); }
+      50%      { fill: rgba(255,255,255,.75); }
+    }
+    @keyframes nodeGroupShadow {
+      0%,100% { filter: drop-shadow(0 0 0px rgba(100,220,160,0)); }
+      50%      { filter: drop-shadow(0 0 8px rgba(100,220,160,.55)); }
+    }
+    @keyframes dotTravel {
+      0%   { transform: translateX(0);     opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: 1; }
+      100% { transform: translateX(36px);  opacity: 0; }
+    }
+    @keyframes dotEcho {
+      0%   { transform: translateX(0);     opacity: 0; r: 3; }
+      10%  { opacity: .5; }
+      90%  { opacity: 0; r: 6; }
+      100% { transform: translateX(36px);  opacity: 0; }
+    }
 
-    /* Top bar */
-    .top-bar { background: var(--navy); padding: .75rem 1.25rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .75rem; }
-    .top-bar-org { display: flex; align-items: center; gap: .75rem; }
-    .org-name { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; color: #fff; font-size: 1rem; }
-    .org-type { font-size: .72rem; color: rgba(255,255,255,.5); background: rgba(255,255,255,.1); padding: .15rem .5rem; border-radius: 3px; }
-    .top-bar-right { display: flex; align-items: center; gap: .75rem; }
-    .api-key-display { font-family: 'DM Sans', monospace; font-size: .72rem; color: rgba(255,255,255,.6); background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12); padding: .3rem .75rem; border-radius: 4px; letter-spacing: .04em; }
-    .btn-sm { font-family: 'DM Sans', sans-serif; font-size: .72rem; font-weight: 500; padding: .3rem .7rem; border-radius: 3px; cursor: pointer; border: 1px solid rgba(255,255,255,.25); background: rgba(255,255,255,.1); color: rgba(255,255,255,.8); }
+    .dng1 { animation: nodeGroupShadow 7.2s ease-in-out 0s   infinite; }
+    .dng2 { animation: nodeGroupShadow 7.2s ease-in-out 1.2s infinite; }
+    .dng3 { animation: nodeGroupShadow 7.2s ease-in-out 2.4s infinite; }
+    .dng4 { animation: nodeGroupShadow 7.2s ease-in-out 3.6s infinite; }
+    .dng5 { animation: nodeGroupShadow 7.2s ease-in-out 4.8s infinite; }
+    .dng6 { animation: nodeGroupShadow 7.2s ease-in-out 6.0s infinite; }
+
+    .dng1 ellipse { animation: nodeGlow 7.2s ease-in-out 0s   infinite; }
+    .dng2 ellipse { animation: nodeGlow 7.2s ease-in-out 1.2s infinite; }
+    .dng3 ellipse { animation: nodeGlow 7.2s ease-in-out 2.4s infinite; }
+    .dng4 ellipse { animation: nodeGlow 7.2s ease-in-out 3.6s infinite; }
+    .dng5 ellipse { animation: nodeGlow 7.2s ease-in-out 4.8s infinite; }
+    .dng6 ellipse { animation: nodeGlow 7.2s ease-in-out 6.0s infinite; }
+
+    .dng1 .nlabel { animation: labelBright 7.2s ease-in-out 0s   infinite; }
+    .dng2 .nlabel { animation: labelBright 7.2s ease-in-out 1.2s infinite; }
+    .dng3 .nlabel { animation: labelBright 7.2s ease-in-out 2.4s infinite; }
+    .dng4 .nlabel { animation: labelBright 7.2s ease-in-out 3.6s infinite; }
+    .dng5 .nlabel { animation: labelBright 7.2s ease-in-out 4.8s infinite; }
+    .dng6 .nlabel { animation: labelBright 7.2s ease-in-out 6.0s infinite; }
+
+    .dng1 .nsub { animation: subBright 7.2s ease-in-out 0s   infinite; }
+    .dng2 .nsub { animation: subBright 7.2s ease-in-out 1.2s infinite; }
+    .dng3 .nsub { animation: subBright 7.2s ease-in-out 2.4s infinite; }
+    .dng4 .nsub { animation: subBright 7.2s ease-in-out 3.6s infinite; }
+    .dng5 .nsub { animation: subBright 7.2s ease-in-out 4.8s infinite; }
+    .dng6 .nsub { animation: subBright 7.2s ease-in-out 6.0s infinite; }
+
+    .dpd1  { animation: dotTravel 7.2s linear 0.6s  infinite; }
+    .dpd2  { animation: dotTravel 7.2s linear 1.8s  infinite; }
+    .dpd3  { animation: dotTravel 7.2s linear 3.0s  infinite; }
+    .dpd4  { animation: dotTravel 7.2s linear 4.2s  infinite; }
+    .dpd5  { animation: dotTravel 7.2s linear 5.4s  infinite; }
+
+    .dpde1 { animation: dotEcho   7.2s linear 0.95s infinite; }
+    .dpde2 { animation: dotEcho   7.2s linear 2.15s infinite; }
+    .dpde3 { animation: dotEcho   7.2s linear 3.35s infinite; }
+    .dpde4 { animation: dotEcho   7.2s linear 4.55s infinite; }
+    .dpde5 { animation: dotEcho   7.2s linear 5.75s infinite; }
+
+    /* App frame */
+    .frame-wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+      animation: fadeSlideIn .5s ease .35s both;
+    }
+    .app-frame {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
 
     /* Stats bar */
-    .stats-bar { background: var(--navy-light); padding: .75rem 1.25rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; border-bottom: 1px solid rgba(255,255,255,.08); }
-    .stat { text-align: center; padding: .5rem .25rem; }
-    .stat-num { font-size: 1.6rem; font-weight: 700; font-family: 'Playfair Display', Georgia, serif; line-height: 1; color: #fff; }
-    .stat-label { font-size: .72rem; color: rgba(255,255,255,.45); margin-top: .2rem; }
-    .stat-num.accent { color: #d4a040; }
-    .stat-num.green { color: #6ab870; }
-    .stat-num.teal { color: #6ac8b8; }
+    .stats-bar {
+      background: var(--accent);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .stat-cell {
+      padding: 1rem 1.25rem;
+      border-right: 1px solid rgba(255,255,255,.15);
+    }
+    .stat-cell:last-child { border-right: none; }
+    .stat-val {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1;
+    }
+    .stat-lbl {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.6);
+      margin-top: .2rem;
+    }
 
-    /* Content area */
-    .content-area { background: var(--surface); padding: 1.25rem; }
+    /* Toolbar */
+    .dash-toolbar {
+      padding: .75rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      background: #f6faf7;
+    }
+    .search-field {
+      flex: 1;
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: .82rem;
+      padding: .4rem .75rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--surface);
+      color: var(--text);
+    }
+    .filter-tab {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: .75rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      padding: .35rem .75rem;
+      border-radius: 4px;
+      border: 1px solid transparent;
+      cursor: default;
+    }
+    .filter-tab.active-tab {
+      background: var(--accent-light);
+      color: var(--accent);
+      border-color: var(--border);
+      font-weight: 600;
+    }
+    .btn-new {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .03em;
+      background: var(--accent);
+      color: #fff;
+      padding: .4rem 1rem;
+      border-radius: 4px;
+      border: none;
+      cursor: default;
+      white-space: nowrap;
+    }
 
     /* Job table */
-    .table-header-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: .75rem; flex-wrap: wrap; gap: .5rem; }
-    .table-title { font-size: .78rem; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--text-faint); }
-    .table-actions { display: flex; gap: .4rem; }
-    .btn-outline { font-family: 'DM Sans', sans-serif; font-size: .75rem; font-weight: 500; padding: .3rem .7rem; border-radius: 3px; cursor: pointer; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); }
-    .btn-primary { font-family: 'DM Sans', sans-serif; font-size: .75rem; font-weight: 600; padding: .3rem .8rem; border-radius: 3px; cursor: pointer; border: none; background: var(--accent); color: #fff; }
-
-    /* Table */
-    .jobs-table { width: 100%; border-collapse: collapse; font-size: .85rem; }
-    .jobs-table thead th { text-align: left; font-size: .7rem; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--text-faint); padding: .4rem .6rem; border-bottom: 2px solid var(--border); white-space: nowrap; }
-    .jobs-table tbody td { padding: .6rem .6rem; border-bottom: 1px solid var(--border); vertical-align: middle; }
-    .jobs-table tbody tr:last-child td { border-bottom: none; }
-    .jobs-table tbody tr:hover { background: var(--bg); }
-    .job-id-cell { font-family: 'DM Sans', monospace; font-size: .75rem; color: var(--text-faint); letter-spacing: .03em; }
-    .job-title-cell { font-size: .87rem; color: var(--text); max-width: 220px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .job-lang-cell { font-size: .82rem; color: var(--text-muted); white-space: nowrap; }
-    .job-time-cell { font-size: .78rem; color: var(--text-faint); white-space: nowrap; }
-    .job-duration { font-size: .78rem; color: var(--text-faint); }
-    .status-badge { display: inline-block; font-size: .68rem; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; padding: .2rem .55rem; border-radius: 3px; white-space: nowrap; }
-    .s-review { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-border); }
-    .s-complete { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
-    .s-failed { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
-    .s-certified { background: var(--teal-bg); color: var(--teal); border: 1px solid var(--teal-border); }
-    .s-active { background: var(--blue-bg); color: var(--blue); border: 1px solid var(--blue-border); }
-    .tier-cell { font-size: .75rem; color: var(--text-faint); }
-
-    /* Annotation */
-    .annotation { max-width: 1100px; margin: 0 auto 3rem; padding: 0 1.5rem; }
-    .annotation-box { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: var(--radius); padding: 1.25rem 1.5rem; }
-    .annotation-box h2 { font-family: 'Playfair Display', Georgia, serif; font-size: 1rem; font-weight: 700; margin-bottom: .6rem; }
-    .annotation-box p { font-size: .88rem; color: var(--text-muted); margin-bottom: .5rem; line-height: 1.6; }
-    .annotation-box p:last-child { margin-bottom: 0; }
-    footer { text-align: center; padding: 1.5rem; border-top: 1px solid var(--border); font-size: .8rem; color: var(--text-faint); }
-    footer a { color: var(--accent); text-decoration: none; }
-    @media (max-width: 720px) {
-      .stats-bar { grid-template-columns: repeat(2, 1fr); }
-      .top-bar { flex-direction: column; align-items: flex-start; }
+    .job-table { width: 100%; border-collapse: collapse; }
+    .job-table th {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      text-align: left;
+      padding: .65rem 1rem;
+      border-bottom: 1px solid var(--border);
+      background: #f6faf7;
     }
-    @media (max-width: 540px) {
-      .jobs-table thead th:nth-child(n+4), .jobs-table tbody td:nth-child(n+4) { display: none; }
+    .job-table td {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: .82rem;
+      color: var(--text);
+      padding: .75rem 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .job-table tr:last-child td { border-bottom: none; }
+    .job-table tr:hover td { background: #f0f8f3; }
+    .job-id {
+      font-family: 'Courier New', monospace;
+      font-size: .72rem;
+      color: var(--text-faint);
+    }
+    .job-title { font-weight: 500; max-width: 260px; }
+    .score-num {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+    .score-num.high { color: var(--accent); }
+    .score-num.mid  { color: #8a6a2a; }
+    .score-num.dash { color: var(--text-faint); font-size: .9rem; }
+
+    /* Status badges */
+    .badge {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: .2rem .55rem;
+      border-radius: 3px;
+      white-space: nowrap;
+    }
+    .b-progress  { background: var(--accent-light); color: var(--accent); }
+    .b-review    { background: #fff8e8; color: #7a5c2a; }
+    .b-complete  { background: #e8f0fe; color: #1a4ab8; }
+    .b-certified { background: #f0e8fe; color: #5a1ab8; }
+    .b-failed    { background: var(--red-bg); color: var(--red); }
+
+    /* Responsive */
+    @media (max-width: 700px) {
+      .stats-bar { grid-template-columns: 1fr 1fr; }
+      .job-table th:nth-child(3),
+      .job-table td:nth-child(3),
+      .job-table th:nth-child(7),
+      .job-table td:nth-child(7),
+      .job-table th:nth-child(8),
+      .job-table td:nth-child(8) { display: none; }
     }
   </style>
 </head>
 <body>
 
-<nav class="suite-nav" role="navigation" aria-label="Hawk site navigation">
-  <span class="nav-brand">Hawk</span>
-  <div class="nav-links">
-    <a href="../explainer.html">How it works</a>
-    <span class="nav-sep" aria-hidden="true">·</span>
-    <span class="nav-label">Mockups:</span>
-    <a href="index.html">Overview</a>
-    <a href="review.html">Review</a>
-    <a href="dashboard.html" class="active">Dashboard</a>
-    <a href="glossary.html">Glossary</a>
-    <a href="wp-plugin.html">WP plugin</a>
+  <nav class="site-nav" role="navigation" aria-label="Hawk site navigation">
+    <div class="nav-inner">
+      <a href="../explainer.html" class="nav-wordmark">Hawk</a>
+      <div class="nav-links">
+        <a href="../explainer.html">How it works</a>
+        <span class="nav-sep">·</span>
+        <span class="nav-label">Mockups:</span>
+        <a href="index.html">Overview</a>
+        <a href="review.html">Review</a>
+        <a href="dashboard.html" class="active">Dashboard</a>
+        <a href="glossary.html">Glossary</a>
+        <a href="wp-plugin.html">WP plugin</a>
+      </div>
+      <span class="nav-badge">mockup</span>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="page-eyebrow">Partner tool — mockup</div>
+    <h1>Partner dashboard</h1>
+    <p>Job management for NJ News Commons partner newsrooms — submit, track, and download translation jobs.</p>
   </div>
-  <span class="mockup-badge">mockup</span>
-</nav>
 
-<div class="page-context">
-  <div class="page-label">Newsroom partner interface</div>
-  <h1>Partner dashboard</h1>
-  <p>Where newsrooms track jobs, check quota, and manage API keys. The job lifecycle SVG shows how a translation moves through the system.</p>
-</div>
+  <!-- 6-node job lifecycle diagram -->
+  <div class="full-wrap">
+    <svg viewBox="0 0 900 140" xmlns="http://www.w3.org/2000/svg" aria-label="Job lifecycle: Submit, Queue, Process, Score, Complete, Archive" role="img" style="width:100%;display:block;">
+      <rect width="900" height="140" rx="10" fill="#0e1a12"/>
 
-<!-- Job lifecycle animation -->
-<div class="lifecycle-wrap">
-  <svg viewBox="0 0 780 115" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Animated diagram of job lifecycle: queued to translating to scoring, then branching to complete (instant) or in review then reviewed or certified">
-    <!-- Background -->
-    <rect width="780" height="115" rx="8" fill="#1a2e4a"/>
-    <!-- Label -->
-    <text x="390" y="14" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-size="8" font-family="'DM Sans', sans-serif" letter-spacing="3">JOB LIFECYCLE</text>
+      <!-- Connector lines -->
+      <line x1="144" y1="70" x2="180" y2="70" stroke="rgba(255,255,255,.18)" stroke-width="1.5"/>
+      <line x1="288" y1="70" x2="324" y2="70" stroke="rgba(255,255,255,.18)" stroke-width="1.5"/>
+      <line x1="432" y1="70" x2="468" y2="70" stroke="rgba(255,255,255,.18)" stroke-width="1.5"/>
+      <line x1="576" y1="70" x2="612" y2="70" stroke="rgba(255,255,255,.18)" stroke-width="1.5"/>
+      <line x1="720" y1="70" x2="756" y2="70" stroke="rgba(255,255,255,.18)" stroke-width="1.5"/>
 
-    <!-- Main path connectors -->
-    <line x1="108" y1="52" x2="136" y2="52" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
-    <line x1="246" y1="52" x2="274" y2="52" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
-    <line x1="384" y1="52" x2="412" y2="52" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
-    <!-- Branch down to In Review -->
-    <path d="M449 68 L449 82" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
-    <line x1="449" y1="82" x2="590" y2="82" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
-    <!-- Arrow to Complete (top path) -->
-    <line x1="449" y1="52" x2="590" y2="52" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
-    <!-- Complete and Certified connectors -->
-    <line x1="700" y1="52" x2="780" y2="52" stroke="rgba(255,255,255,0.08)" stroke-width="1" stroke-dasharray="3,3"/>
+      <!-- Node 1: Submit (x=36, cx=90) -->
+      <g class="dng1">
+        <rect x="36" y="22" width="108" height="96" rx="8" fill="rgba(255,255,255,0)"/>
+        <ellipse cx="90" cy="58" rx="6" ry="6" fill="rgba(100,220,160,.18)"/>
+        <circle cx="90" cy="58" r="14" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/>
+        <text x="90" y="62" font-family="'DM Sans',system-ui,sans-serif" font-size="10" font-weight="600" fill="rgba(255,255,255,.9)" text-anchor="middle" class="nlabel">S</text>
+        <text x="90" y="85" font-family="'DM Sans',system-ui,sans-serif" font-size="9" font-weight="600" fill="rgba(255,255,255,.75)" text-anchor="middle" letter-spacing=".04em" class="nlabel">Submit</text>
+        <text x="90" y="100" font-family="'DM Sans',system-ui,sans-serif" font-size="7.5" fill="rgba(255,255,255,.4)" text-anchor="middle" class="nsub">API call</text>
+      </g>
 
-    <!-- Arrowheads -->
-    <polygon points="133,49 133,55 139,52" fill="rgba(255,255,255,0.15)"/>
-    <polygon points="271,49 271,55 277,52" fill="rgba(255,255,255,0.15)"/>
-    <polygon points="409,49 409,55 415,52" fill="rgba(255,255,255,0.15)"/>
-    <polygon points="587,49 587,55 593,52" fill="rgba(255,255,255,0.15)"/>
-    <polygon points="587,79 587,85 593,82" fill="rgba(255,255,255,0.15)"/>
+      <!-- Node 2: Queue (x=180, cx=234) -->
+      <g class="dng2">
+        <rect x="180" y="22" width="108" height="96" rx="8" fill="rgba(255,255,255,0)"/>
+        <ellipse cx="234" cy="58" rx="6" ry="6" fill="rgba(100,220,160,.18)"/>
+        <circle cx="234" cy="58" r="14" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/>
+        <text x="234" y="62" font-family="'DM Sans',system-ui,sans-serif" font-size="10" font-weight="600" fill="rgba(255,255,255,.9)" text-anchor="middle" class="nlabel">Q</text>
+        <text x="234" y="85" font-family="'DM Sans',system-ui,sans-serif" font-size="9" font-weight="600" fill="rgba(255,255,255,.75)" text-anchor="middle" letter-spacing=".04em" class="nlabel">Queue</text>
+        <text x="234" y="100" font-family="'DM Sans',system-ui,sans-serif" font-size="7.5" fill="rgba(255,255,255,.4)" text-anchor="middle" class="nsub">worker</text>
+      </g>
 
-    <!-- Tier labels -->
-    <text x="517" y="44" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="7.5" font-family="'DM Sans', sans-serif">instant tier</text>
-    <text x="517" y="77" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="7.5" font-family="'DM Sans', sans-serif">reviewed / certified</text>
+      <!-- Node 3: Process (x=324, cx=378) -->
+      <g class="dng3">
+        <rect x="324" y="22" width="108" height="96" rx="8" fill="rgba(255,255,255,0)"/>
+        <ellipse cx="378" cy="58" rx="6" ry="6" fill="rgba(100,220,160,.18)"/>
+        <circle cx="378" cy="58" r="14" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/>
+        <text x="378" y="62" font-family="'DM Sans',system-ui,sans-serif" font-size="10" font-weight="600" fill="rgba(255,255,255,.9)" text-anchor="middle" class="nlabel">P</text>
+        <text x="378" y="85" font-family="'DM Sans',system-ui,sans-serif" font-size="9" font-weight="600" fill="rgba(255,255,255,.75)" text-anchor="middle" letter-spacing=".04em" class="nlabel">Process</text>
+        <text x="378" y="100" font-family="'DM Sans',system-ui,sans-serif" font-size="7.5" fill="rgba(255,255,255,.4)" text-anchor="middle" class="nsub">DeepL</text>
+      </g>
 
-    <!-- Traveling dots -->
-    <circle class="jd1" cx="108" cy="52" r="3" fill="#d09030" opacity="0"/>
-    <circle class="jde1" cx="108" cy="52" r="2.5" fill="rgba(208,144,48,0.6)" opacity="0"/>
-    <circle class="jd2" cx="246" cy="52" r="3" fill="#d09030" opacity="0"/>
-    <circle class="jde2" cx="246" cy="52" r="2.5" fill="rgba(208,144,48,0.6)" opacity="0"/>
-    <circle class="jd3" cx="384" cy="52" r="3" fill="#d09030" opacity="0"/>
-    <circle class="jde3" cx="384" cy="52" r="2.5" fill="rgba(208,144,48,0.6)" opacity="0"/>
-    <circle class="jd4" cx="449" cy="68" r="3" fill="#d09030" opacity="0"/>
+      <!-- Node 4: Score (x=468, cx=522) -->
+      <g class="dng4">
+        <rect x="468" y="22" width="108" height="96" rx="8" fill="rgba(255,255,255,0)"/>
+        <ellipse cx="522" cy="58" rx="6" ry="6" fill="rgba(100,220,160,.18)"/>
+        <circle cx="522" cy="58" r="14" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/>
+        <text x="522" y="62" font-family="'DM Sans',system-ui,sans-serif" font-size="10" font-weight="600" fill="rgba(255,255,255,.9)" text-anchor="middle" class="nlabel">Sc</text>
+        <text x="522" y="85" font-family="'DM Sans',system-ui,sans-serif" font-size="9" font-weight="600" fill="rgba(255,255,255,.75)" text-anchor="middle" letter-spacing=".04em" class="nlabel">Score</text>
+        <text x="522" y="100" font-family="'DM Sans',system-ui,sans-serif" font-size="7.5" fill="rgba(255,255,255,.4)" text-anchor="middle" class="nsub">claude</text>
+      </g>
 
-    <!-- Node 1: Queued -->
-    <g class="jn1">
-      <rect class="jr" x="8" y="28" width="100" height="48" rx="5" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-      <text class="jl" x="58" y="50" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="11" font-family="'DM Sans', sans-serif" font-weight="500">Queued</text>
-      <text class="js" x="58" y="64" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="9" font-family="'DM Sans', sans-serif">Job accepted</text>
-    </g>
-    <!-- Node 2: Translating -->
-    <g class="jn2">
-      <rect class="jr" x="136" y="28" width="110" height="48" rx="5" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-      <text class="jl" x="191" y="50" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="11" font-family="'DM Sans', sans-serif" font-weight="500">Translating</text>
-      <text class="js" x="191" y="64" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="9" font-family="'DM Sans', sans-serif">DeepL + glossary</text>
-    </g>
-    <!-- Node 3: Scoring -->
-    <g class="jn3">
-      <rect class="jr" x="274" y="28" width="110" height="48" rx="5" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-      <text class="jl" x="329" y="50" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="11" font-family="'DM Sans', sans-serif" font-weight="500">Scoring</text>
-      <text class="js" x="329" y="64" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="9" font-family="'DM Sans', sans-serif">Claude quality check</text>
-    </g>
-    <!-- Node 4: Decision (branch) -->
-    <g class="jn4">
-      <rect class="jr" x="412" y="28" width="74" height="48" rx="5" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-      <text class="jl" x="449" y="48" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="10" font-family="'DM Sans', sans-serif" font-weight="500">Tier?</text>
-      <text class="js" x="449" y="62" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="8.5" font-family="'DM Sans', sans-serif">Route job</text>
-    </g>
-    <!-- Node 5: Complete (top branch) -->
-    <g class="jn5">
-      <rect class="jr" x="590" y="28" width="110" height="48" rx="5" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-      <text class="jl" x="645" y="50" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="11" font-family="'DM Sans', sans-serif" font-weight="500">Complete</text>
-      <text class="js" x="645" y="64" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="9" font-family="'DM Sans', sans-serif">Webhook delivered</text>
-    </g>
-    <!-- Node 6: In Review (bottom branch) -->
-    <g class="jn6">
-      <rect class="jr" x="590" y="58" width="110" height="48" rx="5" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-      <text class="jl" x="645" y="80" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="11" font-family="'DM Sans', sans-serif" font-weight="500">In Review</text>
-      <text class="js" x="645" y="94" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="9" font-family="'DM Sans', sans-serif">STNS editor assigned</text>
-    </g>
-  </svg>
-</div>
+      <!-- Node 5: Complete (x=612, cx=666) -->
+      <g class="dng5">
+        <rect x="612" y="22" width="108" height="96" rx="8" fill="rgba(255,255,255,0)"/>
+        <ellipse cx="666" cy="58" rx="6" ry="6" fill="rgba(100,220,160,.18)"/>
+        <circle cx="666" cy="58" r="14" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/>
+        <text x="666" y="62" font-family="'DM Sans',system-ui,sans-serif" font-size="10" font-weight="600" fill="rgba(255,255,255,.9)" text-anchor="middle" class="nlabel">C</text>
+        <text x="666" y="85" font-family="'DM Sans',system-ui,sans-serif" font-size="9" font-weight="600" fill="rgba(255,255,255,.75)" text-anchor="middle" letter-spacing=".04em" class="nlabel">Complete</text>
+        <text x="666" y="100" font-family="'DM Sans',system-ui,sans-serif" font-size="7.5" fill="rgba(255,255,255,.4)" text-anchor="middle" class="nsub">deliver</text>
+      </g>
 
-<!-- Interface mockup -->
-<div class="mockup-frame">
-  <div class="interface" role="main" aria-label="Partner dashboard mockup">
+      <!-- Node 6: Archive (x=756, cx=810) -->
+      <g class="dng6">
+        <rect x="756" y="22" width="108" height="96" rx="8" fill="rgba(255,255,255,0)"/>
+        <ellipse cx="810" cy="58" rx="6" ry="6" fill="rgba(100,220,160,.18)"/>
+        <circle cx="810" cy="58" r="14" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/>
+        <text x="810" y="62" font-family="'DM Sans',system-ui,sans-serif" font-size="10" font-weight="600" fill="rgba(255,255,255,.9)" text-anchor="middle" class="nlabel">A</text>
+        <text x="810" y="85" font-family="'DM Sans',system-ui,sans-serif" font-size="9" font-weight="600" fill="rgba(255,255,255,.75)" text-anchor="middle" letter-spacing=".04em" class="nlabel">Archive</text>
+        <text x="810" y="100" font-family="'DM Sans',system-ui,sans-serif" font-size="7.5" fill="rgba(255,255,255,.4)" text-anchor="middle" class="nsub">store</text>
+      </g>
 
-    <!-- Top bar -->
-    <div class="top-bar">
-      <div class="top-bar-org">
-        <span class="org-name">Newark Ledger</span>
-        <span class="org-type">NJ News Commons partner</span>
-      </div>
-      <div class="top-bar-right">
-        <span class="api-key-display">hawk_live_••••••••••••••••••••ab3c</span>
-        <button class="btn-sm">Copy</button>
-        <button class="btn-sm">Rotate key</button>
-      </div>
-    </div>
+      <!-- Traveling dots (primary) — white -->
+      <circle class="dpd1" cx="144" cy="70" r="5" fill="white"/>
+      <circle class="dpd2" cx="288" cy="70" r="5" fill="white"/>
+      <circle class="dpd3" cx="432" cy="70" r="5" fill="white"/>
+      <circle class="dpd4" cx="576" cy="70" r="5" fill="white"/>
+      <circle class="dpd5" cx="720" cy="70" r="5" fill="white"/>
 
-    <!-- Stats bar -->
-    <div class="stats-bar" role="region" aria-label="Usage statistics">
-      <div class="stat">
-        <div class="stat-num">47</div>
-        <div class="stat-label">Jobs this month</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num accent">153<span style="font-size:.9rem;font-weight:400;opacity:.6;"> / 200</span></div>
-        <div class="stat-label">Quota remaining today</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num teal">2</div>
-        <div class="stat-label">Active now</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num green">44</div>
-        <div class="stat-label">Complete</div>
-      </div>
-    </div>
+      <!-- Echo dots -->
+      <circle class="dpde1" cx="144" cy="70" r="3" fill="rgba(255,255,255,0.4)"/>
+      <circle class="dpde2" cx="288" cy="70" r="3" fill="rgba(255,255,255,0.4)"/>
+      <circle class="dpde3" cx="432" cy="70" r="3" fill="rgba(255,255,255,0.4)"/>
+      <circle class="dpde4" cx="576" cy="70" r="3" fill="rgba(255,255,255,0.4)"/>
+      <circle class="dpde5" cx="720" cy="70" r="3" fill="rgba(255,255,255,0.4)"/>
+    </svg>
+  </div>
 
-    <!-- Content -->
-    <div class="content-area">
-      <div class="table-header-row">
-        <span class="table-title">Recent translations</span>
-        <div class="table-actions">
-          <button class="btn-outline">Export CSV</button>
-          <button class="btn-primary">+ Submit new job</button>
+  <!-- App frame -->
+  <div class="frame-wrap">
+    <div class="app-frame">
+
+      <!-- Stats bar -->
+      <div class="stats-bar">
+        <div class="stat-cell">
+          <div class="stat-val">47</div>
+          <div class="stat-lbl">Jobs this month</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-val">153<span style="font-size:1rem;font-weight:300;opacity:.7;">/200</span></div>
+          <div class="stat-lbl">Quota used</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-val">2</div>
+          <div class="stat-lbl">Active now</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-val">91.2</div>
+          <div class="stat-lbl">Avg quality score</div>
         </div>
       </div>
 
-      <table class="jobs-table" role="table" aria-label="Recent translation jobs">
+      <!-- Toolbar -->
+      <div class="dash-toolbar">
+        <input class="search-field" type="text" placeholder="Search jobs…" readonly>
+        <span class="filter-tab active-tab">All</span>
+        <span class="filter-tab">In progress</span>
+        <span class="filter-tab">Complete</span>
+        <span class="filter-tab">Failed</span>
+        <button class="btn-new">+ New translation</button>
+      </div>
+
+      <!-- Job table -->
+      <table class="job-table">
         <thead>
           <tr>
-            <th scope="col">Job ID</th>
-            <th scope="col">Article</th>
-            <th scope="col">Language</th>
-            <th scope="col">Tier</th>
-            <th scope="col">Status</th>
-            <th scope="col">Submitted</th>
-            <th scope="col">Time</th>
+            <th>Job ID</th>
+            <th>Article</th>
+            <th>Language</th>
+            <th>Tier</th>
+            <th>Status</th>
+            <th>Score</th>
+            <th>Submitted</th>
+            <th>Duration</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td class="job-id-cell">a3f892b1</td>
-            <td class="job-title-cell">Newark BOE approves $2.1B budget</td>
-            <td class="job-lang-cell">EN → ES</td>
-            <td class="tier-cell">Reviewed</td>
-            <td><span class="status-badge s-review">In review</span></td>
-            <td class="job-time-cell">8 min ago</td>
-            <td class="job-duration">—</td>
+            <td><span class="job-id">a3f812bc</span></td>
+            <td><span class="job-title">Flooding in Hoboken neighborhoods</span></td>
+            <td>EN → ES</td>
+            <td>Reviewed</td>
+            <td><span class="badge b-progress">In progress</span></td>
+            <td><span class="score-num dash">—</span></td>
+            <td>4 min ago</td>
+            <td>—</td>
           </tr>
           <tr>
-            <td class="job-id-cell">c8d23a00</td>
-            <td class="job-title-cell">NJ Transit service changes, March</td>
-            <td class="job-lang-cell">EN → KO</td>
-            <td class="tier-cell">Instant</td>
-            <td><span class="status-badge s-complete">Complete</span></td>
-            <td class="job-time-cell">1h 12m ago</td>
-            <td class="job-duration">2m 14s</td>
+            <td><span class="job-id">5c2e91d4</span></td>
+            <td><span class="job-title">Newark school board budget</span></td>
+            <td>EN → PT</td>
+            <td>Certified</td>
+            <td><span class="badge b-review">In review</span></td>
+            <td><span class="score-num dash">—</span></td>
+            <td>8 min ago</td>
+            <td>—</td>
           </tr>
           <tr>
-            <td class="job-id-cell">f1b45e3a</td>
-            <td class="job-title-cell">Hudson County election results</td>
-            <td class="job-lang-cell">EN → ES</td>
-            <td class="tier-cell">Instant</td>
-            <td><span class="status-badge s-complete">Complete</span></td>
-            <td class="job-time-cell">3h ago</td>
-            <td class="job-duration">1m 48s</td>
+            <td><span class="job-id">c8d23a00</span></td>
+            <td><span class="job-title">NJ Transit service changes, March</span></td>
+            <td>EN → KO</td>
+            <td>Instant</td>
+            <td><span class="badge b-complete">Complete</span></td>
+            <td><span class="score-num high">94</span></td>
+            <td>1h 12m ago</td>
+            <td>2m 14s</td>
           </tr>
           <tr>
-            <td class="job-id-cell">99ab2d11</td>
-            <td class="job-title-cell">Mayor's affordable housing plan</td>
-            <td class="job-lang-cell">EN → ZH</td>
-            <td class="tier-cell">Instant</td>
-            <td><span class="status-badge s-complete">Complete</span></td>
-            <td class="job-time-cell">Yesterday</td>
-            <td class="job-duration">3m 02s</td>
+            <td><span class="job-id">f1b45e3a</span></td>
+            <td><span class="job-title">Hudson County election results</span></td>
+            <td>EN → ES</td>
+            <td>Instant</td>
+            <td><span class="badge b-complete">Complete</span></td>
+            <td><span class="score-num high">88</span></td>
+            <td>3h ago</td>
+            <td>1m 48s</td>
           </tr>
           <tr>
-            <td class="job-id-cell">7ee831f2</td>
-            <td class="job-title-cell">Paterson school board special vote</td>
-            <td class="job-lang-cell">EN → ES</td>
-            <td class="tier-cell">Certified</td>
-            <td><span class="status-badge s-certified">Certified</span></td>
-            <td class="job-time-cell">2 days ago</td>
-            <td class="job-duration">—</td>
+            <td><span class="job-id">99ab2d11</span></td>
+            <td><span class="job-title">Mayor's affordable housing plan</span></td>
+            <td>EN → ZH</td>
+            <td>Instant</td>
+            <td><span class="badge b-complete">Complete</span></td>
+            <td><span class="score-num high">91</span></td>
+            <td>Yesterday</td>
+            <td>3m 02s</td>
           </tr>
           <tr>
-            <td class="job-id-cell">3dc92a47</td>
-            <td class="job-title-cell">Asbury Park casino expansion vote</td>
-            <td class="job-lang-cell">EN → PT</td>
-            <td class="tier-cell">Instant</td>
-            <td><span class="status-badge s-failed">Failed</span></td>
-            <td class="job-time-cell">3 days ago</td>
-            <td class="job-duration">—</td>
+            <td><span class="job-id">7ee831f2</span></td>
+            <td><span class="job-title">Paterson school board special vote</span></td>
+            <td>EN → ES</td>
+            <td>Certified</td>
+            <td><span class="badge b-certified">Certified</span></td>
+            <td><span class="score-num dash">—</span></td>
+            <td>2 days ago</td>
+            <td>—</td>
           </tr>
           <tr>
-            <td class="job-id-cell">bb120c44</td>
-            <td class="job-title-cell">NJ vaccine availability update</td>
-            <td class="job-lang-cell">EN → AR</td>
-            <td class="tier-cell">Certified</td>
-            <td><span class="status-badge s-complete">Complete</span></td>
-            <td class="job-time-cell">4 days ago</td>
-            <td class="job-duration">8m 30s</td>
-          </tr>
-          <tr>
-            <td class="job-id-cell">12ef4519</td>
-            <td class="job-title-cell">Newark mayoral race — full wrap</td>
-            <td class="job-lang-cell">EN → ES</td>
-            <td class="tier-cell">Reviewed</td>
-            <td><span class="status-badge s-complete">Complete</span></td>
-            <td class="job-time-cell">5 days ago</td>
-            <td class="job-duration">4m 51s</td>
+            <td><span class="job-id">3dc92a47</span></td>
+            <td><span class="job-title">Asbury Park casino expansion vote</span></td>
+            <td>EN → PT</td>
+            <td>Instant</td>
+            <td><span class="badge b-failed">Failed</span></td>
+            <td><span class="score-num dash">—</span></td>
+            <td>3 days ago</td>
+            <td>—</td>
           </tr>
         </tbody>
       </table>
+
     </div>
-
   </div>
-</div>
-
-<div class="annotation">
-  <div class="annotation-box">
-    <h2>What's shown in this mockup</h2>
-    <p>The partner dashboard is what newsroom partners would see when they log in — a view of their translation activity, quota, and API key. The job lifecycle animation above shows how a translation moves through the system, branching at the "Tier?" decision point: instant jobs go straight to Complete, reviewed/certified jobs route to an STNS editor.</p>
-    <p><strong>The failed job (3dc92a47):</strong> After 3 retry attempts, DeepL couldn't be reached. The newsroom gets an error webhook at their callback URL so they can resubmit when the service recovers. A failed job doesn't count against quota.</p>
-  </div>
-</div>
-
-<footer>
-  <a href="index.html">Back to mockups</a> &nbsp;&middot;&nbsp; <a href="../explainer.html">How Hawk works</a>
-</footer>
 
 </body>
 </html>
