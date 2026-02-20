@@ -12,1034 +12,776 @@
   <meta property="og:image" content="https://hawknewsservice.org/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:title" content="How Hawk works — a plain-language guide">
-  <meta property="twitter:description" content="How the Hawk News Service translation API works — for CCM colleagues and STNS translation partners.">
-  <meta property="twitter:image" content="https://hawknewsservice.org/og-image.png">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦅</text></svg>">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How Hawk works — a plain-language guide">
+  <meta name="twitter:description" content="How the Hawk News Service translation API works — for CCM colleagues and STNS translation partners.">
+  <meta name="twitter:image" content="https://hawknewsservice.org/og-image.png">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%231a6b4a'/><text x='16' y='23' font-family='serif' font-size='18' font-weight='700' fill='white' text-anchor='middle'>H</text></svg>">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg: #fefcf8;
+      --bg: #f8f8f6;
       --surface: #ffffff;
-      --surface-2: #f5f0e8;
-      --border: #ddd6c2;
-      --text: #1a1510;
-      --text-muted: #6b5840;
-      --text-faint: #9b8870;
-      --accent: #b07020;
-      --accent-light: #d09030;
-      --accent-bg: #fdf5e3;
-      --teal: #0f6b6b;
-      --teal-bg: #e8f5f5;
-      --amber: #92600a;
-      --amber-bg: #fdf6e3;
-      --green: #2d6a32;
-      --green-bg: #edf7ee;
-      --navy: #1a2e4a;
-      --navy-bg: #e8edf5;
-      --purple: #5b2d82;
-      --purple-bg: #f2eaf8;
-      --shadow-sm: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
-      --shadow: 0 4px 16px rgba(0,0,0,.08), 0 1px 4px rgba(0,0,0,.04);
-      --shadow-lg: 0 8px 32px rgba(0,0,0,.10), 0 2px 8px rgba(0,0,0,.06);
-      --radius: 10px;
-      --radius-sm: 6px;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #141210;
-        --surface: #1e1a16;
-        --surface-2: #27221c;
-        --border: #3a332a;
-        --text: #f0e8dc;
-        --text-muted: #a89880;
-        --text-faint: #7a6a58;
-        --accent: #e07050;
-        --accent-light: #e8906a;
-        --accent-bg: #2a1a12;
-        --teal: #4ab8b8;
-        --teal-bg: #0f2828;
-        --amber: #d4a030;
-        --amber-bg: #261c08;
-        --green: #6ab870;
-        --green-bg: #0f2012;
-        --navy: #80a0d0;
-        --navy-bg: #0e1828;
-        --purple: #b07ad0;
-        --purple-bg: #1c1228;
-        --shadow-sm: 0 1px 3px rgba(0,0,0,.3), 0 1px 2px rgba(0,0,0,.2);
-        --shadow: 0 4px 16px rgba(0,0,0,.4), 0 1px 4px rgba(0,0,0,.2);
-        --shadow-lg: 0 8px 32px rgba(0,0,0,.5), 0 2px 8px rgba(0,0,0,.3);
-      }
+      --text: #0e1a12;
+      --text-muted: #4a6b55;
+      --text-faint: #8aaa95;
+      --accent: #1a6b4a;
+      --accent-light: #e8f5ee;
+      --accent-dark: #0e3d2a;
+      --border: #d8e0da;
+      --red: #8b2020;
+      --red-bg: #fdf0f0;
+      --shadow: 0 2px 12px rgba(14,26,18,.07);
+      --shadow-lg: 0 6px 28px rgba(14,26,18,.11);
+      --radius: 8px;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html { scroll-behavior: smooth; }
-
     body {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 18px;
+      line-height: 1.8;
       background: var(--bg);
       color: var(--text);
-      font-family: 'DM Sans', system-ui, sans-serif;
-      font-size: 16px;
-      line-height: 1.65;
-      -webkit-font-smoothing: antialiased;
     }
 
-    /* ── Header ── */
-    header {
-      background: var(--navy, #1a2e4a);
-      color: #fff;
-      padding: 4rem 1.5rem 3rem;
-      text-align: center;
+    a { color: var(--accent); }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+
+    @keyframes fadeSlideIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
-    @media (prefers-color-scheme: dark) {
-      header { background: #0a1420; }
+    /* ── Nav ── */
+    .site-nav {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      animation: fadeSlideIn .4s ease 0s both;
     }
-
-    .eyebrow {
-      font-family: 'DM Sans', system-ui, sans-serif;
-      font-size: .85rem;
-      font-weight: 300;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.65);
-      margin-bottom: .75rem;
-    }
-
-    header h1 {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: clamp(2rem, 5vw, 3.25rem);
-      font-weight: 900;
-      line-height: 1.15;
-      color: #fff;
-      max-width: 700px;
-      margin: 0 auto .75rem;
-    }
-
-    header h1 em {
-      font-style: italic;
-      color: rgba(255,255,255,.75);
-    }
-
-    .header-sub {
-      font-size: 1.1rem;
-      color: rgba(255,255,255,.7);
-      max-width: 560px;
-      margin: 0 auto 2rem;
-      font-weight: 300;
-      font-style: italic;
-    }
-
-    .header-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: .5rem;
-      justify-content: center;
-    }
-
-    .badge {
-      background: rgba(255,255,255,.12);
-      color: rgba(255,255,255,.9);
-      border: 1px solid rgba(255,255,255,.2);
-      border-radius: 20px;
-      padding: .25rem .85rem;
-      font-size: .8rem;
-      font-family: 'DM Sans', system-ui, sans-serif;
-      font-weight: 300;
-      letter-spacing: .04em;
-    }
-
-    /* ── Layout ── */
-    main {
-      max-width: 900px;
+    .nav-inner {
+      max-width: 1080px;
       margin: 0 auto;
-      padding: 4rem 2rem 7rem;
+      padding: 0 2rem;
+      height: 52px;
+      display: flex;
+      align-items: center;
     }
-
-    section {
-      margin-bottom: 5rem;
-    }
-
-    .section-label {
-      font-family: 'DM Sans', system-ui, sans-serif;
-      font-size: .8rem;
-      font-weight: 600;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: .5rem;
-    }
-
-    h2 {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: clamp(1.6rem, 3.5vw, 2rem);
-      font-weight: 700;
-      line-height: 1.2;
-      color: var(--text);
-      margin-bottom: 1rem;
-    }
-
-    h3 {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: .5rem;
-    }
-
-    p { margin-bottom: 1rem; }
-    p:last-child { margin-bottom: 0; }
-
-    .lead {
+    .nav-wordmark {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-style: italic;
       font-size: 1.15rem;
-      color: var(--text-muted);
-      font-style: italic;
-      font-weight: 300;
-      margin-bottom: 1.5rem;
-    }
-
-    /* ── Cards ── */
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.75rem;
-      box-shadow: var(--shadow-sm);
-    }
-
-    /* ── Big intro box ── */
-    .intro-box {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-left: 4px solid var(--accent);
-      border-radius: var(--radius);
-      padding: 1.75rem 2rem;
-      margin: 2.5rem 0;
-      box-shadow: var(--shadow);
-    }
-
-    .intro-box p {
-      font-size: 1.1rem;
-      line-height: 1.75;
-      color: var(--text);
-    }
-
-    .intro-box strong {
-      color: var(--accent);
-    }
-
-    /* ── Pipeline steps ── */
-    .pipeline {
-      position: relative;
-      margin: 2rem 0;
-    }
-
-    .pipeline-step {
-      display: grid;
-      grid-template-columns: 56px 1fr;
-      gap: 1.25rem;
-      margin-bottom: .75rem;
-      position: relative;
-    }
-
-    .step-indicator {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .step-number {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Playfair Display', Georgia, serif;
-      font-weight: 700;
-      font-size: 1rem;
-      color: #fff;
-      flex-shrink: 0;
-      position: relative;
-      z-index: 1;
-    }
-
-    .step-line {
-      width: 2px;
-      flex: 1;
-      min-height: 24px;
-      background: var(--border);
-      margin-top: 4px;
-    }
-
-    .pipeline-step:last-child .step-line {
-      display: none;
-    }
-
-    .step-body {
-      padding-bottom: 1.5rem;
-    }
-
-    .step-body h3 {
-      font-size: 1.05rem;
-      margin-bottom: .3rem;
-      line-height: 1.3;
-    }
-
-    .step-body p {
-      font-size: .95rem;
-      color: var(--text-muted);
-      margin-bottom: 0;
-    }
-
-    .step-tag {
-      display: inline-block;
-      font-size: .7rem;
       font-weight: 600;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      padding: .15rem .5rem;
-      border-radius: 4px;
-      margin-bottom: .5rem;
-    }
-
-    /* step colors */
-    .s1 .step-number { background: var(--navy, #1a2e4a); }
-    .s2 .step-number { background: var(--teal); }
-    .s3 .step-number { background: var(--amber); }
-    .s4 .step-number { background: var(--accent-light, #c4541f); }
-    .s5 .step-number { background: var(--purple); }
-    .s6 .step-number { background: var(--green); }
-    .s7 .step-number { background: var(--accent); }
-
-    /* ── Language grid ── */
-    .lang-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
-
-    .lang-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 1rem 1.25rem;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .lang-card.limited {
-      border-style: dashed;
-      opacity: .8;
-    }
-
-    .lang-name {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-weight: 700;
-      font-size: 1rem;
-      color: var(--text);
-      margin-bottom: .2rem;
-    }
-
-    .lang-native {
-      font-size: 1.1rem;
-      color: var(--text-muted);
-      margin-bottom: .4rem;
-    }
-
-    .lang-community {
-      font-size: .82rem;
-      color: var(--text-faint);
-      font-style: italic;
-      line-height: 1.4;
-    }
-
-    .lang-status {
-      display: inline-block;
-      font-size: .7rem;
-      font-weight: 600;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      padding: .15rem .5rem;
-      border-radius: 3px;
-      margin-top: .5rem;
-    }
-
-    .lang-status.available { background: var(--green-bg); color: var(--green); }
-    .lang-status.limited { background: var(--amber-bg); color: var(--amber); }
-
-    /* ── Tier cards ── */
-    .tier-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 1.25rem;
-      margin-top: 1.5rem;
-    }
-
-    .tier-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.5rem;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .tier-card h3 {
-      margin-bottom: .75rem;
-    }
-
-    .tier-icon {
-      font-size: 1.5rem;
-      margin-bottom: .5rem;
-    }
-
-    .tier-speed {
-      font-size: .82rem;
-      color: var(--text-faint);
-      margin-bottom: .5rem;
-      font-style: italic;
-    }
-
-    .tier-use {
-      font-size: .9rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
-
-    /* ── Glossary callout ── */
-    .glossary-box {
-      background: var(--amber-bg);
-      border: 1px solid var(--amber);
-      border-radius: var(--radius);
-      padding: 1.75rem;
-      margin: 1.5rem 0;
-    }
-
-    .glossary-box h3 {
-      color: var(--amber);
-      margin-bottom: .75rem;
-    }
-
-    .glossary-examples {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: .75rem;
-      margin-top: 1rem;
-    }
-
-    .glossary-term {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: .75rem 1rem;
-      font-size: .9rem;
-    }
-
-    .term-source {
-      font-style: italic;
-      color: var(--text-muted);
-      font-size: .82rem;
-    }
-
-    .term-arrow {
-      color: var(--accent);
-      margin: .2rem 0;
-    }
-
-    .term-target {
-      font-weight: 600;
-      color: var(--text);
-    }
-
-    .term-note {
-      font-size: .75rem;
-      color: var(--text-faint);
-      margin-top: .2rem;
-    }
-
-    /* ── Divider ── */
-    .divider {
-      border: none;
-      border-top: 1px solid var(--border);
-      margin: 3rem 0;
-    }
-
-    /* ── Flow diagram (CSS-only for the simple version) ── */
-    .flow-diagram {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 2rem;
-      box-shadow: var(--shadow);
-      overflow-x: auto;
-    }
-
-    /* ── Who is it for callout ── */
-    .audience-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.25rem;
-      margin-top: 1.5rem;
-    }
-
-    @media (max-width: 540px) {
-      .audience-grid { grid-template-columns: 1fr; }
-      .tier-grid { grid-template-columns: 1fr; }
-    }
-
-    .audience-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.5rem;
-    }
-
-    .audience-card h3 {
-      margin-bottom: .5rem;
-      font-size: 1rem;
-    }
-
-    .audience-card p {
-      font-size: .9rem;
-      color: var(--text-muted);
-    }
-
-    /* ── Footer ── */
-    footer {
-      text-align: center;
-      padding: 2.5rem 1.5rem;
-      border-top: 1px solid var(--border);
-      font-size: .875rem;
-      color: var(--text-faint);
-    }
-
-    footer a {
       color: var(--accent);
       text-decoration: none;
-    }
-
-    footer a:hover { text-decoration: underline; }
-
-    /* ── Quality score viz ── */
-    .score-row {
-      display: flex;
-      align-items: center;
-      gap: .75rem;
-      margin-bottom: .6rem;
-    }
-
-    .score-label {
-      font-size: .85rem;
-      color: var(--text-muted);
-      width: 80px;
       flex-shrink: 0;
-    }
-
-    .score-bar-bg {
-      flex: 1;
-      height: 8px;
-      background: var(--surface-2);
-      border-radius: 4px;
-      overflow: hidden;
-    }
-
-    .score-bar {
-      height: 100%;
-      border-radius: 4px;
-      background: var(--green);
-    }
-
-    .score-val {
-      font-size: .85rem;
-      font-weight: 600;
-      color: var(--text);
-      width: 32px;
-      text-align: right;
-    }
-
-    /* ── Responsive ── */
-    @media (max-width: 640px) {
-      header { padding: 2.5rem 1rem 2rem; }
-      main { padding: 0 1rem 3rem; }
-      .intro-box { padding: 1.25rem 1.25rem; }
-      .pipeline-step { grid-template-columns: 44px 1fr; }
-    }
-
-    /* ── Focus & accessibility ── */
-    a:focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 2px;
-      border-radius: 2px;
-    }
-
-    /* ── Suite nav bar ── */
-    /* ── Suite nav ── */
-    .suite-nav {
-      background: rgba(26,46,74,0.97);
-      border-bottom: 1px solid rgba(255,255,255,.06);
-      height: 46px;
-      padding: 0 2rem;
-      display: flex;
-      align-items: center;
-      font-family: 'DM Sans', system-ui, sans-serif;
-    }
-    .nav-brand {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-weight: 700;
-      color: #fff;
-      font-size: .92rem;
-      letter-spacing: .03em;
-      flex-shrink: 0;
-      padding-right: 1.25rem;
-      border-right: 1px solid rgba(255,255,255,.15);
+      padding-right: 1.5rem;
+      border-right: 1px solid var(--border);
     }
     .nav-links {
       flex: 1;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: .65rem;
+      gap: .7rem;
+      font-family: 'DM Sans', system-ui, sans-serif;
       font-size: .8rem;
+      letter-spacing: .02em;
+      flex-wrap: wrap;
     }
     .nav-links a {
-      color: rgba(255,255,255,.55);
+      color: rgba(14,26,18,.5);
       text-decoration: none;
       transition: color .15s;
+      padding-bottom: 2px;
+      border-bottom: 2px solid transparent;
       white-space: nowrap;
     }
-    .nav-links a:hover { color: rgba(255,255,255,.9); }
-    .nav-links .nav-current { color: rgba(255,255,255,.85); }
-    .nav-sep { color: rgba(255,255,255,.2); }
-    .nav-label { color: rgba(255,255,255,.28); font-size: .73rem; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+      font-weight: 500;
+    }
+    .nav-sep { color: var(--border); }
+    .nav-label { color: var(--text-faint); font-size: .73rem; }
 
-    /* ── Pipeline SVG animation ── */
+    /* ── Header ── */
+    header {
+      background: var(--accent);
+      padding: 5rem 2rem 4rem;
+      text-align: center;
+      animation: fadeSlideIn .4s ease .1s both;
+    }
+    header h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: .75rem;
+    }
+    .header-sub {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.25rem;
+      font-style: italic;
+      color: rgba(255,255,255,.75);
+      font-weight: 300;
+      max-width: 540px;
+      margin: 0 auto 2rem;
+    }
+    .lang-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+      justify-content: center;
+    }
+    .lang-badge {
+      background: rgba(255,255,255,.15);
+      color: rgba(255,255,255,.9);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 20px;
+      padding: .2rem .75rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .78rem;
+    }
+
+    /* ── Pipeline SVG wrapper ── */
     .pipeline-anim-wrap {
-      margin: 1.5rem 0 2rem;
+      margin: 2.5rem 0;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
       border-radius: 10px;
       box-shadow: 0 4px 20px rgba(0,0,0,.15);
     }
     .pipeline-anim-wrap svg { min-width: 620px; width: 100%; display: block; }
+
+    /* ── SVG animation keyframes ── */
     @keyframes nodeGlow {
-      0%, 1%  { fill: rgba(255,255,255,0.05); stroke: rgba(255,255,255,0.1); stroke-width: 1; }
-      8%      { fill: rgba(176,112,32,0.5); stroke: #d09030; stroke-width: 2; }
-      14%     { fill: rgba(176,112,32,0.08); stroke: rgba(255,255,255,0.12); stroke-width: 1; }
-      100%    { fill: rgba(255,255,255,0.05); stroke: rgba(255,255,255,0.1); stroke-width: 1; }
+      0%, 2%   { fill: rgba(255,255,255,0.04); stroke: rgba(255,255,255,0.1); stroke-width: 1; }
+      9%       { fill: rgba(26,107,74,0.45); stroke: #1a6b4a; stroke-width: 2; }
+      18%      { fill: rgba(26,107,74,0.08); stroke: rgba(255,255,255,0.12); stroke-width: 1; }
+      100%     { fill: rgba(255,255,255,0.04); stroke: rgba(255,255,255,0.1); stroke-width: 1; }
     }
-    @keyframes labelGlow {
-      0%, 1%, 14%, 100% { fill: rgba(255,255,255,0.6); }
-      8% { fill: #fff; }
+    @keyframes labelBright {
+      0%, 2%, 18%, 100% { fill: rgba(255,255,255,0.55); }
+      9% { fill: #fff; }
     }
-    @keyframes subGlow {
-      0%, 1%, 14%, 100% { fill: rgba(255,255,255,0.3); }
-      8% { fill: rgba(255,255,255,0.72); }
+    @keyframes subBright {
+      0%, 2%, 18%, 100% { fill: rgba(255,255,255,0.28); }
+      9% { fill: rgba(255,255,255,0.7); }
     }
-    @keyframes numGlow {
-      0%, 1%, 14%, 100% { fill: rgba(255,255,255,0.2); }
-      8% { fill: #d09030; }
+    @keyframes nodeGroupShadow {
+      0%, 4%, 18%, 100% { filter: none; }
+      9% { filter: drop-shadow(0 0 10px rgba(26,107,74,0.85)) drop-shadow(0 0 22px rgba(26,107,74,0.4)); }
     }
     @keyframes dotTravel {
       0%, 7%, 100% { opacity: 0; transform: translateX(0); }
-      9%  { opacity: 1; transform: translateX(0); }
-      12% { opacity: 1; transform: translateX(24px); }
-      14% { opacity: 0; transform: translateX(24px); }
-    }
-    .na1 .nr { animation: nodeGlow 7s ease-in-out 0s infinite; }
-    .na1 .nl { animation: labelGlow 7s ease-in-out 0s infinite; }
-    .na1 .ns { animation: subGlow 7s ease-in-out 0s infinite; }
-    .na1 .nn { animation: numGlow 7s ease-in-out 0s infinite; }
-    .na2 .nr { animation: nodeGlow 7s ease-in-out 1s infinite; }
-    .na2 .nl { animation: labelGlow 7s ease-in-out 1s infinite; }
-    .na2 .ns { animation: subGlow 7s ease-in-out 1s infinite; }
-    .na2 .nn { animation: numGlow 7s ease-in-out 1s infinite; }
-    .na3 .nr { animation: nodeGlow 7s ease-in-out 2s infinite; }
-    .na3 .nl { animation: labelGlow 7s ease-in-out 2s infinite; }
-    .na3 .ns { animation: subGlow 7s ease-in-out 2s infinite; }
-    .na3 .nn { animation: numGlow 7s ease-in-out 2s infinite; }
-    .na4 .nr { animation: nodeGlow 7s ease-in-out 3s infinite; }
-    .na4 .nl { animation: labelGlow 7s ease-in-out 3s infinite; }
-    .na4 .ns { animation: subGlow 7s ease-in-out 3s infinite; }
-    .na4 .nn { animation: numGlow 7s ease-in-out 3s infinite; }
-    .na5 .nr { animation: nodeGlow 7s ease-in-out 4s infinite; }
-    .na5 .nl { animation: labelGlow 7s ease-in-out 4s infinite; }
-    .na5 .ns { animation: subGlow 7s ease-in-out 4s infinite; }
-    .na5 .nn { animation: numGlow 7s ease-in-out 4s infinite; }
-    .na6 .nr { animation: nodeGlow 7s ease-in-out 5s infinite; }
-    .na6 .nl { animation: labelGlow 7s ease-in-out 5s infinite; }
-    .na6 .ns { animation: subGlow 7s ease-in-out 5s infinite; }
-    .na6 .nn { animation: numGlow 7s ease-in-out 5s infinite; }
-    .na7 .nr { animation: nodeGlow 7s ease-in-out 6s infinite; }
-    .na7 .nl { animation: labelGlow 7s ease-in-out 6s infinite; }
-    .na7 .ns { animation: subGlow 7s ease-in-out 6s infinite; }
-    .na7 .nn { animation: numGlow 7s ease-in-out 6s infinite; }
-    .pd1 { animation: dotTravel 7s ease-in-out 0.5s infinite; }
-    .pd2 { animation: dotTravel 7s ease-in-out 1.5s infinite; }
-    .pd3 { animation: dotTravel 7s ease-in-out 2.5s infinite; }
-    .pd4 { animation: dotTravel 7s ease-in-out 3.5s infinite; }
-    .pd5 { animation: dotTravel 7s ease-in-out 4.5s infinite; }
-    .pd6 { animation: dotTravel 7s ease-in-out 5.5s infinite; }
-    /* ── Enhanced node glow ── */
-    @keyframes nodeGroupShadow {
-      0%, 4%   { filter: none; }
-      9%       { filter: drop-shadow(0 0 8px rgba(176,112,32,0.8)) drop-shadow(0 0 20px rgba(176,112,32,0.4)); }
-      17%      { filter: none; }
-      100%     { filter: none; }
-    }
-    .na1 { animation: nodeGroupShadow 7s ease-in-out 0s infinite; }
-    .na2 { animation: nodeGroupShadow 7s ease-in-out 1s infinite; }
-    .na3 { animation: nodeGroupShadow 7s ease-in-out 2s infinite; }
-    .na4 { animation: nodeGroupShadow 7s ease-in-out 3s infinite; }
-    .na5 { animation: nodeGroupShadow 7s ease-in-out 4s infinite; }
-    .na6 { animation: nodeGroupShadow 7s ease-in-out 5s infinite; }
-    .na7 { animation: nodeGroupShadow 7s ease-in-out 6s infinite; }
-
-    /* ── Echo dots (trail behind primary dots) ── */
-    @keyframes dotEcho {
-      0%, 8%, 100% { opacity: 0; transform: translateX(0); }
-      10%  { opacity: 0.45; transform: translateX(4px); }
+      9%   { opacity: 1; transform: translateX(0); }
+      12%  { opacity: 1; transform: translateX(24px); }
       14%  { opacity: 0; transform: translateX(24px); }
     }
-    .pde1 { animation: dotEcho 7s ease-in-out 0.85s infinite; }
-    .pde2 { animation: dotEcho 7s ease-in-out 1.85s infinite; }
-    .pde3 { animation: dotEcho 7s ease-in-out 2.85s infinite; }
-    .pde4 { animation: dotEcho 7s ease-in-out 3.85s infinite; }
-    .pde5 { animation: dotEcho 7s ease-in-out 4.85s infinite; }
-    .pde6 { animation: dotEcho 7s ease-in-out 5.85s infinite; }
+    @keyframes dotEcho {
+      0%, 8%, 100% { opacity: 0; transform: translateX(0); }
+      10% { opacity: 0.45; transform: translateX(4px); }
+      14% { opacity: 0; transform: translateX(24px); }
+    }
+    .pd, .pde { transform-box: fill-box; transform-origin: center; }
 
-    /* ── Section numbers ── */
-    .section-number {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 3rem;
-      font-weight: 900;
+    .ng1 { animation: nodeGroupShadow 8.4s 0s infinite; }
+    .ng2 { animation: nodeGroupShadow 8.4s 1.2s infinite; }
+    .ng3 { animation: nodeGroupShadow 8.4s 2.4s infinite; }
+    .ng4 { animation: nodeGroupShadow 8.4s 3.6s infinite; }
+    .ng5 { animation: nodeGroupShadow 8.4s 4.8s infinite; }
+    .ng6 { animation: nodeGroupShadow 8.4s 6.0s infinite; }
+    .ng7 { animation: nodeGroupShadow 8.4s 7.2s infinite; }
+
+    .ng1 rect { animation: nodeGlow 8.4s 0s infinite; }
+    .ng2 rect { animation: nodeGlow 8.4s 1.2s infinite; }
+    .ng3 rect { animation: nodeGlow 8.4s 2.4s infinite; }
+    .ng4 rect { animation: nodeGlow 8.4s 3.6s infinite; }
+    .ng5 rect { animation: nodeGlow 8.4s 4.8s infinite; }
+    .ng6 rect { animation: nodeGlow 8.4s 6.0s infinite; }
+    .ng7 rect { animation: nodeGlow 8.4s 7.2s infinite; }
+
+    .nl1 { animation: labelBright 8.4s 0s infinite; }
+    .nl2 { animation: labelBright 8.4s 1.2s infinite; }
+    .nl3 { animation: labelBright 8.4s 2.4s infinite; }
+    .nl4 { animation: labelBright 8.4s 3.6s infinite; }
+    .nl5 { animation: labelBright 8.4s 4.8s infinite; }
+    .nl6 { animation: labelBright 8.4s 6.0s infinite; }
+    .nl7 { animation: labelBright 8.4s 7.2s infinite; }
+
+    .ns1 { animation: subBright 8.4s 0s infinite; }
+    .ns2 { animation: subBright 8.4s 1.2s infinite; }
+    .ns3 { animation: subBright 8.4s 2.4s infinite; }
+    .ns4 { animation: subBright 8.4s 3.6s infinite; }
+    .ns5 { animation: subBright 8.4s 4.8s infinite; }
+    .ns6 { animation: subBright 8.4s 6.0s infinite; }
+    .ns7 { animation: subBright 8.4s 7.2s infinite; }
+
+    .pd1 { animation: dotTravel 8.4s 0.6s infinite; transform-box: fill-box; transform-origin: center; }
+    .pd2 { animation: dotTravel 8.4s 1.8s infinite; transform-box: fill-box; transform-origin: center; }
+    .pd3 { animation: dotTravel 8.4s 3.0s infinite; transform-box: fill-box; transform-origin: center; }
+    .pd4 { animation: dotTravel 8.4s 4.2s infinite; transform-box: fill-box; transform-origin: center; }
+    .pd5 { animation: dotTravel 8.4s 5.4s infinite; transform-box: fill-box; transform-origin: center; }
+    .pd6 { animation: dotTravel 8.4s 6.6s infinite; transform-box: fill-box; transform-origin: center; }
+
+    .pde1 { animation: dotEcho 8.4s 0.95s infinite; transform-box: fill-box; transform-origin: center; }
+    .pde2 { animation: dotEcho 8.4s 2.15s infinite; transform-box: fill-box; transform-origin: center; }
+    .pde3 { animation: dotEcho 8.4s 3.35s infinite; transform-box: fill-box; transform-origin: center; }
+    .pde4 { animation: dotEcho 8.4s 4.55s infinite; transform-box: fill-box; transform-origin: center; }
+    .pde5 { animation: dotEcho 8.4s 5.75s infinite; transform-box: fill-box; transform-origin: center; }
+    .pde6 { animation: dotEcho 8.4s 6.95s infinite; transform-box: fill-box; transform-origin: center; }
+
+    /* ── Main layout ── */
+    main { max-width: 780px; margin: 0 auto; padding: 0 2rem; }
+    .full-bleed-wrap { max-width: 1080px; margin: 0 auto; padding: 0 2rem; }
+
+    .section-intro {
+      padding: 3.5rem 0 1rem;
+      animation: fadeSlideIn .5s ease .25s both;
+    }
+    .section-intro p {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    /* ── Steps ── */
+    .steps {
+      padding: 2rem 0 4rem;
+      animation: fadeSlideIn .5s ease .35s both;
+    }
+    .step {
+      display: grid;
+      grid-template-columns: 4rem 1fr;
+      gap: 0 1.5rem;
+      margin-bottom: 3.5rem;
+      padding-bottom: 3.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .step:last-child { border-bottom: none; margin-bottom: 0; }
+    .step-num {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 4rem;
+      font-weight: 300;
       color: var(--border);
       line-height: 1;
-      margin-bottom: .25rem;
+      padding-top: .15rem;
+    }
+    .step-content h3 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: .5rem;
+    }
+    .step-content p {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+
+    /* ── Section headings ── */
+    .section-h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: .5rem;
+    }
+    .section-desc { font-size: 1rem; color: var(--text-muted); margin-bottom: 2rem; }
+
+    /* ── Quality tiers ── */
+    .tier-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 4rem;
+    }
+    .tier-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      box-shadow: var(--shadow);
+      transition: border-color .15s, box-shadow .15s;
+    }
+    .tier-card:hover { border-color: rgba(26,107,74,.3); box-shadow: var(--shadow-lg); }
+    .tier-name {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: .4rem;
+    }
+    .tier-speed {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: .75rem;
+    }
+    .tier-desc { font-size: .95rem; color: var(--text-muted); line-height: 1.65; }
+
+    /* ── Languages table ── */
+    .lang-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 4rem;
+      font-family: 'DM Sans', system-ui, sans-serif;
+    }
+    .lang-table th {
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      text-align: left;
+      padding: .75rem 1rem .75rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .lang-table td {
+      font-size: .88rem;
+      color: var(--text);
+      padding: .85rem 1rem .85rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .lang-table tr:hover td { background: #f0f8f3; }
+    .lang-native { font-size: 1rem; color: var(--text-muted); }
+    .status-pill {
+      display: inline-block;
+      font-size: .68rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 3px;
+    }
+    .status-pill.available { background: var(--accent-light); color: var(--accent); }
+    .status-pill.limited   { background: #f5f0e8; color: #7a5c2a; }
+
+    /* ── Glossary callout ── */
+    .glossary-callout {
+      background: var(--accent-light);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin-bottom: 4rem;
+    }
+    .glossary-callout h3 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--accent-dark);
+      margin-bottom: .5rem;
+    }
+    .glossary-callout > p { font-size: .95rem; color: var(--text-muted); margin-bottom: 1.25rem; }
+    .gloss-examples {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: .75rem;
+    }
+    .gloss-term {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: .75rem 1rem;
+    }
+    .gloss-en  { font-style: italic; color: var(--text-muted); font-size: .9rem; }
+    .gloss-arrow { color: var(--accent); font-size: .8rem; margin: .15rem 0; }
+    .gloss-es  { font-weight: 600; color: var(--text); font-size: .9rem; }
+    .gloss-note { font-size: .75rem; color: var(--text-faint); margin-top: .15rem; }
+
+    /* ── Section dividers ── */
+    .content-section {
+      padding: 3rem 0;
+      border-top: 1px solid var(--border);
+    }
+    .content-section:first-of-type { border-top: none; }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      header { padding: 2.5rem 1rem 2rem; }
+      main { padding: 0 1rem; }
+      .step { grid-template-columns: 3rem 1fr; gap: 0 1rem; }
+      .step-num { font-size: 3rem; }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <p class="eyebrow">Center for Cooperative Media &nbsp;·&nbsp; Spanish Translation News Service</p>
-  <h1>Your story, in <em>ten languages</em> — how Hawk works</h1>
-  <p class="header-sub">A plain-language guide for newsroom partners and translation colleagues</p>
-  <div class="header-badges">
-    <span class="badge">Spanish</span>
-    <span class="badge">Portuguese</span>
-    <span class="badge">Chinese</span>
-    <span class="badge">Korean</span>
-    <span class="badge">Arabic</span>
-    <span class="badge">French</span>
-    <span class="badge">Polish</span>
-    <span class="badge">Haitian Creole</span>
-    <span class="badge">Hindi</span>
-    <span class="badge">Urdu</span>
-  </div>
-</header>
-
-<nav class="suite-nav" role="navigation" aria-label="Hawk site navigation">
-  <span class="nav-brand">Hawk</span>
-  <div class="nav-links">
-    <span class="nav-current">How it works</span>
-    <span class="nav-sep" aria-hidden="true">·</span>
-    <span class="nav-label">Mockups:</span>
-    <a href="mockups/index.html">Overview</a>
-    <a href="mockups/review.html">Review</a>
-    <a href="mockups/dashboard.html">Dashboard</a>
-    <a href="mockups/glossary.html">Glossary</a>
-    <a href="mockups/wp-plugin.html">WP plugin</a>
+<nav class="site-nav" role="navigation" aria-label="Hawk site navigation">
+  <div class="nav-inner">
+    <a href="explainer.html" class="nav-wordmark">Hawk</a>
+    <div class="nav-links">
+      <a href="explainer.html" class="active">How it works</a>
+      <span class="nav-sep">·</span>
+      <span class="nav-label">Mockups:</span>
+      <a href="mockups/index.html">Overview</a>
+      <a href="mockups/review.html">Review</a>
+      <a href="mockups/dashboard.html">Dashboard</a>
+      <a href="mockups/glossary.html">Glossary</a>
+      <a href="mockups/wp-plugin.html">WP plugin</a>
+    </div>
   </div>
 </nav>
 
+<header>
+  <h1>How Hawk works</h1>
+  <p class="header-sub">A plain-language guide for CCM colleagues and Spanish Translation News Service partners.</p>
+  <div class="lang-badges">
+    <span class="lang-badge">Spanish</span>
+    <span class="lang-badge">Portuguese</span>
+    <span class="lang-badge">French</span>
+    <span class="lang-badge">Korean</span>
+    <span class="lang-badge">Chinese</span>
+    <span class="lang-badge">Vietnamese</span>
+    <span class="lang-badge">Arabic</span>
+    <span class="lang-badge">Haitian Creole</span>
+    <span class="lang-badge">Hindi</span>
+    <span class="lang-badge">Urdu</span>
+  </div>
+</header>
+
+<div class="full-bleed-wrap">
+  <div class="pipeline-anim-wrap" aria-hidden="true">
+    <svg viewBox="0 0 900 140" xmlns="http://www.w3.org/2000/svg">
+      <rect width="900" height="140" rx="10" fill="#0e1a12"/>
+      <!-- Connector lines -->
+      <line x1="108" y1="70" x2="132" y2="70" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
+      <line x1="240" y1="70" x2="264" y2="70" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
+      <line x1="372" y1="70" x2="396" y2="70" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
+      <line x1="504" y1="70" x2="528" y2="70" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
+      <line x1="636" y1="70" x2="660" y2="70" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
+      <line x1="768" y1="70" x2="792" y2="70" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
+      <!-- Node 1: Submit -->
+      <g class="ng1">
+        <rect x="0" y="14" width="108" height="112" rx="6" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+        <text class="nl1" x="54" y="46" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="rgba(255,255,255,0.55)">Submit</text>
+        <text class="ns1" x="54" y="92" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="rgba(255,255,255,0.28)">article</text>
+      </g>
+      <!-- Node 2: Segment -->
+      <g class="ng2">
+        <rect x="132" y="14" width="108" height="112" rx="6" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+        <text class="nl2" x="186" y="46" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="rgba(255,255,255,0.55)">Segment</text>
+        <text class="ns2" x="186" y="92" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="rgba(255,255,255,0.28)">HTML</text>
+      </g>
+      <!-- Node 3: Glossary -->
+      <g class="ng3">
+        <rect x="264" y="14" width="108" height="112" rx="6" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+        <text class="nl3" x="318" y="46" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="rgba(255,255,255,0.55)">Glossary</text>
+        <text class="ns3" x="318" y="92" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="rgba(255,255,255,0.28)">apply</text>
+      </g>
+      <!-- Node 4: Translate -->
+      <g class="ng4">
+        <rect x="396" y="14" width="108" height="112" rx="6" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+        <text class="nl4" x="450" y="46" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="rgba(255,255,255,0.55)">Translate</text>
+        <text class="ns4" x="450" y="92" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="rgba(255,255,255,0.28)">DeepL</text>
+      </g>
+      <!-- Node 5: Score -->
+      <g class="ng5">
+        <rect x="528" y="14" width="108" height="112" rx="6" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+        <text class="nl5" x="582" y="46" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="rgba(255,255,255,0.55)">Score</text>
+        <text class="ns5" x="582" y="92" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="rgba(255,255,255,0.28)">claude</text>
+      </g>
+      <!-- Node 6: Assemble -->
+      <g class="ng6">
+        <rect x="660" y="14" width="108" height="112" rx="6" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+        <text class="nl6" x="714" y="46" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="rgba(255,255,255,0.55)">Assemble</text>
+        <text class="ns6" x="714" y="92" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="rgba(255,255,255,0.28)">HTML</text>
+      </g>
+      <!-- Node 7: Webhook -->
+      <g class="ng7">
+        <rect x="792" y="14" width="108" height="112" rx="6" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+        <text class="nl7" x="846" y="46" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="rgba(255,255,255,0.55)">Webhook</text>
+        <text class="ns7" x="846" y="92" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="rgba(255,255,255,0.28)">fire</text>
+      </g>
+      <!-- Traveling dots -->
+      <circle class="pd1" cx="108" cy="70" r="5" fill="#ffffff"/>
+      <circle class="pde1" cx="108" cy="70" r="3" fill="rgba(255,255,255,0.4)"/>
+      <circle class="pd2" cx="240" cy="70" r="5" fill="#ffffff"/>
+      <circle class="pde2" cx="240" cy="70" r="3" fill="rgba(255,255,255,0.4)"/>
+      <circle class="pd3" cx="372" cy="70" r="5" fill="#ffffff"/>
+      <circle class="pde3" cx="372" cy="70" r="3" fill="rgba(255,255,255,0.4)"/>
+      <circle class="pd4" cx="504" cy="70" r="5" fill="#ffffff"/>
+      <circle class="pde4" cx="504" cy="70" r="3" fill="rgba(255,255,255,0.4)"/>
+      <circle class="pd5" cx="636" cy="70" r="5" fill="#ffffff"/>
+      <circle class="pde5" cx="636" cy="70" r="3" fill="rgba(255,255,255,0.4)"/>
+      <circle class="pd6" cx="768" cy="70" r="5" fill="#ffffff"/>
+      <circle class="pde6" cx="768" cy="70" r="3" fill="rgba(255,255,255,0.4)"/>
+    </svg>
+  </div>
+</div>
+
 <main>
 
-  <!-- INTRO -->
-  <section>
-    <div class="intro-box">
-      <p>
-        Hawk is the translation engine built by the Center for Cooperative Media for
-        <strong>NJ News Commons partner newsrooms</strong>. You submit an article. Hawk translates it,
-        checks its quality, and delivers the result — with your HTML formatting intact.
-        Human editors can review flagged passages before anything goes live.
-        Think of it as a wire service, but for translations.
-      </p>
-    </div>
-
-    <p class="lead">
-      No technical background needed to understand how it works.
-      This page walks you through what happens from the moment a newsroom submits a story
-      to the moment translated text lands in their CMS.
-    </p>
-  </section>
-
-  <hr class="divider">
-
-  <!-- PIPELINE -->
-  <section>
-    <div class="section-number">01</div>
-    <div class="section-label">How it works</div>
-    <h2>From article to translation in seven steps</h2>
+  <!-- Intro -->
+  <div class="section-intro">
     <p>
-      When a newsroom partner sends a story to Hawk, it moves through a pipeline —
-      a set of automated stages that each do one specific job. Here's what happens at each stage.
+      Hawk is the translation engine built by the Center for Cooperative Media for NJ News Commons partner newsrooms.
+      You submit an article. Hawk translates it, checks its quality, and delivers the result — with your HTML formatting intact.
+      Human editors can review flagged passages before anything goes live.
     </p>
+  </div>
 
-    <div class="pipeline-anim-wrap" aria-hidden="true">
-      <!-- 7 nodes × 108px + 6 connectors × 24px = 900px. Dots travel exactly 24px to match dotTravel keyframe. -->
-      <svg viewBox="0 0 900 140" xmlns="http://www.w3.org/2000/svg">
-        <rect width="900" height="140" rx="10" fill="#1a2e4a"/>
-        <!-- Connector lines (24px gaps between nodes) -->
-        <line x1="108" y1="70" x2="132" y2="70" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
-        <line x1="240" y1="70" x2="264" y2="70" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
-        <line x1="372" y1="70" x2="396" y2="70" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
-        <line x1="504" y1="70" x2="528" y2="70" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
-        <line x1="636" y1="70" x2="660" y2="70" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
-        <line x1="768" y1="70" x2="792" y2="70" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
-        <!-- Node 1: Submit — x=0, cx=54 -->
-        <g class="na1">
-          <rect class="nr" x="2" y="20" width="104" height="100" rx="6" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-          <text class="nn" x="10" y="37" font-size="8" font-family="'DM Sans',sans-serif" font-weight="600" fill="rgba(255,255,255,0.2)">01</text>
-          <text class="nl" x="54" y="70" font-size="10.5" font-family="'DM Sans',sans-serif" font-weight="600" text-anchor="middle" fill="rgba(255,255,255,0.6)">Submit</text>
-          <text class="ns" x="54" y="86" font-size="8.5" font-family="'DM Sans',sans-serif" text-anchor="middle" fill="rgba(255,255,255,0.3)">API request</text>
-        </g>
-        <!-- Node 2: Validate — x=132, cx=186 -->
-        <g class="na2">
-          <rect class="nr" x="134" y="20" width="104" height="100" rx="6" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-          <text class="nn" x="142" y="37" font-size="8" font-family="'DM Sans',sans-serif" font-weight="600" fill="rgba(255,255,255,0.2)">02</text>
-          <text class="nl" x="186" y="70" font-size="10.5" font-family="'DM Sans',sans-serif" font-weight="600" text-anchor="middle" fill="rgba(255,255,255,0.6)">Validate</text>
-          <text class="ns" x="186" y="86" font-size="8.5" font-family="'DM Sans',sans-serif" text-anchor="middle" fill="rgba(255,255,255,0.3)">auth + quota</text>
-        </g>
-        <!-- Node 3: Segment — x=264, cx=318 -->
-        <g class="na3">
-          <rect class="nr" x="266" y="20" width="104" height="100" rx="6" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-          <text class="nn" x="274" y="37" font-size="8" font-family="'DM Sans',sans-serif" font-weight="600" fill="rgba(255,255,255,0.2)">03</text>
-          <text class="nl" x="318" y="70" font-size="10.5" font-family="'DM Sans',sans-serif" font-weight="600" text-anchor="middle" fill="rgba(255,255,255,0.6)">Segment</text>
-          <text class="ns" x="318" y="86" font-size="8.5" font-family="'DM Sans',sans-serif" text-anchor="middle" fill="rgba(255,255,255,0.3)">HTML parsing</text>
-        </g>
-        <!-- Node 4: Glossary — x=396, cx=450 -->
-        <g class="na4">
-          <rect class="nr" x="398" y="20" width="104" height="100" rx="6" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-          <text class="nn" x="406" y="37" font-size="8" font-family="'DM Sans',sans-serif" font-weight="600" fill="rgba(255,255,255,0.2)">04</text>
-          <text class="nl" x="450" y="70" font-size="10.5" font-family="'DM Sans',sans-serif" font-weight="600" text-anchor="middle" fill="rgba(255,255,255,0.6)">Glossary</text>
-          <text class="ns" x="450" y="86" font-size="8.5" font-family="'DM Sans',sans-serif" text-anchor="middle" fill="rgba(255,255,255,0.3)">term protect</text>
-        </g>
-        <!-- Node 5: Translate — x=528, cx=582 -->
-        <g class="na5">
-          <rect class="nr" x="530" y="20" width="104" height="100" rx="6" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-          <text class="nn" x="538" y="37" font-size="8" font-family="'DM Sans',sans-serif" font-weight="600" fill="rgba(255,255,255,0.2)">05</text>
-          <text class="nl" x="582" y="70" font-size="10.5" font-family="'DM Sans',sans-serif" font-weight="600" text-anchor="middle" fill="rgba(255,255,255,0.6)">Translate</text>
-          <text class="ns" x="582" y="86" font-size="8.5" font-family="'DM Sans',sans-serif" text-anchor="middle" fill="rgba(255,255,255,0.3)">DeepL API</text>
-        </g>
-        <!-- Node 6: Score — x=660, cx=714 -->
-        <g class="na6">
-          <rect class="nr" x="662" y="20" width="104" height="100" rx="6" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-          <text class="nn" x="670" y="37" font-size="8" font-family="'DM Sans',sans-serif" font-weight="600" fill="rgba(255,255,255,0.2)">06</text>
-          <text class="nl" x="714" y="70" font-size="10.5" font-family="'DM Sans',sans-serif" font-weight="600" text-anchor="middle" fill="rgba(255,255,255,0.6)">Score</text>
-          <text class="ns" x="714" y="86" font-size="8.5" font-family="'DM Sans',sans-serif" text-anchor="middle" fill="rgba(255,255,255,0.3)">quality check</text>
-        </g>
-        <!-- Node 7: Deliver — x=792, cx=846 -->
-        <g class="na7">
-          <rect class="nr" x="794" y="20" width="104" height="100" rx="6" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-          <text class="nn" x="802" y="37" font-size="8" font-family="'DM Sans',sans-serif" font-weight="600" fill="rgba(255,255,255,0.2)">07</text>
-          <text class="nl" x="846" y="70" font-size="10.5" font-family="'DM Sans',sans-serif" font-weight="600" text-anchor="middle" fill="rgba(255,255,255,0.6)">Deliver</text>
-          <text class="ns" x="846" y="86" font-size="8.5" font-family="'DM Sans',sans-serif" text-anchor="middle" fill="rgba(255,255,255,0.3)">webhook/CMS</text>
-        </g>
-        <!-- Traveling dots — positioned at connector start, travel +24px via dotTravel keyframe -->
-        <g class="pd1"><circle cx="108" cy="70" r="4" fill="#b07020"/></g>
-        <g class="pde1"><circle cx="108" cy="70" r="2.5" fill="rgba(208,144,48,0.6)"/></g>
-        <g class="pd2"><circle cx="240" cy="70" r="4" fill="#b07020"/></g>
-        <g class="pde2"><circle cx="240" cy="70" r="2.5" fill="rgba(208,144,48,0.6)"/></g>
-        <g class="pd3"><circle cx="372" cy="70" r="4" fill="#b07020"/></g>
-        <g class="pde3"><circle cx="372" cy="70" r="2.5" fill="rgba(208,144,48,0.6)"/></g>
-        <g class="pd4"><circle cx="504" cy="70" r="4" fill="#b07020"/></g>
-        <g class="pde4"><circle cx="504" cy="70" r="2.5" fill="rgba(208,144,48,0.6)"/></g>
-        <g class="pd5"><circle cx="636" cy="70" r="4" fill="#b07020"/></g>
-        <g class="pde5"><circle cx="636" cy="70" r="2.5" fill="rgba(208,144,48,0.6)"/></g>
-        <g class="pd6"><circle cx="768" cy="70" r="4" fill="#b07020"/></g>
-        <g class="pde6"><circle cx="768" cy="70" r="2.5" fill="rgba(208,144,48,0.6)"/></g>
-      </svg>
+  <!-- Steps -->
+  <div class="steps" role="list" aria-label="Translation pipeline steps">
+
+    <div class="step" role="listitem">
+      <div class="step-num" aria-hidden="true">1</div>
+      <div class="step-content">
+        <h3>The newsroom's API key is checked</h3>
+        <p>
+          Every partner newsroom has a unique API key — like a password that identifies them.
+          Hawk checks the key instantly to confirm: is this a real partner? Do they still have
+          translation credits available today? If yes, the job moves forward. If not, they get
+          an immediate error message so they know what to fix.
+        </p>
+      </div>
     </div>
 
-    <div class="pipeline" role="list" aria-label="Translation pipeline steps">
+    <div class="step" role="listitem">
+      <div class="step-num" aria-hidden="true">2</div>
+      <div class="step-content">
+        <h3>A translation job is created and queued</h3>
+        <p>
+          Hawk records the job in its database — the original article text, the target language,
+          the newsroom's preferences — and immediately replies to the newsroom with a job ID.
+          The newsroom doesn't have to wait. They get that ID right away and can check back for
+          results. The actual translation happens in the background.
+        </p>
+      </div>
+    </div>
 
-      <div class="pipeline-step s1" role="listitem">
-        <div class="step-indicator" aria-hidden="true">
-          <div class="step-number">1</div>
-          <div class="step-line"></div>
-        </div>
-        <div class="step-body">
-          <span class="step-tag" style="background:var(--navy-bg);color:var(--navy);">Authentication</span>
-          <h3>The newsroom's API key is checked</h3>
-          <p>
-            Every partner newsroom has a unique API key — like a password that identifies them.
-            Hawk checks the key instantly to confirm: is this a real partner? Do they still have
-            translation credits available today? If yes, the job moves forward. If not, they get
-            an immediate error message so they know what to fix.
-          </p>
+    <div class="step" role="listitem">
+      <div class="step-num" aria-hidden="true">3</div>
+      <div class="step-content">
+        <h3>The article is broken into translatable pieces</h3>
+        <p>
+          News articles aren't plain text — they contain HTML formatting (bold text, links,
+          image captions, pull quotes). Hawk's segmenter carefully separates the readable text
+          from the formatting code so only the words get translated, while all the layout
+          instructions pass through untouched. After translation, the pieces are reassembled
+          exactly as they were.
+        </p>
+      </div>
+    </div>
+
+    <div class="step" role="listitem">
+      <div class="step-num" aria-hidden="true">4</div>
+      <div class="step-content">
+        <h3>NJ-specific terms are protected before translation</h3>
+        <p>
+          This is where local knowledge matters most. Hawk applies a custom journalism glossary
+          before anything is sent to the translation engine. Proper nouns that shouldn't be
+          translated — like "Board of Education," "Paterson," or "NJ Transit" — get locked in
+          so they come through correctly in every language. STNS colleagues maintain this glossary.
+        </p>
+      </div>
+    </div>
+
+    <div class="step" role="listitem">
+      <div class="step-num" aria-hidden="true">5</div>
+      <div class="step-content">
+        <h3>DeepL translates the text</h3>
+        <p>
+          Hawk uses DeepL — one of the most accurate machine translation services available —
+          for seven of the ten languages. DeepL was chosen because it handles journalistic
+          prose better than most alternatives, producing more natural-sounding sentences.
+          For Haitian Creole, Hindi, and Urdu (which DeepL doesn't support as well),
+          segments are flagged for human review.
+        </p>
+      </div>
+    </div>
+
+    <div class="step" role="listitem">
+      <div class="step-num" aria-hidden="true">6</div>
+      <div class="step-content">
+        <h3>Claude checks translation quality, paragraph by paragraph</h3>
+        <p>
+          After translation, Hawk runs each paragraph through a quality check using Claude —
+          an AI model made by Anthropic. Claude reads both the original English and the translated
+          version and scores each paragraph on two things: fluency (does it read naturally in the
+          target language?) and accuracy (is the meaning preserved?). Anything that scores below
+          a 3 out of 5 gets flagged for human review. This happens quietly in the background and
+          doesn't slow down the final delivery.
+        </p>
+      </div>
+    </div>
+
+    <div class="step" role="listitem">
+      <div class="step-num" aria-hidden="true">7</div>
+      <div class="step-content">
+        <h3>The translated article is delivered</h3>
+        <p>
+          Once complete, the translated article is available for the newsroom to retrieve.
+          If the newsroom provided a webhook URL (a web address where they want to receive the
+          result automatically), Hawk sends it there the moment translation finishes. The newsroom
+          can then publish it directly to their CMS. No manual copy-paste required.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Quality tiers -->
+  <div class="content-section" style="animation: fadeSlideIn .5s ease .45s both;">
+    <h2 class="section-h2">Three levels of quality assurance</h2>
+    <p class="section-desc">
+      Newsrooms choose the tier that fits their deadline and the sensitivity of the content.
+    </p>
+    <div class="tier-grid" role="list" aria-label="Translation quality tiers">
+
+      <div class="tier-card" role="listitem">
+        <div class="tier-name">Instant</div>
+        <div class="tier-speed">~2 min, fully automated</div>
+        <div class="tier-desc">
+          Machine translation plus AI quality scoring. Ready as soon as the pipeline finishes.
+          Good for breaking news, lower-risk content, or when human review isn't available.
+          Quality scores are included so editors can see how confident the system is.
         </div>
       </div>
 
-      <div class="pipeline-step s2" role="listitem">
-        <div class="step-indicator" aria-hidden="true">
-          <div class="step-number">2</div>
-          <div class="step-line"></div>
-        </div>
-        <div class="step-body">
-          <span class="step-tag" style="background:var(--teal-bg);color:var(--teal);">Job creation</span>
-          <h3>A translation job is created and queued</h3>
-          <p>
-            Hawk records the job in its database — the original article text, the target language,
-            the newsroom's preferences — and immediately replies to the newsroom with a job ID.
-            The newsroom doesn't have to wait. They get that ID right away and can check back for
-            results. The actual translation happens in the background.
-          </p>
+      <div class="tier-card" role="listitem">
+        <div class="tier-name">Reviewed</div>
+        <div class="tier-speed">4–24 hours, STNS editor checks flagged passages</div>
+        <div class="tier-desc">
+          Same automated pipeline, but flagged paragraphs (score below 3/5) go to an STNS editor
+          before delivery. The editor sees both the original English and the machine translation
+          side by side, and can correct any passage that needs it.
         </div>
       </div>
 
-      <div class="pipeline-step s3" role="listitem">
-        <div class="step-indicator" aria-hidden="true">
-          <div class="step-number">3</div>
-          <div class="step-line"></div>
-        </div>
-        <div class="step-body">
-          <span class="step-tag" style="background:var(--amber-bg);color:var(--amber);">Segmentation</span>
-          <h3>The article is broken into translatable pieces</h3>
-          <p>
-            News articles aren't plain text — they contain HTML formatting (bold text, links,
-            image captions, pull quotes). Hawk's segmenter carefully separates the readable text
-            from the formatting code so only the words get translated, while all the layout
-            instructions pass through untouched. After translation, the pieces are reassembled
-            exactly as they were.
-          </p>
-        </div>
-      </div>
-
-      <div class="pipeline-step s3" role="listitem">
-        <div class="step-indicator" aria-hidden="true">
-          <div class="step-number">4</div>
-          <div class="step-line"></div>
-        </div>
-        <div class="step-body">
-          <span class="step-tag" style="background:var(--amber-bg);color:var(--amber);">Glossary</span>
-          <h3>NJ-specific terms are protected before translation</h3>
-          <p>
-            This is where local knowledge matters most. Hawk applies a custom journalism glossary
-            before anything is sent to the translation engine. Proper nouns that shouldn't be
-            translated — like "Board of Education," "Paterson," or "NJ Transit" — get locked in
-            so they come through correctly in every language. STNS colleagues maintain this glossary.
-          </p>
-        </div>
-      </div>
-
-      <div class="pipeline-step s4" role="listitem">
-        <div class="step-indicator" aria-hidden="true">
-          <div class="step-number">5</div>
-          <div class="step-line"></div>
-        </div>
-        <div class="step-body">
-          <span class="step-tag" style="background:var(--accent-bg);color:var(--accent-light);">Translation</span>
-          <h3>DeepL translates the text</h3>
-          <p>
-            Hawk uses DeepL — one of the most accurate machine translation services available —
-            for seven of the ten languages. DeepL was chosen because it handles journalistic
-            prose better than most alternatives, producing more natural-sounding sentences.
-            For Haitian Creole, Hindi, and Urdu (which DeepL doesn't support as well),
-            segments are flagged for human review.
-          </p>
-        </div>
-      </div>
-
-      <div class="pipeline-step s5" role="listitem">
-        <div class="step-indicator" aria-hidden="true">
-          <div class="step-number">6</div>
-          <div class="step-line"></div>
-        </div>
-        <div class="step-body">
-          <span class="step-tag" style="background:var(--purple-bg);color:var(--purple);">Quality scoring</span>
-          <h3>Claude AI checks translation quality, paragraph by paragraph</h3>
-          <p>
-            After translation, Hawk runs each paragraph through a quality check using Claude —
-            an AI model made by Anthropic. Claude reads both the original English and the translated
-            version and scores each paragraph on two things: <strong>fluency</strong> (does it
-            read naturally in the target language?) and <strong>accuracy</strong> (is the meaning
-            preserved?). Anything that scores below a 3 out of 5 gets flagged for human review.
-            This happens quietly in the background and doesn't slow down the final delivery.
-          </p>
-
-          <!-- Quality score visualization -->
-          <div class="card" style="margin-top:1rem;padding:1rem 1.25rem;">
-            <p style="font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--text-faint);margin-bottom:.75rem;">Example quality scores for a paragraph</p>
-            <div class="score-row">
-              <span class="score-label">Fluency</span>
-              <div class="score-bar-bg" role="meter" aria-label="Fluency 4.2 out of 5" aria-valuenow="4.2" aria-valuemin="0" aria-valuemax="5">
-                <div class="score-bar" style="width:84%;"></div>
-              </div>
-              <span class="score-val">4.2</span>
-            </div>
-            <div class="score-row">
-              <span class="score-label">Accuracy</span>
-              <div class="score-bar-bg" role="meter" aria-label="Accuracy 4.6 out of 5" aria-valuenow="4.6" aria-valuemin="0" aria-valuemax="5">
-                <div class="score-bar" style="width:92%;"></div>
-              </div>
-              <span class="score-val">4.6</span>
-            </div>
-            <div class="score-row">
-              <span class="score-label">Overall</span>
-              <div class="score-bar-bg" role="meter" aria-label="Overall 4.4 out of 5" aria-valuenow="4.4" aria-valuemin="0" aria-valuemax="5">
-                <div class="score-bar" style="width:88%;"></div>
-              </div>
-              <span class="score-val">4.4</span>
-            </div>
-            <p style="font-size:.78rem;color:var(--green);margin-top:.5rem;">No issues flagged — ready for delivery.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="pipeline-step s6" role="listitem">
-        <div class="step-indicator" aria-hidden="true">
-          <div class="step-number">7</div>
-          <div class="step-line"></div>
-        </div>
-        <div class="step-body">
-          <span class="step-tag" style="background:var(--green-bg);color:var(--green);">Delivery</span>
-          <h3>The translated article is delivered</h3>
-          <p>
-            Once complete, the translated article is available for the newsroom to retrieve.
-            If the newsroom provided a <em>webhook URL</em> (a web address where they want to
-            receive the result automatically), Hawk sends it there the moment translation finishes.
-            The newsroom can then publish it directly to their CMS. No manual copy-paste required.
-          </p>
+      <div class="tier-card" role="listitem">
+        <div class="tier-name">Certified</div>
+        <div class="tier-speed">24–72 hours, two-editor approval</div>
+        <div class="tier-desc">
+          A second STNS editor approves the reviewed version before delivery. For high-stakes
+          content — legal matters, health information, elections coverage — where accuracy is
+          critical and errors could cause real harm.
         </div>
       </div>
 
     </div>
-  </section>
+  </div>
 
-  <hr class="divider">
-
-  <!-- GLOSSARY -->
-  <section>
-    <div class="section-number">02</div>
-    <div class="section-label">The NJ journalism glossary</div>
-    <h2>Why local terms matter — and how Hawk protects them</h2>
-
-    <p>
-      Machine translation fails on local names. It may try to translate "Board of Education" into
-      Spanish literally, or anglicize "Paterson" into something unrecognizable, or confuse
-      government titles that have official translations. That's why Hawk applies a custom glossary
-      before any text reaches the translation engine.
+  <!-- Languages table -->
+  <div class="content-section" style="animation: fadeSlideIn .5s ease .55s both;">
+    <h2 class="section-h2">Ten languages, chosen for New Jersey's communities</h2>
+    <p class="section-desc">
+      The ten launch languages were selected based on NJ demographic data — specifically, the
+      language communities most underserved by English-only local news coverage.
     </p>
+    <table class="lang-table" aria-label="Supported languages">
+      <thead>
+        <tr>
+          <th>Language</th>
+          <th>Native</th>
+          <th>Code</th>
+          <th>Community</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Spanish</td>
+          <td class="lang-native">Español</td>
+          <td>ES</td>
+          <td>Largest non-English speaking community in NJ</td>
+          <td><span class="status-pill available">Available</span></td>
+        </tr>
+        <tr>
+          <td>Portuguese</td>
+          <td class="lang-native">Português</td>
+          <td>PT</td>
+          <td>Brazilian and Portuguese communities statewide</td>
+          <td><span class="status-pill available">Available</span></td>
+        </tr>
+        <tr>
+          <td>French</td>
+          <td class="lang-native">Français</td>
+          <td>FR</td>
+          <td>West African diaspora communities</td>
+          <td><span class="status-pill available">Available</span></td>
+        </tr>
+        <tr>
+          <td>Korean</td>
+          <td class="lang-native">한국어</td>
+          <td>KO</td>
+          <td>Bergen County</td>
+          <td><span class="status-pill available">Available</span></td>
+        </tr>
+        <tr>
+          <td>Chinese (Simplified)</td>
+          <td class="lang-native">中文</td>
+          <td>ZH</td>
+          <td>Northern NJ Chinese communities</td>
+          <td><span class="status-pill available">Available</span></td>
+        </tr>
+        <tr>
+          <td>Vietnamese</td>
+          <td class="lang-native">Tiếng Việt</td>
+          <td>VI</td>
+          <td>South Jersey, Hudson County</td>
+          <td><span class="status-pill available">Available</span></td>
+        </tr>
+        <tr>
+          <td>Arabic</td>
+          <td class="lang-native">العربية</td>
+          <td>AR</td>
+          <td>Paterson, Edison</td>
+          <td><span class="status-pill available">Available</span></td>
+        </tr>
+        <tr>
+          <td>Haitian Creole</td>
+          <td class="lang-native">Kreyòl ayisyen</td>
+          <td>HT</td>
+          <td>Large community in Newark, Trenton</td>
+          <td><span class="status-pill limited">Limited</span></td>
+        </tr>
+        <tr>
+          <td>Hindi</td>
+          <td class="lang-native">हिन्दी</td>
+          <td>HI</td>
+          <td>Edison, Middlesex County</td>
+          <td><span class="status-pill limited">Limited</span></td>
+        </tr>
+        <tr>
+          <td>Urdu</td>
+          <td class="lang-native">اردو</td>
+          <td>UR</td>
+          <td>Pakistani community, shared with Hindi speakers</td>
+          <td><span class="status-pill limited">Limited</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-family:'DM Sans',system-ui,sans-serif; font-size:.82rem; color:var(--text-faint);">
+      Languages marked "limited" are supported but rely more heavily on STNS editors because the automated
+      translation engine has weaker coverage for those language pairs.
+    </p>
+  </div>
 
-    <div class="glossary-box">
+  <!-- Glossary callout -->
+  <div class="content-section" style="animation: fadeSlideIn .5s ease .65s both;">
+    <h2 class="section-h2">Why local terms matter — and how Hawk protects them</h2>
+    <p class="section-desc">
+      Machine translation fails on local names. It may try to translate "Board of Education" literally,
+      or anglicize "Paterson" into something unrecognizable, or confuse government titles that have
+      official translations. That's why Hawk applies a custom glossary before any text reaches the
+      translation engine.
+    </p>
+    <div class="glossary-callout">
       <h3>How glossary protection works</h3>
       <p>
         STNS maintains a list of terms that should always appear a specific way in each target language.
@@ -1047,293 +789,59 @@
         Longer phrases take priority — "Board of Education" is matched before "Board" — so no phrase
         gets partially overwritten.
       </p>
-
-      <div class="glossary-examples" role="list" aria-label="Glossary examples">
-        <div class="glossary-term" role="listitem">
-          <div class="term-source">English term</div>
-          <div style="margin:.25rem 0;font-style:italic;color:var(--text);">Board of Education</div>
-          <div class="term-arrow">→</div>
-          <div class="term-target">Junta de Educación</div>
-          <div class="term-note">Protected in Spanish — not auto-translated</div>
+      <div class="gloss-examples" role="list" aria-label="Glossary examples">
+        <div class="gloss-term" role="listitem">
+          <div class="gloss-en">NJ Transit</div>
+          <div class="gloss-arrow">→</div>
+          <div class="gloss-es">NJ Transit</div>
+          <div class="gloss-note">Brand name — passed through unchanged</div>
         </div>
-        <div class="glossary-term" role="listitem">
-          <div class="term-source">English term</div>
-          <div style="margin:.25rem 0;font-style:italic;color:var(--text);">NJ Transit</div>
-          <div class="term-arrow">→</div>
-          <div class="term-target">NJ Transit</div>
-          <div class="term-note">Brand name — passed through unchanged</div>
+        <div class="gloss-term" role="listitem">
+          <div class="gloss-en">Board of Education</div>
+          <div class="gloss-arrow">→</div>
+          <div class="gloss-es">Junta de Educación</div>
+          <div class="gloss-note">Protected in Spanish — not auto-translated</div>
         </div>
-        <div class="glossary-term" role="listitem">
-          <div class="term-source">English term</div>
-          <div style="margin:.25rem 0;font-style:italic;color:var(--text);">Governor</div>
-          <div class="term-arrow">→</div>
-          <div class="term-target">Gobernador</div>
-          <div class="term-note">Official title — canonical translation enforced</div>
+        <div class="gloss-term" role="listitem">
+          <div class="gloss-en">Borough Council</div>
+          <div class="gloss-arrow">→</div>
+          <div class="gloss-es">Consejo Municipal</div>
+          <div class="gloss-note">Official title — canonical translation enforced</div>
         </div>
-        <div class="glossary-term" role="listitem">
-          <div class="term-source">English term</div>
-          <div style="margin:.25rem 0;font-style:italic;color:var(--text);">Passaic County</div>
-          <div class="term-arrow">→</div>
-          <div class="term-target">Condado de Passaic</div>
-          <div class="term-note">Place name — glossary controls the format</div>
+        <div class="gloss-term" role="listitem">
+          <div class="gloss-en">Freeholder</div>
+          <div class="gloss-arrow">→</div>
+          <div class="gloss-es">Concejal del condado</div>
+          <div class="gloss-note">NJ-specific government role</div>
+        </div>
+        <div class="gloss-term" role="listitem">
+          <div class="gloss-en">Assembly member</div>
+          <div class="gloss-arrow">→</div>
+          <div class="gloss-es">Miembro de la Asamblea</div>
+          <div class="gloss-note">Legislative title — format controlled</div>
+        </div>
+        <div class="gloss-term" role="listitem">
+          <div class="gloss-en">Passaic County</div>
+          <div class="gloss-arrow">→</div>
+          <div class="gloss-es">Condado de Passaic</div>
+          <div class="gloss-note">Place name — glossary controls the format</div>
         </div>
       </div>
     </div>
-
-    <p style="color:var(--text-muted);font-size:.95rem;">
-      <strong>For STNS colleagues:</strong> the glossary is editable per-newsroom, per-language.
-      If you spot a recurring translation error, adding a glossary entry fixes it for every future
-      story from that partner — you don't have to correct it each time.
+    <p style="font-family:'DM Sans',system-ui,sans-serif; font-size:.85rem; color:var(--text-muted);">
+      For STNS colleagues: the glossary is editable per-newsroom, per-language. If you spot a recurring
+      translation error, adding a glossary entry fixes it for every future story from that partner.
     </p>
-  </section>
-
-  <hr class="divider">
-
-  <!-- LANGUAGES -->
-  <section>
-    <div class="section-number">03</div>
-    <div class="section-label">Supported languages</div>
-    <h2>Ten languages, chosen for New Jersey's communities</h2>
-    <p>
-      The ten launch languages were selected based on NJ demographic data — specifically, the
-      language communities most underserved by English-only local news coverage.
-    </p>
-
-    <div class="lang-grid" role="list" aria-label="Supported languages">
-
-      <div class="lang-card" role="listitem">
-        <div class="lang-name">Spanish</div>
-        <div class="lang-native">Español</div>
-        <div class="lang-community">Largest non-English speaking community in NJ</div>
-        <span class="lang-status available">Available</span>
-      </div>
-
-      <div class="lang-card" role="listitem">
-        <div class="lang-name">Portuguese</div>
-        <div class="lang-native">Português</div>
-        <div class="lang-community">Brazilian and Portuguese communities statewide</div>
-        <span class="lang-status available">Available</span>
-      </div>
-
-      <div class="lang-card" role="listitem">
-        <div class="lang-name">Chinese (Simplified)</div>
-        <div class="lang-native">中文</div>
-        <div class="lang-community">Northern NJ Chinese communities</div>
-        <span class="lang-status available">Available</span>
-      </div>
-
-      <div class="lang-card" role="listitem">
-        <div class="lang-name">Korean</div>
-        <div class="lang-native">한국어</div>
-        <div class="lang-community">Bergen County</div>
-        <span class="lang-status available">Available</span>
-      </div>
-
-      <div class="lang-card" role="listitem">
-        <div class="lang-name">Arabic</div>
-        <div class="lang-native">العربية</div>
-        <div class="lang-community">Paterson, Edison</div>
-        <span class="lang-status available">Available</span>
-      </div>
-
-      <div class="lang-card" role="listitem">
-        <div class="lang-name">French</div>
-        <div class="lang-native">Français</div>
-        <div class="lang-community">West African diaspora communities</div>
-        <span class="lang-status available">Available</span>
-      </div>
-
-      <div class="lang-card" role="listitem">
-        <div class="lang-name">Polish</div>
-        <div class="lang-native">Polski</div>
-        <div class="lang-community">Historic NJ Polish communities</div>
-        <span class="lang-status available">Available</span>
-      </div>
-
-      <div class="lang-card limited" role="listitem">
-        <div class="lang-name">Haitian Creole</div>
-        <div class="lang-native">Kreyòl ayisyen</div>
-        <div class="lang-community">Large community in Newark, Trenton</div>
-        <span class="lang-status limited">Human review required</span>
-      </div>
-
-      <div class="lang-card limited" role="listitem">
-        <div class="lang-name">Hindi</div>
-        <div class="lang-native">हिन्दी</div>
-        <div class="lang-community">Edison, Middlesex County</div>
-        <span class="lang-status limited">Human review required</span>
-      </div>
-
-      <div class="lang-card limited" role="listitem">
-        <div class="lang-name">Urdu</div>
-        <div class="lang-native">اردو</div>
-        <div class="lang-community">Pakistani community, shared with Hindi</div>
-        <span class="lang-status limited">Human review required</span>
-      </div>
-
-    </div>
-
-    <p style="font-size:.875rem;color:var(--text-faint);margin-top:1.25rem;">
-      Languages marked "human review required" are supported but rely more heavily on STNS editors
-      because the automated translation engine has weaker coverage for those language pairs.
-    </p>
-  </section>
-
-  <hr class="divider">
-
-  <!-- TIERS -->
-  <section>
-    <div class="section-number">04</div>
-    <div class="section-label">Quality tiers</div>
-    <h2>Three levels of quality assurance</h2>
-    <p>
-      Hawk offers three tiers. Newsrooms choose the one that fits their deadline and the
-      sensitivity of the content.
-    </p>
-
-    <div class="tier-grid" role="list" aria-label="Translation quality tiers">
-
-      <div class="tier-card" role="listitem" style="border-top:3px solid var(--teal);">
-        <div class="tier-icon" aria-hidden="true">⚡</div>
-        <h3 style="color:var(--teal);">Instant</h3>
-        <div class="tier-speed">Minutes, fully automated</div>
-        <div class="tier-use">
-          Machine translation + AI quality scoring. Ready as soon as the pipeline finishes.
-          Good for breaking news, lower-risk content, or when human review isn't available.
-          Quality scores are included so editors can see how confident the system is.
-        </div>
-      </div>
-
-      <div class="tier-card" role="listitem" style="border-top:3px solid var(--amber);">
-        <div class="tier-icon" aria-hidden="true">✏️</div>
-        <h3 style="color:var(--amber);">Reviewed</h3>
-        <div class="tier-speed">Hours — STNS editor checks flagged passages</div>
-        <div class="tier-use">
-          Same automated pipeline, but flagged paragraphs (score below 3/5) go to an
-          STNS editor before delivery. The editor sees both the original English and the
-          machine translation side by side, and can correct any passage that needs it.
-        </div>
-      </div>
-
-      <div class="tier-card" role="listitem" style="border-top:3px solid var(--accent);">
-        <div class="tier-icon" aria-hidden="true">✅</div>
-        <h3 style="color:var(--accent);">Certified</h3>
-        <div class="tier-speed">Days — two-editor approval</div>
-        <div class="tier-use">
-          A second STNS editor approves the reviewed version before it's delivered.
-          For high-stakes content — legal matters, health information, elections coverage —
-          where accuracy is critical and errors could cause real harm.
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <hr class="divider">
-
-  <!-- WHO IS IT FOR -->
-  <section>
-    <div class="section-number">05</div>
-    <div class="section-label">Who uses Hawk</div>
-    <h2>Built for two groups working together</h2>
-
-    <div class="audience-grid" role="list" aria-label="User groups">
-
-      <div class="audience-card" role="listitem" style="border-left:3px solid var(--navy,#1a2e4a);">
-        <h3>NJ News Commons partner newsrooms</h3>
-        <p>
-          The 330+ newsrooms in the NJ News Commons network. They submit articles via the API
-          (or, eventually, a WordPress plugin that handles it automatically). They get translations
-          delivered directly back to their CMS. They don't need to manage the translation process —
-          just submit and receive.
-        </p>
-      </div>
-
-      <div class="audience-card" role="listitem" style="border-left:3px solid var(--accent);">
-        <h3>STNS translation editors</h3>
-        <p>
-          The Spanish Translation News Service team at CCM. They maintain the glossary, handle
-          reviewed and certified tier jobs, and approve final translations before delivery.
-          Hawk surfaces only the passages that actually need human attention — not the whole article.
-        </p>
-      </div>
-
-    </div>
-  </section>
-
-  <hr class="divider">
-
-  <!-- WHAT STAYS THE SAME -->
-  <section>
-    <div class="section-number">06</div>
-    <div class="section-label">What Hawk preserves</div>
-    <h2>Your article's formatting comes out intact</h2>
-    <p>
-      One of the most common problems with translation tools is that they destroy formatting.
-      Paste an article with bold text, hyperlinks, and image captions into most translators
-      and you get back a mess of stripped tags and broken links.
-    </p>
-    <p>
-      Hawk handles this differently. It separates the readable words from the formatting code
-      before translation, and reassembles the article afterward. The result: the same HTML
-      structure goes in, and a fully translated version with identical formatting comes out.
-      Bold stays bold. Links stay linked. Captions stay where they belong.
-    </p>
-
-    <div class="card" style="margin-top:1.5rem;">
-      <p style="font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--text-faint);margin-bottom:1rem;">What passes through Hawk unchanged</p>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.75rem;">
-        <div style="font-size:.9rem;color:var(--text-muted);"><span style="color:var(--green);font-weight:700;">✓</span> HTML tags</div>
-        <div style="font-size:.9rem;color:var(--text-muted);"><span style="color:var(--green);font-weight:700;">✓</span> Hyperlinks</div>
-        <div style="font-size:.9rem;color:var(--text-muted);"><span style="color:var(--green);font-weight:700;">✓</span> Bold and italic</div>
-        <div style="font-size:.9rem;color:var(--text-muted);"><span style="color:var(--green);font-weight:700;">✓</span> Image tags</div>
-        <div style="font-size:.9rem;color:var(--text-muted);"><span style="color:var(--green);font-weight:700;">✓</span> Heading structure</div>
-        <div style="font-size:.9rem;color:var(--text-muted);"><span style="color:var(--green);font-weight:700;">✓</span> Blockquotes</div>
-        <div style="font-size:.9rem;color:var(--text-muted);"><span style="color:var(--green);font-weight:700;">✓</span> Lists</div>
-        <div style="font-size:.9rem;color:var(--text-muted);"><span style="color:var(--green);font-weight:700;">✓</span> Article bylines</div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="divider">
-
-  <!-- GET ACCESS -->
-  <section>
-    <div class="section-number">07</div>
-    <div class="section-label">Getting started</div>
-    <h2>How newsrooms get access</h2>
-    <p>
-      Access to Hawk is managed through the Center for Cooperative Media. Partner newsrooms
-      in the NJ News Commons network can request an API key through CCM. STNS translation
-      editors are onboarded directly.
-    </p>
-    <div class="intro-box" style="border-left-color:var(--teal);">
-      <p>
-        <strong style="color:var(--teal);">For newsroom partners:</strong> Contact the Center for Cooperative Media to
-        request API access. You'll receive an API key and documentation for connecting your CMS.
-        A WordPress plugin that handles submissions automatically is in development.
-      </p>
-    </div>
-    <div class="intro-box" style="border-left-color:var(--accent);">
-      <p>
-        <strong style="color:var(--accent);">For STNS translation editors:</strong> The review interface is browser-based —
-        no installation required. You'll be assigned jobs based on your language pair.
-        Contact CCM to be added to the reviewer team.
-      </p>
-    </div>
-  </section>
+  </div>
 
 </main>
 
-<footer>
-  <p>
-    Hawk News Service Translation API &nbsp;·&nbsp; Built by the
-    <a href="https://centerforcooperativemedia.org" rel="noopener">Center for Cooperative Media</a>
-    at Montclair State University
-  </p>
-  <p style="margin-top:.5rem;">
-    Technical documentation: <a href="https://api.hawknewsservice.org/docs" rel="noopener">api.hawknewsservice.org/docs</a>
-  </p>
+<footer style="border-top: 1px solid var(--border); padding: 2.5rem 0; margin-top: 2rem;">
+  <div style="max-width:780px; margin:0 auto; padding:0 2rem;">
+    <p style="font-family:'DM Sans',system-ui,sans-serif; font-size:.82rem; color:var(--text-faint); text-align:center;">
+      Hawk News Service · Center for Cooperative Media · <a href="mockups/index.html" style="color:var(--accent);">View interface mockups →</a>
+    </p>
+  </div>
 </footer>
 
 </body>
