@@ -26,7 +26,7 @@
       --surface: #ffffff;
       --text: #0e1a12;
       --text-muted: #4a6b55;
-      --text-faint: #8aaa95;
+      --text-faint: #597164;
       --accent: #1a6b4a;
       --accent-light: #e8f5ee;
       --accent-dark: #0e3d2a;
@@ -49,6 +49,8 @@
       -webkit-font-smoothing: antialiased;
     }
 
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+
     @keyframes fadeSlideIn {
       from { opacity: 0; transform: translateY(16px); }
       to { opacity: 1; transform: translateY(0); }
@@ -59,7 +61,7 @@
     .nav-inner { max-width: 1080px; margin: 0 auto; padding: 0 2rem; height: 52px; display: flex; align-items: center; }
     .nav-wordmark { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 1.15rem; font-weight: 600; color: var(--accent); text-decoration: none; flex-shrink: 0; padding-right: 1.5rem; border-right: 1px solid var(--border); }
     .nav-links { flex: 1; display: flex; align-items: center; justify-content: center; gap: .7rem; font-family: 'DM Sans', system-ui, sans-serif; font-size: .8rem; letter-spacing: .02em; flex-wrap: wrap; }
-    .nav-links a { color: rgba(14,26,18,.5); text-decoration: none; transition: color .15s; padding-bottom: 2px; border-bottom: 2px solid transparent; white-space: nowrap; }
+    .nav-links a { color: rgba(14,26,18,.65); text-decoration: none; transition: color .15s; padding-bottom: 2px; border-bottom: 2px solid transparent; white-space: nowrap; }
     .nav-links a:hover { color: var(--text); }
     .nav-links a.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 500; }
     .nav-sep { color: var(--border); }
@@ -69,9 +71,9 @@
     /* Hero */
     .page-hero { background: var(--accent); padding: 4rem 2rem 3.5rem; animation: fadeSlideIn .4s ease .1s both; }
     .page-hero-inner { max-width: 780px; margin: 0 auto; }
-    .page-eyebrow { font-family: 'DM Sans', system-ui, sans-serif; font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.65); margin-bottom: .6rem; }
+    .page-eyebrow { font-family: 'DM Sans', system-ui, sans-serif; font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.85); margin-bottom: .6rem; }
     .page-hero h1 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 600; color: #fff; line-height: 1.15; margin-bottom: .75rem; }
-    .page-hero p { font-family: 'DM Sans', system-ui, sans-serif; font-size: .9rem; color: rgba(255,255,255,.75); line-height: 1.6; }
+    .page-hero p { font-family: 'DM Sans', system-ui, sans-serif; font-size: .9rem; color: rgba(255,255,255,.85); line-height: 1.6; }
 
     /* Card grid */
     .main-wrap { max-width: 1080px; margin: 0 auto; padding: 0 2rem; }

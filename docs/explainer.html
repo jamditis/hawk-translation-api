@@ -28,7 +28,7 @@
       --surface: #ffffff;
       --text: #0e1a12;
       --text-muted: #4a6b55;
-      --text-faint: #8aaa95;
+      --text-faint: #597164;
       --accent: #1a6b4a;
       --accent-light: #e8f5ee;
       --accent-dark: #0e3d2a;
@@ -95,7 +95,7 @@
       flex-wrap: wrap;
     }
     .nav-links a {
-      color: rgba(14,26,18,.5);
+      color: rgba(14,26,18,.65);
       text-decoration: none;
       transition: color .15s;
       padding-bottom: 2px;
@@ -130,7 +130,7 @@
       font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 1.25rem;
       font-style: italic;
-      color: rgba(255,255,255,.75);
+      color: rgba(255,255,255,.85);
       font-weight: 300;
       max-width: 540px;
       margin: 0 auto 2rem;
@@ -142,8 +142,8 @@
       justify-content: center;
     }
     .lang-badge {
-      background: rgba(255,255,255,.15);
-      color: rgba(255,255,255,.9);
+      background: rgba(255,255,255,.2);
+      color: #fff;
       border: 1px solid rgba(255,255,255,.2);
       border-radius: 20px;
       padding: .2rem .75rem;
@@ -272,7 +272,7 @@
       font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 4rem;
       font-weight: 300;
-      color: var(--border);
+      color: #74897b;
       line-height: 1;
       padding-top: .15rem;
     }
@@ -583,12 +583,14 @@
     <div class="step" role="listitem">
       <div class="step-num" aria-hidden="true">4</div>
       <div class="step-content">
-        <h3>NJ-specific terms are protected before translation</h3>
+        <h3>Local terms and dialect choices are locked in before translation</h3>
         <p>
-          This is where local knowledge matters most. Hawk applies a custom journalism glossary
+          This is where local and cultural knowledge matters most. Hawk applies a custom journalism glossary
           before anything is sent to the translation engine. Proper nouns that shouldn't be
           translated — like "Board of Education," "Paterson," or "NJ Transit" — get locked in
-          so they come through correctly in every language. STNS colleagues maintain this glossary.
+          so they come through correctly in every language. The glossary also enforces regional dialect
+          choices — using the Caribbean Spanish familiar to NJ's largely Puerto Rican and Dominican
+          communities, not Peninsular Spanish from Spain. STNS colleagues maintain this glossary.
         </p>
       </div>
     </div>
@@ -782,20 +784,24 @@
 
   <!-- Glossary callout -->
   <div class="content-section" style="animation: fadeSlideIn .5s ease .65s both;">
-    <h2 class="section-h2">Why local terms matter — and how Hawk protects them</h2>
+    <h2 class="section-h2">Why local terms and dialect choices matter</h2>
     <p class="section-desc">
-      Machine translation fails on local names. It may try to translate "Board of Education" literally,
-      or anglicize "Paterson" into something unrecognizable, or confuse government titles that have
-      official translations. That's why Hawk applies a custom glossary before any text reaches the
-      translation engine.
+      Machine translation fails on local names — it may try to translate "Board of Education" literally,
+      or anglicize "Paterson" into something unrecognizable. It also defaults to generic, often Peninsular,
+      variants of a language instead of the regional dialect spoken by the community being served. NJ's
+      Spanish-speaking population is predominantly Puerto Rican and Dominican; NJ's Portuguese speakers are
+      largely Brazilian. The glossary enforces both correct proper nouns and the colloquial, regional, and
+      cultural vocabulary choices that make a translation feel natural to local readers.
     </p>
     <div class="glossary-callout">
       <h3>How glossary protection works</h3>
       <p>
-        STNS maintains a list of terms that should always appear a specific way in each target language.
+        STNS maintains a list of terms — proper nouns, government titles, and regional vocabulary — that
+        should always appear a specific way in each target language.
         Before translation, Hawk scans every paragraph and substitutes the correct version of each term.
-        Longer phrases take priority — "Board of Education" is matched before "Board" — so no phrase
-        gets partially overwritten.
+        This includes enforcing dialect-appropriate word choices (e.g. "guagua" instead of "autobús" for
+        Caribbean Spanish readers). Longer phrases take priority — "Board of Education" is matched before
+        "Board" — so no phrase gets partially overwritten.
       </p>
       <div class="gloss-examples" role="list" aria-label="Glossary examples">
         <div class="gloss-term" role="listitem">
@@ -834,11 +840,24 @@
           <div class="gloss-es">Condado de Passaic</div>
           <div class="gloss-note">Place name — glossary controls the format</div>
         </div>
+        <div class="gloss-term" role="listitem">
+          <div class="gloss-en">bus</div>
+          <div class="gloss-arrow">→</div>
+          <div class="gloss-es">guagua</div>
+          <div class="gloss-note">Caribbean dialect — not "autobús" (Peninsular)</div>
+        </div>
+        <div class="gloss-term" role="listitem">
+          <div class="gloss-en">apartment</div>
+          <div class="gloss-arrow">→</div>
+          <div class="gloss-es">apartamento</div>
+          <div class="gloss-note">Regional preference — not "piso" (Spain)</div>
+        </div>
       </div>
     </div>
     <p style="font-family:'DM Sans',system-ui,sans-serif; font-size:.85rem; color:var(--text-muted);">
       For STNS colleagues: the glossary is editable per-newsroom, per-language. If you spot a recurring
-      translation error, adding a glossary entry fixes it for every future story from that partner.
+      translation error — whether a mistranslated proper noun or a dialect choice that doesn't match your
+      community — adding a glossary entry fixes it for every future story from that partner.
     </p>
   </div>
 
