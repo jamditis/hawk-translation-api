@@ -98,11 +98,18 @@ class Glossary(Base):
 
 
 class Reviewer(Base):
+    """A professional human translator who reviews and edits machine-generated drafts.
+
+    Human translators are the core of the reviewed and certified tiers. They are
+    matched to jobs by language pair and availability, and they make the final
+    editorial decisions on translation quality for publication.
+    """
     __tablename__ = "reviewers"
 
     id: Mapped[Optional[str]] = mapped_column(String(36), primary_key=True)
     name: Mapped[str] = mapped_column(String(255), nullable=False)
     email: Mapped[str] = mapped_column(String(255), nullable=False, unique=True)
+    # Language pairs this translator is qualified for, e.g. ["en-es", "en-pt"]
     language_pairs_json: Mapped[list] = mapped_column(JSON, nullable=False)
     active: Mapped[bool] = mapped_column(Boolean)
     created_at: Mapped[datetime] = mapped_column(DateTime, insert_default=lambda: datetime.now(UTC))
@@ -114,14 +121,22 @@ class Reviewer(Base):
 
 
 class ReviewAssignment(Base):
+    """Links a translation job to the human translator(s) assigned to review it.
+
+    For reviewed tier: one translator reviews and edits the machine draft.
+    For certified tier: a second translator (role="certifier") verifies the work.
+    diff_json tracks every edit the translator makes, creating an audit trail
+    and feeding the quality feedback loop.
+    """
     __tablename__ = "review_assignments"
 
     id: Mapped[Optional[str]] = mapped_column(String(36), primary_key=True)
     job_id: Mapped[str] = mapped_column(String(36), ForeignKey("translation_jobs.id"), nullable=False)
     reviewer_id: Mapped[str] = mapped_column(String(36), ForeignKey("reviewers.id"), nullable=False)
-    role: Mapped[str] = mapped_column(String(20), nullable=False)
+    role: Mapped[str] = mapped_column(String(20), nullable=False)  # "reviewer" or "certifier"
     assigned_at: Mapped[datetime] = mapped_column(DateTime, insert_default=lambda: datetime.now(UTC))
     completed_at: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True)
+    # Tracked edits: every change the human translator makes vs. the machine draft
     diff_json: Mapped[Optional[dict]] = mapped_column(JSON, nullable=True)
 
 

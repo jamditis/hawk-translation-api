@@ -50,12 +50,17 @@ def run_translation_pipeline(self, job_id: str) -> None:
             logger.error("Job %s not found", job_id)
             return
 
-        # Stage 1: segment HTML content
+        # --- Machine draft pipeline ---
+        # Stages 1-5 generate a machine draft and flag segments for human
+        # translator attention. This draft is either delivered directly
+        # (instant tier) or handed off to human translators for review.
+
+        # Stage 1: segment HTML content into translatable units
         job.status = "translating"
         db.commit()
         segments = segment_html(job.content)
 
-        # Stage 2: apply glossary substitutions
+        # Stage 2: apply glossary substitutions (proper nouns, gov titles, place names)
         glossary_terms = {}
         if job.glossary_id:
             glossary = db.get(Glossary, job.glossary_id)
@@ -64,7 +69,7 @@ def run_translation_pipeline(self, job_id: str) -> None:
         for seg in segments:
             seg["text"] = apply_glossary(seg["text"], glossary_terms)
 
-        # Stage 3: translate via DeepL
+        # Stage 3: generate machine draft via DeepL (or Google for ht/hi/ur)
         deepl_key = os.getenv("DEEPL_API_KEY", "")
         segments = translate_segments(
             segments, target_language=job.target_language, api_key=deepl_key
@@ -77,7 +82,9 @@ def run_translation_pipeline(self, job_id: str) -> None:
         job.status = "machine_translated"
         db.commit()
 
-        # Stage 5: quality scoring (non-blocking — None result is fine)
+        # Stage 5: AI quality scoring — flags segments for human translator attention
+        # Segments scoring below 3.0 are marked needs_review so human translators
+        # can prioritize their effort. Non-blocking: None result is fine.
         job.status = "scoring"
         db.commit()
 
@@ -100,11 +107,14 @@ def run_translation_pipeline(self, job_id: str) -> None:
 
         job.quality_scores_json = all_scores if all_scores else None
 
-        # Stage 6: mark complete (instant) or queue for review
+        # Stage 6: instant tier completes here; reviewed/certified tiers hand off
+        # to human translators for review, editing, and certification
         if job.tier == "instant":
             job.status = "complete"
             job.completed_at = datetime.now(UTC)
         else:
+            # Queue for human translator review — this is where the real
+            # translation quality work happens
             job.status = "in_review"
 
         db.commit()

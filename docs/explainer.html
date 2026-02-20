@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>How Hawk works — a plain-language guide</title>
-  <meta name="description" content="How the Hawk News Service translation API works — a plain-language explainer for CCM colleagues and STNS translation partners.">
-  <meta property="og:title" content="How Hawk works — a plain-language guide">
-  <meta property="og:description" content="How the Hawk News Service translation API works — for CCM colleagues and STNS translation partners.">
+  <title>How Hawk works — human translators powered by technology</title>
+  <meta name="description" content="How the Hawk News Service translation API works — human translators at the center, powered by machine translation and AI quality scoring.">
+  <meta property="og:title" content="How Hawk works — human translators powered by technology">
+  <meta property="og:description" content="Human translators at the center, powered by machine translation and AI quality scoring.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://hawknewsservice.org/how-it-works">
   <meta property="og:image" content="https://hawknewsservice.org/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="How Hawk works — a plain-language guide">
-  <meta name="twitter:description" content="How the Hawk News Service translation API works — for CCM colleagues and STNS translation partners.">
+  <meta name="twitter:title" content="How Hawk works — human translators powered by technology">
+  <meta name="twitter:description" content="Human translators at the center, powered by machine translation and AI quality scoring.">
   <meta name="twitter:image" content="https://hawknewsservice.org/og-image.png">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%231a6b4a'/><text x='16' y='23' font-family='serif' font-size='18' font-weight='700' fill='white' text-anchor='middle'>H</text></svg>">
 
@@ -438,8 +438,8 @@
 </nav>
 
 <header>
-  <h1>How Hawk works</h1>
-  <p class="header-sub">A plain-language guide for CCM colleagues and Spanish Translation News Service partners.</p>
+  <h1>Human translators, powered by technology</h1>
+  <p class="header-sub">Machine translation generates a first draft. AI scoring highlights problem areas. Human translators make the final call.</p>
   <div class="lang-badges">
     <span class="lang-badge">Spanish</span>
     <span class="lang-badge">Portuguese</span>
@@ -483,29 +483,29 @@
         <text class="nl3" x="318" y="46" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="rgba(255,255,255,0.55)">Glossary</text>
         <text class="ns3" x="318" y="92" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="rgba(255,255,255,0.28)">apply</text>
       </g>
-      <!-- Node 4: Translate -->
+      <!-- Node 4: Draft -->
       <g class="ng4">
         <rect x="396" y="14" width="108" height="112" rx="6" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-        <text class="nl4" x="450" y="46" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="rgba(255,255,255,0.55)">Translate</text>
+        <text class="nl4" x="450" y="46" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="rgba(255,255,255,0.55)">Draft</text>
         <text class="ns4" x="450" y="92" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="rgba(255,255,255,0.28)">DeepL</text>
       </g>
       <!-- Node 5: Score -->
       <g class="ng5">
         <rect x="528" y="14" width="108" height="112" rx="6" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
         <text class="nl5" x="582" y="46" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="rgba(255,255,255,0.55)">Score</text>
-        <text class="ns5" x="582" y="92" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="rgba(255,255,255,0.28)">claude</text>
+        <text class="ns5" x="582" y="92" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="rgba(255,255,255,0.28)">AI flag</text>
       </g>
-      <!-- Node 6: Assemble -->
+      <!-- Node 6: Human Review -->
       <g class="ng6">
-        <rect x="660" y="14" width="108" height="112" rx="6" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-        <text class="nl6" x="714" y="46" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="rgba(255,255,255,0.55)">Assemble</text>
-        <text class="ns6" x="714" y="92" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="rgba(255,255,255,0.28)">HTML</text>
+        <rect x="660" y="14" width="108" height="112" rx="6" fill="rgba(26,107,74,0.12)" stroke="rgba(26,107,74,0.35)" stroke-width="1.5"/>
+        <text class="nl6" x="714" y="46" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="rgba(255,255,255,0.55)">Review</text>
+        <text class="ns6" x="714" y="92" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="rgba(255,255,255,0.28)">human</text>
       </g>
-      <!-- Node 7: Webhook -->
+      <!-- Node 7: Deliver -->
       <g class="ng7">
         <rect x="792" y="14" width="108" height="112" rx="6" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-        <text class="nl7" x="846" y="46" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="rgba(255,255,255,0.55)">Webhook</text>
-        <text class="ns7" x="846" y="92" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="rgba(255,255,255,0.28)">fire</text>
+        <text class="nl7" x="846" y="46" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="rgba(255,255,255,0.55)">Deliver</text>
+        <text class="ns7" x="846" y="92" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="rgba(255,255,255,0.28)">approved</text>
       </g>
       <!-- Traveling dots -->
       <circle class="pd1" cx="108" cy="70" r="5" fill="#ffffff"/>
@@ -529,9 +529,11 @@
   <!-- Intro -->
   <div class="section-intro">
     <p>
-      Hawk is the translation engine built by the Center for Cooperative Media for NJ News Commons partner newsrooms.
-      You submit an article. Hawk translates it, checks its quality, and delivers the result — with your HTML formatting intact.
-      Human editors can review flagged passages before anything goes live.
+      Hawk is the translation system built by the Center for Cooperative Media for NJ News Commons partner newsrooms.
+      Professional human translators are the core of the process — machine translation and AI scoring are tools
+      that make them faster and more effective, not replacements for human expertise. You submit an article.
+      Hawk generates a machine draft, flags potential issues, and hands everything to a human translator
+      who reviews, edits, and approves the final version before it reaches your readers.
     </p>
   </div>
 
@@ -594,13 +596,14 @@
     <div class="step" role="listitem">
       <div class="step-num" aria-hidden="true">5</div>
       <div class="step-content">
-        <h3>DeepL translates the text</h3>
+        <h3>DeepL generates a machine draft</h3>
         <p>
           Hawk uses DeepL — one of the most accurate machine translation services available —
-          for seven of the ten languages. DeepL was chosen because it handles journalistic
-          prose better than most alternatives, producing more natural-sounding sentences.
-          For Haitian Creole, Hindi, and Urdu (which DeepL doesn't support as well),
-          segments are flagged for human review.
+          to produce an initial draft for seven of the ten languages. This draft is a starting
+          point for human translators, not the final product. DeepL was chosen because it handles
+          journalistic prose better than most alternatives, giving human translators a stronger
+          foundation to work from. For Haitian Creole, Hindi, and Urdu (which DeepL doesn't
+          support as well), segments are flagged for extra human translator attention.
         </p>
       </div>
     </div>
@@ -608,14 +611,14 @@
     <div class="step" role="listitem">
       <div class="step-num" aria-hidden="true">6</div>
       <div class="step-content">
-        <h3>Claude checks translation quality, paragraph by paragraph</h3>
+        <h3>AI scoring highlights what needs human attention</h3>
         <p>
-          After translation, Hawk runs each paragraph through a quality check using Claude —
-          an AI model made by Anthropic. Claude reads both the original English and the translated
-          version and scores each paragraph on two things: fluency (does it read naturally in the
-          target language?) and accuracy (is the meaning preserved?). Anything that scores below
-          a 3 out of 5 gets flagged for human review. This happens quietly in the background and
-          doesn't slow down the final delivery.
+          After the machine draft is generated, Hawk runs each paragraph through an AI quality
+          check using Claude (an AI model made by Anthropic). Claude reads both the original
+          English and the machine-translated version and scores each paragraph on fluency (does
+          it read naturally?) and accuracy (is the meaning preserved?). Anything scoring below
+          a 3 out of 5 gets flagged so human translators know exactly where to focus their effort.
+          This scoring exists to make human translators more efficient — not to replace their judgment.
         </p>
       </div>
     </div>
@@ -623,12 +626,13 @@
     <div class="step" role="listitem">
       <div class="step-num" aria-hidden="true">7</div>
       <div class="step-content">
-        <h3>The translated article is delivered</h3>
+        <h3>The human-approved translation is delivered</h3>
         <p>
-          Once complete, the translated article is available for the newsroom to retrieve.
-          If the newsroom provided a webhook URL (a web address where they want to receive the
-          result automatically), Hawk sends it there the moment translation finishes. The newsroom
-          can then publish it directly to their CMS. No manual copy-paste required.
+          For reviewed and certified tiers, the translation is delivered only after a human
+          translator has reviewed and approved it. For the instant tier, the machine draft
+          is delivered with AI quality scores so newsroom editors can assess it themselves.
+          If the newsroom provided a webhook URL, Hawk sends the result there automatically.
+          The newsroom can then publish it directly to their CMS. No manual copy-paste required.
         </p>
       </div>
     </div>
@@ -637,39 +641,42 @@
 
   <!-- Quality tiers -->
   <div class="content-section" style="animation: fadeSlideIn .5s ease .45s both;">
-    <h2 class="section-h2">Three levels of quality assurance</h2>
+    <h2 class="section-h2">Three levels of human involvement</h2>
     <p class="section-desc">
       Newsrooms choose the tier that fits their deadline and the sensitivity of the content.
+      The reviewed and certified tiers — where human translators edit and approve the output — are the standard for publication-quality journalism.
     </p>
     <div class="tier-grid" role="list" aria-label="Translation quality tiers">
 
       <div class="tier-card" role="listitem">
         <div class="tier-name">Instant</div>
-        <div class="tier-speed">~2 min, fully automated</div>
+        <div class="tier-speed">~2 min, machine draft only</div>
         <div class="tier-desc">
-          Machine translation plus AI quality scoring. Ready as soon as the pipeline finishes.
-          Good for breaking news, lower-risk content, or when human review isn't available.
-          Quality scores are included so editors can see how confident the system is.
+          Machine draft plus AI quality scoring — no human translator review.
+          Good for breaking news or lower-risk content where speed matters most.
+          Quality scores are included so newsroom editors can assess the output themselves.
         </div>
       </div>
 
       <div class="tier-card" role="listitem">
         <div class="tier-name">Reviewed</div>
-        <div class="tier-speed">4–24 hours, STNS editor checks flagged passages</div>
+        <div class="tier-speed">4–24 hours, one human translator</div>
         <div class="tier-desc">
-          Same automated pipeline, but flagged paragraphs (score below 3/5) go to an STNS editor
-          before delivery. The editor sees both the original English and the machine translation
-          side by side, and can correct any passage that needs it.
+          A professional human translator reviews and edits the machine draft before delivery.
+          AI quality scores highlight which passages need the most attention. The translator sees
+          both the original English and the machine draft side by side, and makes the final
+          editorial decisions. The standard for publication-quality journalism.
         </div>
       </div>
 
       <div class="tier-card" role="listitem">
         <div class="tier-name">Certified</div>
-        <div class="tier-speed">24–72 hours, two-editor approval</div>
+        <div class="tier-speed">24–72 hours, two human translators</div>
         <div class="tier-desc">
-          A second STNS editor approves the reviewed version before delivery. For high-stakes
-          content — legal matters, health information, elections coverage — where accuracy is
-          critical and errors could cause real harm.
+          One human translator reviews and edits. A second human translator certifies the final
+          version. All edits are tracked for a full audit trail. For high-stakes content — legal
+          matters, health information, elections coverage — where accuracy is critical and errors
+          could cause real harm.
         </div>
       </div>
 
@@ -767,8 +774,9 @@
       </tbody>
     </table>
     <p style="font-family:'DM Sans',system-ui,sans-serif; font-size:.82rem; color:var(--text-faint);">
-      Languages marked "limited" are supported but rely more heavily on STNS editors because the automated
-      translation engine has weaker coverage for those language pairs.
+      Languages marked "limited" are supported but the machine drafts require more human translator attention
+      because the automated translation engine has weaker coverage for those language pairs. Human translator
+      review is especially important for these languages.
     </p>
   </div>
 

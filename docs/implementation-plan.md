@@ -2,15 +2,17 @@
 
 > **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
 
-**Goal:** Build a production REST API at `api.hawknewsservice.org` that translates journalism content into 10 languages with three quality tiers (instant AI, reviewed, certified).
+**Goal:** Build a human translator-centered REST API at `api.hawknewsservice.org` that translates journalism content into 10 languages. Machine translation and AI quality scoring generate a first draft; professional human translators review, edit, and certify the final output. Three quality tiers (instant machine-only, reviewed by one translator, certified by two translators) let newsrooms choose the level of human involvement.
 
-**Architecture:** FastAPI + Celery + Redis + PostgreSQL on officejawn (100.84.214.24), exposed via Cloudflare Tunnel. DeepL API for machine translation; `claude -p` subprocess for quality scoring. Static marketing site deployed via SFTP to the hawknewsservice.org shared host.
+**Architecture:** FastAPI + Celery + Redis + PostgreSQL on officejawn (100.84.214.24), exposed via Cloudflare Tunnel. DeepL API for machine draft generation; `claude -p` subprocess for AI quality scoring that flags segments for human translator attention. Static marketing site deployed via SFTP to the hawknewsservice.org shared host.
 
 **Tech stack:** Python 3.11, FastAPI 0.110, SQLAlchemy 2.0, Alembic, Celery 5.3, Redis 7, PostgreSQL 15, httpx, BeautifulSoup4, Jinja2, pytest, respx
 
 ---
 
-## Phase 1: Core API + instant tier (weeks 1–4)
+## Phase 1: Machine draft pipeline + instant tier (weeks 1–4)
+
+> Phase 1 builds the machine draft infrastructure that Phase 2's human translator workflow depends on. The instant tier is a standalone product for time-sensitive content, but the reviewed and certified tiers — where human translators make the final call — are the core value proposition.
 
 ---
 
