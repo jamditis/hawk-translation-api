@@ -198,11 +198,81 @@
     .wpde2 { animation: wDotEcho   4.8s linear 2.15s infinite; }
     .wpde3 { animation: wDotEcho   4.8s linear 3.35s infinite; }
 
+    /* Mobile nav */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: .5rem;
+      margin-left: auto;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: var(--text);
+      margin: 4px 0;
+      border-radius: 2px;
+      transition: transform .2s, opacity .2s;
+    }
+    .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
     /* Responsive */
+    @media (max-width: 768px) {
+      .nav-toggle { display: block; }
+      .nav-badge { display: none; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 52px;
+        left: 0;
+        right: 0;
+        background: #fff;
+        border-bottom: 1px solid var(--border);
+        box-shadow: var(--shadow-lg);
+        flex-direction: column;
+        align-items: stretch;
+        padding: .75rem 1.5rem;
+        gap: 0;
+        z-index: 200;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a {
+        padding: .65rem 0;
+        border-bottom: 1px solid var(--border);
+        font-size: .85rem;
+      }
+      .nav-links a:last-child { border-bottom: none; }
+      .nav-sep, .nav-label { display: none; }
+      .nav-inner { position: relative; }
+    }
+
     @media (max-width: 700px) {
       .cms-sidenav { display: none; }
-      .hawk-panel { display: none; }
+      .cms-body { flex-direction: column; }
+      .hawk-panel {
+        width: 100%;
+        border-left: none;
+        border-top: 1px solid var(--border);
+      }
+      .hawk-panel-body { flex-direction: row; flex-wrap: wrap; gap: .75rem; }
+      .hawk-panel-body > div { flex: 1; min-width: 140px; }
+      .btn-cta-disabled { margin-top: .5rem; flex-basis: 100%; }
       .setup-grid { grid-template-columns: 1fr; }
+      .editor-toolbar { flex-wrap: wrap; gap: .35rem; }
+      .cms-adminbar { flex-wrap: wrap; height: auto; padding: .4rem .75rem; }
+    }
+
+    @media (max-width: 480px) {
+      .page-header { padding: 2rem 1.25rem 1.5rem; }
+      .frame-wrap { padding: 0 1rem 3rem; }
+      .setup-section { padding: 1.5rem 1.25rem 3rem; }
+      .page-header h1 { font-size: 1.75rem; }
+      .hawk-panel-body { flex-direction: column; }
     }
   </style>
 </head>
@@ -211,6 +281,9 @@
   <nav class="site-nav">
     <div class="nav-inner">
       <a href="../explainer.html" class="nav-wordmark">Hawk</a>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
       <div class="nav-links">
         <a href="../explainer.html">How it works</a>
         <span class="nav-sep">·</span>
@@ -458,5 +531,12 @@
     </div>
   </section>
 
+<script>
+document.querySelector('.nav-toggle').addEventListener('click', function() {
+  var expanded = this.getAttribute('aria-expanded') === 'true';
+  this.setAttribute('aria-expanded', !expanded);
+  this.closest('.nav-inner').querySelector('.nav-links').classList.toggle('open');
+});
+</script>
 </body>
 </html>
