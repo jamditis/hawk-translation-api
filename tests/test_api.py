@@ -57,8 +57,7 @@ def test_translate_requires_auth(mock_db):
 
 def test_translate_with_valid_key_returns_202_and_job_id(mock_db, mock_auth_ctx):
     with patch("api.routes.translate.authenticate_request", return_value=mock_auth_ctx), \
-         patch("api.routes.translate.check_quota"), \
-         patch("api.routes.translate.increment_quota"), \
+         patch("api.routes.translate.check_and_increment_quota"), \
          patch("api.routes.translate.run_translation_pipeline") as mock_task:
         response = client.post(
             "/v1/translate",
@@ -84,7 +83,7 @@ def test_translate_with_valid_key_returns_202_and_job_id(mock_db, mock_auth_ctx)
 
 def test_translate_rejects_unsupported_language(mock_db, mock_auth_ctx):
     with patch("api.routes.translate.authenticate_request", return_value=mock_auth_ctx), \
-         patch("api.routes.translate.check_quota"):
+         patch("api.routes.translate.check_and_increment_quota"):
         response = client.post(
             "/v1/translate",
             headers={"Authorization": "Bearer hawk_live_test123"},
@@ -101,7 +100,7 @@ def test_translate_rejects_unsupported_language(mock_db, mock_auth_ctx):
 
 def test_translate_rejects_oversized_content(mock_db, mock_auth_ctx):
     with patch("api.routes.translate.authenticate_request", return_value=mock_auth_ctx), \
-         patch("api.routes.translate.check_quota"):
+         patch("api.routes.translate.check_and_increment_quota"):
         response = client.post(
             "/v1/translate",
             headers={"Authorization": "Bearer hawk_live_test123"},
@@ -163,7 +162,7 @@ def test_get_job_not_found(mock_db):
 def test_translate_returns_429_when_quota_exceeded(mock_db, mock_auth_ctx):
     from fastapi import HTTPException
     with patch("api.routes.translate.authenticate_request", return_value=mock_auth_ctx), \
-         patch("api.routes.translate.check_quota", side_effect=HTTPException(
+         patch("api.routes.translate.check_and_increment_quota", side_effect=HTTPException(
              status_code=429,
              detail={"error": "quota_exceeded", "reset_at": "2026-02-20T00:00:00Z", "limit": 50}
          )):
@@ -195,7 +194,7 @@ def test_get_job_returns_404_for_different_org(mock_db):
 
 def test_translate_rejects_invalid_tier(mock_db, mock_auth_ctx):
     with patch("api.routes.translate.authenticate_request", return_value=mock_auth_ctx), \
-         patch("api.routes.translate.check_quota"):
+         patch("api.routes.translate.check_and_increment_quota"):
         response = client.post(
             "/v1/translate",
             headers={"Authorization": "Bearer hawk_live_test123"},
@@ -211,7 +210,7 @@ def test_translate_rejects_invalid_tier(mock_db, mock_auth_ctx):
 
 def test_translate_rejects_non_http_callback_url(mock_db, mock_auth_ctx):
     with patch("api.routes.translate.authenticate_request", return_value=mock_auth_ctx), \
-         patch("api.routes.translate.check_quota"):
+         patch("api.routes.translate.check_and_increment_quota"):
         response = client.post(
             "/v1/translate",
             headers={"Authorization": "Bearer hawk_live_test123"},
@@ -229,8 +228,7 @@ def test_translate_rejects_non_http_callback_url(mock_db, mock_auth_ctx):
 def test_translate_returns_503_when_celery_unavailable(mock_db, mock_auth_ctx):
     mock_db.refresh = MagicMock()  # make refresh a no-op
     with patch("api.routes.translate.authenticate_request", return_value=mock_auth_ctx), \
-         patch("api.routes.translate.check_quota"), \
-         patch("api.routes.translate.increment_quota"), \
+         patch("api.routes.translate.check_and_increment_quota"), \
          patch("api.routes.translate.run_translation_pipeline") as mock_task:
         mock_task.delay.side_effect = Exception("Celery broker unavailable")
         response = client.post(

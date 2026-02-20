@@ -34,8 +34,8 @@ Celery worker (officejawn)
 | API server | FastAPI + uvicorn (port 8090) |
 | Task queue | Celery 5.3 + Redis |
 | Database | PostgreSQL 15 + SQLAlchemy 2.0 + Alembic |
-| Translation | DeepL API (7 languages natively; `ht`, `hi`, `ur` are stubs) |
-| Quality scoring | `claude -p` subprocess — non-blocking, 30s timeout |
+| Translation | DeepL API (7 languages); Google Cloud Translation API (`ht`, `hi`, `ur`) |
+| Quality scoring | `claude -p` subprocess — non-blocking, 30s timeout, retries on timeout |
 | Deployment | officejawn (100.84.214.24) via `scripts/deploy-officejawn.sh` |
 
 ---
@@ -56,7 +56,7 @@ Requires: PostgreSQL running locally (or on officejawn), Redis running locally.
 ## Tests
 
 ```bash
-# Standard unit tests (77 tests, no live services needed)
+# Standard unit tests (81+ tests, no live services needed)
 pytest -v
 
 # Acceptance tests (requires live API + real DeepL key)
@@ -71,11 +71,11 @@ HAWK_API_KEY=hawk_test_xxx HAWK_API_BASE_URL=http://localhost:8090 pytest tests/
 
 **API key format:** `hawk_live_<32 chars>` or `hawk_test_<32 chars>`. Stored as SHA-256 hash. Auth uses `hmac.compare_digest` for constant-time comparison.
 
-**Quota enforcement:** Redis INCR + EXPIREAT in a pipeline (atomic). There is a known TOCTOU window between `check_quota` and `increment_quota` — acceptable for daily limits, documented in `api/quota.py`.
+**Quota enforcement:** Atomic check-and-increment via Redis Lua script (`check_and_increment_quota`). Eliminates the TOCTOU race that existed with separate check/increment calls. The old `check_quota` and `increment_quota` functions are still available for admin tooling.
 
 **Webhook delivery** is a separate Celery task (`deliver_webhook`) with its own retry schedule (5x over 24h). This decouples delivery retries from pipeline retries.
 
-**`ht`, `hi`, `ur` are stubs.** The Google Translate fallback in `workers/translator.py` returns untranslated English. These three languages are marked `"status": "limited"` in `GET /v1/languages`. Do not sell them as fully supported until the fallback is implemented.
+**`ht`, `hi`, `ur` use Google Cloud Translation API.** Requires `GOOGLE_TRANSLATE_API_KEY` env var. If the key is missing or the API fails, falls back gracefully to untranslated text flagged with `needs_review: true`. These three languages are marked `"status": "limited"` in `GET /v1/languages` until the translations are validated for quality.
 
 ---
 
@@ -104,7 +104,7 @@ Subsequent deploys:
 ./scripts/deploy-officejawn.sh
 ```
 
-The deploy script rsyncs code, installs deps, runs `alembic upgrade head`, and restarts `hawk-api` and `hawk-worker` systemd services.
+The deploy script rsyncs code, installs deps, runs `alembic upgrade head` with verification that migrations applied cleanly, and restarts `hawk-api` and `hawk-worker` systemd services. The deploy fails if migrations don't reach head or if services fail to start.
 
 ---
 
@@ -113,6 +113,8 @@ The deploy script rsyncs code, installs deps, runs `alembic upgrade head`, and r
 GitHub Actions at `.github/workflows/tests.yml`. Matrix build across Python 3.11 and 3.12, runs on push/PR to main.
 
 Unit tests use mocked Redis and DB — no live services needed in CI. The workflow sets `DATABASE_URL=sqlite:///./test.db` as a safety net, but tests should never actually hit the DB (they use `MagicMock` via `app.dependency_overrides`). If a CI run fails with a connection error, a test is leaking a real DB call and needs to be fixed, not the workflow.
+
+CI also runs integration tests (`tests/test_quota_integration.py`) against a real Redis service container to verify atomic quota enforcement and TTL behavior.
 
 ---
 

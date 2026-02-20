@@ -13,6 +13,17 @@ jobs:
       matrix:
         python-version: ["3.11", "3.12"]
 
+    services:
+      redis:
+        image: redis:7
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     steps:
       - uses: actions/checkout@v4
 
@@ -25,10 +36,15 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt -r requirements-dev.txt
 
-      - name: Run tests
-        run: pytest -v --tb=short
+      - name: Run unit tests
+        run: pytest -v --tb=short -x
         env:
           DEEPL_API_KEY: test_key
           DATABASE_URL: sqlite:///./test.db
           REDIS_URL: redis://localhost:6379/0
           SECRET_KEY: test_secret_key_for_ci
+
+      - name: Run integration tests (Redis)
+        run: pytest tests/test_quota_integration.py -v --tb=short
+        env:
+          REDIS_URL: redis://localhost:6379/0
