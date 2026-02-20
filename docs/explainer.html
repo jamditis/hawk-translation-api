@@ -410,12 +410,83 @@
     }
     .content-section:first-of-type { border-top: none; }
 
+    /* ── Mobile nav ── */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: .5rem;
+      margin-left: auto;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: var(--text);
+      margin: 4px 0;
+      border-radius: 2px;
+      transition: transform .2s, opacity .2s;
+    }
+    .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
     /* ── Responsive ── */
     @media (max-width: 640px) {
       header { padding: 2.5rem 1rem 2rem; }
       main { padding: 0 1rem; }
+      .full-bleed-wrap { padding: 0 1rem; }
       .step { grid-template-columns: 3rem 1fr; gap: 0 1rem; }
       .step-num { font-size: 3rem; }
+      .tier-grid { grid-template-columns: 1fr; }
+      .gloss-examples { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-toggle { display: block; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 52px;
+        left: 0;
+        right: 0;
+        background: #fff;
+        border-bottom: 1px solid var(--border);
+        box-shadow: var(--shadow-lg);
+        flex-direction: column;
+        align-items: stretch;
+        padding: .75rem 1.5rem;
+        gap: 0;
+        z-index: 200;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a {
+        padding: .65rem 0;
+        border-bottom: 1px solid var(--border);
+        font-size: .85rem;
+      }
+      .nav-links a:last-child { border-bottom: none; }
+      .nav-sep, .nav-label { display: none; }
+      .nav-inner { position: relative; }
+    }
+
+    @media (max-width: 480px) {
+      .gloss-examples { grid-template-columns: 1fr; }
+      .step { grid-template-columns: 1fr; }
+      .step-num { font-size: 2.5rem; margin-bottom: .25rem; }
+    }
+
+    /* ── Language table scroll ── */
+    .lang-table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 0 -1rem;
+      padding: 0 1rem;
+    }
+    @media (max-width: 640px) {
+      .lang-table { min-width: 520px; }
     }
   </style>
 </head>
@@ -424,6 +495,9 @@
 <nav class="site-nav" role="navigation" aria-label="Hawk site navigation">
   <div class="nav-inner">
     <a href="explainer.html" class="nav-wordmark">Hawk</a>
+    <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
     <div class="nav-links">
       <a href="explainer.html" class="active">How it works</a>
       <span class="nav-sep">·</span>
@@ -692,6 +766,7 @@
       The ten launch languages were selected based on NJ demographic data — specifically, the
       language communities most underserved by English-only local news coverage.
     </p>
+    <div class="lang-table-wrap">
     <table class="lang-table" aria-label="Supported languages">
       <thead>
         <tr>
@@ -775,6 +850,7 @@
         </tr>
       </tbody>
     </table>
+    </div>
     <p style="font-family:'DM Sans',system-ui,sans-serif; font-size:.82rem; color:var(--text-faint);">
       Languages marked "limited" are supported but the machine drafts require more human translator attention
       because the automated translation engine has weaker coverage for those language pairs. Human translator
@@ -871,5 +947,12 @@
   </div>
 </footer>
 
+<script>
+document.querySelector('.nav-toggle').addEventListener('click', function() {
+  var expanded = this.getAttribute('aria-expanded') === 'true';
+  this.setAttribute('aria-expanded', !expanded);
+  this.closest('.nav-inner').querySelector('.nav-links').classList.toggle('open');
+});
+</script>
 </body>
 </html>
