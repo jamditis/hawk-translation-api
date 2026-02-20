@@ -12,574 +12,193 @@
   <meta property="og:image" content="https://hawknewsservice.org/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:title" content="Interface mockups — Hawk">
-  <meta property="twitter:description" content="Static interface mockups for the Hawk translation API.">
-  <meta property="twitter:image" content="https://hawknewsservice.org/og-image.png">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231a2e4a'/><text y='.85em' x='10' font-size='75'>H</text></svg>">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Interface mockups — Hawk">
+  <meta name="twitter:description" content="Static interface mockups for the Hawk translation API.">
+  <meta name="twitter:image" content="https://hawknewsservice.org/og-image.png">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%231a6b4a'/><text x='16' y='23' font-family='serif' font-size='18' font-weight='700' fill='white' text-anchor='middle'>H</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #fefcf8;
+      --bg: #f8f8f6;
       --surface: #ffffff;
-      --border: #ddd6c2;
-      --text: #1a1510;
-      --text-muted: #6b5840;
-      --text-faint: #9b8870;
-      --accent: #b07020;
-      --accent-bg: #fdf5e3;
-      --navy: #1a2e4a;
-      --green: #2d6a32;
-      --green-bg: #edf7ee;
-      --teal: #2b7a6a;
-      --teal-bg: #e8f5f2;
-      --purple: #5b2d82;
-      --purple-bg: #f2eaf8;
-      --red: #9b2a2a;
-      --red-bg: #fdf0ee;
-      --shadow: 0 2px 12px rgba(0,0,0,.07);
-      --shadow-lg: 0 6px 28px rgba(0,0,0,.11);
-      --radius: 10px;
+      --text: #0e1a12;
+      --text-muted: #4a6b55;
+      --text-faint: #8aaa95;
+      --accent: #1a6b4a;
+      --accent-light: #e8f5ee;
+      --accent-dark: #0e3d2a;
+      --border: #d8e0da;
+      --red: #8b2020;
+      --red-bg: #fdf0f0;
+      --shadow: 0 2px 12px rgba(14,26,18,.07);
+      --shadow-lg: 0 6px 28px rgba(14,26,18,.11);
+      --radius: 8px;
     }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: 'DM Sans', system-ui, sans-serif;
-      font-size: 16px;
-      line-height: 1.6;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 18px;
+      line-height: 1.8;
       -webkit-font-smoothing: antialiased;
     }
-    /* ── Suite nav ── */
-    .suite-nav {
-      background: var(--navy);
-      height: 46px;
-      padding: 0 2rem;
-      display: flex;
-      align-items: center;
-      gap: 0;
-      font-family: 'DM Sans', system-ui, sans-serif;
+
+    @keyframes fadeSlideIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-    .nav-brand {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-weight: 700;
-      color: #fff;
-      text-decoration: none;
-      font-size: .92rem;
-      letter-spacing: .03em;
-      flex-shrink: 0;
-      padding-right: 1.25rem;
-      border-right: 1px solid rgba(255,255,255,.15);
-    }
-    .nav-links {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: .65rem;
-      font-size: .8rem;
-      flex-wrap: wrap;
-    }
-    .nav-links a {
-      color: rgba(255,255,255,.58);
-      text-decoration: none;
-      transition: color .15s;
-      white-space: nowrap;
-      padding: .15rem 0;
-    }
-    .nav-links a:hover { color: rgba(255,255,255,.9); }
-    .nav-links a.active { color: #fff; font-weight: 500; }
-    .nav-sep { color: rgba(255,255,255,.2); }
-    .nav-label { color: rgba(255,255,255,.3); font-size: .73rem; letter-spacing: .04em; }
-    .mockup-badge {
-      flex-shrink: 0;
-      background: var(--accent);
-      color: #fff;
-      font-size: .62rem;
-      font-weight: 600;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      padding: .22rem .6rem;
-      border-radius: 3px;
-    }
-    /* Header */
-    header {
-      background: var(--navy);
-      color: #fff;
-      padding: 4rem 2rem 3.5rem;
-      text-align: center;
-    }
-    .eyebrow {
-      font-size: .8rem;
-      font-weight: 300;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.5);
-      margin-bottom: .6rem;
-    }
-    header h1 {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: clamp(1.75rem, 4vw, 2.5rem);
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: .6rem;
-    }
-    header p {
-      color: rgba(255,255,255,.65);
-      font-size: 1rem;
-      font-weight: 300;
-      max-width: 520px;
-      margin: 0 auto;
-    }
-    /* Main */
-    main {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 3rem 2rem 4rem;
-    }
-    .section-label {
-      font-size: .75rem;
-      font-weight: 600;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: .4rem;
-    }
-    h2 {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 1.6rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: .5rem;
-    }
-    .intro {
-      font-size: .95rem;
-      color: var(--text-muted);
-      margin-bottom: 2.5rem;
-      max-width: 600px;
-    }
-    /* Cards */
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
-      gap: 1.5rem;
-    }
-    @media (max-width: 520px) {
-      .card-grid { grid-template-columns: 1fr; }
-    }
-    .mockup-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      display: flex;
-      flex-direction: column;
-      transition: box-shadow .2s, transform .2s;
-    }
-    .mockup-card:hover {
-      box-shadow: var(--shadow-lg);
-      transform: translateY(-2px);
-    }
-    /* Interface previews (CSS art) */
-    .card-preview {
-      height: 160px;
-      position: relative;
-      overflow: hidden;
-      flex-shrink: 0;
-    }
-    /* Review preview */
-    .preview-review {
-      background: #f1f3f5;
-      padding: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .prev-jobbar {
-      background: #fff;
-      border-radius: 4px;
-      padding: 6px 8px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 9px;
-      color: #555;
-      border: 1px solid #ddd;
-    }
-    .prev-tag { background: #e0f0e8; color: #2d6a32; border-radius: 3px; padding: 1px 5px; font-size: 8px; font-weight: 600; }
-    .prev-tag.flagged { background: #fdf0ee; color: #9b2a2a; }
-    .prev-row {
-      background: #fff;
-      border-radius: 4px;
-      border: 1px solid #ddd;
-      padding: 6px 8px;
-      display: grid;
-      grid-template-columns: 18px 1fr 1fr 50px;
-      gap: 6px;
-      align-items: center;
-    }
-    .prev-row.flagged { border-color: #e08080; background: #fff8f8; }
-    .prev-row.approved { border-color: #80c080; background: #f8fff8; }
-    .prev-num { font-size: 8px; color: #999; font-weight: 600; }
-    .prev-text { height: 8px; background: #eee; border-radius: 3px; }
-    .prev-text.dark { background: #ddd; }
-    .prev-score { width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 7px; font-weight: 700; color: #fff; }
-    .score-g { background: #2d6a32; }
-    .score-r { background: #9b2a2a; }
-    .score-a { background: #92600a; }
-    /* Dashboard preview */
-    .preview-dashboard {
-      background: #f1f3f5;
-      padding: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .prev-statsbar {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 4px;
-    }
-    .prev-stat {
-      background: #fff;
-      border-radius: 4px;
-      padding: 6px 4px;
-      text-align: center;
-      border: 1px solid #ddd;
-    }
-    .prev-stat-num { font-size: 11px; font-weight: 700; color: #1a2e4a; }
-    .prev-stat-label { font-size: 7px; color: #999; }
-    .prev-table { background: #fff; border-radius: 4px; border: 1px solid #ddd; overflow: hidden; }
-    .prev-table-header { background: #f5f0e8; padding: 4px 8px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4px; }
-    .prev-th { height: 6px; background: #ddd; border-radius: 2px; }
-    .prev-table-row { padding: 4px 8px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4px; border-top: 1px solid #f0f0f0; align-items: center; }
-    .prev-td { height: 5px; background: #eee; border-radius: 2px; }
-    .prev-badge { height: 10px; border-radius: 3px; }
-    .b-green { background: #edf7ee; }
-    .b-amber { background: #fff3dc; }
-    .b-blue { background: #e8edf5; }
-    .b-red { background: #fdf0ee; }
-    /* Glossary preview */
-    .preview-glossary {
-      background: #f1f3f5;
-      padding: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .prev-toolbar {
-      background: #fff;
-      border-radius: 4px;
-      border: 1px solid #ddd;
-      padding: 5px 8px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .prev-search { flex: 1; height: 8px; background: #f0f0f0; border-radius: 3px; }
-    .prev-btn { height: 16px; width: 40px; border-radius: 3px; background: #b07020; }
-    .prev-glossary-table { background: #fff; border-radius: 4px; border: 1px solid #ddd; overflow: hidden; }
-    .prev-gt-header { background: #f5f0e8; padding: 4px 8px; display: grid; grid-template-columns: 2fr 2fr 1fr 1fr; gap: 4px; }
-    .prev-gt-row { padding: 4px 8px; display: grid; grid-template-columns: 2fr 2fr 1fr 1fr; gap: 4px; border-top: 1px solid #f0f0f0; align-items: center; }
-    /* WP preview */
-    .preview-wp {
-      background: #f0f0f1;
-      display: flex;
-      flex-direction: column;
-    }
-    .prev-wp-adminbar { background: #1d2327; height: 18px; display: flex; align-items: center; padding: 0 8px; gap: 6px; }
-    .prev-wp-logo { width: 10px; height: 10px; border-radius: 50%; background: #fff; opacity: .7; }
-    .prev-wp-bar-item { height: 5px; width: 30px; background: rgba(255,255,255,.3); border-radius: 2px; }
-    .prev-wp-toolbar { background: #fff; border-bottom: 1px solid #ddd; height: 20px; display: flex; align-items: center; padding: 0 8px; gap: 4px; }
-    .prev-wp-tool { height: 5px; width: 18px; background: #ddd; border-radius: 2px; }
-    .prev-wp-body { flex: 1; display: grid; grid-template-columns: 1fr 80px; }
-    .prev-wp-editor { background: #fff; padding: 8px; display: flex; flex-direction: column; gap: 4px; }
-    .prev-wp-title { height: 8px; background: #eee; border-radius: 3px; width: 80%; }
-    .prev-wp-para { height: 5px; background: #f5f5f5; border-radius: 2px; }
-    .prev-wp-sidebar { background: #fff; border-left: 1px solid #ddd; padding: 6px; display: flex; flex-direction: column; gap: 4px; }
-    .prev-wp-panel-title { height: 6px; background: #b07020; border-radius: 2px; width: 60%; margin-bottom: 2px; }
-    .prev-wp-check { height: 5px; background: #eee; border-radius: 2px; }
-    .prev-wp-submit { height: 14px; background: #b07020; border-radius: 3px; margin-top: 2px; }
-    /* Card body */
-    .card-body {
-      padding: 1.5rem;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-    .card-who {
-      font-size: .72rem;
-      font-weight: 600;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: .4rem;
-    }
-    .card-title {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: .4rem;
-    }
-    .card-desc {
-      font-size: .88rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-      flex: 1;
-      margin-bottom: 1rem;
-    }
-    .card-link {
-      display: inline-flex;
-      align-items: center;
-      gap: .3rem;
-      color: var(--accent);
-      text-decoration: none;
-      font-size: .88rem;
-      font-weight: 600;
-    }
-    .card-link:hover { text-decoration: underline; }
-    /* Explainer link */
-    .explainer-link {
-      text-align: center;
-      padding: 2rem 0 0;
-      font-size: .9rem;
-      color: var(--text-muted);
-    }
-    .explainer-link a {
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 500;
-    }
-    .explainer-link a:hover { text-decoration: underline; }
-    footer {
-      text-align: center;
-      padding: 2rem 1.5rem;
-      border-top: 1px solid var(--border);
-      font-size: .82rem;
-      color: var(--text-faint);
-    }
-    footer a { color: var(--accent); text-decoration: none; }
+
+    /* Nav */
+    .site-nav { background: #fff; border-bottom: 1px solid var(--border); }
+    .nav-inner { max-width: 1080px; margin: 0 auto; padding: 0 2rem; height: 52px; display: flex; align-items: center; }
+    .nav-wordmark { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 1.15rem; font-weight: 600; color: var(--accent); text-decoration: none; flex-shrink: 0; padding-right: 1.5rem; border-right: 1px solid var(--border); }
+    .nav-links { flex: 1; display: flex; align-items: center; justify-content: center; gap: .7rem; font-family: 'DM Sans', system-ui, sans-serif; font-size: .8rem; letter-spacing: .02em; flex-wrap: wrap; }
+    .nav-links a { color: rgba(14,26,18,.5); text-decoration: none; transition: color .15s; padding-bottom: 2px; border-bottom: 2px solid transparent; white-space: nowrap; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 500; }
+    .nav-sep { color: var(--border); }
+    .nav-label { color: var(--text-faint); font-size: .73rem; }
+    .nav-badge { flex-shrink: 0; background: var(--accent-light); color: var(--accent); font-family: 'DM Sans', system-ui, sans-serif; font-size: .62rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: .22rem .6rem; border-radius: 3px; }
+
+    /* Hero */
+    .page-hero { background: var(--accent); padding: 4rem 2rem 3.5rem; animation: fadeSlideIn .4s ease .1s both; }
+    .page-hero-inner { max-width: 780px; margin: 0 auto; }
+    .page-eyebrow { font-family: 'DM Sans', system-ui, sans-serif; font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.65); margin-bottom: .6rem; }
+    .page-hero h1 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 600; color: #fff; line-height: 1.15; margin-bottom: .75rem; }
+    .page-hero p { font-family: 'DM Sans', system-ui, sans-serif; font-size: .9rem; color: rgba(255,255,255,.75); line-height: 1.6; }
+
+    /* Card grid */
+    .main-wrap { max-width: 1080px; margin: 0 auto; padding: 0 2rem; }
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; padding: 3rem 0 4rem; animation: fadeSlideIn .5s ease .25s both; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; transition: box-shadow .2s, border-color .2s; text-decoration: none; color: inherit; }
+    .card:hover { box-shadow: var(--shadow-lg); border-color: rgba(26,107,74,.3); }
+    .card-preview { height: 160px; background: var(--accent-dark); position: relative; overflow: hidden; }
+    .card-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+    .card-eyebrow { font-family: 'DM Sans', system-ui, sans-serif; font-size: .7rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: .4rem; }
+    .card-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.35rem; font-weight: 600; color: var(--text); margin-bottom: .5rem; }
+    .card-desc { font-family: 'DM Sans', system-ui, sans-serif; font-size: .88rem; color: var(--text-muted); line-height: 1.55; flex: 1; margin-bottom: 1rem; }
+    .card-cta { font-family: 'DM Sans', system-ui, sans-serif; font-size: .82rem; font-weight: 500; color: var(--accent); }
   </style>
 </head>
 <body>
 
-<nav class="suite-nav" role="navigation" aria-label="Hawk site navigation">
-  <span class="nav-brand">Hawk</span>
-  <div class="nav-links">
-    <a href="../explainer.html">How it works</a>
-    <span class="nav-sep" aria-hidden="true">·</span>
-    <span class="nav-label">Mockups:</span>
-    <a href="index.html" class="active">Overview</a>
-    <a href="review.html">Review</a>
-    <a href="dashboard.html">Dashboard</a>
-    <a href="glossary.html">Glossary</a>
-    <a href="wp-plugin.html">WP plugin</a>
+  <nav class="site-nav" role="navigation" aria-label="Hawk site navigation">
+    <div class="nav-inner">
+      <a href="../explainer.html" class="nav-wordmark">Hawk</a>
+      <div class="nav-links">
+        <a href="../explainer.html">How it works</a>
+        <span class="nav-sep">·</span>
+        <span class="nav-label">Mockups:</span>
+        <a href="index.html" class="active">Overview</a>
+        <a href="review.html">Review</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="glossary.html">Glossary</a>
+        <a href="wp-plugin.html">WP plugin</a>
+      </div>
+      <span class="nav-badge">mockup</span>
+    </div>
+  </nav>
+
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <div class="page-eyebrow">Interface mockups</div>
+      <h1>Hawk in action</h1>
+      <p>Static mockups showing how Hawk integrates into newsroom tools — for partner review and stakeholder demos.</p>
+    </div>
+  </section>
+
+  <div class="main-wrap">
+    <div class="card-grid">
+
+      <!-- Review interface -->
+      <a href="review.html" class="card">
+        <div class="card-preview">
+          <div style="position:absolute;inset:0;display:flex;gap:2px;padding:12px;">
+            <div style="flex:1;background:rgba(255,255,255,.07);border-radius:4px;"></div>
+            <div style="flex:1;background:rgba(26,107,74,.25);border-radius:4px;"></div>
+          </div>
+          <div style="position:absolute;top:0;left:0;right:0;height:28px;background:var(--accent);opacity:.7;"></div>
+          <div style="position:absolute;bottom:28px;left:12px;right:12px;height:1px;background:rgba(255,255,255,.1);"></div>
+          <div style="position:absolute;bottom:44px;left:12px;right:12px;height:1px;background:rgba(255,255,255,.1);"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-eyebrow">Editor tool</div>
+          <div class="card-title">Review interface</div>
+          <div class="card-desc">Side-by-side view for STNS reviewers comparing source and translated articles paragraph by paragraph.</div>
+          <div class="card-cta">View mockup →</div>
+        </div>
+      </a>
+
+      <!-- Partner dashboard -->
+      <a href="dashboard.html" class="card">
+        <div class="card-preview">
+          <div style="position:absolute;top:0;left:0;right:0;height:32px;background:var(--accent);opacity:.8;"></div>
+          <div style="position:absolute;top:40px;left:12px;right:12px;height:8px;border-radius:2px;background:rgba(255,255,255,.12);"></div>
+          <div style="position:absolute;top:56px;left:12px;right:12px;height:8px;border-radius:2px;background:rgba(255,255,255,.08);"></div>
+          <div style="position:absolute;top:72px;left:12px;right:12px;height:8px;border-radius:2px;background:rgba(255,255,255,.06);"></div>
+          <div style="position:absolute;top:88px;left:12px;right:80px;height:8px;border-radius:2px;background:rgba(255,255,255,.05);"></div>
+          <div style="position:absolute;top:56px;right:12px;width:50px;height:8px;border-radius:2px;background:rgba(26,107,74,.5);"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-eyebrow">Partner tool</div>
+          <div class="card-title">Partner dashboard</div>
+          <div class="card-desc">Job management for partner newsrooms — submit, track, and download translation jobs.</div>
+          <div class="card-cta">View mockup →</div>
+        </div>
+      </a>
+
+      <!-- Glossary editor -->
+      <a href="glossary.html" class="card">
+        <div class="card-preview">
+          <div style="position:absolute;top:0;left:0;right:0;height:28px;background:var(--accent);opacity:.8;"></div>
+          <div style="position:absolute;top:40px;left:12px;width:40%;display:flex;flex-direction:column;gap:8px;">
+            <div style="height:7px;border-radius:2px;background:rgba(255,255,255,.15);"></div>
+            <div style="height:7px;border-radius:2px;background:rgba(255,255,255,.1);"></div>
+            <div style="height:7px;border-radius:2px;background:rgba(255,255,255,.08);"></div>
+          </div>
+          <div style="position:absolute;top:43px;left:52%;font-family:sans-serif;font-size:9px;color:rgba(255,255,255,.3);">→</div>
+          <div style="position:absolute;top:40px;right:12px;width:40%;display:flex;flex-direction:column;gap:8px;">
+            <div style="height:7px;border-radius:2px;background:rgba(26,107,74,.5);"></div>
+            <div style="height:7px;border-radius:2px;background:rgba(26,107,74,.3);"></div>
+            <div style="height:7px;border-radius:2px;background:rgba(26,107,74,.25);"></div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-eyebrow">Admin tool</div>
+          <div class="card-title">Glossary editor</div>
+          <div class="card-desc">Manage the NJ journalism glossary — the 200+ term substitution table applied before every translation.</div>
+          <div class="card-cta">View mockup →</div>
+        </div>
+      </a>
+
+      <!-- WordPress plugin -->
+      <a href="wp-plugin.html" class="card">
+        <div class="card-preview">
+          <div style="position:absolute;top:0;left:0;right:0;height:20px;background:rgba(0,0,0,.5);"></div>
+          <div style="position:absolute;top:20px;left:0;width:36px;bottom:0;background:rgba(0,0,0,.35);"></div>
+          <div style="position:absolute;top:28px;left:44px;right:60px;height:10px;border-radius:2px;background:rgba(255,255,255,.15);"></div>
+          <div style="position:absolute;top:46px;left:44px;right:60px;height:6px;border-radius:2px;background:rgba(255,255,255,.08);"></div>
+          <div style="position:absolute;top:60px;left:44px;right:60px;height:6px;border-radius:2px;background:rgba(255,255,255,.06);"></div>
+          <div style="position:absolute;top:20px;right:0;width:52px;bottom:0;background:rgba(26,107,74,.2);border-left:1px solid rgba(26,107,74,.3);">
+            <div style="height:16px;background:rgba(26,107,74,.5);"></div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-eyebrow">CMS integration</div>
+          <div class="card-title">WordPress plugin</div>
+          <div class="card-desc">Gutenberg sidebar panel and block for submitting translation jobs directly from the post editor.</div>
+          <div class="card-cta">View mockup →</div>
+        </div>
+      </a>
+
+    </div>
   </div>
-  <span class="mockup-badge">mockup</span>
-</nav>
-
-<header>
-  <p class="eyebrow">Hawk News Service — interface mockups</p>
-  <h1>Static mockups for team review</h1>
-  <p>Four proposed interfaces for CCM colleagues and STNS translation partners. Not interactive — for review and discussion only.</p>
-</header>
-
-<main>
-  <div class="section-label">All interfaces</div>
-  <h2>What we're building</h2>
-  <p class="intro">Each mockup shows a different part of the Hawk system. Click any card to open the full mockup.</p>
-
-  <div class="card-grid" role="list">
-
-    <!-- Review interface -->
-    <article class="mockup-card" role="listitem">
-      <div class="card-preview preview-review" aria-hidden="true">
-        <div class="prev-jobbar">
-          <span style="font-weight:600;color:#1a2e4a;">Job a3f892b1</span>
-          <span style="color:#bbb;">·</span>
-          Newark Ledger → Spanish
-          <span class="prev-tag">Reviewed</span>
-          <span style="margin-left:auto;font-size:8px;color:#999;">2 of 5 reviewed</span>
-        </div>
-        <div class="prev-row approved">
-          <span class="prev-num">¶1</span>
-          <div class="prev-score score-g">4.4</div>
-          <div class="prev-text"></div>
-          <div class="prev-text dark"></div>
-          <div style="font-size:8px;color:#2d6a32;font-weight:600;">Approved</div>
-        </div>
-        <div class="prev-row flagged">
-          <span class="prev-num">¶2</span>
-          <div class="prev-score score-r">2.1</div>
-          <div class="prev-text"></div>
-          <div style="background:#fff3f3;border:1px solid #e08080;border-radius:3px;height:24px;"></div>
-          <span class="prev-tag flagged" style="font-size:7px;">Editing</span>
-        </div>
-        <div class="prev-row">
-          <span class="prev-num">¶3</span>
-          <div class="prev-score score-a">3.7</div>
-          <div class="prev-text"></div>
-          <div class="prev-text dark"></div>
-          <div style="font-size:8px;color:#2d6a32;font-weight:600;">Approved</div>
-        </div>
-      </div>
-      <div class="card-body">
-        <div class="card-who">STNS editors</div>
-        <div class="card-title">Review interface</div>
-        <p class="card-desc">Side-by-side editor where STNS translators review machine-translated paragraphs before delivery. Flagged passages open an editable textarea with AI-identified issues listed.</p>
-        <a href="review.html" class="card-link">View mockup →</a>
-      </div>
-    </article>
-
-    <!-- Partner dashboard -->
-    <article class="mockup-card" role="listitem">
-      <div class="card-preview preview-dashboard" aria-hidden="true">
-        <div class="prev-statsbar">
-          <div class="prev-stat"><div class="prev-stat-num">47</div><div class="prev-stat-label">Jobs</div></div>
-          <div class="prev-stat"><div class="prev-stat-num" style="color:#b07020;">153</div><div class="prev-stat-label">Quota left</div></div>
-          <div class="prev-stat"><div class="prev-stat-num" style="color:#2b7a6a;">2</div><div class="prev-stat-label">Active</div></div>
-          <div class="prev-stat"><div class="prev-stat-num" style="color:#2d6a32;">44</div><div class="prev-stat-label">Done</div></div>
-        </div>
-        <div class="prev-table">
-          <div class="prev-table-header">
-            <div class="prev-th"></div><div class="prev-th"></div><div class="prev-th"></div><div class="prev-th"></div>
-          </div>
-          <div class="prev-table-row">
-            <div class="prev-td" style="background:#ccc;"></div>
-            <div class="prev-td"></div>
-            <div class="prev-td"></div>
-            <div class="prev-badge b-amber"></div>
-          </div>
-          <div class="prev-table-row">
-            <div class="prev-td" style="background:#ccc;"></div>
-            <div class="prev-td"></div>
-            <div class="prev-td"></div>
-            <div class="prev-badge b-green"></div>
-          </div>
-          <div class="prev-table-row">
-            <div class="prev-td" style="background:#ccc;"></div>
-            <div class="prev-td"></div>
-            <div class="prev-td"></div>
-            <div class="prev-badge b-green"></div>
-          </div>
-          <div class="prev-table-row">
-            <div class="prev-td" style="background:#ccc;"></div>
-            <div class="prev-td"></div>
-            <div class="prev-td"></div>
-            <div class="prev-badge b-red"></div>
-          </div>
-        </div>
-      </div>
-      <div class="card-body">
-        <div class="card-who">Newsroom partners</div>
-        <div class="card-title">Partner dashboard</div>
-        <p class="card-desc">Job tracker and usage overview for NJ News Commons newsrooms. Shows quota remaining, active jobs, recent translation history, and API key management.</p>
-        <a href="dashboard.html" class="card-link">View mockup →</a>
-      </div>
-    </article>
-
-    <!-- Glossary editor -->
-    <article class="mockup-card" role="listitem">
-      <div class="card-preview preview-glossary" aria-hidden="true">
-        <div class="prev-toolbar">
-          <div class="prev-search"></div>
-          <div class="prev-btn"></div>
-        </div>
-        <div class="prev-glossary-table">
-          <div class="prev-gt-header">
-            <div class="prev-th"></div><div class="prev-th"></div><div class="prev-th"></div><div class="prev-th"></div>
-          </div>
-          <div class="prev-gt-row">
-            <div style="font-size:8px;color:#333;font-weight:500;">Board of Education</div>
-            <div style="font-size:8px;color:#333;">Junta de Educación</div>
-            <div class="prev-badge b-blue" style="height:10px;"></div>
-            <div style="font-size:7px;color:#999;">Global</div>
-          </div>
-          <div class="prev-gt-row">
-            <div style="font-size:8px;color:#333;font-weight:500;">NJ Transit</div>
-            <div style="font-size:8px;color:#333;">NJ Transit</div>
-            <div class="prev-badge b-amber" style="height:10px;"></div>
-            <div style="font-size:7px;color:#999;">Global</div>
-          </div>
-          <div class="prev-gt-row">
-            <div style="font-size:8px;color:#333;font-weight:500;">Governor</div>
-            <div style="font-size:8px;color:#333;">Gobernador</div>
-            <div class="prev-badge b-blue" style="height:10px;"></div>
-            <div style="font-size:7px;color:#999;">Global</div>
-          </div>
-          <div class="prev-gt-row">
-            <div style="font-size:8px;color:#333;font-weight:500;">Passaic County</div>
-            <div style="font-size:8px;color:#333;">Condado de Passaic</div>
-            <div class="prev-badge b-green" style="height:10px;"></div>
-            <div style="font-size:7px;color:#999;">Global</div>
-          </div>
-        </div>
-      </div>
-      <div class="card-body">
-        <div class="card-who">STNS editors</div>
-        <div class="card-title">Glossary editor</div>
-        <p class="card-desc">Term management for NJ journalism-specific vocabulary. STNS editors add proper nouns, government titles, and place names that should translate consistently across every newsroom's stories.</p>
-        <a href="glossary.html" class="card-link">View mockup →</a>
-      </div>
-    </article>
-
-    <!-- WordPress plugin -->
-    <article class="mockup-card" role="listitem">
-      <div class="card-preview preview-wp" aria-hidden="true">
-        <div class="prev-wp-adminbar">
-          <div class="prev-wp-logo"></div>
-          <div class="prev-wp-bar-item"></div>
-          <div class="prev-wp-bar-item" style="width:50px;margin-left:auto;"></div>
-        </div>
-        <div class="prev-wp-toolbar">
-          <div class="prev-wp-tool"></div>
-          <div class="prev-wp-tool"></div>
-          <div class="prev-wp-tool" style="width:60px;margin-left:auto;background:#b07020;"></div>
-        </div>
-        <div class="prev-wp-body">
-          <div class="prev-wp-editor">
-            <div class="prev-wp-title"></div>
-            <div class="prev-wp-para" style="width:95%;"></div>
-            <div class="prev-wp-para" style="width:88%;"></div>
-            <div class="prev-wp-para" style="width:92%;"></div>
-            <div class="prev-wp-para" style="width:75%;"></div>
-          </div>
-          <div class="prev-wp-sidebar">
-            <div class="prev-wp-panel-title"></div>
-            <div class="prev-wp-check"></div>
-            <div class="prev-wp-check" style="width:80%;"></div>
-            <div class="prev-wp-check" style="width:70%;"></div>
-            <div class="prev-wp-check" style="width:75%;"></div>
-            <div class="prev-wp-check" style="width:60%;margin-top:4px;background:#ddd;"></div>
-            <div class="prev-wp-check" style="background:#eee;"></div>
-            <div class="prev-wp-check" style="background:#eee;width:80%;"></div>
-            <div class="prev-wp-submit"></div>
-          </div>
-        </div>
-      </div>
-      <div class="card-body">
-        <div class="card-who">Newsroom partners</div>
-        <div class="card-title">WordPress plugin</div>
-        <p class="card-desc">Hawk panel in the WordPress block editor sidebar. Newsrooms select target languages and quality tier, then submit a post for translation directly from the post editing screen.</p>
-        <a href="wp-plugin.html" class="card-link">View mockup →</a>
-      </div>
-    </article>
-
-  </div>
-
-  <div class="explainer-link">
-    Not sure what these interfaces do? Read <a href="../explainer.html">how Hawk works →</a>
-  </div>
-</main>
-
-<footer>
-  Hawk News Service — Center for Cooperative Media at Montclair State University
-  <br>Static mockups for internal team review. Not production interfaces.
-</footer>
 
 </body>
 </html>
