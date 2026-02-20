@@ -61,33 +61,53 @@
     /* ── Suite nav ── */
     .suite-nav {
       background: var(--navy);
-      padding: .5rem 1.5rem;
+      height: 46px;
+      padding: 0 2rem;
       display: flex;
       align-items: center;
-      gap: .75rem;
-      flex-wrap: wrap;
-      font-size: .8rem;
+      gap: 0;
+      font-family: 'DM Sans', system-ui, sans-serif;
     }
     .nav-brand {
       font-family: 'Playfair Display', Georgia, serif;
       font-weight: 700;
       color: #fff;
-      font-size: .9rem;
-      margin-right: .25rem;
+      text-decoration: none;
+      font-size: .92rem;
+      letter-spacing: .03em;
+      flex-shrink: 0;
+      padding-right: 1.25rem;
+      border-right: 1px solid rgba(255,255,255,.15);
     }
-    .suite-nav a { color: rgba(255,255,255,.65); text-decoration: none; transition: color .15s; }
-    .suite-nav a:hover, .suite-nav a.active { color: #fff; }
-    .nav-sep { color: rgba(255,255,255,.3); }
-    .nav-label { color: rgba(255,255,255,.4); font-size: .75rem; }
+    .nav-links {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .65rem;
+      font-size: .8rem;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,.58);
+      text-decoration: none;
+      transition: color .15s;
+      white-space: nowrap;
+      padding: .15rem 0;
+    }
+    .nav-links a:hover { color: rgba(255,255,255,.9); }
+    .nav-links a.active { color: #fff; font-weight: 500; }
+    .nav-sep { color: rgba(255,255,255,.2); }
+    .nav-label { color: rgba(255,255,255,.3); font-size: .73rem; letter-spacing: .04em; }
     .mockup-badge {
-      margin-left: auto;
+      flex-shrink: 0;
       background: var(--accent);
       color: #fff;
-      font-size: .65rem;
+      font-size: .62rem;
       font-weight: 600;
       letter-spacing: .1em;
       text-transform: uppercase;
-      padding: .2rem .55rem;
+      padding: .22rem .6rem;
       border-radius: 3px;
     }
 
@@ -95,7 +115,7 @@
     header {
       background: var(--navy);
       color: #fff;
-      padding: 3rem 1.5rem 2.5rem;
+      padding: 4rem 2rem 3.5rem;
       text-align: center;
     }
     .eyebrow {
@@ -165,7 +185,7 @@
 
     @keyframes wpNodeGlow {
       0%, 2%   { fill: rgba(255,255,255,0.05); stroke: rgba(255,255,255,0.1); stroke-width: 1; }
-      10%      { fill: rgba(176,112,32,0.4); stroke: #b07020; stroke-width: 2; }
+      10%      { fill: rgba(176,112,32,0.55); stroke: #d09030; stroke-width: 2.5; }
       22%      { fill: rgba(176,112,32,0.1); stroke: rgba(255,255,255,0.15); stroke-width: 1; }
       100%     { fill: rgba(255,255,255,0.05); stroke: rgba(255,255,255,0.1); stroke-width: 1; }
     }
@@ -208,6 +228,27 @@
     .wd1 { animation: wpDotTravel 5s ease-in-out 0.6s infinite; }
     .wd2 { animation: wpDotTravel 5s ease-in-out 1.85s infinite; }
     .wd3 { animation: wpDotTravel 5s ease-in-out 3.1s infinite; }
+    /* Enhanced node group shadow */
+    @keyframes wpGroupShadow {
+      0%, 4%   { filter: none; }
+      10%      { filter: drop-shadow(0 0 8px rgba(176,112,32,0.8)) drop-shadow(0 0 20px rgba(176,112,32,0.4)); }
+      22%      { filter: none; }
+      100%     { filter: none; }
+    }
+    .wn1 { animation: wpGroupShadow 5s ease-in-out 0s infinite; }
+    .wn2 { animation: wpGroupShadow 5s ease-in-out 1.25s infinite; }
+    .wn3 { animation: wpGroupShadow 5s ease-in-out 2.5s infinite; }
+    .wn4 { animation: wpGroupShadow 5s ease-in-out 3.75s infinite; }
+
+    /* Echo dots */
+    @keyframes wpDotEcho {
+      0%, 11%, 100% { opacity: 0; transform: translateX(0); }
+      13%  { opacity: 0.4; transform: translateX(4px); }
+      20%  { opacity: 0; transform: translateX(32px); }
+    }
+    .wde1 { animation: wpDotEcho 5s ease-in-out 0.95s infinite; }
+    .wde2 { animation: wpDotEcho 5s ease-in-out 2.2s infinite; }
+    .wde3 { animation: wpDotEcho 5s ease-in-out 3.45s infinite; }
 
     /* ── Editor frame ── */
     .editor-frame {
@@ -792,17 +833,19 @@
 </head>
 <body>
 
-<nav class="suite-nav" role="navigation" aria-label="Hawk suite navigation">
+<nav class="suite-nav" role="navigation" aria-label="Hawk site navigation">
   <span class="nav-brand">Hawk</span>
-  <a href="../explainer.html">How it works</a>
-  <span class="nav-sep" aria-hidden="true">·</span>
-  <span class="nav-label">Mockups:</span>
-  <a href="index.html">Overview</a>
-  <a href="review.html">Review</a>
-  <a href="dashboard.html">Dashboard</a>
-  <a href="glossary.html">Glossary</a>
-  <a href="wp-plugin.html" class="active">WP plugin</a>
-  <span class="mockup-badge" aria-label="This is a static mockup">mockup</span>
+  <div class="nav-links">
+    <a href="../explainer.html">How it works</a>
+    <span class="nav-sep" aria-hidden="true">·</span>
+    <span class="nav-label">Mockups:</span>
+    <a href="index.html">Overview</a>
+    <a href="review.html">Review</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="glossary.html">Glossary</a>
+    <a href="wp-plugin.html" class="active">WP plugin</a>
+  </div>
+  <span class="mockup-badge">mockup</span>
 </nav>
 
 <header>
@@ -860,8 +903,11 @@
         </g>
         <!-- Traveling dots — at connector start positions, travel +32px -->
         <g class="wd1"><circle cx="176" cy="70" r="4.5" fill="#b07020"/></g>
+        <g class="wde1"><circle cx="176" cy="70" r="3" fill="rgba(208,144,48,0.6)"/></g>
         <g class="wd2"><circle cx="384" cy="70" r="4.5" fill="#b07020"/></g>
+        <g class="wde2"><circle cx="384" cy="70" r="3" fill="rgba(208,144,48,0.6)"/></g>
         <g class="wd3"><circle cx="592" cy="70" r="4.5" fill="#b07020"/></g>
+        <g class="wde3"><circle cx="592" cy="70" r="3" fill="rgba(208,144,48,0.6)"/></g>
       </svg>
     </div>
   </section>

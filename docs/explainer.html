@@ -161,11 +161,11 @@
     main {
       max-width: 900px;
       margin: 0 auto;
-      padding: 0 1.5rem 4rem;
+      padding: 4rem 2rem 7rem;
     }
 
     section {
-      margin: 3.5rem 0;
+      margin-bottom: 5rem;
     }
 
     .section-label {
@@ -581,22 +581,44 @@
     }
 
     /* ── Suite nav bar ── */
-    .suite-nav-bar {
+    /* ── Suite nav ── */
+    .suite-nav {
       background: rgba(26,46,74,0.97);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      padding: .45rem 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      height: 46px;
+      padding: 0 2rem;
       display: flex;
       align-items: center;
-      gap: .6rem;
-      flex-wrap: wrap;
-      font-size: .78rem;
-      font-family: 'Source Serif 4', Georgia, serif;
+      font-family: 'DM Sans', system-ui, sans-serif;
     }
-    .snav-brand { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; color: #fff; font-size: .85rem; margin-right: .2rem; }
-    .snav-link { color: rgba(255,255,255,.55); text-decoration: none; }
-    .snav-link:hover { color: #fff; }
-    .snav-sep { color: rgba(255,255,255,.2); }
-    .snav-label { color: rgba(255,255,255,.3); font-size: .72rem; }
+    .nav-brand {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 700;
+      color: #fff;
+      font-size: .92rem;
+      letter-spacing: .03em;
+      flex-shrink: 0;
+      padding-right: 1.25rem;
+      border-right: 1px solid rgba(255,255,255,.15);
+    }
+    .nav-links {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .65rem;
+      font-size: .8rem;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,.55);
+      text-decoration: none;
+      transition: color .15s;
+      white-space: nowrap;
+    }
+    .nav-links a:hover { color: rgba(255,255,255,.9); }
+    .nav-links .nav-current { color: rgba(255,255,255,.85); }
+    .nav-sep { color: rgba(255,255,255,.2); }
+    .nav-label { color: rgba(255,255,255,.28); font-size: .73rem; }
 
     /* ── Pipeline SVG animation ── */
     .pipeline-anim-wrap {
@@ -609,7 +631,7 @@
     .pipeline-anim-wrap svg { min-width: 620px; width: 100%; display: block; }
     @keyframes nodeGlow {
       0%, 1%  { fill: rgba(255,255,255,0.05); stroke: rgba(255,255,255,0.1); stroke-width: 1; }
-      8%      { fill: rgba(176,112,32,0.35); stroke: #b07020; stroke-width: 1.5; }
+      8%      { fill: rgba(176,112,32,0.5); stroke: #d09030; stroke-width: 2; }
       14%     { fill: rgba(176,112,32,0.08); stroke: rgba(255,255,255,0.12); stroke-width: 1; }
       100%    { fill: rgba(255,255,255,0.05); stroke: rgba(255,255,255,0.1); stroke-width: 1; }
     }
@@ -665,6 +687,33 @@
     .pd4 { animation: dotTravel 7s ease-in-out 3.5s infinite; }
     .pd5 { animation: dotTravel 7s ease-in-out 4.5s infinite; }
     .pd6 { animation: dotTravel 7s ease-in-out 5.5s infinite; }
+    /* ── Enhanced node glow ── */
+    @keyframes nodeGroupShadow {
+      0%, 4%   { filter: none; }
+      9%       { filter: drop-shadow(0 0 8px rgba(176,112,32,0.8)) drop-shadow(0 0 20px rgba(176,112,32,0.4)); }
+      17%      { filter: none; }
+      100%     { filter: none; }
+    }
+    .na1 { animation: nodeGroupShadow 7s ease-in-out 0s infinite; }
+    .na2 { animation: nodeGroupShadow 7s ease-in-out 1s infinite; }
+    .na3 { animation: nodeGroupShadow 7s ease-in-out 2s infinite; }
+    .na4 { animation: nodeGroupShadow 7s ease-in-out 3s infinite; }
+    .na5 { animation: nodeGroupShadow 7s ease-in-out 4s infinite; }
+    .na6 { animation: nodeGroupShadow 7s ease-in-out 5s infinite; }
+    .na7 { animation: nodeGroupShadow 7s ease-in-out 6s infinite; }
+
+    /* ── Echo dots (trail behind primary dots) ── */
+    @keyframes dotEcho {
+      0%, 8%, 100% { opacity: 0; transform: translateX(0); }
+      10%  { opacity: 0.45; transform: translateX(4px); }
+      14%  { opacity: 0; transform: translateX(24px); }
+    }
+    .pde1 { animation: dotEcho 7s ease-in-out 0.85s infinite; }
+    .pde2 { animation: dotEcho 7s ease-in-out 1.85s infinite; }
+    .pde3 { animation: dotEcho 7s ease-in-out 2.85s infinite; }
+    .pde4 { animation: dotEcho 7s ease-in-out 3.85s infinite; }
+    .pde5 { animation: dotEcho 7s ease-in-out 4.85s infinite; }
+    .pde6 { animation: dotEcho 7s ease-in-out 5.85s infinite; }
 
     /* ── Section numbers ── */
     .section-number {
@@ -697,16 +746,18 @@
   </div>
 </header>
 
-<nav class="suite-nav-bar" role="navigation" aria-label="Hawk suite navigation">
-  <span class="snav-brand">Hawk</span>
-  <span class="snav-link" aria-current="page">How it works</span>
-  <span class="snav-sep" aria-hidden="true">·</span>
-  <span class="snav-label">Mockups:</span>
-  <a href="mockups/index.html" class="snav-link">Overview</a>
-  <a href="mockups/review.html" class="snav-link">Review</a>
-  <a href="mockups/dashboard.html" class="snav-link">Dashboard</a>
-  <a href="mockups/glossary.html" class="snav-link">Glossary</a>
-  <a href="mockups/wp-plugin.html" class="snav-link">WP plugin</a>
+<nav class="suite-nav" role="navigation" aria-label="Hawk site navigation">
+  <span class="nav-brand">Hawk</span>
+  <div class="nav-links">
+    <span class="nav-current">How it works</span>
+    <span class="nav-sep" aria-hidden="true">·</span>
+    <span class="nav-label">Mockups:</span>
+    <a href="mockups/index.html">Overview</a>
+    <a href="mockups/review.html">Review</a>
+    <a href="mockups/dashboard.html">Dashboard</a>
+    <a href="mockups/glossary.html">Glossary</a>
+    <a href="mockups/wp-plugin.html">WP plugin</a>
+  </div>
 </nav>
 
 <main>
@@ -804,11 +855,17 @@
         </g>
         <!-- Traveling dots — positioned at connector start, travel +24px via dotTravel keyframe -->
         <g class="pd1"><circle cx="108" cy="70" r="4" fill="#b07020"/></g>
+        <g class="pde1"><circle cx="108" cy="70" r="2.5" fill="rgba(208,144,48,0.6)"/></g>
         <g class="pd2"><circle cx="240" cy="70" r="4" fill="#b07020"/></g>
+        <g class="pde2"><circle cx="240" cy="70" r="2.5" fill="rgba(208,144,48,0.6)"/></g>
         <g class="pd3"><circle cx="372" cy="70" r="4" fill="#b07020"/></g>
+        <g class="pde3"><circle cx="372" cy="70" r="2.5" fill="rgba(208,144,48,0.6)"/></g>
         <g class="pd4"><circle cx="504" cy="70" r="4" fill="#b07020"/></g>
+        <g class="pde4"><circle cx="504" cy="70" r="2.5" fill="rgba(208,144,48,0.6)"/></g>
         <g class="pd5"><circle cx="636" cy="70" r="4" fill="#b07020"/></g>
+        <g class="pde5"><circle cx="636" cy="70" r="2.5" fill="rgba(208,144,48,0.6)"/></g>
         <g class="pd6"><circle cx="768" cy="70" r="4" fill="#b07020"/></g>
+        <g class="pde6"><circle cx="768" cy="70" r="2.5" fill="rgba(208,144,48,0.6)"/></g>
       </svg>
     </div>
 

@@ -38,21 +38,67 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { background: var(--bg); color: var(--text); font-family: 'DM Sans', system-ui, sans-serif; font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
 
-    .suite-nav { background: var(--navy); padding: .5rem 1.5rem; display: flex; align-items: center; gap: .75rem; flex-wrap: wrap; font-size: .8rem; }
-    .nav-brand { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; color: #fff; font-size: .9rem; }
-    .suite-nav a { color: rgba(255,255,255,.65); text-decoration: none; }
-    .suite-nav a:hover, .suite-nav a.active { color: #fff; }
-    .nav-sep { color: rgba(255,255,255,.3); }
-    .nav-label { color: rgba(255,255,255,.4); font-size: .75rem; }
-    .mockup-badge { margin-left: auto; background: var(--accent); color: #fff; font-size: .65rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: .2rem .55rem; border-radius: 3px; }
+/* ── Suite nav ── */
+    .suite-nav {
+      background: var(--navy);
+      height: 46px;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      font-family: 'DM Sans', system-ui, sans-serif;
+    }
+    .nav-brand {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+      font-size: .92rem;
+      letter-spacing: .03em;
+      flex-shrink: 0;
+      padding-right: 1.25rem;
+      border-right: 1px solid rgba(255,255,255,.15);
+    }
+    .nav-links {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .65rem;
+      font-size: .8rem;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,.58);
+      text-decoration: none;
+      transition: color .15s;
+      white-space: nowrap;
+      padding: .15rem 0;
+    }
+    .nav-links a:hover { color: rgba(255,255,255,.9); }
+    .nav-links a.active { color: #fff; font-weight: 500; }
+    .nav-sep { color: rgba(255,255,255,.2); }
+    .nav-label { color: rgba(255,255,255,.3); font-size: .73rem; letter-spacing: .04em; }
+    .mockup-badge {
+      flex-shrink: 0;
+      background: var(--accent);
+      color: #fff;
+      font-size: .62rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .22rem .6rem;
+      border-radius: 3px;
+    }
 
-    .page-context { max-width: 1100px; margin: 0 auto; padding: 1.75rem 1.5rem .5rem; }
+    .page-context { max-width: 1100px; margin: 0 auto; padding: 2.5rem 2rem 1rem; }
     .page-label { font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: .25rem; }
-    .page-context h1 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.5rem; font-weight: 700; color: var(--text); margin-bottom: .25rem; }
-    .page-context p { font-size: .88rem; color: var(--text-muted); }
+    .page-context h1 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.65rem; font-weight: 700; color: var(--text); margin-bottom: .25rem; }
+    .page-context p { font-size: .88rem; color: var(--text-muted);   margin-bottom: 1rem;
+    }
 
     /* Glossary substitution animation */
-    .gloss-anim-wrap { max-width: 1100px; margin: 1rem auto 0; padding: 0 1.5rem; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .gloss-anim-wrap { max-width: 1100px; margin: 1rem auto 0; padding: 0 2rem; overflow-x: auto; -webkit-overflow-scrolling: touch; }
     .gloss-anim-wrap svg { min-width: 500px; width: 100%; display: block; border-radius: 8px; box-shadow: var(--shadow-lg); }
 
     /* SVG animation keyframes for glossary */
@@ -93,6 +139,19 @@
     .a-t3 { animation: arrowAppear 10s ease-in-out 6.6s infinite; }
     .s-t3 { animation: spanishAppear 10s ease-in-out 6.6s infinite; }
     .sh-t3 { animation: spanishHighlight 10s ease-in-out 6.6s infinite; }
+    /* Enhanced group glow for glossary active state */
+    @keyframes glossGroupShadow {
+      0%, 4%, 28%, 100% { filter: none; }
+      10% { filter: drop-shadow(0 0 10px rgba(176,112,32,0.75)) drop-shadow(0 0 24px rgba(176,112,32,0.35)); }
+      20% { filter: none; }
+    }
+    .h-t1, .s-t1 { animation-timing-function: ease-in-out; }
+    /* Flash on row glow */
+    @keyframes rowGlowFlash {
+      0%, 3%, 28%, 100% { opacity: 0; }
+      6%, 9% { opacity: 1; }
+      16%, 22% { opacity: 0.6; }
+    }
 
     /* Row pulse in glossary table area of SVG */
     @keyframes rowGlow {
@@ -111,7 +170,8 @@
     .gr3 .gtxt { animation: rowLabelGlow 10s ease-in-out 6.6s infinite; }
 
     /* Mockup frame */
-    .mockup-frame { max-width: 1100px; margin: 1.5rem auto 2rem; padding: 0 1.5rem; }
+    .mockup-frame { max-width: 1100px; margin: 1.5rem auto 2rem; padding: 0 2rem;   margin-bottom: 3rem;
+    }
     .interface { background: var(--surface); border: 1px solid var(--app-border); border-radius: var(--radius); box-shadow: var(--shadow-lg); overflow: hidden; }
 
     /* Glossary header */
@@ -173,16 +233,18 @@
 </head>
 <body>
 
-<nav class="suite-nav" role="navigation" aria-label="Hawk suite navigation">
+<nav class="suite-nav" role="navigation" aria-label="Hawk site navigation">
   <span class="nav-brand">Hawk</span>
-  <a href="../explainer.html">How it works</a>
-  <span class="nav-sep" aria-hidden="true">·</span>
-  <span class="nav-label">Mockups:</span>
-  <a href="index.html">Overview</a>
-  <a href="review.html">Review</a>
-  <a href="dashboard.html">Dashboard</a>
-  <a href="glossary.html" class="active">Glossary</a>
-  <a href="wp-plugin.html">WP plugin</a>
+  <div class="nav-links">
+    <a href="../explainer.html">How it works</a>
+    <span class="nav-sep" aria-hidden="true">·</span>
+    <span class="nav-label">Mockups:</span>
+    <a href="index.html">Overview</a>
+    <a href="review.html">Review</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="glossary.html" class="active">Glossary</a>
+    <a href="wp-plugin.html">WP plugin</a>
+  </div>
   <span class="mockup-badge">mockup</span>
 </nav>
 

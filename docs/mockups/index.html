@@ -52,47 +52,63 @@
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
-    /* Suite nav */
+    /* ── Suite nav ── */
     .suite-nav {
       background: var(--navy);
-      padding: .5rem 1.5rem;
+      height: 46px;
+      padding: 0 2rem;
       display: flex;
       align-items: center;
-      gap: .75rem;
-      flex-wrap: wrap;
-      font-size: .8rem;
+      gap: 0;
+      font-family: 'DM Sans', system-ui, sans-serif;
     }
     .nav-brand {
       font-family: 'Playfair Display', Georgia, serif;
       font-weight: 700;
       color: #fff;
-      font-size: .9rem;
-      margin-right: .25rem;
+      text-decoration: none;
+      font-size: .92rem;
+      letter-spacing: .03em;
+      flex-shrink: 0;
+      padding-right: 1.25rem;
+      border-right: 1px solid rgba(255,255,255,.15);
     }
-    .suite-nav a {
-      color: rgba(255,255,255,.65);
+    .nav-links {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .65rem;
+      font-size: .8rem;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,.58);
       text-decoration: none;
       transition: color .15s;
+      white-space: nowrap;
+      padding: .15rem 0;
     }
-    .suite-nav a:hover, .suite-nav a.active { color: #fff; }
-    .nav-sep { color: rgba(255,255,255,.3); }
-    .nav-label { color: rgba(255,255,255,.4); font-size: .75rem; }
+    .nav-links a:hover { color: rgba(255,255,255,.9); }
+    .nav-links a.active { color: #fff; font-weight: 500; }
+    .nav-sep { color: rgba(255,255,255,.2); }
+    .nav-label { color: rgba(255,255,255,.3); font-size: .73rem; letter-spacing: .04em; }
     .mockup-badge {
-      margin-left: auto;
+      flex-shrink: 0;
       background: var(--accent);
       color: #fff;
-      font-size: .65rem;
+      font-size: .62rem;
       font-weight: 600;
       letter-spacing: .1em;
       text-transform: uppercase;
-      padding: .2rem .55rem;
+      padding: .22rem .6rem;
       border-radius: 3px;
     }
     /* Header */
     header {
       background: var(--navy);
       color: #fff;
-      padding: 3rem 1.5rem 2.5rem;
+      padding: 4rem 2rem 3.5rem;
       text-align: center;
     }
     .eyebrow {
@@ -121,7 +137,7 @@
     main {
       max-width: 960px;
       margin: 0 auto;
-      padding: 3rem 1.5rem 4rem;
+      padding: 3rem 2rem 4rem;
     }
     .section-label {
       font-size: .75rem;
@@ -351,17 +367,19 @@
 </head>
 <body>
 
-<nav class="suite-nav" role="navigation" aria-label="Hawk suite navigation">
+<nav class="suite-nav" role="navigation" aria-label="Hawk site navigation">
   <span class="nav-brand">Hawk</span>
-  <a href="../explainer.html">How it works</a>
-  <span class="nav-sep" aria-hidden="true">·</span>
-  <span class="nav-label">Mockups:</span>
-  <a href="index.html" class="active">Overview</a>
-  <a href="review.html">Review</a>
-  <a href="dashboard.html">Dashboard</a>
-  <a href="glossary.html">Glossary</a>
-  <a href="wp-plugin.html">WP plugin</a>
-  <span class="mockup-badge" aria-label="These are static mockups">mockup</span>
+  <div class="nav-links">
+    <a href="../explainer.html">How it works</a>
+    <span class="nav-sep" aria-hidden="true">·</span>
+    <span class="nav-label">Mockups:</span>
+    <a href="index.html" class="active">Overview</a>
+    <a href="review.html">Review</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="glossary.html">Glossary</a>
+    <a href="wp-plugin.html">WP plugin</a>
+  </div>
+  <span class="mockup-badge">mockup</span>
 </nav>
 
 <header>
