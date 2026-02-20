@@ -108,6 +108,14 @@ The deploy script rsyncs code, installs deps, runs `alembic upgrade head`, and r
 
 ---
 
+## CI
+
+GitHub Actions at `.github/workflows/tests.yml`. Matrix build across Python 3.11 and 3.12, runs on push/PR to main.
+
+Unit tests use mocked Redis and DB — no live services needed in CI. The workflow sets `DATABASE_URL=sqlite:///./test.db` as a safety net, but tests should never actually hit the DB (they use `MagicMock` via `app.dependency_overrides`). If a CI run fails with a connection error, a test is leaking a real DB call and needs to be fixed, not the workflow.
+
+---
+
 ## Bug-fixing workflow
 
 When a bug is reported:
