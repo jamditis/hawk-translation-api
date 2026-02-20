@@ -3,1187 +3,458 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WordPress plugin mockup — Hawk</title>
-  <meta name="description" content="Mockup of the Hawk translation plugin inside the WordPress Gutenberg editor.">
-  <meta property="og:title" content="WordPress plugin mockup — Hawk">
-  <meta property="og:description" content="Mockup of the Hawk translation plugin inside the WordPress Gutenberg editor.">
+  <title>WordPress plugin — Hawk mockup</title>
+  <meta name="description" content="Mockup of the Hawk WordPress Gutenberg plugin for translation job submission.">
+  <meta property="og:title" content="WordPress plugin — Hawk mockup">
+  <meta property="og:description" content="Gutenberg sidebar panel and block for submitting Hawk translation jobs from WordPress.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://jamditis.github.io/hawk-translation-api/mockups/wp-plugin.html">
   <meta property="og:image" content="https://hawknewsservice.org/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:title" content="WordPress plugin mockup — Hawk">
-  <meta property="twitter:description" content="Mockup of the Hawk translation plugin inside the WordPress Gutenberg editor.">
-  <meta property="twitter:image" content="https://hawknewsservice.org/og-image.png">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231a2e4a'/><text y='.85em' x='10' font-size='75' font-family='serif' fill='%23b07020'>H</text></svg>">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="WordPress plugin — Hawk mockup">
+  <meta name="twitter:description" content="Gutenberg sidebar panel and block for submitting Hawk translation jobs from WordPress.">
+  <meta name="twitter:image" content="https://hawknewsservice.org/og-image.png">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%231a6b4a'/><text x='16' y='23' font-family='serif' font-size='18' font-weight='700' fill='white' text-anchor='middle'>H</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #fefcf8;
+      --bg: #f8f8f6;
       --surface: #ffffff;
-      --border: #ddd6c2;
-      --text: #1a1510;
-      --text-muted: #6b5840;
-      --text-faint: #9b8870;
-      --accent: #b07020;
-      --accent-light: #d09030;
-      --accent-bg: #fdf5e3;
-      --navy: #1a2e4a;
-      --green: #2d6a32;
-      --green-bg: #edf7ee;
-      --teal: #2b7a6a;
-      --teal-bg: #e8f5f2;
-      --red: #9b2a2a;
-      --red-bg: #fdf0ee;
-      --shadow: 0 2px 12px rgba(0,0,0,.07);
-      --shadow-lg: 0 6px 28px rgba(0,0,0,.11);
-      --radius: 10px;
-      /* WordPress system colors */
-      --wp-bar: #1d2327;
-      --wp-menu: #23282d;
-      --wp-blue: #2271b1;
-      --wp-border: #c3c4c7;
-      --wp-bg: #f0f0f1;
+      --text: #0e1a12;
+      --text-muted: #4a6b55;
+      --text-faint: #8aaa95;
+      --accent: #1a6b4a;
+      --accent-light: #e8f5ee;
+      --accent-dark: #0e3d2a;
+      --border: #d8e0da;
+      --red: #8b2020;
+      --red-bg: #fdf0f0;
+      --shadow: 0 2px 12px rgba(14,26,18,.07);
+      --shadow-lg: 0 6px 28px rgba(14,26,18,.11);
+      --radius: 8px;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'DM Sans', system-ui, sans-serif;
-      font-size: 16px;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
+    body { background: var(--bg); color: var(--text); font-family: 'Cormorant Garamond', Georgia, serif; font-size: 18px; line-height: 1.8; -webkit-font-smoothing: antialiased; }
 
-    /* ── Suite nav ── */
-    .suite-nav {
-      background: var(--navy);
-      height: 46px;
-      padding: 0 2rem;
-      display: flex;
-      align-items: center;
-      gap: 0;
-      font-family: 'DM Sans', system-ui, sans-serif;
-    }
-    .nav-brand {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-weight: 700;
-      color: #fff;
-      text-decoration: none;
-      font-size: .92rem;
-      letter-spacing: .03em;
-      flex-shrink: 0;
-      padding-right: 1.25rem;
-      border-right: 1px solid rgba(255,255,255,.15);
-    }
-    .nav-links {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: .65rem;
-      font-size: .8rem;
-      flex-wrap: wrap;
-    }
-    .nav-links a {
-      color: rgba(255,255,255,.58);
-      text-decoration: none;
-      transition: color .15s;
-      white-space: nowrap;
-      padding: .15rem 0;
-    }
-    .nav-links a:hover { color: rgba(255,255,255,.9); }
-    .nav-links a.active { color: #fff; font-weight: 500; }
-    .nav-sep { color: rgba(255,255,255,.2); }
-    .nav-label { color: rgba(255,255,255,.3); font-size: .73rem; letter-spacing: .04em; }
-    .mockup-badge {
-      flex-shrink: 0;
-      background: var(--accent);
-      color: #fff;
-      font-size: .62rem;
-      font-weight: 600;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      padding: .22rem .6rem;
-      border-radius: 3px;
-    }
+    @keyframes fadeSlideIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* ── Page header ── */
-    header {
-      background: var(--navy);
-      color: #fff;
-      padding: 4rem 2rem 3.5rem;
-      text-align: center;
-    }
-    .eyebrow {
-      font-size: .8rem;
-      font-weight: 300;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.45);
-      margin-bottom: .6rem;
-    }
-    header h1 {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: clamp(1.75rem, 4vw, 2.5rem);
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: .6rem;
-    }
-    header h1 em { color: var(--accent-light); font-style: italic; }
-    header p {
-      color: rgba(255,255,255,.65);
-      font-size: 1rem;
-      font-weight: 300;
-      max-width: 520px;
-      margin: 0 auto;
-    }
+    /* Nav */
+    .site-nav { background: var(--surface); border-bottom: 1px solid var(--border); height: 52px; display: flex; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow); }
+    .nav-inner { max-width: 1080px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; gap: 1.5rem; width: 100%; }
+    .nav-wordmark { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.35rem; font-weight: 600; font-style: italic; color: var(--accent); text-decoration: none; letter-spacing: .01em; flex-shrink: 0; }
+    .nav-links { display: flex; align-items: center; gap: .75rem; margin: 0 auto; flex-wrap: wrap; }
+    .nav-links a { font-family: 'DM Sans', system-ui, sans-serif; font-size: .8rem; color: var(--text-muted); text-decoration: none; padding: .2rem .1rem; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links a.active { color: var(--accent); font-weight: 600; border-bottom: 2px solid var(--accent); }
+    .nav-sep { color: var(--border); font-size: .8rem; }
+    .nav-label { font-family: 'DM Sans', system-ui, sans-serif; font-size: .72rem; color: var(--text-faint); letter-spacing: .05em; }
+    .nav-badge { font-family: 'DM Sans', system-ui, sans-serif; font-size: .62rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; background: var(--accent-light); color: var(--accent); padding: .2rem .6rem; border-radius: 20px; flex-shrink: 0; }
 
-    /* ── Main layout ── */
-    main { max-width: 1060px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
-    section { margin-bottom: 4rem; }
-    .section-label {
-      font-size: .75rem;
-      font-weight: 600;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: .4rem;
-    }
-    h2 {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 1.75rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: .5rem;
-    }
-    .section-intro {
-      font-size: 1rem;
-      color: var(--text-muted);
-      max-width: 640px;
-      margin-bottom: 2rem;
-      line-height: 1.65;
-    }
-    hr.divider {
-      border: none;
-      border-top: 1px solid var(--border);
-      margin: 3rem 0;
-    }
+    /* Page header */
+    .page-header { padding: 3rem 2rem 2rem; max-width: 1080px; margin: 0 auto; animation: fadeSlideIn .4s ease .1s both; }
+    .page-eyebrow { font-family: 'DM Sans', system-ui, sans-serif; font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: .5rem; }
+    .page-header h1 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 2.25rem; font-weight: 600; color: var(--text); line-height: 1.2; margin-bottom: .5rem; }
+    .page-header p { font-family: 'DM Sans', system-ui, sans-serif; font-size: .88rem; color: var(--text-muted); line-height: 1.6; max-width: 540px; }
 
-    /* ── Plugin flow SVG animation ── */
-    .flow-anim-wrap {
-      margin: 1.5rem 0 2rem;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      border-radius: var(--radius);
-      box-shadow: 0 4px 20px rgba(0,0,0,.15);
-    }
-    .flow-anim-wrap svg { min-width: 560px; width: 100%; display: block; }
+    /* SVG diagram wrap */
+    .full-wrap { max-width: 1080px; margin: 0 auto; padding: 0 2rem; }
 
-    @keyframes wpNodeGlow {
-      0%, 2%   { fill: rgba(255,255,255,0.05); stroke: rgba(255,255,255,0.1); stroke-width: 1; }
-      10%      { fill: rgba(176,112,32,0.55); stroke: #d09030; stroke-width: 2.5; }
-      22%      { fill: rgba(176,112,32,0.1); stroke: rgba(255,255,255,0.15); stroke-width: 1; }
-      100%     { fill: rgba(255,255,255,0.05); stroke: rgba(255,255,255,0.1); stroke-width: 1; }
-    }
-    @keyframes wpLabelGlow {
-      0%, 2%, 22%, 100% { fill: rgba(255,255,255,0.55); }
-      10% { fill: #fff; }
-    }
-    @keyframes wpSubGlow {
-      0%, 2%, 22%, 100% { fill: rgba(255,255,255,0.28); }
-      10% { fill: rgba(255,255,255,0.7); }
-    }
-    @keyframes wpNumGlow {
-      0%, 2%, 22%, 100% { fill: rgba(255,255,255,0.18); }
-      10% { fill: #d09030; }
-    }
-    @keyframes wpDotTravel {
-      0%, 10%, 100% { opacity: 0; transform: translateX(0); }
-      12%  { opacity: 1; transform: translateX(0); }
-      17%  { opacity: 1; transform: translateX(32px); }
-      20%  { opacity: 0; transform: translateX(32px); }
-    }
-    /* 4-node, 5s cycle, 1.25s per node */
-    .wn1 .nr { animation: wpNodeGlow 5s ease-in-out 0s infinite; }
-    .wn1 .nl { animation: wpLabelGlow 5s ease-in-out 0s infinite; }
-    .wn1 .ns { animation: wpSubGlow 5s ease-in-out 0s infinite; }
-    .wn1 .nn { animation: wpNumGlow 5s ease-in-out 0s infinite; }
-    .wn2 .nr { animation: wpNodeGlow 5s ease-in-out 1.25s infinite; }
-    .wn2 .nl { animation: wpLabelGlow 5s ease-in-out 1.25s infinite; }
-    .wn2 .ns { animation: wpSubGlow 5s ease-in-out 1.25s infinite; }
-    .wn2 .nn { animation: wpNumGlow 5s ease-in-out 1.25s infinite; }
-    .wn3 .nr { animation: wpNodeGlow 5s ease-in-out 2.5s infinite; }
-    .wn3 .nl { animation: wpLabelGlow 5s ease-in-out 2.5s infinite; }
-    .wn3 .ns { animation: wpSubGlow 5s ease-in-out 2.5s infinite; }
-    .wn3 .nn { animation: wpNumGlow 5s ease-in-out 2.5s infinite; }
-    .wn4 .nr { animation: wpNodeGlow 5s ease-in-out 3.75s infinite; }
-    .wn4 .nl { animation: wpLabelGlow 5s ease-in-out 3.75s infinite; }
-    .wn4 .ns { animation: wpSubGlow 5s ease-in-out 3.75s infinite; }
-    .wn4 .nn { animation: wpNumGlow 5s ease-in-out 3.75s infinite; }
-    /* Dots: halfway between each pair of node activation times */
-    .wd1 { animation: wpDotTravel 5s ease-in-out 0.6s infinite; }
-    .wd2 { animation: wpDotTravel 5s ease-in-out 1.85s infinite; }
-    .wd3 { animation: wpDotTravel 5s ease-in-out 3.1s infinite; }
-    /* Enhanced node group shadow */
-    @keyframes wpGroupShadow {
-      0%, 4%   { filter: none; }
-      10%      { filter: drop-shadow(0 0 8px rgba(176,112,32,0.8)) drop-shadow(0 0 20px rgba(176,112,32,0.4)); }
-      22%      { filter: none; }
-      100%     { filter: none; }
-    }
-    .wn1 { animation: wpGroupShadow 5s ease-in-out 0s infinite; }
-    .wn2 { animation: wpGroupShadow 5s ease-in-out 1.25s infinite; }
-    .wn3 { animation: wpGroupShadow 5s ease-in-out 2.5s infinite; }
-    .wn4 { animation: wpGroupShadow 5s ease-in-out 3.75s infinite; }
+    /* CMS frame */
+    .frame-wrap { max-width: 1080px; margin: 0 auto; padding: 0 2rem 4rem; animation: fadeSlideIn .5s ease .35s both; }
 
-    /* Echo dots */
-    @keyframes wpDotEcho {
-      0%, 11%, 100% { opacity: 0; transform: translateX(0); }
-      13%  { opacity: 0.4; transform: translateX(4px); }
-      20%  { opacity: 0; transform: translateX(32px); }
-    }
-    .wde1 { animation: wpDotEcho 5s ease-in-out 0.95s infinite; }
-    .wde2 { animation: wpDotEcho 5s ease-in-out 2.2s infinite; }
-    .wde3 { animation: wpDotEcho 5s ease-in-out 3.45s infinite; }
+    .cms-frame { border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-lg); overflow: hidden; background: #f0f0f1; }
 
-    /* ── Editor frame ── */
-    .editor-frame {
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow-lg);
-      border: 1px solid #c3c4c7;
-      background: #fff;
-    }
-
-    /* WP admin bar */
-    .wp-admin-bar {
-      background: var(--wp-bar);
+    /* Admin bar */
+    .cms-adminbar {
+      background: #0e1a12;
       height: 32px;
       display: flex;
       align-items: center;
-      padding: 0 12px;
-      gap: 0;
-      font-family: -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      font-size: 13px;
-      color: #ccc;
+      padding: 0 .75rem;
+      gap: .75rem;
     }
-    .wp-logo {
-      width: 28px;
-      height: 28px;
-      background: var(--wp-bar);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 15px;
-      font-weight: 900;
-      color: #fff;
-      margin-right: 4px;
-      border: 1px solid rgba(255,255,255,0.1);
-      flex-shrink: 0;
-    }
-    .wp-admin-item {
-      padding: 0 10px;
-      height: 32px;
-      display: flex;
-      align-items: center;
-      color: rgba(255,255,255,.65);
-      font-size: 12.5px;
-      cursor: pointer;
-      white-space: nowrap;
-    }
-    .wp-admin-item:hover { background: #2c3338; color: #fff; }
-    .wp-admin-right {
-      margin-left: auto;
-      display: flex;
-      align-items: center;
-      gap: 0;
-    }
-    .wp-howdy {
-      padding: 0 12px;
-      height: 32px;
-      display: flex;
-      align-items: center;
-      font-size: 12px;
-      color: rgba(255,255,255,.6);
-      gap: 6px;
-    }
-    .wp-avatar {
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      background: var(--accent);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 11px;
-      font-weight: 700;
-      color: #fff;
-    }
+    .cms-adminbar-brand { font-family: 'DM Sans', system-ui, sans-serif; font-size: .72rem; font-weight: 600; color: rgba(255,255,255,.75); letter-spacing: .04em; }
+    .cms-adminbar-item  { font-family: 'DM Sans', system-ui, sans-serif; font-size: .72rem; color: rgba(255,255,255,.4); }
+    .cms-adminbar-right { margin-left: auto; font-family: 'DM Sans', system-ui, sans-serif; font-size: .68rem; color: rgba(255,255,255,.4); }
+
+    /* Main body */
+    .cms-body { display: flex; min-height: 540px; }
+
+    /* Left admin nav */
+    .cms-sidenav { width: 48px; background: #1a2620; flex-shrink: 0; padding: .5rem 0; }
+    .cms-sidenav-item { width: 100%; height: 34px; display: flex; align-items: center; justify-content: center; }
+    .cms-sidenav-icon { width: 20px; height: 3px; background: rgba(255,255,255,.25); border-radius: 2px; }
+    .cms-sidenav-item.active .cms-sidenav-icon { background: var(--accent); }
+
+    /* Editor area */
+    .cms-editor { flex: 1; background: #f0f0f1; padding: .75rem; display: flex; flex-direction: column; gap: .75rem; }
 
     /* Editor toolbar */
-    .wp-editor-toolbar {
-      background: #fff;
-      border-bottom: 1px solid #e0e0e0;
-      height: 56px;
-      display: flex;
-      align-items: center;
-      padding: 0 16px;
-      gap: 4px;
-    }
-    .wp-toolbar-left { display: flex; align-items: center; gap: 4px; }
-    .wp-toolbar-center {
-      flex: 1;
-      text-align: center;
-      font-family: -apple-system, 'Helvetica Neue', sans-serif;
-      font-size: 13px;
-      color: #757575;
-    }
-    .wp-toolbar-right { display: flex; align-items: center; gap: 8px; margin-left: auto; }
-    .wp-btn-icon {
-      width: 36px;
-      height: 36px;
-      border: none;
-      background: transparent;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 18px;
-      color: #757575;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .wp-btn-icon:hover { background: #f0f0f1; }
-    .wp-toolbar-sep { width: 1px; height: 28px; background: #e0e0e0; margin: 0 4px; }
-    .wp-save-status { font-size: 12px; color: #757575; font-family: -apple-system, sans-serif; }
-    .wp-preview-btn {
-      height: 32px;
-      padding: 0 14px;
-      background: transparent;
-      border: 1px solid #757575;
-      border-radius: 3px;
-      font-size: 13px;
-      font-family: -apple-system, sans-serif;
-      color: #1e1e1e;
-      cursor: pointer;
-    }
-    .wp-preview-btn:hover { border-color: #1e1e1e; }
-    .wp-publish-btn {
-      height: 32px;
-      padding: 0 16px;
-      background: var(--wp-blue);
-      border: none;
-      border-radius: 3px;
-      font-size: 13px;
-      font-family: -apple-system, sans-serif;
-      color: #fff;
-      cursor: pointer;
-      font-weight: 600;
-    }
+    .editor-toolbar { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: .4rem .75rem; display: flex; align-items: center; gap: .5rem; }
+    .tool-btn { font-family: 'DM Sans', system-ui, sans-serif; font-size: .72rem; color: var(--text-muted); padding: .25rem .5rem; border: 1px solid var(--border); border-radius: 3px; background: var(--surface); cursor: default; }
+    .tool-sep { width: 1px; height: 16px; background: var(--border); }
 
-    /* Main editor content area */
-    .wp-editor-main {
-      display: flex;
-      height: 560px;
-      overflow: hidden;
-    }
-    .wp-writing-area {
-      flex: 1;
-      background: var(--wp-bg);
-      overflow-y: auto;
-      padding: 2.5rem 2rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .wp-doc {
-      background: #fff;
-      width: 100%;
-      max-width: 620px;
-      padding: 2rem 2.5rem 2.5rem;
-      border-radius: 2px;
-      box-shadow: 0 0 0 1px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.08);
-    }
+    /* Editor content card */
+    .editor-card { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 1.25rem 1.5rem; flex: 1; }
+    .post-title-field { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.35rem; font-weight: 600; color: var(--text); border: none; border-bottom: 1px solid var(--border); width: 100%; padding-bottom: .5rem; margin-bottom: .75rem; background: transparent; outline: none; }
+    .post-body-text { font-family: 'DM Sans', system-ui, sans-serif; font-size: .82rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 1rem; }
 
-    /* WP post title block */
-    .wp-post-title {
-      font-family: -apple-system, 'Helvetica Neue', sans-serif;
-      font-size: 1.65rem;
-      font-weight: 700;
-      line-height: 1.3;
-      color: #1e1e1e;
-      margin-bottom: 1.25rem;
-      padding-bottom: 1.25rem;
-      border-bottom: 1px solid #e0e0e0;
-    }
-    .wp-block {
-      font-family: -apple-system, 'Helvetica Neue', sans-serif;
-      font-size: 1rem;
-      line-height: 1.7;
-      color: #1e1e1e;
-      margin-bottom: 1rem;
-    }
+    /* Hawk inline block */
+    .hawk-block { border: 1px solid var(--accent); border-radius: 6px; overflow: hidden; margin: .75rem 0; }
+    .hawk-block-bar { background: var(--accent-light); padding: .4rem .875rem; display: flex; align-items: center; justify-content: space-between; }
+    .hawk-block-label { font-family: 'DM Sans', system-ui, sans-serif; font-size: .65rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+    .hawk-block-body { padding: .625rem .875rem; background: var(--surface); }
+    .hawk-block-row { font-family: 'DM Sans', system-ui, sans-serif; font-size: .75rem; color: var(--text-muted); display: flex; align-items: center; justify-content: space-between; padding: .2rem 0; }
+    .hb-lang { color: var(--text); font-weight: 500; }
+    .hb-badge { font-size: .6rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: .15rem .45rem; border-radius: 3px; }
+    .hb-done     { background: var(--accent-light); color: var(--accent); }
+    .hb-scoring  { background: #fff8e8; color: #7a5c2a; }
+    .hb-queued   { background: #f0f0f0; color: var(--text-faint); }
 
-    /* Hawk block inside editor */
-    .hawk-gutenberg-block {
-      margin-top: 1.5rem;
-      border: 2px solid var(--accent);
-      border-radius: 6px;
-      overflow: hidden;
-      font-family: -apple-system, 'Helvetica Neue', sans-serif;
-    }
-    .hawk-block-header {
-      background: var(--accent);
-      padding: .5rem .75rem;
-      display: flex;
-      align-items: center;
-      gap: .5rem;
-    }
-    .hawk-block-brand {
-      font-weight: 700;
-      color: #fff;
-      font-size: .85rem;
-      letter-spacing: .03em;
-    }
-    .hawk-block-status-pill {
-      margin-left: auto;
-      background: rgba(255,255,255,0.25);
-      color: #fff;
-      font-size: .7rem;
-      font-weight: 600;
-      padding: .15rem .5rem;
-      border-radius: 3px;
-      letter-spacing: .05em;
-    }
-    .hawk-block-status-pill.running { background: rgba(255,255,255,0.2); }
-    .hawk-block-body {
-      background: #fffbf3;
-      padding: .75rem .75rem .5rem;
-    }
-    .hawk-job-row {
-      display: flex;
-      align-items: center;
-      gap: .75rem;
-      padding: .3rem 0;
-      font-size: .84rem;
-      border-bottom: 1px solid rgba(176,112,32,0.1);
-    }
-    .hawk-job-row:last-child { border-bottom: none; }
-    .hawk-lang-label {
-      width: 80px;
-      font-weight: 600;
-      color: #555;
-      flex-shrink: 0;
-    }
-    .hawk-job-state { font-size: .82rem; }
-    .hawk-job-state.done { color: var(--green); }
-    .hawk-job-state.running { color: var(--accent); }
-    .hawk-job-state.queued { color: #aaa; }
-    .hawk-job-draft {
-      margin-left: auto;
-      font-size: .75rem;
-      color: var(--wp-blue);
-      background: #e8f0fb;
-      padding: .1rem .45rem;
-      border-radius: 3px;
-    }
+    /* Right Hawk panel */
+    .hawk-panel { width: 220px; background: var(--surface); border-left: 1px solid var(--border); flex-shrink: 0; display: flex; flex-direction: column; }
+    .hawk-panel-header { background: var(--accent); padding: .6rem 1rem; }
+    .hawk-panel-title { font-family: 'DM Sans', system-ui, sans-serif; font-size: .72rem; font-weight: 600; color: #fff; letter-spacing: .04em; }
+    .hawk-panel-body { padding: .875rem 1rem; flex: 1; display: flex; flex-direction: column; gap: 1rem; }
 
-    /* Right sidebar */
-    .wp-sidebar {
-      width: 280px;
-      border-left: 1px solid #e0e0e0;
-      background: #fff;
-      overflow-y: auto;
-      flex-shrink: 0;
-    }
-    .sidebar-tabs {
-      display: flex;
-      border-bottom: 1px solid #e0e0e0;
-    }
-    .sidebar-tab {
-      flex: 1;
-      height: 40px;
-      border: none;
-      background: transparent;
-      font-family: -apple-system, sans-serif;
-      font-size: 13px;
-      color: #757575;
-      cursor: pointer;
-      border-bottom: 2px solid transparent;
-    }
-    .sidebar-tab.active {
-      color: #1e1e1e;
-      border-bottom-color: #1e1e1e;
-    }
+    .panel-section-label { font-family: 'DM Sans', system-ui, sans-serif; font-size: .62rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--text-faint); margin-bottom: .4rem; }
 
-    /* Hawk sidebar panel */
-    .hawk-sidebar-panel {
-      border-bottom: 1px solid #e0e0e0;
-      padding: 0 0 1rem;
-    }
-    .hawk-panel-header {
-      background: var(--navy);
-      padding: .6rem .9rem;
-      display: flex;
-      align-items: center;
-      gap: .5rem;
-    }
-    .hawk-panel-logo {
-      width: 22px;
-      height: 22px;
-      background: var(--accent);
-      border-radius: 3px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 11px;
-      font-weight: 900;
-      color: #fff;
-      flex-shrink: 0;
-      font-family: 'Playfair Display', serif;
-    }
-    .hawk-panel-name {
-      font-size: .82rem;
-      font-weight: 600;
-      color: #fff;
-      font-family: -apple-system, sans-serif;
-    }
-    .hawk-job-badge {
-      margin-left: auto;
-      display: flex;
-      align-items: center;
-      gap: .35rem;
-    }
-    .job-spinner {
-      width: 10px;
-      height: 10px;
-      border: 2px solid rgba(176,112,32,0.3);
-      border-top-color: var(--accent-light);
-      border-radius: 50%;
-      animation: spin 0.9s linear infinite;
-      flex-shrink: 0;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .job-id-text {
-      font-size: .7rem;
-      font-family: 'Courier New', monospace;
-      color: rgba(255,255,255,0.6);
-    }
+    /* Job status row */
+    .job-status-row { font-family: 'DM Sans', system-ui, sans-serif; font-size: .72rem; color: var(--text-muted); display: flex; align-items: center; justify-content: space-between; }
+    .js-badge { font-size: .6rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: .15rem .45rem; border-radius: 3px; background: var(--accent-light); color: var(--accent); }
 
-    /* Panel sections */
-    .panel-section { padding: .65rem .9rem .5rem; }
-    .panel-section + .panel-section { border-top: 1px solid #f0f0f1; }
-    .panel-section-title {
-      font-size: .7rem;
-      font-weight: 600;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: #757575;
-      margin-bottom: .5rem;
-      font-family: -apple-system, sans-serif;
-    }
+    /* Language checkboxes */
+    .lang-row { display: flex; align-items: center; gap: .5rem; font-family: 'DM Sans', system-ui, sans-serif; font-size: .75rem; color: var(--text); margin-bottom: .3rem; }
+    .fake-cb { width: 13px; height: 13px; border-radius: 2px; flex-shrink: 0; }
+    .fake-cb.checked { background: var(--accent); }
+    .fake-cb.unchecked { background: var(--surface); border: 1px solid var(--border); }
+    .lang-status-dot { margin-left: auto; font-size: .6rem; color: var(--text-faint); }
+    .lang-status-dot.active { color: var(--accent); }
 
-    /* Job status block */
-    .job-status-block {
-      background: #fffbf3;
-      border: 1px solid rgba(176,112,32,0.25);
-      border-radius: 5px;
-      padding: .55rem .65rem;
-      display: flex;
-      align-items: center;
-      gap: .5rem;
-    }
-    .job-status-info { flex: 1; }
-    .job-status-id {
-      font-size: .72rem;
-      font-family: 'Courier New', monospace;
-      color: var(--text-muted);
-    }
-    .job-status-elapsed {
-      font-size: .7rem;
-      color: var(--accent);
-      font-weight: 600;
-      margin-top: .15rem;
-    }
-    .job-lang-progress {
-      display: flex;
-      flex-direction: column;
-      gap: .25rem;
-      margin-top: .5rem;
-    }
-    .job-lang-row {
-      display: flex;
-      align-items: center;
-      gap: .4rem;
-      font-size: .75rem;
-    }
-    .lang-name { width: 72px; color: #555; font-family: -apple-system, sans-serif; }
-    .lang-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-    .lang-dot.done { background: var(--green); }
-    .lang-dot.running { background: var(--accent); }
-    .lang-dot.queued { background: #d0d0d0; }
-    .lang-state { font-size: .72rem; color: #999; }
-    .lang-state.done { color: var(--green); }
-    .lang-state.running { color: var(--accent); }
-    .lang-draft { font-size: .7rem; color: var(--wp-blue); margin-left: auto; }
+    /* Tier radios */
+    .tier-row { display: flex; align-items: center; gap: .5rem; font-family: 'DM Sans', system-ui, sans-serif; font-size: .75rem; color: var(--text); margin-bottom: .3rem; }
+    .fake-radio { width: 12px; height: 12px; border-radius: 50%; border: 1.5px solid var(--border); flex-shrink: 0; }
+    .fake-radio.selected { border-color: var(--accent); background: radial-gradient(circle, var(--accent) 40%, transparent 40%); }
 
-    /* Language toggles */
-    .lang-toggle-list {
-      display: flex;
-      flex-direction: column;
-      gap: .25rem;
-    }
-    .lang-toggle-row {
-      display: flex;
-      align-items: center;
-      gap: .4rem;
-      font-size: .8rem;
-      font-family: -apple-system, sans-serif;
-      color: #1e1e1e;
-      cursor: pointer;
-      padding: .15rem 0;
-    }
-    .lang-toggle-row input[type="checkbox"] { accent-color: var(--accent); }
-    .lang-toggle-badge {
-      margin-left: auto;
-      font-size: .65rem;
-      padding: .1rem .35rem;
-      border-radius: 2px;
-    }
-    .lang-toggle-badge.limited {
-      background: #fff3cd;
-      color: #856404;
-    }
+    /* CTA button */
+    .btn-cta-disabled { font-family: 'DM Sans', system-ui, sans-serif; font-size: .75rem; font-weight: 600; letter-spacing: .04em; background: var(--accent-light); color: var(--text-faint); padding: .5rem; border-radius: 4px; border: none; width: 100%; text-align: center; margin-top: auto; cursor: default; }
 
-    /* Tier selector */
-    .tier-radio-list {
-      display: flex;
-      flex-direction: column;
-      gap: .3rem;
-    }
-    .tier-radio-row {
-      display: flex;
-      align-items: flex-start;
-      gap: .4rem;
-      font-size: .8rem;
-      font-family: -apple-system, sans-serif;
-      color: #1e1e1e;
-      cursor: pointer;
-      padding: .2rem 0;
-    }
-    .tier-radio-row input[type="radio"] { margin-top: .1rem; accent-color: var(--accent); }
-    .tier-desc { font-size: .7rem; color: #757575; }
+    /* Setup section */
+    .setup-section { max-width: 1080px; margin: 0 auto; padding: 2rem 2rem 4rem; animation: fadeSlideIn .5s ease .45s both; }
+    .setup-eyebrow { font-family: 'DM Sans', system-ui, sans-serif; font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: .5rem; }
+    .setup-h2 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 2rem; font-weight: 600; color: var(--text); margin-bottom: 1.5rem; }
+    .setup-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; }
+    .setup-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; box-shadow: var(--shadow); }
+    .setup-num { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 2.5rem; font-weight: 300; color: var(--border); line-height: 1; margin-bottom: .5rem; }
+    .setup-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.1rem; font-weight: 600; color: var(--text); margin-bottom: .4rem; }
+    .setup-desc { font-family: 'DM Sans', system-ui, sans-serif; font-size: .82rem; color: var(--text-muted); line-height: 1.55; }
+    .setup-code { font-family: 'Courier New', monospace; font-size: .72rem; background: #f0f0f0; border: 1px solid var(--border); border-radius: 3px; padding: .25rem .5rem; margin-top: .5rem; display: block; word-break: break-all; color: var(--text-muted); }
 
-    /* Translate button */
-    .translate-cta {
-      display: block;
-      width: calc(100% - 1.8rem);
-      margin: .6rem .9rem;
-      padding: .55rem;
-      background: #e0e0e0;
-      border: none;
-      border-radius: 4px;
-      font-size: .82rem;
-      font-family: -apple-system, sans-serif;
-      font-weight: 600;
-      color: #757575;
-      cursor: not-allowed;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: .5rem;
+    /* SVG animations */
+    @keyframes nodeGlow {
+      0%, 100% { opacity: .55; }
+      50%       { opacity: 1; }
     }
-    .translate-cta .btn-spinner {
-      width: 10px;
-      height: 10px;
-      border: 2px solid rgba(112,112,112,0.3);
-      border-top-color: #757575;
-      border-radius: 50%;
-      animation: spin 0.9s linear infinite;
+    @keyframes labelBright {
+      0%, 100% { opacity: .7; }
+      50%       { opacity: 1; }
     }
+    @keyframes subBright {
+      0%, 100% { opacity: .35; }
+      50%       { opacity: .75; }
+    }
+    @keyframes nodeGroupShadow {
+      0%, 100% { filter: drop-shadow(0 0 0px rgba(26,107,74,0)); }
+      50%       { filter: drop-shadow(0 0 6px rgba(26,107,74,.55)); }
+    }
+    @keyframes wDotTravel {
+      0%, 7%, 100% { opacity: 0; transform: translateX(0); }
+      9%   { opacity: 1; transform: translateX(0); }
+      12%  { opacity: 1; transform: translateX(48px); }
+      14%  { opacity: 0; transform: translateX(48px); }
+    }
+    @keyframes wDotEcho {
+      0%, 8%, 100% { opacity: 0; transform: translateX(0); }
+      10% { opacity: 0.45; transform: translateX(8px); }
+      14% { opacity: 0; transform: translateX(48px); }
+    }
+    .wpd1, .wpd2, .wpd3, .wpde1, .wpde2, .wpde3 { transform-box: fill-box; transform-origin: center; }
 
-    /* Recent translations */
-    .recent-list { display: flex; flex-direction: column; gap: .4rem; }
-    .recent-item {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 5px;
-      padding: .4rem .5rem;
-    }
-    .recent-title {
-      font-size: .77rem;
-      font-weight: 600;
-      color: var(--text);
-      display: block;
-      margin-bottom: .15rem;
-      font-family: -apple-system, sans-serif;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .recent-meta {
-      font-size: .68rem;
-      color: var(--text-faint);
-      display: flex;
-      align-items: center;
-      gap: .35rem;
-    }
-    .recent-langs {
-      background: #f0f0f1;
-      border-radius: 2px;
-      padding: .05rem .3rem;
-      font-size: .65rem;
-      color: #555;
-      letter-spacing: .04em;
-    }
+    .wng1 { animation: nodeGlow 4.8s ease-in-out 0s infinite; }
+    .wng2 { animation: nodeGlow 4.8s ease-in-out 1.2s infinite; }
+    .wng3 { animation: nodeGlow 4.8s ease-in-out 2.4s infinite; }
+    .wng4 { animation: nodeGlow 4.8s ease-in-out 3.6s infinite; }
 
-    /* WP standard panel */
-    .wp-std-panel {
-      border-top: 1px solid #e0e0e0;
-    }
-    .wp-std-panel-title {
-      padding: .6rem .9rem;
-      font-size: .8rem;
-      font-weight: 600;
-      color: #1e1e1e;
-      font-family: -apple-system, sans-serif;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .wp-std-panel-title::after { content: '▾'; font-size: .7rem; color: #757575; }
-    .wp-std-panel-body { padding: .25rem .9rem .75rem; }
-    .wp-field-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: .25rem 0;
-      font-family: -apple-system, sans-serif;
-      font-size: .8rem;
-    }
-    .wp-field-label { color: #757575; }
-    .wp-field-val { color: var(--wp-blue); cursor: pointer; }
-    .wp-field-val:hover { text-decoration: underline; }
+    .wpd1  { animation: wDotTravel 4.8s linear 0.6s infinite; }
+    .wpd2  { animation: wDotTravel 4.8s linear 1.8s infinite; }
+    .wpd3  { animation: wDotTravel 4.8s linear 3.0s infinite; }
+    .wpde1 { animation: wDotEcho   4.8s linear 0.95s infinite; }
+    .wpde2 { animation: wDotEcho   4.8s linear 2.15s infinite; }
+    .wpde3 { animation: wDotEcho   4.8s linear 3.35s infinite; }
 
-    /* ── Feature grid ── */
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.25rem;
-    }
-    .feature-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.25rem 1.25rem 1.5rem;
-    }
-    .feature-num {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 28px;
-      height: 28px;
-      background: var(--accent-bg);
-      color: var(--accent);
-      font-weight: 700;
-      font-size: .85rem;
-      border-radius: 50%;
-      margin-bottom: .75rem;
-    }
-    .feature-title {
-      font-weight: 600;
-      color: var(--text);
-      font-size: .95rem;
-      margin-bottom: .4rem;
-    }
-    .feature-desc {
-      font-size: .88rem;
-      color: var(--text-muted);
-      line-height: 1.55;
-    }
-    .feature-code {
-      font-family: 'Courier New', monospace;
-      font-size: .78rem;
-      background: #f5f3ef;
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: .5rem .65rem;
-      margin-top: .5rem;
-      color: var(--text-muted);
-      display: block;
-      word-break: break-all;
-    }
-
-    /* ── Responsive ── */
+    /* Responsive */
     @media (max-width: 700px) {
-      .wp-sidebar { display: none; }
-      .wp-admin-item:not(:first-child) { display: none; }
+      .cms-sidenav { display: none; }
+      .hawk-panel { display: none; }
+      .setup-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-<nav class="suite-nav" role="navigation" aria-label="Hawk site navigation">
-  <span class="nav-brand">Hawk</span>
-  <div class="nav-links">
-    <a href="../explainer.html">How it works</a>
-    <span class="nav-sep" aria-hidden="true">·</span>
-    <span class="nav-label">Mockups:</span>
-    <a href="index.html">Overview</a>
-    <a href="review.html">Review</a>
-    <a href="dashboard.html">Dashboard</a>
-    <a href="glossary.html">Glossary</a>
-    <a href="wp-plugin.html" class="active">WP plugin</a>
-  </div>
-  <span class="mockup-badge">mockup</span>
-</nav>
-
-<header>
-  <p class="eyebrow">Hawk News Service — WordPress plugin</p>
-  <h1>Translate from inside <em>Gutenberg</em></h1>
-  <p>The Hawk plugin adds a translation panel directly to the post editor, so writers can request translations without leaving the CMS.</p>
-</header>
-
-<main>
-
-  <!-- Plugin flow animation -->
-  <section>
-    <div class="section-label">Plugin flow</div>
-    <h2>One click, ten languages</h2>
-    <p class="section-intro">
-      When a writer clicks Translate, the plugin posts the article to the Hawk API. Hawk translates and scores each language, then fires a webhook that creates draft posts directly in WordPress — one per language.
-    </p>
-
-    <div class="flow-anim-wrap" aria-hidden="true">
-      <!-- 4 nodes × 176px + 3 connectors × 32px = 800px total; dots travel 32px to match wpDotTravel -->
-      <svg viewBox="0 0 800 140" xmlns="http://www.w3.org/2000/svg">
-        <rect width="800" height="140" rx="10" fill="#1a2e4a"/>
-        <!-- Connector lines (32px gaps) -->
-        <line x1="176" y1="70" x2="208" y2="70" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
-        <line x1="384" y1="70" x2="416" y2="70" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
-        <line x1="592" y1="70" x2="624" y2="70" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
-        <!-- Node 1: Your post — x=0, w=176, cx=88 -->
-        <g class="wn1">
-          <rect class="nr" x="4" y="22" width="168" height="96" rx="7" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-          <text class="nn" x="14" y="40" font-size="9" font-family="'DM Sans',sans-serif" font-weight="600" fill="rgba(255,255,255,0.18)">01</text>
-          <text class="nl" x="88" y="70" font-size="11.5" font-family="'DM Sans',sans-serif" font-weight="600" text-anchor="middle" fill="rgba(255,255,255,0.6)">Your post</text>
-          <text class="ns" x="88" y="87" font-size="9" font-family="'DM Sans',sans-serif" text-anchor="middle" fill="rgba(255,255,255,0.28)">Gutenberg editor</text>
-        </g>
-        <!-- Node 2: Hawk API — x=208, w=176, cx=296 -->
-        <g class="wn2">
-          <rect class="nr" x="212" y="22" width="168" height="96" rx="7" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-          <text class="nn" x="222" y="40" font-size="9" font-family="'DM Sans',sans-serif" font-weight="600" fill="rgba(255,255,255,0.18)">02</text>
-          <text class="nl" x="296" y="70" font-size="11.5" font-family="'DM Sans',sans-serif" font-weight="600" text-anchor="middle" fill="rgba(255,255,255,0.6)">Hawk API</text>
-          <text class="ns" x="296" y="87" font-size="9" font-family="'DM Sans',sans-serif" text-anchor="middle" fill="rgba(255,255,255,0.28)">POST /v1/translate</text>
-        </g>
-        <!-- Node 3: Translate + Score — x=416, w=176, cx=504 -->
-        <g class="wn3">
-          <rect class="nr" x="420" y="22" width="168" height="96" rx="7" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-          <text class="nn" x="430" y="40" font-size="9" font-family="'DM Sans',sans-serif" font-weight="600" fill="rgba(255,255,255,0.18)">03</text>
-          <text class="nl" x="504" y="62" font-size="11.5" font-family="'DM Sans',sans-serif" font-weight="600" text-anchor="middle" fill="rgba(255,255,255,0.6)">Translate</text>
-          <text class="nl" x="504" y="78" font-size="11.5" font-family="'DM Sans',sans-serif" font-weight="600" text-anchor="middle" fill="rgba(255,255,255,0.6)">+ Score</text>
-          <text class="ns" x="504" y="95" font-size="9" font-family="'DM Sans',sans-serif" text-anchor="middle" fill="rgba(255,255,255,0.28)">DeepL · quality check</text>
-        </g>
-        <!-- Node 4: Draft posts — x=624, w=172, cx=710 -->
-        <g class="wn4">
-          <rect class="nr" x="628" y="22" width="168" height="96" rx="7" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-          <text class="nn" x="638" y="40" font-size="9" font-family="'DM Sans',sans-serif" font-weight="600" fill="rgba(255,255,255,0.18)">04</text>
-          <text class="nl" x="712" y="70" font-size="11.5" font-family="'DM Sans',sans-serif" font-weight="600" text-anchor="middle" fill="rgba(255,255,255,0.6)">Draft posts</text>
-          <text class="ns" x="712" y="87" font-size="9" font-family="'DM Sans',sans-serif" text-anchor="middle" fill="rgba(255,255,255,0.28)">one per language · webhook</text>
-        </g>
-        <!-- Traveling dots — at connector start positions, travel +32px -->
-        <g class="wd1"><circle cx="176" cy="70" r="4.5" fill="#b07020"/></g>
-        <g class="wde1"><circle cx="176" cy="70" r="3" fill="rgba(208,144,48,0.6)"/></g>
-        <g class="wd2"><circle cx="384" cy="70" r="4.5" fill="#b07020"/></g>
-        <g class="wde2"><circle cx="384" cy="70" r="3" fill="rgba(208,144,48,0.6)"/></g>
-        <g class="wd3"><circle cx="592" cy="70" r="4.5" fill="#b07020"/></g>
-        <g class="wde3"><circle cx="592" cy="70" r="3" fill="rgba(208,144,48,0.6)"/></g>
-      </svg>
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="../explainer.html" class="nav-wordmark">Hawk</a>
+      <div class="nav-links">
+        <a href="../explainer.html">How it works</a>
+        <span class="nav-sep">·</span>
+        <span class="nav-label">Mockups:</span>
+        <a href="index.html">Overview</a>
+        <a href="review.html">Review</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="glossary.html">Glossary</a>
+        <a href="wp-plugin.html" class="active">WP plugin</a>
+      </div>
+      <span class="nav-badge">mockup</span>
     </div>
-  </section>
+  </nav>
 
-  <hr class="divider">
+  <div class="page-header">
+    <div class="page-eyebrow">CMS integration — mockup</div>
+    <h1>WordPress plugin</h1>
+    <p>Gutenberg sidebar panel and inline block for submitting translation jobs directly from the post editor — no dashboard required.</p>
+  </div>
 
-  <!-- Editor mockup -->
-  <section>
-    <div class="section-label">Interface mockup</div>
-    <h2>The Hawk panel inside Gutenberg</h2>
-    <p class="section-intro">
-      The plugin adds a dedicated sidebar panel to the post editor. Writers choose their target languages and quality tier, then click Translate. The panel shows live job status as translations complete.
-    </p>
+  <!-- Plugin workflow diagram -->
+  <div class="full-wrap" style="padding: 0 2rem 2rem; animation: fadeSlideIn .45s ease .2s both;">
+    <svg viewBox="0 0 700 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:10px;display:block;" aria-label="Plugin workflow diagram">
+      <rect width="700" height="120" rx="10" fill="#0e1a12"/>
 
-    <div class="editor-frame">
+      <!-- Node 1: Your post -->
+      <g class="wng1">
+        <rect x="38" y="15" width="120" height="90" rx="6" fill="rgba(26,107,74,.18)" stroke="rgba(26,107,74,.45)" stroke-width="1"/>
+        <text x="98" y="42" font-family="DM Sans,system-ui,sans-serif" font-size="11" font-weight="600" fill="rgba(255,255,255,.9)" text-anchor="middle">Your post</text>
+        <text x="98" y="78" font-family="DM Sans,system-ui,sans-serif" font-size="9" fill="rgba(255,255,255,.45)" text-anchor="middle">Gutenberg</text>
+      </g>
 
-      <!-- WP Admin Bar -->
-      <div class="wp-admin-bar" role="banner">
-        <div class="wp-logo" aria-label="WordPress">W</div>
-        <div class="wp-admin-item">+ New</div>
-        <div class="wp-admin-item">Newark Ledger</div>
-        <div class="wp-admin-item">Posts</div>
-        <div class="wp-admin-right">
-          <div class="wp-howdy">
-            Howdy, newsroom
-            <div class="wp-avatar" aria-label="User avatar">N</div>
+      <!-- Connector 1 -->
+      <line x1="158" y1="60" x2="206" y2="60" stroke="rgba(26,107,74,.3)" stroke-width="1.5"/>
+      <circle class="wpd1"  cx="158" cy="60" r="5" fill="white"/>
+      <circle class="wpde1" cx="158" cy="60" r="3" fill="rgba(255,255,255,0.4)"/>
+
+      <!-- Node 2: Hawk API -->
+      <g class="wng2">
+        <rect x="206" y="15" width="120" height="90" rx="6" fill="rgba(26,107,74,.18)" stroke="rgba(26,107,74,.45)" stroke-width="1"/>
+        <text x="266" y="42" font-family="DM Sans,system-ui,sans-serif" font-size="11" font-weight="600" fill="rgba(255,255,255,.9)" text-anchor="middle">Hawk API</text>
+        <text x="266" y="78" font-family="DM Sans,system-ui,sans-serif" font-size="9" fill="rgba(255,255,255,.45)" text-anchor="middle">queue job</text>
+      </g>
+
+      <!-- Connector 2 -->
+      <line x1="326" y1="60" x2="374" y2="60" stroke="rgba(26,107,74,.3)" stroke-width="1.5"/>
+      <circle class="wpd2"  cx="326" cy="60" r="5" fill="white"/>
+      <circle class="wpde2" cx="326" cy="60" r="3" fill="rgba(255,255,255,0.4)"/>
+
+      <!-- Node 3: Translate + Score -->
+      <g class="wng3">
+        <rect x="374" y="15" width="120" height="90" rx="6" fill="rgba(26,107,74,.18)" stroke="rgba(26,107,74,.45)" stroke-width="1"/>
+        <text x="434" y="42" font-family="DM Sans,system-ui,sans-serif" font-size="11" font-weight="600" fill="rgba(255,255,255,.9)" text-anchor="middle">Translate + Score</text>
+        <text x="434" y="78" font-family="DM Sans,system-ui,sans-serif" font-size="9" fill="rgba(255,255,255,.45)" text-anchor="middle">DeepL + claude</text>
+      </g>
+
+      <!-- Connector 3 -->
+      <line x1="494" y1="60" x2="542" y2="60" stroke="rgba(26,107,74,.3)" stroke-width="1.5"/>
+      <circle class="wpd3"  cx="494" cy="60" r="5" fill="white"/>
+      <circle class="wpde3" cx="494" cy="60" r="3" fill="rgba(255,255,255,0.4)"/>
+
+      <!-- Node 4: Draft posts -->
+      <g class="wng4">
+        <rect x="542" y="15" width="120" height="90" rx="6" fill="rgba(26,107,74,.18)" stroke="rgba(26,107,74,.45)" stroke-width="1"/>
+        <text x="602" y="42" font-family="DM Sans,system-ui,sans-serif" font-size="11" font-weight="600" fill="rgba(255,255,255,.9)" text-anchor="middle">Draft posts</text>
+        <text x="602" y="78" font-family="DM Sans,system-ui,sans-serif" font-size="9" fill="rgba(255,255,255,.45)" text-anchor="middle">auto-publish</text>
+      </g>
+    </svg>
+  </div>
+
+  <!-- CMS frame -->
+  <div class="frame-wrap">
+    <div class="cms-frame">
+
+      <!-- Admin bar -->
+      <div class="cms-adminbar">
+        <span class="cms-adminbar-brand">Hawk CMS</span>
+        <span class="cms-adminbar-item">Posts</span>
+        <span class="cms-adminbar-item">Media</span>
+        <span class="cms-adminbar-item">Settings</span>
+        <span class="cms-adminbar-right">Newark Ledger</span>
+      </div>
+
+      <!-- Body -->
+      <div class="cms-body">
+
+        <!-- Left nav icons -->
+        <div class="cms-sidenav">
+          <div class="cms-sidenav-item active"><div class="cms-sidenav-icon"></div></div>
+          <div class="cms-sidenav-item"><div class="cms-sidenav-icon"></div></div>
+          <div class="cms-sidenav-item"><div class="cms-sidenav-icon"></div></div>
+          <div class="cms-sidenav-item"><div class="cms-sidenav-icon"></div></div>
+        </div>
+
+        <!-- Editor -->
+        <div class="cms-editor">
+
+          <!-- Toolbar -->
+          <div class="editor-toolbar">
+            <span class="tool-btn">B</span>
+            <span class="tool-btn"><em>I</em></span>
+            <span class="tool-btn">¶</span>
+            <div class="tool-sep"></div>
+            <span class="tool-btn">H1</span>
+            <span class="tool-btn">H2</span>
+            <span class="tool-btn">List</span>
+            <span class="tool-btn">Quote</span>
+            <div class="tool-sep"></div>
+            <span class="tool-btn" style="margin-left:auto;background:var(--accent);color:#fff;border-color:var(--accent);">Publish</span>
           </div>
-        </div>
-      </div>
 
-      <!-- Editor Toolbar -->
-      <div class="wp-editor-toolbar" role="toolbar">
-        <div class="wp-toolbar-left">
-          <button class="wp-btn-icon" title="Toggle block inserter" aria-label="Toggle block inserter">+</button>
-          <div class="wp-toolbar-sep" role="separator"></div>
-          <button class="wp-btn-icon" title="Undo" aria-label="Undo">↩</button>
-          <button class="wp-btn-icon" title="Redo" aria-label="Redo">↪</button>
-        </div>
-        <div class="wp-toolbar-center" aria-label="Post title">Edit post</div>
-        <div class="wp-toolbar-right">
-          <span class="wp-save-status" aria-live="polite">Saved</span>
-          <button class="wp-preview-btn">Preview</button>
-          <button class="wp-publish-btn">Publish</button>
-          <button class="wp-btn-icon" title="Settings" aria-label="Toggle settings sidebar">⚙</button>
-        </div>
-      </div>
+          <!-- Post content -->
+          <div class="editor-card">
+            <div class="post-title-field">NJ Transit announces weekend service changes on Morris and Essex lines</div>
 
-      <!-- Main editor body -->
-      <div class="wp-editor-main">
+            <p class="post-body-text">NJ Transit announced Friday that weekend service on the Morris &amp; Essex Lines will be suspended between Summit and Dover stations beginning March 8, due to track replacement work in the Chatham tunnel.</p>
 
-        <!-- Writing area -->
-        <div class="wp-writing-area" role="main">
-          <div class="wp-doc">
-            <h1 class="wp-post-title">Newark school board approves $2.1B budget for 2024–25</h1>
-            <p class="wp-block">
-              The Newark Board of Education voted unanimously Thursday to approve a $2.1 billion budget
-              for the 2024–25 school year, the largest in district history. The spending plan allocates
-              $47 million for new literacy programs and $23 million for expanded after-school services.
-            </p>
-            <p class="wp-block">
-              Superintendent Roger León called the budget "a significant investment in Newark's future,"
-              adding that the district expects to serve more than 36,000 students next year. The board
-              faced pressure from advocacy groups to increase mental health staffing, which the new
-              budget addresses with 48 additional counselor positions.
-            </p>
-
-            <!-- Hawk Translation block (inside the post content) -->
-            <div class="hawk-gutenberg-block" role="region" aria-label="Hawk translation status">
-              <div class="hawk-block-header">
-                <span class="hawk-block-brand">Hawk Translation</span>
-                <span class="hawk-block-status-pill running">In progress</span>
+            <!-- Hawk inline block -->
+            <div class="hawk-block">
+              <div class="hawk-block-bar">
+                <span class="hawk-block-label">Hawk translation</span>
+                <span style="font-family:'DM Sans',sans-serif;font-size:.62rem;color:var(--text-faint);">Job #hk-8492</span>
               </div>
               <div class="hawk-block-body">
-                <div class="hawk-job-row">
-                  <span class="hawk-lang-label">Spanish</span>
-                  <span class="hawk-job-state done">Delivered</span>
-                  <span class="hawk-job-draft">es-draft #8492</span>
+                <div class="hawk-block-row">
+                  <span class="hb-lang">Spanish</span>
+                  <span class="hb-badge hb-done">Delivered</span>
                 </div>
-                <div class="hawk-job-row">
-                  <span class="hawk-lang-label">Portuguese</span>
-                  <span class="hawk-job-state running">Scoring...</span>
-                  <span class="hawk-job-draft"></span>
+                <div class="hawk-block-row">
+                  <span class="hb-lang">Portuguese</span>
+                  <span class="hb-badge hb-scoring">Scoring…</span>
                 </div>
-                <div class="hawk-job-row">
-                  <span class="hawk-lang-label">French</span>
-                  <span class="hawk-job-state queued">Queued</span>
+                <div class="hawk-block-row">
+                  <span class="hb-lang">French</span>
+                  <span class="hb-badge hb-queued">Queued</span>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
 
-        <!-- Settings sidebar -->
-        <div class="wp-sidebar" role="complementary" aria-label="Post settings">
-          <div class="sidebar-tabs" role="tablist">
-            <button class="sidebar-tab active" role="tab" aria-selected="true">Post</button>
-            <button class="sidebar-tab" role="tab" aria-selected="false">Block</button>
+            <p class="post-body-text">Replacement bus service will operate on a modified schedule. Customers are advised to allow additional travel time and check the NJ Transit app for real-time updates.</p>
           </div>
 
-          <!-- Hawk panel -->
-          <div class="hawk-sidebar-panel" role="region" aria-label="Hawk translation settings">
-            <div class="hawk-panel-header">
-              <div class="hawk-panel-logo" aria-hidden="true">H</div>
-              <span class="hawk-panel-name">Hawk Translation</span>
-              <div class="hawk-job-badge" aria-label="Job running">
-                <div class="job-spinner" aria-hidden="true"></div>
-                <span class="job-id-text">a3f892b1</span>
-              </div>
-            </div>
+        </div><!-- end .cms-editor -->
+
+        <!-- Hawk sidebar panel -->
+        <div class="hawk-panel">
+          <div class="hawk-panel-header">
+            <div class="hawk-panel-title">Hawk translation</div>
+          </div>
+          <div class="hawk-panel-body">
 
             <!-- Job status -->
-            <div class="panel-section">
-              <div class="panel-section-title">Job status</div>
-              <div class="job-lang-progress" aria-live="polite">
-                <div class="job-lang-row">
-                  <span class="lang-dot done" aria-label="Complete"></span>
-                  <span class="lang-name">Spanish</span>
-                  <span class="lang-state done">Delivered</span>
-                  <span class="lang-draft">es-draft</span>
-                </div>
-                <div class="job-lang-row">
-                  <span class="lang-dot running" aria-label="In progress"></span>
-                  <span class="lang-name">Portuguese</span>
-                  <span class="lang-state running">Scoring…</span>
-                </div>
-                <div class="job-lang-row">
-                  <span class="lang-dot queued" aria-label="Queued"></span>
-                  <span class="lang-name">French</span>
-                  <span class="lang-state">Queued</span>
-                </div>
+            <div>
+              <div class="panel-section-label">Current job</div>
+              <div class="job-status-row">
+                <span>Job #hk-8492</span>
+                <span class="js-badge">In progress</span>
               </div>
             </div>
 
             <!-- Languages -->
-            <div class="panel-section">
-              <div class="panel-section-title">Languages</div>
-              <div class="lang-toggle-list" role="group" aria-label="Target languages">
-                <label class="lang-toggle-row"><input type="checkbox" checked disabled> Spanish</label>
-                <label class="lang-toggle-row"><input type="checkbox" checked disabled> Portuguese</label>
-                <label class="lang-toggle-row"><input type="checkbox" checked disabled> French</label>
-                <label class="lang-toggle-row"><input type="checkbox"> Chinese</label>
-                <label class="lang-toggle-row"><input type="checkbox"> Korean</label>
-                <label class="lang-toggle-row"><input type="checkbox"> Arabic</label>
-                <label class="lang-toggle-row"><input type="checkbox"> Polish</label>
-                <label class="lang-toggle-row">
-                  <input type="checkbox"> Haitian Creole
-                  <span class="lang-toggle-badge limited">limited</span>
-                </label>
+            <div>
+              <div class="panel-section-label">Languages</div>
+              <div class="lang-row">
+                <div class="fake-cb checked"></div>
+                <span>Spanish</span>
+                <span class="lang-status-dot active">● done</span>
+              </div>
+              <div class="lang-row">
+                <div class="fake-cb checked"></div>
+                <span>Portuguese</span>
+                <span class="lang-status-dot active">● scoring</span>
+              </div>
+              <div class="lang-row">
+                <div class="fake-cb checked"></div>
+                <span>French</span>
+                <span class="lang-status-dot">● queued</span>
+              </div>
+              <div class="lang-row">
+                <div class="fake-cb unchecked"></div>
+                <span>Korean</span>
+                <span class="lang-status-dot"></span>
+              </div>
+              <div class="lang-row">
+                <div class="fake-cb unchecked"></div>
+                <span>Chinese</span>
+                <span class="lang-status-dot"></span>
               </div>
             </div>
 
-            <!-- Quality tier -->
-            <div class="panel-section">
-              <div class="panel-section-title">Quality tier</div>
-              <div class="tier-radio-list" role="radiogroup" aria-label="Quality tier">
-                <label class="tier-radio-row">
-                  <input type="radio" name="tier">
-                  <div>
-                    <div>Instant</div>
-                    <div class="tier-desc">Machine translation, no review</div>
-                  </div>
-                </label>
-                <label class="tier-radio-row">
-                  <input type="radio" name="tier" checked>
-                  <div>
-                    <div>Reviewed</div>
-                    <div class="tier-desc">STNS editor review before delivery</div>
-                  </div>
-                </label>
-                <label class="tier-radio-row">
-                  <input type="radio" name="tier">
-                  <div>
-                    <div>Certified</div>
-                    <div class="tier-desc">Professional translator sign-off</div>
-                  </div>
-                </label>
+            <!-- Tier -->
+            <div>
+              <div class="panel-section-label">Quality tier</div>
+              <div class="tier-row">
+                <div class="fake-radio"></div>
+                <span>Instant</span>
+              </div>
+              <div class="tier-row">
+                <div class="fake-radio selected"></div>
+                <span>Reviewed</span>
+              </div>
+              <div class="tier-row">
+                <div class="fake-radio"></div>
+                <span>Certified</span>
               </div>
             </div>
 
-            <!-- Translate button (disabled while job running) -->
-            <button class="translate-cta" disabled aria-label="Translation in progress">
-              <span class="btn-spinner" aria-hidden="true"></span>
-              Translating…
-            </button>
+            <button class="btn-cta-disabled">Translating…</button>
 
-            <!-- Recent -->
-            <div class="panel-section">
-              <div class="panel-section-title">Recent translations</div>
-              <div class="recent-list">
-                <div class="recent-item">
-                  <span class="recent-title">Governor signs NJ Transit bill</span>
-                  <div class="recent-meta">
-                    <span class="recent-langs">ES · PT · ZH · FR</span>
-                    <span>3 days ago</span>
-                  </div>
-                </div>
-                <div class="recent-item">
-                  <span class="recent-title">Passaic flood recovery update</span>
-                  <div class="recent-meta">
-                    <span class="recent-langs">ES · PT</span>
-                    <span>1 week ago</span>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
+        </div><!-- end .hawk-panel -->
 
-          <!-- Standard WP panels -->
-          <div class="wp-std-panel">
-            <div class="wp-std-panel-title">Status &amp; visibility</div>
-            <div class="wp-std-panel-body">
-              <div class="wp-field-row">
-                <span class="wp-field-label">Visibility</span>
-                <span class="wp-field-val">Public</span>
-              </div>
-              <div class="wp-field-row">
-                <span class="wp-field-label">Publish</span>
-                <span class="wp-field-val">Immediately</span>
-              </div>
-              <div class="wp-field-row">
-                <span class="wp-field-label">Author</span>
-                <span class="wp-field-val">newsroom</span>
-              </div>
-            </div>
-          </div>
-          <div class="wp-std-panel">
-            <div class="wp-std-panel-title">Categories</div>
-          </div>
-          <div class="wp-std-panel">
-            <div class="wp-std-panel-title">Tags</div>
-          </div>
-        </div>
+      </div><!-- end .cms-body -->
 
-      </div><!-- end wp-editor-main -->
-    </div><!-- end editor-frame -->
-  </section>
+    </div><!-- end .cms-frame -->
+  </div>
 
-  <hr class="divider">
-
-  <!-- Setup guide -->
-  <section>
-    <div class="section-label">Setup</div>
-    <h2>Getting started</h2>
-    <p class="section-intro">
-      The plugin is distributed as a standard WordPress .zip file. Once activated, enter your Hawk API key in the settings page — the translation panel appears automatically on every post.
-    </p>
-    <div class="feature-grid">
-      <div class="feature-card">
-        <div class="feature-num">1</div>
-        <div class="feature-title">Install the plugin</div>
-        <div class="feature-desc">Upload the .zip in Plugins → Add New, or search "Hawk Translation" in the WordPress plugin directory.</div>
+  <!-- Setup feature cards -->
+  <section class="setup-section">
+    <div class="setup-eyebrow">Getting started</div>
+    <h2 class="setup-h2">Four steps to translate your first post</h2>
+    <div class="setup-grid">
+      <div class="setup-card">
+        <div class="setup-num">1</div>
+        <div class="setup-title">Install the plugin</div>
+        <div class="setup-desc">Upload hawk-translation.zip via the WordPress plugin manager or install from the WP plugin directory.</div>
       </div>
-      <div class="feature-card">
-        <div class="feature-num">2</div>
-        <div class="feature-title">Add your API key</div>
-        <div class="feature-desc">
-          Go to Settings → Hawk Translation. Paste your newsroom API key — available from your Hawk partner dashboard.
-          <code class="feature-code">hawk_live_••••••••••••••••••••ab3c</code>
-        </div>
+      <div class="setup-card">
+        <div class="setup-num">2</div>
+        <div class="setup-title">Add your API key</div>
+        <div class="setup-desc">Paste your Hawk API key in Settings → Hawk Translation. Keys follow the format:</div>
+        <code class="setup-code">hawk_live_xxxxxxxxxxxxxxxxxxxx</code>
       </div>
-      <div class="feature-card">
-        <div class="feature-num">3</div>
-        <div class="feature-title">Set the webhook</div>
-        <div class="feature-desc">
-          Hawk calls your WordPress REST API when translations finish. The plugin generates a secure webhook URL automatically.
-          <code class="feature-code">/wp-json/hawk/v1/webhook</code>
-        </div>
+      <div class="setup-card">
+        <div class="setup-num">3</div>
+        <div class="setup-title">Configure webhook</div>
+        <div class="setup-desc">Set the webhook URL in your Hawk dashboard so translated drafts are automatically pushed back to WordPress.</div>
+        <code class="setup-code">https://yournewsroom.com/wp-json/hawk/v1/receive</code>
       </div>
-      <div class="feature-card">
-        <div class="feature-num">4</div>
-        <div class="feature-title">Publish</div>
-        <div class="feature-desc">Translated drafts appear under the original post. Editors review and publish each language version on their own schedule.</div>
+      <div class="setup-card">
+        <div class="setup-num">4</div>
+        <div class="setup-title">Translate a post</div>
+        <div class="setup-desc">Open any post in the Gutenberg editor, select languages and tier in the Hawk sidebar panel, and click Translate.</div>
       </div>
     </div>
   </section>
 
-</main>
 </body>
 </html>
