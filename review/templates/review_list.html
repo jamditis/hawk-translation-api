@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Review queue — Hawk News Service</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem; color: #222; }
+    h1 { font-size: 1.4rem; margin-bottom: 1.5rem; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 0.75rem; text-align: left; border-bottom: 1px solid #ddd; }
+    th { background: #f5f5f5; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.04em; color: #555; }
+    tr:hover td { background: #fafafa; }
+    .tier { display: inline-block; padding: 0.2rem 0.5rem; border-radius: 3px; font-size: 0.8rem; }
+    .tier-reviewed { background: #dbeafe; color: #1d4ed8; }
+    .tier-certified { background: #fef3c7; color: #92400e; }
+    a { color: #0066cc; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .empty { color: #888; padding: 2rem 0; }
+  </style>
+</head>
+<body>
+  <h1>Review queue</h1>
+  {% if jobs %}
+  <table>
+    <thead>
+      <tr>
+        <th>Job ID</th>
+        <th>Language</th>
+        <th>Tier</th>
+        <th>Submitted</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for job in jobs %}
+      <tr>
+        <td><code>{{ job.id[:8] }}…</code></td>
+        <td>{{ job.source_language }} → {{ job.target_language }}</td>
+        <td><span class="tier tier-{{ job.tier }}">{{ job.tier }}</span></td>
+        <td>{{ job.created_at.strftime('%Y-%m-%d %H:%M') if job.created_at else '—' }}</td>
+        <td><a href="/review/{{ job.id }}">Review</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p class="empty">No jobs pending review.</p>
+  {% endif %}
+</body>
+</html>

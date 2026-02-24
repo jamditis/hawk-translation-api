@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Review {{ job.id[:8] }} — Hawk News Service</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; max-width: 1300px; margin: 2rem auto; padding: 0 1rem; color: #222; }
+    h1 { font-size: 1.3rem; margin-bottom: 0.4rem; }
+    .meta { font-size: 0.85rem; color: #666; margin-bottom: 1.5rem; }
+    .meta code { background: #f0f0f0; padding: 0.1rem 0.35rem; border-radius: 3px; }
+    .columns { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .panel { }
+    .panel-label { font-size: 0.75rem; font-weight: bold; text-transform: uppercase;
+                   letter-spacing: 0.06em; color: #888; margin-bottom: 0.5rem; }
+    .original { background: #f9f9f9; border: 1px solid #e5e5e5; border-radius: 4px;
+                padding: 1rem; min-height: 400px; line-height: 1.6; overflow: auto; }
+    textarea { width: 100%; height: 400px; font-family: Arial, sans-serif; font-size: 14px;
+               padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px; line-height: 1.6;
+               resize: vertical; }
+    textarea:focus { outline: 2px solid #0066cc; border-color: transparent; }
+    .actions { margin-top: 1rem; display: flex; align-items: center; gap: 1rem; }
+    button { background: #0066cc; color: white; border: none; padding: 0.65rem 1.4rem;
+             cursor: pointer; border-radius: 4px; font-size: 0.95rem; }
+    button:hover { background: #0052a3; }
+    .back { font-size: 0.9rem; color: #666; text-decoration: none; }
+    .back:hover { color: #222; }
+    .scores { margin-top: 1rem; }
+    .score-badge { display: inline-block; margin-right: 0.5rem; padding: 0.15rem 0.4rem;
+                   border-radius: 3px; font-size: 0.78rem; background: #f0f0f0; color: #444; }
+    .score-low { background: #fee2e2; color: #991b1b; }
+    #status-msg { font-size: 0.9rem; color: #555; }
+  </style>
+</head>
+<body>
+  <h1>{{ job.source_language }} → {{ job.target_language }} review</h1>
+  <p class="meta">
+    Job <code>{{ job.id }}</code> &nbsp;·&nbsp;
+    Tier: <strong>{{ job.tier }}</strong> &nbsp;·&nbsp;
+    Submitted: {{ job.created_at.strftime('%Y-%m-%d %H:%M UTC') if job.created_at else '—' }}
+    {% if job.quality_scores_json %}
+    &nbsp;·&nbsp; {{ job.quality_scores_json | length }} segment(s) scored
+    {% endif %}
+  </p>
+
+  <div class="columns">
+    <div class="panel">
+      <div class="panel-label">Original ({{ job.source_language }})</div>
+      <div class="original">{{ job.content | safe }}</div>
+      {% if job.quality_scores_json %}
+      <div class="scores">
+        {% for s in job.quality_scores_json %}
+        <span class="score-badge {% if s.overall and s.overall < 3 %}score-low{% endif %}">
+          seg {{ s.index }}: {{ s.overall if s.overall else '—' }}/5
+          {% if s.needs_review %} ⚑{% endif %}
+        </span>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+
+    <div class="panel">
+      <div class="panel-label">Machine translation — edit below</div>
+      <form id="review-form" method="post" action="/review/{{ job.id }}/approve">
+        <textarea name="edited_content" id="edited-content">{{ job.translated_content or '' }}</textarea>
+        <div class="actions">
+          <button type="submit">Approve translation</button>
+          <span id="status-msg"></span>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <p><a class="back" href="/review/">← Back to queue</a></p>
+
+  <script>
+    document.getElementById('review-form').addEventListener('submit', function(e) {
+      document.getElementById('status-msg').textContent = 'Saving…';
+    });
+  </script>
+</body>
+</html>

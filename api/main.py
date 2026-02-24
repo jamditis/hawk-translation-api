@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from api.routes.translate import router as translate_router
+from review.routes import router as review_router
 
 app = FastAPI(
     title="Hawk News Service translation API",
@@ -12,6 +13,7 @@ app = FastAPI(
 )
 
 app.include_router(translate_router, prefix="/v1")
+app.include_router(review_router, prefix="/review")
 
 
 @app.get("/health")
