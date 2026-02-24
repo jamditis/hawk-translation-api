@@ -44,7 +44,7 @@ Delivery
 | Component | Technology |
 |---|---|
 | **Human translators** | Professional bilingual journalists and translators, matched by language pair |
-| API server | FastAPI + uvicorn (port 8090) |
+| API server | FastAPI + uvicorn (port 8091) |
 | Task queue | Celery 5.3 + Redis |
 | Database | PostgreSQL 15 + SQLAlchemy 2.0 + Alembic |
 | Machine draft | `claude -p` subprocess — all 10 languages via Claude subscription |
@@ -60,7 +60,7 @@ python3 -m venv venv && source venv/bin/activate
 pip install -r requirements.txt -r requirements-dev.txt
 cp .env.example .env  # fill in real values
 alembic upgrade head
-uvicorn api.main:app --host 0.0.0.0 --port 8090 --reload
+uvicorn api.main:app --host 0.0.0.0 --port 8091 --reload
 celery -A workers.celery_app worker --loglevel=info  # separate terminal
 ```
 
@@ -73,7 +73,7 @@ Requires: PostgreSQL running locally, Redis running locally.
 pytest -v
 
 # Acceptance tests (requires live API + Claude CLI logged in)
-HAWK_API_KEY=hawk_test_xxx HAWK_API_BASE_URL=http://localhost:8090 pytest tests/acceptance/ -v -s
+HAWK_API_KEY=hawk_test_xxx HAWK_API_BASE_URL=http://localhost:8091 pytest tests/acceptance/ -v -s
 ```
 
 ---
@@ -126,7 +126,7 @@ Subsequent deploys:
 
 The deploy script installs deps, runs `alembic upgrade head` with verification that migrations applied cleanly, and restarts `hawk-api` and `hawk-worker` systemd services. The deploy fails if migrations don't reach head or if services fail to start.
 
-**Cloudflare tunnel:** Add a route in `~/.cloudflared/config.yml` pointing `api.hawknewsservice.org` → `http://localhost:8090`, then copy to `/etc/cloudflared/config.yml` and restart cloudflared.
+**Cloudflare tunnel:** Route for `api.hawknewsservice.org` → `http://127.0.0.1:8091` is in `~/.cloudflared/config.yml`. DNS CNAME for `api.hawknewsservice.org` needs to be added by the domain owner (Marty) pointing to the tunnel's CNAME target.
 
 ---
 

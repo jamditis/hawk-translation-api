@@ -7,7 +7,7 @@ Type=simple
 User=jamditis
 WorkingDirectory=/home/jamditis/projects/hawk-translation-api
 EnvironmentFile=/home/jamditis/projects/hawk-translation-api/.env
-ExecStart=/home/jamditis/projects/hawk-translation-api/venv/bin/uvicorn api.main:app --host 127.0.0.1 --port 8090
+ExecStart=/home/jamditis/projects/hawk-translation-api/venv/bin/uvicorn api.main:app --host 127.0.0.1 --port 8091
 Restart=always
 RestartSec=5
 
