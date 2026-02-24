@@ -1,5 +1,4 @@
 import logging
-import os
 from datetime import datetime, UTC
 
 import httpx
@@ -70,11 +69,8 @@ def run_translation_pipeline(self, job_id: str) -> None:
         for seg in segments:
             seg["text"] = apply_glossary(seg["text"], glossary_terms)
 
-        # Stage 3: generate machine draft via DeepL (or Google for ht/hi/ur)
-        deepl_key = os.getenv("DEEPL_API_KEY", "")
-        segments = translate_segments(
-            segments, target_language=job.target_language, api_key=deepl_key
-        )
+        # Stage 3: generate machine draft via Claude CLI subprocess
+        segments = translate_segments(segments, target_language=job.target_language)
 
         # Stage 4: reassemble translated HTML
         job.translated_content = reassemble_html(segments)

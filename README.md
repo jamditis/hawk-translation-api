@@ -26,7 +26,7 @@ POST /v1/translate
 Pipeline (machine draft)
     → segment HTML (BeautifulSoup4)
     → apply NJ journalism glossary (proper nouns, gov titles, place names)
-    → generate machine draft via DeepL API
+    → generate machine draft via claude -p subprocess
     → reassemble HTML
     → AI quality scoring flags segments for human attention
 
@@ -58,7 +58,7 @@ Delivery
 | API server | FastAPI + uvicorn (port 8090) |
 | Task queue | Celery 5.3 + Redis |
 | Database | PostgreSQL 15 + SQLAlchemy 2.0 + Alembic |
-| Machine draft | DeepL API (7 languages); Google Cloud Translation (`ht`, `hi`, `ur` — limited) |
+| Machine draft | `claude -p` subprocess — all 10 languages via Claude subscription |
 | AI quality scoring | `claude -p` subprocess — flags segments for human translator attention |
 
 ## Languages
@@ -95,7 +95,7 @@ Requires: PostgreSQL and Redis running locally.
 # Unit tests (77 tests, no live services needed)
 pytest -v
 
-# Acceptance tests (requires live API + real DeepL key)
+# Acceptance tests (requires live API + Claude CLI logged in)
 HAWK_API_KEY=hawk_test_xxx HAWK_API_BASE_URL=http://localhost:8090 pytest tests/acceptance/ -v -s
 ```
 
@@ -155,7 +155,7 @@ The deploy script installs deps, runs `alembic upgrade head`, and restarts `hawk
 
 ## Philosophy
 
-Machine translation is a tool, not a replacement for human expertise. The Hawk News Service exists because NJ's diverse communities deserve journalism translated by people who understand the language, the culture, and the local context. Every piece of technology in this pipeline — DeepL, AI scoring, the glossary system — exists to make human translators faster and more effective, not to cut them out of the process.
+Machine translation is a tool, not a replacement for human expertise. The Hawk News Service exists because NJ's diverse communities deserve journalism translated by people who understand the language, the culture, and the local context. Every piece of technology in this pipeline — Claude-powered machine drafts, AI quality scoring, the glossary system — exists to make human translators faster and more effective, not to cut them out of the process.
 
 ---
 

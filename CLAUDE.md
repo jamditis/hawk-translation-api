@@ -23,7 +23,7 @@ POST /v1/translate
 Machine draft (Celery worker, houseofjawn)
     → segment HTML (BeautifulSoup4)
     → apply NJ journalism glossary
-    → generate machine draft via DeepL / Google Translate
+    → generate machine draft via claude -p subprocess
     → reassemble HTML
     → AI quality scoring flags segments for human attention
 
@@ -47,7 +47,7 @@ Delivery
 | API server | FastAPI + uvicorn (port 8090) |
 | Task queue | Celery 5.3 + Redis |
 | Database | PostgreSQL 15 + SQLAlchemy 2.0 + Alembic |
-| Machine draft | DeepL API (7 languages); Google Cloud Translation API (`ht`, `hi`, `ur`) |
+| Machine draft | `claude -p` subprocess — all 10 languages via Claude subscription |
 | AI quality scoring | `claude -p` subprocess — flags segments for human translator attention (non-blocking, 30s timeout) |
 | Deployment | houseofjawn (100.122.208.15) via `scripts/deploy-houseofjawn.sh` |
 
@@ -72,7 +72,7 @@ Requires: PostgreSQL running locally, Redis running locally.
 # Standard unit tests (81+ tests, no live services needed)
 pytest -v
 
-# Acceptance tests (requires live API + real DeepL key)
+# Acceptance tests (requires live API + Claude CLI logged in)
 HAWK_API_KEY=hawk_test_xxx HAWK_API_BASE_URL=http://localhost:8090 pytest tests/acceptance/ -v -s
 ```
 
@@ -92,7 +92,7 @@ HAWK_API_KEY=hawk_test_xxx HAWK_API_BASE_URL=http://localhost:8090 pytest tests/
 
 **Webhook delivery** is a separate Celery task (`deliver_webhook`) with its own retry schedule (5x over 24h). This decouples delivery retries from pipeline retries.
 
-**`ht`, `hi`, `ur` use Google Cloud Translation API.** Requires `GOOGLE_TRANSLATE_API_KEY` env var. If the key is missing or the API fails, falls back gracefully to untranslated text flagged with `needs_review: true`. These three languages are marked `"status": "limited"` in `GET /v1/languages` until human translators have validated the machine output quality.
+**`ht`, `hi`, `ur` are marked `"status": "limited"` in `GET /v1/languages`** until human translators have validated the machine output quality. All 10 languages run through the same `claude -p` subprocess pipeline — "limited" reflects translator validation status, not engine capability.
 
 ---
 

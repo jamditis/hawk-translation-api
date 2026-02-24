@@ -1,47 +1,46 @@
+import json
 import logging
-import os
-
-import httpx
+import subprocess
 
 logger = logging.getLogger(__name__)
 
-DEEPL_API_URL = "https://api-free.deepl.com/v2/translate"
-GOOGLE_TRANSLATE_URL = "https://translation.googleapis.com/language/translate/v2"
+SUBPROCESS_TIMEOUT = 60  # longer than scoring — translating full articles
+MAX_RETRIES = 2
+BATCH_SIZE = 50  # segments per claude -p call
 
-# All 10 language codes the API layer accepts
 SUPPORTED_TARGET_LANGUAGES = {"es", "pt", "ht", "zh", "ko", "ar", "fr", "pl", "hi", "ur"}
 
-# Mapping from our codes to DeepL's target language codes (only for DEEPL_SUPPORTED languages)
-DEEPL_LANGUAGE_CODES = {
-    "es": "ES",
-    "pt": "PT-BR",
-    "zh": "ZH",
-    "ko": "KO",
-    "ar": "AR",
-    "fr": "FR",
-    "pl": "PL",
+LANGUAGE_NAMES = {
+    "es": "Spanish",
+    "pt": "Portuguese (Brazilian)",
+    "zh": "Chinese (Simplified)",
+    "ko": "Korean",
+    "ar": "Arabic",
+    "fr": "French",
+    "pl": "Polish",
+    "ht": "Haitian Creole",
+    "hi": "Hindi",
+    "ur": "Urdu",
 }
 
-# Mapping from our codes to Google Translate language codes
-GOOGLE_LANGUAGE_CODES = {
-    "ht": "ht",
-    "hi": "hi",
-    "ur": "ur",
-}
+TRANSLATION_PROMPT_TEMPLATE = """Translate these English journalism segments to {language_name}.
 
-DEEPL_SUPPORTED = set(DEEPL_LANGUAGE_CODES.keys())
-GOOGLE_FALLBACK = set(GOOGLE_LANGUAGE_CODES.keys())
+Return a JSON array of translated strings in the same order. No other text.
+
+{segments_json}"""
 
 
 def translate_segments(
     segments: list[dict],
     target_language: str,
-    api_key: str,
 ) -> list[dict]:
     """
-    Translate all segments to target_language.
-    Uses DeepL for DEEPL_SUPPORTED languages; falls back to Google Translate for GOOGLE_FALLBACK.
-    Updates each segment's 'translated' field in-place and returns the list.
+    Translate all segments to target_language using claude -p subprocess.
+
+    Sends segments in batches to Claude, which handles all 10 supported languages
+    with no external API keys. If a batch fails (timeout or bad JSON), returns
+    untranslated text flagged with needs_review=True so jobs still complete and
+    human translators can address them in review.
     """
     if not segments:
         return segments
@@ -52,95 +51,55 @@ def translate_segments(
             f"Supported: {sorted(SUPPORTED_TARGET_LANGUAGES)}"
         )
 
-    if target_language in GOOGLE_FALLBACK:
-        return _translate_via_google(segments, target_language)
+    language_name = LANGUAGE_NAMES[target_language]
 
-    texts = [s["text"] for s in segments]
-    deepl_lang = DEEPL_LANGUAGE_CODES[target_language]
+    for i in range(0, len(segments), BATCH_SIZE):
+        _translate_batch(segments[i : i + BATCH_SIZE], language_name)
 
-    response = httpx.post(
-        DEEPL_API_URL,
-        headers={"Authorization": f"DeepL-Auth-Key {api_key}"},
-        json={
-            "text": texts,
-            "source_lang": "EN",
-            "target_lang": deepl_lang,
-            "preserve_formatting": True,
-        },
-        timeout=30.0,
+    return segments
+
+
+def _translate_batch(batch: list[dict], language_name: str) -> None:
+    """Translate a batch of segments in-place. Falls back to untranslated on failure."""
+    texts = [s["text"] for s in batch]
+    prompt = TRANSLATION_PROMPT_TEMPLATE.format(
+        language_name=language_name,
+        segments_json=json.dumps(texts, ensure_ascii=False),
     )
 
-    if response.status_code != 200:
-        raise Exception(f"DeepL API error {response.status_code}: {response.text}")
-
-    data = response.json()
-    if len(data["translations"]) != len(texts):
-        raise Exception(
-            f"DeepL returned {len(data['translations'])} translations for {len(texts)} segments"
-        )
-    for i, translation in enumerate(data["translations"]):
-        segments[i]["translated"] = translation["text"]
-
-    return segments
-
-
-def _translate_via_google(segments: list[dict], target_language: str) -> list[dict]:
-    """Translate segments using Google Cloud Translation API.
-
-    Falls back to returning untranslated text (flagged for review) if the API
-    key is missing or the request fails, so jobs never hard-fail due to Google.
-    """
-    google_key = os.getenv("GOOGLE_TRANSLATE_API_KEY", "")
-    if not google_key:
-        logger.warning(
-            "GOOGLE_TRANSLATE_API_KEY not set — returning untranslated text for %s",
-            target_language,
-        )
-        for seg in segments:
-            seg["translated"] = seg["text"]
-            seg["needs_review"] = True
-        return segments
-
-    google_lang = GOOGLE_LANGUAGE_CODES[target_language]
-    texts = [s["text"] for s in segments]
-
-    # Google Translate API accepts batches of up to ~128 segments.
-    # Batch in chunks of 100 to stay well within limits.
-    BATCH_SIZE = 100
-    all_translations = []
-    for i in range(0, len(texts), BATCH_SIZE):
-        batch = texts[i : i + BATCH_SIZE]
+    last_error = None
+    for attempt in range(MAX_RETRIES + 1):
         try:
-            response = httpx.post(
-                GOOGLE_TRANSLATE_URL,
-                params={"key": google_key},
-                json={
-                    "q": batch,
-                    "source": "en",
-                    "target": google_lang,
-                    "format": "text",
-                },
-                timeout=30.0,
+            result = subprocess.run(
+                ["claude", "-p", prompt],
+                capture_output=True,
+                text=True,
+                timeout=SUBPROCESS_TIMEOUT,
             )
-            if response.status_code != 200:
-                raise Exception(
-                    f"Google Translate API error {response.status_code}: {response.text}"
+            translations = json.loads(result.stdout.strip())
+            if not isinstance(translations, list) or len(translations) != len(batch):
+                raise ValueError(
+                    f"Expected {len(batch)} translations, got "
+                    f"{'non-list' if not isinstance(translations, list) else len(translations)}"
                 )
-            data = response.json()
-            translations = data["data"]["translations"]
-            all_translations.extend(t["translatedText"] for t in translations)
-        except Exception:
-            logger.exception(
-                "Google Translate failed for batch %d–%d, target=%s",
-                i, i + len(batch), target_language,
+            for i, translated_text in enumerate(translations):
+                batch[i]["translated"] = str(translated_text)
+            return
+        except subprocess.TimeoutExpired:
+            last_error = "timeout"
+            logger.warning(
+                "Translation timed out (attempt %d/%d, batch=%d segments)",
+                attempt + 1, MAX_RETRIES + 1, len(batch),
             )
-            # Fall back to untranslated for the whole request on any failure
-            for seg in segments:
-                seg["translated"] = seg["text"]
-                seg["needs_review"] = True
-            return segments
+        except (json.JSONDecodeError, KeyError, ValueError, TypeError) as e:
+            logger.warning("Translation returned invalid output: %s", e)
+            last_error = str(e)
+            break  # parse errors won't self-resolve — skip remaining retries
 
-    for i, translated_text in enumerate(all_translations):
-        segments[i]["translated"] = translated_text
-
-    return segments
+    logger.warning(
+        "Translation failed for batch of %d segments (last: %s) — returning untranslated",
+        len(batch), last_error,
+    )
+    for seg in batch:
+        seg["translated"] = seg["text"]
+        seg["needs_review"] = True
