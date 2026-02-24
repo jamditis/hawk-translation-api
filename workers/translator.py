@@ -1,6 +1,7 @@
 import json
 import logging
-import subprocess
+
+from workers.claude_runner import run_claude_p
 
 logger = logging.getLogger(__name__)
 
@@ -69,14 +70,16 @@ def _translate_batch(batch: list[dict], language_name: str) -> None:
 
     last_error = None
     for attempt in range(MAX_RETRIES + 1):
-        try:
-            result = subprocess.run(
-                ["claude", "-p", prompt],
-                capture_output=True,
-                text=True,
-                timeout=SUBPROCESS_TIMEOUT,
+        output = run_claude_p(prompt, session_prefix="translator", timeout=SUBPROCESS_TIMEOUT)
+        if output is None:
+            last_error = "timeout"
+            logger.warning(
+                "Translation timed out (attempt %d/%d, batch=%d segments)",
+                attempt + 1, MAX_RETRIES + 1, len(batch),
             )
-            translations = json.loads(result.stdout.strip())
+            continue
+        try:
+            translations = json.loads(output.strip())
             if not isinstance(translations, list) or len(translations) != len(batch):
                 raise ValueError(
                     f"Expected {len(batch)} translations, got "
@@ -85,12 +88,6 @@ def _translate_batch(batch: list[dict], language_name: str) -> None:
             for i, translated_text in enumerate(translations):
                 batch[i]["translated"] = str(translated_text)
             return
-        except subprocess.TimeoutExpired:
-            last_error = "timeout"
-            logger.warning(
-                "Translation timed out (attempt %d/%d, batch=%d segments)",
-                attempt + 1, MAX_RETRIES + 1, len(batch),
-            )
         except (json.JSONDecodeError, KeyError, ValueError, TypeError) as e:
             logger.warning("Translation returned invalid output: %s", e)
             last_error = str(e)

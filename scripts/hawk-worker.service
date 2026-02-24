@@ -7,6 +7,7 @@ Type=simple
 User=jamditis
 WorkingDirectory=/home/jamditis/projects/hawk-translation-api
 EnvironmentFile=/home/jamditis/projects/hawk-translation-api/.env
+Environment="PATH=/home/jamditis/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/snap/bin"
 ExecStart=/home/jamditis/projects/hawk-translation-api/venv/bin/celery -A workers.celery_app worker --loglevel=info --concurrency=2
 Restart=always
 RestartSec=10

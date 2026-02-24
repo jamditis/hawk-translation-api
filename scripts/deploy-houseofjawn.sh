@@ -16,6 +16,9 @@ echo "Deploying hawk-translation-api on houseofjawn..."
 source venv/bin/activate
 pip install -r requirements.txt -q
 
+# Load DATABASE_URL from .env so alembic can connect (it reads os.environ, not .env directly)
+set -a; source "$PROJECT_DIR/.env"; set +a
+
 echo "Running database migrations..."
 alembic upgrade head
 CURRENT=$(alembic current 2>&1)

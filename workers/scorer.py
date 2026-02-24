@@ -1,7 +1,8 @@
-import subprocess
 import json
 import logging
 from dataclasses import dataclass, field
+
+from workers.claude_runner import run_claude_p
 
 logger = logging.getLogger(__name__)
 
@@ -62,25 +63,21 @@ def score_translation(original: str, translated: str, target_lang: str) -> "Scor
 
     last_error = None
     for attempt in range(MAX_RETRIES + 1):
-        try:
-            result = subprocess.run(
-                ["claude", "-p", prompt],
-                capture_output=True,
-                text=True,
-                timeout=SUBPROCESS_TIMEOUT,
+        output = run_claude_p(prompt, session_prefix="scorer", timeout=SUBPROCESS_TIMEOUT)
+        if output is None:
+            last_error = "timeout"
+            logger.warning(
+                "Quality scoring timed out for %s (attempt %d/%d)",
+                target_lang, attempt + 1, MAX_RETRIES + 1,
             )
-            data = json.loads(result.stdout.strip())
+            continue
+        try:
+            data = json.loads(output.strip())
             return ScoreResult(
                 overall=float(data["overall"]),
                 fluency=float(data["fluency"]),
                 accuracy=float(data["accuracy"]),
                 flags=data.get("flags") or [],
-            )
-        except subprocess.TimeoutExpired:
-            last_error = "timeout"
-            logger.warning(
-                "Quality scoring timed out for %s (attempt %d/%d)",
-                target_lang, attempt + 1, MAX_RETRIES + 1,
             )
         except (json.JSONDecodeError, KeyError, ValueError, TypeError) as e:
             # Parse errors are unlikely to succeed on retry — bail immediately
