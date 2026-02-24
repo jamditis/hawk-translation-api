@@ -4,10 +4,10 @@ After=network.target redis.service
 
 [Service]
 Type=simple
-User=joe
-WorkingDirectory=/home/joe/projects/hawk-translation-api
-EnvironmentFile=/home/joe/projects/hawk-translation-api/.env
-ExecStart=/home/joe/projects/hawk-translation-api/venv/bin/celery -A workers.celery_app worker --loglevel=info --concurrency=2
+User=jamditis
+WorkingDirectory=/home/jamditis/projects/hawk-translation-api
+EnvironmentFile=/home/jamditis/projects/hawk-translation-api/.env
+ExecStart=/home/jamditis/projects/hawk-translation-api/venv/bin/celery -A workers.celery_app worker --loglevel=info --concurrency=2
 Restart=always
 RestartSec=10
 

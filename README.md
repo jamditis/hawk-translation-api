@@ -139,15 +139,17 @@ GET /v1/languages
 
 ## Deployment
 
+Run directly on houseofjawn (the API runs there — no SSH needed):
+
 ```bash
-# First time on officejawn
-./scripts/deploy-officejawn.sh --install
+# First time
+./scripts/deploy-houseofjawn.sh --install
 
 # Subsequent deploys
-./scripts/deploy-officejawn.sh
+./scripts/deploy-houseofjawn.sh
 ```
 
-The deploy script rsyncs code, installs deps, runs `alembic upgrade head`, and restarts `hawk-api` and `hawk-worker` systemd services.
+The deploy script installs deps, runs `alembic upgrade head`, and restarts `hawk-api` and `hawk-worker` systemd services.
 
 ---
 

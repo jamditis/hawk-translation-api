@@ -6,7 +6,7 @@ A human translator-centered REST API for translating journalism content into 10 
 
 The technology in this pipeline exists to make human translators faster and more effective — not to replace them. Every design decision should be evaluated through that lens.
 
-Live at: `api.hawknewsservice.org` (via Cloudflare Tunnel → officejawn)
+Live at: `api.hawknewsservice.org` (via Cloudflare Tunnel → houseofjawn)
 
 ---
 
@@ -20,7 +20,7 @@ POST /v1/translate
     → enqueue Celery task
     → return 202 + job_id
 
-Machine draft (Celery worker, officejawn)
+Machine draft (Celery worker, houseofjawn)
     → segment HTML (BeautifulSoup4)
     → apply NJ journalism glossary
     → generate machine draft via DeepL / Google Translate
@@ -49,7 +49,7 @@ Delivery
 | Database | PostgreSQL 15 + SQLAlchemy 2.0 + Alembic |
 | Machine draft | DeepL API (7 languages); Google Cloud Translation API (`ht`, `hi`, `ur`) |
 | AI quality scoring | `claude -p` subprocess — flags segments for human translator attention (non-blocking, 30s timeout) |
-| Deployment | officejawn (100.84.214.24) via `scripts/deploy-officejawn.sh` |
+| Deployment | houseofjawn (100.122.208.15) via `scripts/deploy-houseofjawn.sh` |
 
 ---
 
@@ -64,7 +64,7 @@ uvicorn api.main:app --host 0.0.0.0 --port 8090 --reload
 celery -A workers.celery_app worker --loglevel=info  # separate terminal
 ```
 
-Requires: PostgreSQL running locally (or on officejawn), Redis running locally.
+Requires: PostgreSQL running locally, Redis running locally.
 
 ## Tests
 
@@ -112,17 +112,21 @@ scripts/      Systemd service files, deploy script
 
 ## Deployment
 
-First time on officejawn:
+Run directly on houseofjawn (no SSH needed — the API runs here):
+
+First time:
 ```bash
-./scripts/deploy-officejawn.sh --install
+./scripts/deploy-houseofjawn.sh --install
 ```
 
 Subsequent deploys:
 ```bash
-./scripts/deploy-officejawn.sh
+./scripts/deploy-houseofjawn.sh
 ```
 
-The deploy script rsyncs code, installs deps, runs `alembic upgrade head` with verification that migrations applied cleanly, and restarts `hawk-api` and `hawk-worker` systemd services. The deploy fails if migrations don't reach head or if services fail to start.
+The deploy script installs deps, runs `alembic upgrade head` with verification that migrations applied cleanly, and restarts `hawk-api` and `hawk-worker` systemd services. The deploy fails if migrations don't reach head or if services fail to start.
+
+**Cloudflare tunnel:** Add a route in `~/.cloudflared/config.yml` pointing `api.hawknewsservice.org` → `http://localhost:8090`, then copy to `/etc/cloudflared/config.yml` and restart cloudflared.
 
 ---
 
