@@ -383,6 +383,7 @@ def test_pipeline_does_not_fire_webhook_for_review_tier():
     with patch("workers.tasks.get_db_session", return_value=mock_db), \
          patch("workers.tasks.translate_segments", return_value=[SEGMENT]), \
          patch("workers.tasks.score_translation", return_value=None), \
+         patch("workers.tasks.assign_reviewer", return_value=None), \
          patch("workers.tasks.deliver_webhook", mock_deliver):
         from workers.tasks import run_translation_pipeline
         run_translation_pipeline("job-123")
@@ -390,6 +391,29 @@ def test_pipeline_does_not_fire_webhook_for_review_tier():
     mock_deliver.delay.assert_not_called()
     assert mock_job.status == "in_review", (
         f"Expected job.status='in_review' for reviewed tier, got: {mock_job.status}"
+    )
+
+
+def test_pipeline_calls_assign_reviewer_for_review_tier():
+    """When job.tier is not 'instant', assign_reviewer is called with the correct language pair."""
+    mock_db = MagicMock()
+    mock_job = _make_mock_job(tier="reviewed", source_language="en", target_language="es")
+    mock_db.get.return_value = mock_job
+
+    mock_assign = MagicMock(return_value="rev-1")
+
+    with patch("workers.tasks.get_db_session", return_value=mock_db), \
+         patch("workers.tasks.translate_segments", return_value=[SEGMENT]), \
+         patch("workers.tasks.score_translation", return_value=None), \
+         patch("workers.tasks.assign_reviewer", mock_assign), \
+         patch("workers.tasks.deliver_webhook"):
+        from workers.tasks import run_translation_pipeline
+        run_translation_pipeline("job-123")
+
+    mock_assign.assert_called_once_with(
+        job_id=mock_job.id,
+        language_pair="en-es",
+        db=mock_db,
     )
 
 

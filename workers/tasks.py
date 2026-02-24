@@ -6,6 +6,7 @@ import httpx
 
 from db.database import SessionLocal
 from db.models import Glossary, TranslationJob
+from review.queue import assign_reviewer
 from workers.celery_app import celery_app
 from workers.glossary import apply_glossary
 from workers.scorer import score_translation
@@ -116,6 +117,8 @@ def run_translation_pipeline(self, job_id: str) -> None:
             # Queue for human translator review — this is where the real
             # translation quality work happens
             job.status = "in_review"
+            language_pair = f"{job.source_language}-{job.target_language}"
+            assign_reviewer(job_id=job.id, language_pair=language_pair, db=db)
 
         db.commit()
 
