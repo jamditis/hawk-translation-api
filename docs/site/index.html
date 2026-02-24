@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hawk News Service — translation API for local newsrooms</title>
+  <meta name="description" content="Machine translation built for local newsrooms. The Hawk API delivers journalism content in 10 languages with three quality tiers. Built for NJ News Commons partner newsrooms.">
+
+  <!-- OG / social meta -->
+  <meta property="og:title" content="Hawk News Service — translation API for local newsrooms">
+  <meta property="og:description" content="Machine translation built for local newsrooms. 10 languages, three quality tiers — instant AI, human-reviewed, and certified professional translation.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://hawknewsservice.org/">
+  <meta property="og:image" content="https://hawknewsservice.org/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Hawk News Service — translation API for local newsrooms">
+  <meta name="twitter:description" content="Machine translation built for local newsrooms. 10 languages, three quality tiers.">
+  <meta name="twitter:image" content="https://hawknewsservice.org/og-image.png">
+
+  <!-- Inline SVG favicon: H lettermark in amber on navy -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230a1628'/><text x='16' y='23' font-family='Georgia,serif' font-size='22' font-weight='bold' fill='%23e8a020' text-anchor='middle'>H</text></svg>">
+
+  <style>
+    :root {
+      --navy:   #0a1628;
+      --navy-2: #122040;
+      --navy-3: #1e3260;
+      --cream:  #f5f2ed;
+      --cream-2:#ece8e1;
+      --amber:  #e8a020;
+      --amber-2:#c47e0a;
+      --text:   #1a1a1a;
+      --muted:  #5a5a5a;
+      --rule:   #d0cbc2;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    /* ── masthead ── */
+    .masthead {
+      background: var(--navy);
+      border-bottom: 3px solid var(--amber);
+      padding: 1.5rem 2rem;
+    }
+    .masthead-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+    .logo-mark {
+      width: 40px;
+      height: 40px;
+      background: var(--amber);
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .logo-mark span {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--navy);
+      line-height: 1;
+    }
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+    .logo-name {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: #fff;
+      letter-spacing: 0.01em;
+      line-height: 1.1;
+    }
+    .logo-sub {
+      font-size: 0.72rem;
+      color: var(--amber);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 0.1rem;
+    }
+    .masthead-nav a {
+      color: var(--cream-2);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.75rem;
+      border: 1px solid var(--navy-3);
+      border-radius: 2px;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .masthead-nav a:hover {
+      border-color: var(--amber);
+      color: var(--amber);
+    }
+
+    /* ── hero ── */
+    .hero {
+      background: var(--navy);
+      padding: 5rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 39px,
+          rgba(255,255,255,0.03) 39px,
+          rgba(255,255,255,0.03) 40px
+        );
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .hero-kicker {
+      display: inline-block;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--amber);
+      border-top: 2px solid var(--amber);
+      padding-top: 0.4rem;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-weight: normal;
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.01em;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--amber);
+    }
+    .hero-body {
+      font-size: 1.1rem;
+      color: rgba(245,242,237,0.75);
+      max-width: 580px;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: var(--amber);
+      color: var(--navy);
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 0.8rem 1.8rem;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: background 0.15s;
+    }
+    .btn-primary:hover { background: var(--amber-2); }
+    .btn-ghost {
+      display: inline-block;
+      color: var(--cream-2);
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 0.8rem 1.8rem;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 2px;
+      transition: border-color 0.15s;
+    }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.6); }
+
+    /* ── section wrapper ── */
+    .section {
+      padding: 4rem 2rem;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+    .section-rule {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 0;
+    }
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-top: 2px solid var(--amber);
+      display: inline-block;
+      padding-top: 0.4rem;
+      margin-bottom: 1.5rem;
+    }
+    .section-title {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: normal;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      letter-spacing: -0.01em;
+    }
+    .section-intro {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 600px;
+      line-height: 1.7;
+      margin-bottom: 3rem;
+    }
+
+    /* ── tiers ── */
+    .tiers {
+      background: var(--cream-2);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+    .tiers-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+    .tier-card {
+      padding: 2.5rem 2rem;
+      border-right: 1px solid var(--rule);
+      position: relative;
+    }
+    .tier-card:last-child { border-right: none; }
+    .tier-num {
+      font-size: 0.65rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+    .tier-name {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.5rem;
+      font-weight: normal;
+      margin-bottom: 0.5rem;
+      color: var(--navy);
+    }
+    .tier-speed {
+      display: inline-block;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: var(--navy);
+      color: var(--amber);
+      padding: 0.2rem 0.5rem;
+      border-radius: 2px;
+      margin-bottom: 1rem;
+    }
+    .tier-card p {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 0.75rem;
+    }
+    .tier-best {
+      font-size: 0.8rem;
+      color: var(--text);
+      font-style: italic;
+    }
+    .tier-divider {
+      width: 2rem;
+      height: 2px;
+      background: var(--amber);
+      margin-bottom: 1rem;
+    }
+
+    /* ── languages ── */
+    .lang-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .lang-item {
+      background: var(--cream);
+      padding: 1.1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .lang-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--amber);
+      flex-shrink: 0;
+    }
+    .lang-name {
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    .lang-code {
+      font-size: 0.72rem;
+      font-family: 'Courier New', Courier, monospace;
+      color: var(--muted);
+      margin-left: auto;
+    }
+
+    /* ── cta ── */
+    .cta-band {
+      background: var(--navy);
+      padding: 4rem 2rem;
+    }
+    .cta-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .cta-band h2 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      color: #fff;
+      font-weight: normal;
+      margin-bottom: 0.75rem;
+    }
+    .cta-band p {
+      color: rgba(245,242,237,0.65);
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+      line-height: 1.65;
+    }
+    .cta-note {
+      margin-top: 1.25rem;
+      font-size: 0.8rem;
+      color: rgba(245,242,237,0.4);
+    }
+
+    /* ── footer ── */
+    footer {
+      background: var(--navy);
+      border-top: 1px solid var(--navy-3);
+      padding: 2rem;
+    }
+    .footer-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-brand {
+      font-size: 0.82rem;
+      color: rgba(245,242,237,0.45);
+    }
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .footer-links a {
+      font-size: 0.82rem;
+      color: rgba(245,242,237,0.45);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .footer-links a:hover { color: var(--amber); }
+
+    /* ── responsive ── */
+    @media (max-width: 720px) {
+      .tiers-grid {
+        grid-template-columns: 1fr;
+      }
+      .tier-card {
+        border-right: none;
+        border-bottom: 1px solid var(--rule);
+      }
+      .tier-card:last-child { border-bottom: none; }
+    }
+    @media (max-width: 520px) {
+      .masthead { padding: 1rem; }
+      .hero { padding: 3rem 1rem 2.5rem; }
+      .section { padding: 3rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- masthead -->
+  <header class="masthead">
+    <div class="masthead-inner">
+      <a href="/" class="logo">
+        <div class="logo-mark"><span>H</span></div>
+        <div class="logo-text">
+          <span class="logo-name">Hawk News Service</span>
+          <span class="logo-sub">Translation API</span>
+        </div>
+      </a>
+      <nav class="masthead-nav">
+        <a href="api-reference.html">API reference</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <span class="hero-kicker">Built for local journalism</span>
+      <h1>Machine translation built for <em>local newsrooms</em></h1>
+      <p class="hero-body">
+        The Hawk API delivers journalism content in 10 languages with three quality tiers —
+        instant AI, human-reviewed, and certified professional translation.
+        Built for the 330+ NJ News Commons partner newsrooms.
+      </p>
+      <div class="hero-actions">
+        <a href="mailto:translate@hawknewsservice.org" class="btn-primary">Request API access</a>
+        <a href="api-reference.html" class="btn-ghost">API reference</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- tiers -->
+  <div class="tiers">
+    <div class="section" style="padding-bottom: 0;">
+      <span class="section-label">Quality tiers</span>
+      <h2 class="section-title">Three tiers for every deadline</h2>
+      <p class="section-intro">
+        Choose the tier that matches your story's needs — from breaking news to long-form public service journalism.
+      </p>
+    </div>
+    <div class="tiers-grid">
+      <div class="tier-card">
+        <div class="tier-num">Tier 01</div>
+        <div class="tier-divider"></div>
+        <div class="tier-name">Instant</div>
+        <span class="tier-speed">Seconds</span>
+        <p>AI translation via DeepL, delivered immediately. Paragraph-level quality scoring flags anything that needs a second look.</p>
+        <p class="tier-best">Best for breaking news, alerts, and time-sensitive briefs.</p>
+      </div>
+      <div class="tier-card">
+        <div class="tier-num">Tier 02</div>
+        <div class="tier-divider"></div>
+        <div class="tier-name">Reviewed</div>
+        <span class="tier-speed">24–48 hours</span>
+        <p>Machine translation plus a human editor who reviews and corrects flagged segments in a side-by-side interface.</p>
+        <p class="tier-best">Best for features, investigations, and community-facing content.</p>
+      </div>
+      <div class="tier-card">
+        <div class="tier-num">Tier 03</div>
+        <div class="tier-divider"></div>
+        <div class="tier-name">Certified</div>
+        <span class="tier-speed">3–5 days</span>
+        <p>Professional translator plus editor review. Two-stage approval process with full diff tracking.</p>
+        <p class="tier-best">Best for legal notices, public health content, and high-stakes community journalism.</p>
+      </div>
+    </div>
+  </div>
+  <hr class="section-rule">
+
+  <!-- languages -->
+  <div class="section">
+    <span class="section-label">Languages</span>
+    <h2 class="section-title">10 languages at launch</h2>
+    <p class="section-intro">
+      Selected based on New Jersey demographic data to serve the state's largest language communities.
+    </p>
+    <div class="lang-grid">
+      <div class="lang-item"><span class="lang-dot"></span><span class="lang-name">Spanish</span><span class="lang-code">es</span></div>
+      <div class="lang-item"><span class="lang-dot"></span><span class="lang-name">Portuguese</span><span class="lang-code">pt</span></div>
+      <div class="lang-item"><span class="lang-dot"></span><span class="lang-name">Haitian Creole</span><span class="lang-code">ht</span></div>
+      <div class="lang-item"><span class="lang-dot"></span><span class="lang-name">Chinese (Simplified)</span><span class="lang-code">zh</span></div>
+      <div class="lang-item"><span class="lang-dot"></span><span class="lang-name">Korean</span><span class="lang-code">ko</span></div>
+      <div class="lang-item"><span class="lang-dot"></span><span class="lang-name">Arabic</span><span class="lang-code">ar</span></div>
+      <div class="lang-item"><span class="lang-dot"></span><span class="lang-name">French</span><span class="lang-code">fr</span></div>
+      <div class="lang-item"><span class="lang-dot"></span><span class="lang-name">Polish</span><span class="lang-code">pl</span></div>
+      <div class="lang-item"><span class="lang-dot"></span><span class="lang-name">Hindi</span><span class="lang-code">hi</span></div>
+      <div class="lang-item"><span class="lang-dot"></span><span class="lang-name">Urdu</span><span class="lang-code">ur</span></div>
+    </div>
+  </div>
+  <hr class="section-rule">
+
+  <!-- CTA -->
+  <div class="cta-band">
+    <div class="cta-inner">
+      <h2>Ready to reach more readers?</h2>
+      <p>
+        API access is currently available to NJ News Commons partner newsrooms.
+        Contact us to get started.
+      </p>
+      <a href="mailto:translate@hawknewsservice.org" class="btn-primary">Request API access</a>
+      <p class="cta-note">translate@hawknewsservice.org</p>
+    </div>
+  </div>
+
+  <!-- footer -->
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-brand">Center for Cooperative Media · Montclair State University</span>
+      <nav class="footer-links">
+        <a href="api-reference.html">API reference</a>
+        <a href="mailto:translate@hawknewsservice.org">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>

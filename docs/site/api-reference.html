@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>API reference — Hawk News Service</title>
+  <meta name="description" content="Complete API reference for the Hawk News Service translation API. Endpoints, authentication, error codes, and rate limits.">
+
+  <!-- OG / social meta -->
+  <meta property="og:title" content="API reference — Hawk News Service">
+  <meta property="og:description" content="Complete API reference for the Hawk News Service translation API. Endpoints, authentication, error codes, and rate limits.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://hawknewsservice.org/api-reference.html">
+  <meta property="og:image" content="https://hawknewsservice.org/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="API reference — Hawk News Service">
+  <meta name="twitter:description" content="Complete API reference for the Hawk News Service translation API.">
+  <meta name="twitter:image" content="https://hawknewsservice.org/og-image.png">
+
+  <!-- Inline SVG favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230a1628'/><text x='16' y='23' font-family='Georgia,serif' font-size='22' font-weight='bold' fill='%23e8a020' text-anchor='middle'>H</text></svg>">
+
+  <style>
+    :root {
+      --navy:   #0a1628;
+      --navy-2: #122040;
+      --navy-3: #1e3260;
+      --cream:  #f5f2ed;
+      --cream-2:#ece8e1;
+      --amber:  #e8a020;
+      --amber-2:#c47e0a;
+      --text:   #1a1a1a;
+      --muted:  #5a5a5a;
+      --rule:   #d0cbc2;
+      --code-bg:#1e2d4a;
+      --code-fg:#c8d8f0;
+      --get:    #1a6e3c;
+      --get-bg: #d4f0e0;
+      --post:   #7a3a00;
+      --post-bg:#fde8c8;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    /* ── masthead ── */
+    .masthead {
+      background: var(--navy);
+      border-bottom: 3px solid var(--amber);
+      padding: 1.5rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .masthead-inner {
+      max-width: 1140px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+    .logo-mark {
+      width: 36px;
+      height: 36px;
+      background: var(--amber);
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .logo-mark span {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: var(--navy);
+      line-height: 1;
+    }
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+    .logo-name {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #fff;
+      line-height: 1.1;
+    }
+    .logo-sub {
+      font-size: 0.67rem;
+      color: var(--amber);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .masthead-nav a {
+      color: var(--cream-2);
+      text-decoration: none;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.7rem;
+      border: 1px solid var(--navy-3);
+      border-radius: 2px;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .masthead-nav a:hover { border-color: var(--amber); color: var(--amber); }
+
+    /* ── layout ── */
+    .layout {
+      max-width: 1140px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 0;
+      padding: 0 2rem;
+    }
+
+    /* ── sidebar ── */
+    .sidebar {
+      padding: 2.5rem 1.5rem 2.5rem 0;
+      border-right: 1px solid var(--rule);
+      position: sticky;
+      top: 67px;
+      height: calc(100vh - 67px);
+      overflow-y: auto;
+    }
+    .sidebar-section {
+      margin-bottom: 2rem;
+    }
+    .sidebar-heading {
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .sidebar ul {
+      list-style: none;
+    }
+    .sidebar ul li {
+      margin-bottom: 0.1rem;
+    }
+    .sidebar ul li a {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 0.3rem 0.5rem;
+      border-radius: 2px;
+      transition: color 0.12s, background 0.12s;
+    }
+    .sidebar ul li a:hover {
+      color: var(--navy);
+      background: var(--cream-2);
+    }
+    .sidebar .method-tag {
+      display: inline-block;
+      font-size: 0.62rem;
+      font-family: 'Courier New', Courier, monospace;
+      font-weight: bold;
+      padding: 0.1rem 0.3rem;
+      border-radius: 2px;
+      margin-right: 0.3rem;
+    }
+    .tag-get  { background: var(--get-bg); color: var(--get); }
+    .tag-post { background: var(--post-bg); color: var(--post); }
+
+    /* ── main content ── */
+    .content {
+      padding: 2.5rem 0 4rem 2.5rem;
+      min-width: 0;
+    }
+
+    /* ── page header ── */
+    .page-header {
+      padding-bottom: 2rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .page-kicker {
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--amber);
+      border-top: 2px solid var(--amber);
+      display: inline-block;
+      padding-top: 0.35rem;
+      margin-bottom: 0.75rem;
+    }
+    .page-header h1 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 2rem;
+      font-weight: normal;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+    .base-url {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--code-bg);
+      color: var(--code-fg);
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.88rem;
+      padding: 0.5rem 0.9rem;
+      border-radius: 3px;
+      margin-top: 0.75rem;
+    }
+    .base-url-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(200, 216, 240, 0.5);
+      font-family: -apple-system, sans-serif;
+    }
+
+    /* ── sections ── */
+    .ref-section {
+      margin-bottom: 3.5rem;
+    }
+    .ref-section-title {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.3rem;
+      font-weight: normal;
+      color: var(--navy);
+      padding-bottom: 0.6rem;
+      border-bottom: 2px solid var(--navy);
+      margin-bottom: 1.5rem;
+    }
+    .ref-section p {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+      max-width: 680px;
+    }
+
+    /* ── auth ── */
+    .code-block {
+      background: var(--code-bg);
+      color: var(--code-fg);
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.85rem;
+      padding: 1.1rem 1.25rem;
+      border-radius: 3px;
+      overflow-x: auto;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    .code-comment { color: rgba(200,216,240,0.4); }
+    .code-key     { color: #e8a020; }
+    .code-val     { color: #a8d8a8; }
+    .code-str     { color: #f0c080; }
+    .code-num     { color: #80c8f0; }
+    .code-kw      { color: #c8a0e8; }
+
+    /* ── endpoints ── */
+    .endpoint {
+      border: 1px solid var(--rule);
+      border-radius: 3px;
+      margin-bottom: 2rem;
+      overflow: hidden;
+    }
+    .endpoint-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.9rem 1.25rem;
+      background: var(--cream-2);
+      border-bottom: 1px solid var(--rule);
+    }
+    .method {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.75rem;
+      font-weight: bold;
+      padding: 0.2rem 0.55rem;
+      border-radius: 2px;
+      letter-spacing: 0.04em;
+    }
+    .method-get  { background: var(--get-bg); color: var(--get); }
+    .method-post { background: var(--post-bg); color: var(--post); }
+    .endpoint-path {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.9rem;
+      color: var(--navy);
+    }
+    .endpoint-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-left: auto;
+    }
+    .endpoint-body {
+      padding: 1.25rem;
+    }
+    .endpoint-body p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      line-height: 1.65;
+    }
+    .param-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+    }
+    .param-table th {
+      text-align: left;
+      font-size: 0.67rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0.5rem 0.75rem;
+      border-bottom: 2px solid var(--rule);
+      background: var(--cream-2);
+    }
+    .param-table td {
+      padding: 0.6rem 0.75rem;
+      border-bottom: 1px solid var(--rule);
+      vertical-align: top;
+    }
+    .param-table tr:last-child td { border-bottom: none; }
+    .param-name {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.82rem;
+      color: var(--navy);
+    }
+    .param-type {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+    .badge-required {
+      font-size: 0.62rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: #fee8e8;
+      color: #991b1b;
+      padding: 0.1rem 0.35rem;
+      border-radius: 2px;
+    }
+    .badge-optional {
+      font-size: 0.62rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: var(--cream-2);
+      color: var(--muted);
+      padding: 0.1rem 0.35rem;
+      border-radius: 2px;
+    }
+
+    /* ── status badges ── */
+    .status-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .status-badge {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.78rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 2px;
+      border: 1px solid var(--rule);
+      background: var(--cream-2);
+      color: var(--navy);
+    }
+    .status-badge.active {
+      background: var(--navy);
+      color: var(--amber);
+      border-color: var(--navy);
+    }
+    .status-badge.done {
+      background: var(--get-bg);
+      color: var(--get);
+      border-color: var(--get);
+    }
+    .status-badge.failed {
+      background: #fee8e8;
+      color: #991b1b;
+      border-color: #f0a0a0;
+    }
+
+    /* ── error table ── */
+    .error-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+    .error-table th {
+      text-align: left;
+      font-size: 0.67rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0.5rem 0.75rem;
+      border-bottom: 2px solid var(--rule);
+      background: var(--cream-2);
+    }
+    .error-table td {
+      padding: 0.65rem 0.75rem;
+      border-bottom: 1px solid var(--rule);
+      vertical-align: top;
+    }
+    .error-table tr:last-child td { border-bottom: none; }
+    .http-code {
+      font-family: 'Courier New', Courier, monospace;
+      font-weight: bold;
+    }
+    .http-401 { color: #c11; }
+    .http-422 { color: #c07020; }
+    .http-429 { color: #a00080; }
+    .http-503 { color: #0050a0; }
+    .error-code {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.82rem;
+      color: var(--navy);
+    }
+
+    /* ── callout ── */
+    .callout {
+      background: var(--cream-2);
+      border-left: 3px solid var(--amber);
+      padding: 0.9rem 1.1rem;
+      border-radius: 0 3px 3px 0;
+      font-size: 0.88rem;
+      color: var(--text);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    .callout strong { color: var(--navy); }
+
+    /* ── footer ── */
+    footer {
+      background: var(--navy);
+      border-top: 1px solid var(--navy-3);
+      padding: 1.5rem 2rem;
+    }
+    .footer-inner {
+      max-width: 1140px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-brand { font-size: 0.8rem; color: rgba(245,242,237,0.4); }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a {
+      font-size: 0.8rem;
+      color: rgba(245,242,237,0.4);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .footer-links a:hover { color: var(--amber); }
+
+    /* ── responsive ── */
+    @media (max-width: 840px) {
+      .layout {
+        grid-template-columns: 1fr;
+        padding: 0 1rem;
+      }
+      .sidebar {
+        position: static;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--rule);
+        padding: 1.5rem 0;
+      }
+      .content { padding: 1.5rem 0 3rem; }
+      .masthead { padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- masthead -->
+  <header class="masthead">
+    <div class="masthead-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-mark"><span>H</span></div>
+        <div class="logo-text">
+          <span class="logo-name">Hawk News Service</span>
+          <span class="logo-sub">Translation API</span>
+        </div>
+      </a>
+      <nav class="masthead-nav">
+        <a href="index.html">← Home</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="layout">
+
+    <!-- sidebar -->
+    <nav class="sidebar" aria-label="API reference navigation">
+      <div class="sidebar-section">
+        <div class="sidebar-heading">Getting started</div>
+        <ul>
+          <li><a href="#auth">Authentication</a></li>
+          <li><a href="#rate-limits">Rate limits</a></li>
+        </ul>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-heading">Endpoints</div>
+        <ul>
+          <li><a href="#post-translate"><span class="method-tag tag-post">POST</span>/v1/translate</a></li>
+          <li><a href="#get-job"><span class="method-tag tag-get">GET</span>/v1/translate/{job_id}</a></li>
+          <li><a href="#get-languages"><span class="method-tag tag-get">GET</span>/v1/languages</a></li>
+        </ul>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-heading">Reference</div>
+        <ul>
+          <li><a href="#errors">Error codes</a></li>
+          <li><a href="#job-status">Job status values</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- main content -->
+    <main class="content">
+
+      <div class="page-header">
+        <span class="page-kicker">Hawk News Service</span>
+        <h1>API reference</h1>
+        <div>
+          <span class="base-url">
+            <span class="base-url-label">Base URL</span>
+            https://api.hawknewsservice.org/v1
+          </span>
+        </div>
+      </div>
+
+      <!-- authentication -->
+      <section class="ref-section" id="auth">
+        <h2 class="ref-section-title">Authentication</h2>
+        <p>
+          All requests require an API key passed as a Bearer token in the
+          <code>Authorization</code> header. Keys are issued per organization
+          and come in two variants: <code>hawk_live_</code> for production
+          and <code>hawk_test_</code> for development.
+        </p>
+        <div class="code-block"><span class="code-comment"># All requests</span>
+<span class="code-key">Authorization</span>: Bearer hawk_live_&lt;your-key&gt;</div>
+        <div class="callout">
+          <strong>Key format:</strong> <code>hawk_live_&lt;32 random chars&gt;</code> or
+          <code>hawk_test_&lt;32 random chars&gt;</code>. Keys are stored as SHA-256 hashes —
+          save your key when issued, it cannot be retrieved later.
+        </div>
+      </section>
+
+      <!-- rate limits -->
+      <section class="ref-section" id="rate-limits">
+        <h2 class="ref-section-title">Rate limits</h2>
+        <p>
+          Quotas are enforced per organization and reset daily at midnight UTC.
+          Exceeding your quota returns a <code>429</code> with a <code>reset_at</code>
+          timestamp in the response body.
+        </p>
+        <div class="code-block"><span class="code-comment"># 429 response body</span>
+{
+  <span class="code-key">"error"</span>:    <span class="code-str">"quota_exceeded"</span>,
+  <span class="code-key">"reset_at"</span>: <span class="code-str">"2026-02-25T00:00:00Z"</span>
+}</div>
+      </section>
+
+      <!-- POST /v1/translate -->
+      <section class="ref-section" id="post-translate">
+        <h2 class="ref-section-title">Endpoints</h2>
+
+        <div class="endpoint">
+          <div class="endpoint-header">
+            <span class="method method-post">POST</span>
+            <code class="endpoint-path">/v1/translate</code>
+            <span class="endpoint-desc">Submit a translation job</span>
+          </div>
+          <div class="endpoint-body">
+            <p>
+              Creates a translation job and returns immediately with a <code>202 Accepted</code>
+              and a <code>job_id</code>. The translation runs asynchronously — poll
+              <code>GET /v1/translate/{job_id}</code> or provide a <code>callback_url</code>
+              to receive a webhook when the job completes.
+            </p>
+
+            <table class="param-table">
+              <thead>
+                <tr>
+                  <th>Field</th>
+                  <th>Type</th>
+                  <th></th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="param-name">content</span></td>
+                  <td><span class="param-type">string</span></td>
+                  <td><span class="badge-required">required</span></td>
+                  <td>HTML content to translate. Maximum 50,000 characters. HTML structure is preserved in the output.</td>
+                </tr>
+                <tr>
+                  <td><span class="param-name">target_language</span></td>
+                  <td><span class="param-type">string</span></td>
+                  <td><span class="badge-required">required</span></td>
+                  <td>Target language code (e.g. <code>"es"</code>). See <a href="#get-languages">GET /v1/languages</a> for supported codes.</td>
+                </tr>
+                <tr>
+                  <td><span class="param-name">source_language</span></td>
+                  <td><span class="param-type">string</span></td>
+                  <td><span class="badge-optional">optional</span></td>
+                  <td>Source language code. Defaults to <code>"en"</code>.</td>
+                </tr>
+                <tr>
+                  <td><span class="param-name">tier</span></td>
+                  <td><span class="param-type">string</span></td>
+                  <td><span class="badge-optional">optional</span></td>
+                  <td><code>"instant"</code> (default), <code>"reviewed"</code>, or <code>"certified"</code>.</td>
+                </tr>
+                <tr>
+                  <td><span class="param-name">callback_url</span></td>
+                  <td><span class="param-type">string</span></td>
+                  <td><span class="badge-optional">optional</span></td>
+                  <td>Webhook URL. Called via <code>POST</code> with the completed job payload when status reaches <code>complete</code>.</td>
+                </tr>
+                <tr>
+                  <td><span class="param-name">glossary_id</span></td>
+                  <td><span class="param-type">string</span></td>
+                  <td><span class="badge-optional">optional</span></td>
+                  <td>ID of a custom glossary to apply before translation (NJ place names, government titles, etc.).</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="code-block"><span class="code-comment"># Request</span>
+<span class="code-kw">POST</span> /v1/translate
+<span class="code-key">Authorization</span>: Bearer hawk_live_...
+<span class="code-key">Content-Type</span>: application/json
+
+{
+  <span class="code-key">"content"</span>:         <span class="code-str">"&lt;p&gt;City Council voted Tuesday...&lt;/p&gt;"</span>,
+  <span class="code-key">"target_language"</span>: <span class="code-str">"es"</span>,
+  <span class="code-key">"tier"</span>:            <span class="code-str">"instant"</span>,
+  <span class="code-key">"callback_url"</span>:    <span class="code-str">"https://your-cms.org/hooks/hawk"</span>
+}
+
+<span class="code-comment"># Response — 202 Accepted</span>
+{
+  <span class="code-key">"job_id"</span>: <span class="code-str">"3f8a1c2e-..."</span>,
+  <span class="code-key">"status"</span>: <span class="code-str">"queued"</span>
+}</div>
+          </div>
+        </div>
+
+        <!-- GET /v1/translate/{job_id} -->
+        <div class="endpoint" id="get-job">
+          <div class="endpoint-header">
+            <span class="method method-get">GET</span>
+            <code class="endpoint-path">/v1/translate/{job_id}</code>
+            <span class="endpoint-desc">Poll job status</span>
+          </div>
+          <div class="endpoint-body">
+            <p>
+              Returns the current state of a translation job. Poll this endpoint until
+              <code>status</code> is <code>complete</code>, <code>reviewed</code>, or
+              <code>failed</code> — or use a <code>callback_url</code> to avoid polling.
+            </p>
+
+            <div class="code-block"><span class="code-comment"># Response — 200 OK (complete job)</span>
+{
+  <span class="code-key">"job_id"</span>:             <span class="code-str">"3f8a1c2e-..."</span>,
+  <span class="code-key">"status"</span>:             <span class="code-str">"complete"</span>,
+  <span class="code-key">"translated_content"</span>: <span class="code-str">"&lt;p&gt;El Concejo Municipal votó...&lt;/p&gt;"</span>,
+  <span class="code-key">"source_language"</span>:    <span class="code-str">"en"</span>,
+  <span class="code-key">"target_language"</span>:    <span class="code-str">"es"</span>,
+  <span class="code-key">"tier"</span>:               <span class="code-str">"instant"</span>,
+  <span class="code-key">"word_count"</span>:         <span class="code-num">142</span>,
+  <span class="code-key">"quality_scores"</span>: [
+    { <span class="code-key">"index"</span>: <span class="code-num">0</span>, <span class="code-key">"overall"</span>: <span class="code-num">4.5</span>, <span class="code-key">"fluency"</span>: <span class="code-num">5</span>, <span class="code-key">"accuracy"</span>: <span class="code-num">4</span>, <span class="code-key">"needs_review"</span>: <span class="code-kw">false</span> }
+  ],
+  <span class="code-key">"created_at"</span>:         <span class="code-str">"2026-02-25T14:30:00Z"</span>,
+  <span class="code-key">"completed_at"</span>:       <span class="code-str">"2026-02-25T14:30:04Z"</span>
+}</div>
+
+            <div id="job-status">
+              <p style="margin-top:1rem;">Job status values:</p>
+              <div class="status-list">
+                <span class="status-badge">queued</span>
+                <span class="status-badge active">translating</span>
+                <span class="status-badge">machine_translated</span>
+                <span class="status-badge active">scoring</span>
+                <span class="status-badge">in_review</span>
+                <span class="status-badge">reviewed</span>
+                <span class="status-badge done">complete</span>
+                <span class="status-badge failed">failed</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- GET /v1/languages -->
+        <div class="endpoint" id="get-languages">
+          <div class="endpoint-header">
+            <span class="method method-get">GET</span>
+            <code class="endpoint-path">/v1/languages</code>
+            <span class="endpoint-desc">List supported languages</span>
+          </div>
+          <div class="endpoint-body">
+            <p>Returns all supported target languages and their availability status.</p>
+            <div class="code-block"><span class="code-comment"># Response — 200 OK</span>
+{
+  <span class="code-key">"languages"</span>: [
+    { <span class="code-key">"code"</span>: <span class="code-str">"es"</span>, <span class="code-key">"name"</span>: <span class="code-str">"Spanish"</span>,          <span class="code-key">"status"</span>: <span class="code-str">"available"</span> },
+    { <span class="code-key">"code"</span>: <span class="code-str">"pt"</span>, <span class="code-key">"name"</span>: <span class="code-str">"Portuguese"</span>,       <span class="code-key">"status"</span>: <span class="code-str">"available"</span> },
+    { <span class="code-key">"code"</span>: <span class="code-str">"ht"</span>, <span class="code-key">"name"</span>: <span class="code-str">"Haitian Creole"</span>,   <span class="code-key">"status"</span>: <span class="code-str">"limited"</span>   },
+    { <span class="code-key">"code"</span>: <span class="code-str">"hi"</span>, <span class="code-key">"name"</span>: <span class="code-str">"Hindi"</span>,            <span class="code-key">"status"</span>: <span class="code-str">"limited"</span>   },
+    { <span class="code-key">"code"</span>: <span class="code-str">"ur"</span>, <span class="code-key">"name"</span>: <span class="code-str">"Urdu"</span>,             <span class="code-key">"status"</span>: <span class="code-str">"limited"</span>   }
+  ]
+}</div>
+            <div class="callout">
+              Languages with <code>"status": "limited"</code> (Haitian Creole, Hindi, Urdu) return
+              unmodified English pending full DeepL support. Do not use them for production content.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- errors -->
+      <section class="ref-section" id="errors">
+        <h2 class="ref-section-title">Error codes</h2>
+        <p>All errors return a JSON body with an <code>error</code> field.</p>
+
+        <table class="error-table">
+          <thead>
+            <tr>
+              <th>HTTP</th>
+              <th>Error code</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="http-code http-401">401</span></td>
+              <td><span class="error-code">invalid_api_key</span></td>
+              <td>Key is missing, malformed, or revoked.</td>
+            </tr>
+            <tr>
+              <td><span class="http-code http-429">429</span></td>
+              <td><span class="error-code">quota_exceeded</span></td>
+              <td>Daily quota exhausted. Response includes <code>reset_at</code> timestamp.</td>
+            </tr>
+            <tr>
+              <td><span class="http-code http-422">422</span></td>
+              <td><span class="error-code">unsupported_language</span></td>
+              <td>Target language not in the supported list. Response includes <code>supported</code> array.</td>
+            </tr>
+            <tr>
+              <td><span class="http-code http-422">422</span></td>
+              <td><span class="error-code">content_too_large</span></td>
+              <td>Content exceeds 50,000 characters. Split into multiple requests.</td>
+            </tr>
+            <tr>
+              <td><span class="http-code http-503">503</span></td>
+              <td><span class="error-code">translation_service_unavailable</span></td>
+              <td>DeepL API is unreachable. The job will be retried automatically (up to 3×). Check job status — it will complete when the service recovers.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- footer -->
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-brand">Center for Cooperative Media · Montclair State University</span>
+      <nav class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="mailto:translate@hawknewsservice.org">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>
