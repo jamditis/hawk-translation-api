@@ -104,9 +104,9 @@
     .rule-card-head span { font-family: 'DM Sans', sans-serif; font-size: .8rem; font-weight: 600; color: #fff; letter-spacing: .03em; }
     .rule-card-body { padding: 1.1rem 1.25rem; }
     .rule-card-body ul { list-style: none; padding: 0; }
-    .rule-card-body li { font-size: .88rem; line-height: 1.55; padding: .3rem 0; border-bottom: 1px solid var(--border); color: var(--text); display: flex; gap: .5rem; align-items: flex-start; }
+    .rule-card-body li { font-size: .88rem; line-height: 1.55; padding: .3rem 0 .3rem 1.25rem; border-bottom: 1px solid var(--border); color: var(--text); position: relative; overflow-wrap: break-word; }
     .rule-card-body li:last-child { border-bottom: none; }
-    .rule-card-body li::before { content: '→'; color: var(--accent); flex-shrink: 0; font-size: .8rem; margin-top: .1rem; }
+    .rule-card-body li::before { content: '→'; color: var(--accent); font-size: .8rem; position: absolute; left: 0; top: .38rem; }
     .rule-card-body code { font-family: monospace; font-size: .85em; background: var(--accent-light); color: var(--accent-dark); padding: .1em .35em; border-radius: 3px; }
 
     .glossary-controls { display: flex; gap: .75rem; flex-wrap: wrap; margin-bottom: 1.25rem; align-items: center; }
