@@ -140,7 +140,7 @@ CI also runs integration tests (`tests/test_quota_integration.py`) against a rea
 
 ---
 
-## Current status (as of 2026-02-24)
+## Current status (as of 2026-02-25)
 
 ### Running on houseofjawn
 | Service | Status | Port |
@@ -156,32 +156,33 @@ CI also runs integration tests (`tests/test_quota_integration.py`) against a rea
 - `claude_runner.py` wired into scorer and translator — both use `run_claude_p()` instead of raw subprocess
 - Cloudflare tunnel config correct: `api.hawknewsservice.org` → `http://127.0.0.1:8091` (in `/etc/cloudflared/config.yml`)
 - `hawk-worker` service redeployed with correct PATH (`/home/jamditis/.local/bin` included)
-- Static docs deployed to hosting at `37.27.121.163` (`public_html/index.html` + `api-reference.html`)
 - WordPress plugin scaffolded at `wp-plugin/hawk-translation/`
 - 97 tests passing
+- Corpus analysis complete: 506 translated articles → `resources/corpus-analysis.md` (pattern gaps, inconsistencies, glossary additions)
+- `SPANISH_STYLE_RULES` in `workers/translator.py` expanded with 13+ corpus-derived rules (EE. UU. usage, ICE canonical, attribution verbs, anglicisms, bill numbers, etc.)
+- `docs/style-guide.html` built: searchable 266-term glossary + style rule cards, served from GitHub Pages
+- All docs pages mobile-responsive: hamburger nav, responsive grid breakpoints, overflow protection
+- Docs deployed to GitHub Pages: `https://jamditis.github.io/hawk-translation-api/` (switching back to hawknewsservice.org once Marty fixes Cloudflare SSL)
+- `nginx.conf` no-cache rule added to prevent 10-year CDN TTL on HTML files (preserved for when hawknewsservice.org hosting resumes)
 
-### DNS / routing status (2026-02-24 session end)
+### DNS / routing status (2026-02-24)
 
 Marty added `jamditis@gmail.com` as an approved user on his Cloudflare account.
 
 DNS for `api.hawknewsservice.org` is now correct:
-- Old: two A records → generic CF edge IPs (wrong — caused 1033)
-- Current: CNAME `api → 901f6cfd-3fd0-4135-9321-3488fcaf41b6.cfargotunnel.com` (proxied, orange cloud on)
+- CNAME `api → 901f6cfd-3fd0-4135-9321-3488fcaf41b6.cfargotunnel.com` (proxied, orange cloud on)
 
-**Still returning 1033 at session end.** Most likely cause: cross-account tunnel routing — the tunnel was created in the `jamditis@gmail.com` CF account (`AccountTag: 3d4b1d36109e30866bb7516502224b2c`) but the zone is in Marty's account (`4ccfeb6b87a089e3cde68d746ea11422`). CF may not route cross-account tunnel CNAMEs, or it just needs more propagation time (~15-30 min).
+**Still returning 1033.** Most likely cause: cross-account tunnel routing — tunnel is in `jamditis@gmail.com` CF account but zone is in Marty's account. Waiting to hear back from Marty to resolve.
 
-**Plan for tomorrow:**
-- First: check `curl -I https://api.hawknewsservice.org/health` — if still 1033, the cross-account CNAME approach isn't working
-- If still failing: switch approach to `hawknewsservice.org/api/...` (WordPress page slug + reverse proxy) instead of subdomain. The main site is WordPress at `172.236.116.153`.
+Fallback plan if cross-account CNAME doesn't work: `hawknewsservice.org/api/...` (WordPress page slug + reverse proxy). Main site is WordPress at `172.236.116.153`.
 
 Tunnel ID: `901f6cfd-3fd0-4135-9321-3488fcaf41b6`
 CNAME target: `901f6cfd-3fd0-4135-9321-3488fcaf41b6.cfargotunnel.com`
 hawk-api local health: `curl http://127.0.0.1:8091/health` → `{"status":"ok"}`
 
 ### Not started yet
-- Resolve routing (subdomain vs WordPress slug — see above)
+- Resolve API routing (waiting on Marty — see above)
 - Create API keys for newsroom partners (admin tooling / key provisioning flow)
-- Verify static docs serve at root (WordPress may be intercepting)
 - Reviewer management UI (assign translators to language pairs, manage availability)
 - Production `.env` hardening (real secrets, not dev defaults)
 

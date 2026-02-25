@@ -3,11 +3,11 @@
 [![Tests](https://github.com/jamditis/hawk-translation-api/actions/workflows/tests.yml/badge.svg)](https://github.com/jamditis/hawk-translation-api/actions/workflows/tests.yml)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
-[![API docs](https://img.shields.io/badge/api-docs-orange)](https://api.hawknewsservice.org/docs)
+[![Docs](https://img.shields.io/badge/docs-GitHub%20Pages-orange)](https://jamditis.github.io/hawk-translation-api/)
 
 A human translator-centered REST API for translating journalism content into 10 languages. Machine translation and AI quality scoring produce a first draft; professional human translators review, edit, and certify the final output. Built for the [Center for Cooperative Media](https://centerforcooperativemedia.org)'s Spanish Translation News Service (STNS) and NJ News Commons partner newsrooms.
 
-Live at: `api.hawknewsservice.org`
+**Docs:** [jamditis.github.io/hawk-translation-api](https://jamditis.github.io/hawk-translation-api/) — how it works, interface mockups, Spanish style guide, and term glossary.
 
 ---
 
@@ -92,7 +92,7 @@ Requires: PostgreSQL and Redis running locally.
 ## Tests
 
 ```bash
-# Unit tests (77 tests, no live services needed)
+# Unit tests (97+ tests, no live services needed)
 pytest -v
 
 # Acceptance tests (requires live API + Claude CLI logged in)
