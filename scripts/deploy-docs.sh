@@ -37,6 +37,9 @@ put docs/mockups/review.html $REMOTE_DIR/mockups/review.html
 put docs/mockups/dashboard.html $REMOTE_DIR/mockups/dashboard.html
 put docs/mockups/glossary.html $REMOTE_DIR/mockups/glossary.html
 put docs/mockups/wp-plugin.html $REMOTE_DIR/mockups/wp-plugin.html
+
+# Nginx config (sets no-cache headers on .html files to prevent 10-year CDN TTLs)
+put nginx.conf $REMOTE_DIR/nginx.conf
 SFTP_COMMANDS
 
 echo "Docs deployed."
