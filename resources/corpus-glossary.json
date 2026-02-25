@@ -1,0 +1,3944 @@
+[
+  {
+    "term_en": "ice",
+    "term_es": "ICE",
+    "frequency": 13,
+    "category": "government agency"
+  },
+  {
+    "term_en": "new jersey",
+    "term_es": "Nueva Jersey",
+    "frequency": 6,
+    "category": "place name"
+  },
+  {
+    "term_en": "affordable housing",
+    "term_es": "vivienda asequible",
+    "frequency": 6,
+    "category": "housing policy"
+  },
+  {
+    "term_en": "budget",
+    "term_es": "presupuesto",
+    "frequency": 4,
+    "category": "government"
+  },
+  {
+    "term_en": "nj",
+    "term_es": "Nueva Jersey",
+    "frequency": 4,
+    "category": "place_name"
+  },
+  {
+    "term_en": "immigrants",
+    "term_es": "inmigrantes",
+    "frequency": 4,
+    "category": "immigration"
+  },
+  {
+    "term_en": "real id",
+    "term_es": "Real ID",
+    "frequency": 4,
+    "category": "government program"
+  },
+  {
+    "term_en": "latinos",
+    "term_es": "latinos",
+    "frequency": 4,
+    "category": "demographic"
+  },
+  {
+    "term_en": "school district",
+    "term_es": "distrito escolar",
+    "frequency": 3,
+    "category": "education"
+  },
+  {
+    "term_en": "school districts",
+    "term_es": "distritos escolares",
+    "frequency": 3,
+    "category": "education"
+  },
+  {
+    "term_en": "deadline",
+    "term_es": "fecha límite",
+    "frequency": 3,
+    "category": "general_term"
+  },
+  {
+    "term_en": "medicaid",
+    "term_es": "Medicaid",
+    "frequency": 3,
+    "category": "government_program"
+  },
+  {
+    "term_en": "migrants",
+    "term_es": "migrantes",
+    "frequency": 3,
+    "category": "immigration"
+  },
+  {
+    "term_en": "n.j.",
+    "term_es": "NJ",
+    "frequency": 3,
+    "category": "geographic_abbreviation"
+  },
+  {
+    "term_en": "ice raids",
+    "term_es": "redadas de ICE",
+    "frequency": 3,
+    "category": "immigration enforcement"
+  },
+  {
+    "term_en": "bill",
+    "term_es": "proyecto de ley",
+    "frequency": 3,
+    "category": "legislative"
+  },
+  {
+    "term_en": "n.j.",
+    "term_es": "Nueva Jersey",
+    "frequency": 3,
+    "category": "geographic_abbreviation"
+  },
+  {
+    "term_en": "advocates",
+    "term_es": "defensores",
+    "frequency": 3,
+    "category": "civil society"
+  },
+  {
+    "term_en": "county",
+    "term_es": "condado",
+    "frequency": 3,
+    "category": "government"
+  },
+  {
+    "term_en": "residents",
+    "term_es": "residentes",
+    "frequency": 3,
+    "category": "general_term"
+  },
+  {
+    "term_en": "north jersey",
+    "term_es": "norte de Nueva Jersey",
+    "frequency": 2,
+    "category": "NJ place/institution"
+  },
+  {
+    "term_en": "racial bias",
+    "term_es": "sesgo racial",
+    "frequency": 2,
+    "category": "policy"
+  },
+  {
+    "term_en": "measles",
+    "term_es": "sarampión",
+    "frequency": 2,
+    "category": "medical_term"
+  },
+  {
+    "term_en": "food pantry",
+    "term_es": "despensa de alimentos",
+    "frequency": 2,
+    "category": "social services"
+  },
+  {
+    "term_en": "graduation rates",
+    "term_es": "tasas de graduación",
+    "frequency": 2,
+    "category": "education"
+  },
+  {
+    "term_en": "timeline",
+    "term_es": "cronología",
+    "frequency": 2,
+    "category": "journalism"
+  },
+  {
+    "term_en": "bill (legislation)",
+    "term_es": "proyecto de ley",
+    "frequency": 2,
+    "category": "legislative terms"
+  },
+  {
+    "term_en": "gop",
+    "term_es": "republicano",
+    "frequency": 2,
+    "category": "political"
+  },
+  {
+    "term_en": "trump administration",
+    "term_es": "administración Trump",
+    "frequency": 2,
+    "category": "government"
+  },
+  {
+    "term_en": "u.s. supreme court",
+    "term_es": "Corte Suprema de EE. UU.",
+    "frequency": 2,
+    "category": "government"
+  },
+  {
+    "term_en": "primary",
+    "term_es": "primarias",
+    "frequency": 2,
+    "category": "electoral/political"
+  },
+  {
+    "term_en": "medical bills",
+    "term_es": "facturas médicas",
+    "frequency": 2,
+    "category": "health/finance"
+  },
+  {
+    "term_en": "ice agents",
+    "term_es": "agentes de ICE",
+    "frequency": 2,
+    "category": "government_agency"
+  },
+  {
+    "term_en": "deportations",
+    "term_es": "deportaciones",
+    "frequency": 2,
+    "category": "immigration_legal"
+  },
+  {
+    "term_en": "transgender",
+    "term_es": "transgénero",
+    "frequency": 2,
+    "category": "social"
+  },
+  {
+    "term_en": "mayor",
+    "term_es": "alcalde",
+    "frequency": 2,
+    "category": "politics"
+  },
+  {
+    "term_en": "governor candidates",
+    "term_es": "candidatos a la gobernación",
+    "frequency": 2,
+    "category": "electoral/political"
+  },
+  {
+    "term_en": "segregation",
+    "term_es": "segregación",
+    "frequency": 2,
+    "category": "social terms"
+  },
+  {
+    "term_en": "immigration",
+    "term_es": "inmigración",
+    "frequency": 2,
+    "category": "immigration"
+  },
+  {
+    "term_en": "school board",
+    "term_es": "junta escolar",
+    "frequency": 2,
+    "category": "educational institution"
+  },
+  {
+    "term_en": "immigration agents",
+    "term_es": "agentes de inmigración",
+    "frequency": 2,
+    "category": "government_agency"
+  },
+  {
+    "term_en": "immigrant advocates",
+    "term_es": "defensores de inmigrantes",
+    "frequency": 2,
+    "category": "immigration"
+  },
+  {
+    "term_en": "health officials",
+    "term_es": "funcionarios de salud",
+    "frequency": 2,
+    "category": "government"
+  },
+  {
+    "term_en": "jobs",
+    "term_es": "puestos de trabajo",
+    "frequency": 2,
+    "category": "labor"
+  },
+  {
+    "term_en": "nj transit",
+    "term_es": "NJ Transit",
+    "frequency": 2,
+    "category": "government_agency"
+  },
+  {
+    "term_en": "legal immigrants",
+    "term_es": "inmigrantes legales",
+    "frequency": 2,
+    "category": "immigration"
+  },
+  {
+    "term_en": "absenteeism",
+    "term_es": "ausentismo",
+    "frequency": 2,
+    "category": "education"
+  },
+  {
+    "term_en": "whooping cough",
+    "term_es": "tos ferina",
+    "frequency": 2,
+    "category": "medical"
+  },
+  {
+    "term_en": "rsv",
+    "term_es": "VRS",
+    "frequency": 2,
+    "category": "medical"
+  },
+  {
+    "term_en": "ai",
+    "term_es": "IA",
+    "frequency": 2,
+    "category": "technology"
+  },
+  {
+    "term_en": "lawmakers",
+    "term_es": "legisladores",
+    "frequency": 2,
+    "category": "political_term"
+  },
+  {
+    "term_en": "atlantic county",
+    "term_es": "condado de Atlantic",
+    "frequency": 2,
+    "category": "NJ place name"
+  },
+  {
+    "term_en": "renters",
+    "term_es": "inquilinos",
+    "frequency": 2,
+    "category": "legal_term"
+  },
+  {
+    "term_en": "jersey shore",
+    "term_es": "Jersey Shore",
+    "frequency": 2,
+    "category": "place"
+  },
+  {
+    "term_en": "climate change",
+    "term_es": "cambio climático",
+    "frequency": 2,
+    "category": "environmental"
+  },
+  {
+    "term_en": "federal lawsuit",
+    "term_es": "demanda federal",
+    "frequency": 2,
+    "category": "legal"
+  },
+  {
+    "term_en": "flu",
+    "term_es": "gripe",
+    "frequency": 2,
+    "category": "health_term"
+  },
+  {
+    "term_en": "migrant crisis",
+    "term_es": "crisis migratoria",
+    "frequency": 2,
+    "category": "policy terms"
+  },
+  {
+    "term_en": "wi-fi jammers",
+    "term_es": "inhibidores de Wi-Fi",
+    "frequency": 1,
+    "category": "technical"
+  },
+  {
+    "term_en": "gun carry permits",
+    "term_es": "permisos para portar armas",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "housing appraisals",
+    "term_es": "valoraciones de viviendas",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "medicaid cuts",
+    "term_es": "recortes a Medicaid",
+    "frequency": 1,
+    "category": "government_program"
+  },
+  {
+    "term_en": "eligibility",
+    "term_es": "elegibilidad",
+    "frequency": 1,
+    "category": "policy"
+  },
+  {
+    "term_en": "senior care",
+    "term_es": "cuidado de adultos mayores",
+    "frequency": 1,
+    "category": "medical"
+  },
+  {
+    "term_en": "charter schools",
+    "term_es": "escuelas chárter",
+    "frequency": 1,
+    "category": "education"
+  },
+  {
+    "term_en": "taxpayer dollars",
+    "term_es": "dinero de los contribuyentes",
+    "frequency": 1,
+    "category": "policy"
+  },
+  {
+    "term_en": "supreme court",
+    "term_es": "Corte Suprema",
+    "frequency": 1,
+    "category": "government_agency"
+  },
+  {
+    "term_en": "presidential immunity",
+    "term_es": "inmunidad presidencial",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "ruling",
+    "term_es": "fallo",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "teenage voters",
+    "term_es": "votantes adolescentes",
+    "frequency": 1,
+    "category": "demographic"
+  },
+  {
+    "term_en": "nursing shortage",
+    "term_es": "escasez de enfermeras",
+    "frequency": 1,
+    "category": "medical"
+  },
+  {
+    "term_en": "snap funding",
+    "term_es": "fondos del SNAP",
+    "frequency": 1,
+    "category": "government_program"
+  },
+  {
+    "term_en": "coercive control",
+    "term_es": "control coercitivo",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "domestic violence",
+    "term_es": "violencia doméstica",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "gov.",
+    "term_es": "gobernadora",
+    "frequency": 1,
+    "category": "government_title"
+  },
+  {
+    "term_en": "sea level rise",
+    "term_es": "aumento del nivel del mar",
+    "frequency": 1,
+    "category": "environment"
+  },
+  {
+    "term_en": "daca recipients",
+    "term_es": "beneficiarios de DACA",
+    "frequency": 1,
+    "category": "immigration"
+  },
+  {
+    "term_en": "health care access",
+    "term_es": "acceso a la atención médica",
+    "frequency": 1,
+    "category": "medical"
+  },
+  {
+    "term_en": "multi-state",
+    "term_es": "multiestatal",
+    "frequency": 1,
+    "category": "policy"
+  },
+  {
+    "term_en": "medicaid work requirements",
+    "term_es": "requisitos laborales de Medicaid",
+    "frequency": 1,
+    "category": "government_program"
+  },
+  {
+    "term_en": "work requirements",
+    "term_es": "requisitos laborales",
+    "frequency": 1,
+    "category": "policy_term"
+  },
+  {
+    "term_en": "medicaid coverage",
+    "term_es": "cobertura de Medicaid",
+    "frequency": 1,
+    "category": "government_program"
+  },
+  {
+    "term_en": "bird flu",
+    "term_es": "gripe aviar",
+    "frequency": 1,
+    "category": "medical_term"
+  },
+  {
+    "term_en": "bird flu vaccine",
+    "term_es": "vacuna contra la gripe aviar",
+    "frequency": 1,
+    "category": "medical_term"
+  },
+  {
+    "term_en": "monmouth county",
+    "term_es": "condado de Monmouth",
+    "frequency": 1,
+    "category": "nj_place_name"
+  },
+  {
+    "term_en": "clergy sex abuse",
+    "term_es": "abuso sexual del clero",
+    "frequency": 1,
+    "category": "legal_term"
+  },
+  {
+    "term_en": "law enforcement",
+    "term_es": "fuerzas del orden",
+    "frequency": 1,
+    "category": "legal_term"
+  },
+  {
+    "term_en": "sgt.",
+    "term_es": "sargento",
+    "frequency": 1,
+    "category": "legal_term"
+  },
+  {
+    "term_en": "tax hike",
+    "term_es": "aumento en los impuestos",
+    "frequency": 1,
+    "category": "policy_term"
+  },
+  {
+    "term_en": "tax increase",
+    "term_es": "aumento de impuestos",
+    "frequency": 1,
+    "category": "policy_term"
+  },
+  {
+    "term_en": "feds",
+    "term_es": "gobierno federal",
+    "frequency": 1,
+    "category": "government_agency"
+  },
+  {
+    "term_en": "medical debt",
+    "term_es": "deuda médica",
+    "frequency": 1,
+    "category": "medical_term"
+  },
+  {
+    "term_en": "abolished (debt)",
+    "term_es": "condonar (deuda)",
+    "frequency": 1,
+    "category": "policy_term"
+  },
+  {
+    "term_en": "task force",
+    "term_es": "grupo de trabajo",
+    "frequency": 1,
+    "category": "institution"
+  },
+  {
+    "term_en": "stay nj",
+    "term_es": "Stay NJ",
+    "frequency": 1,
+    "category": "government_program"
+  },
+  {
+    "term_en": "tax credit",
+    "term_es": "crédito fiscal",
+    "frequency": 1,
+    "category": "policy_term"
+  },
+  {
+    "term_en": "housing prices",
+    "term_es": "precio de la vivienda",
+    "frequency": 1,
+    "category": "policy_term"
+  },
+  {
+    "term_en": "skilled workers",
+    "term_es": "trabajadores calificados",
+    "frequency": 1,
+    "category": "policy_term"
+  },
+  {
+    "term_en": "visa fee",
+    "term_es": "tarifa de visa",
+    "frequency": 1,
+    "category": "policy_term"
+  },
+  {
+    "term_en": "jobs at stake",
+    "term_es": "empleos en riesgo",
+    "frequency": 1,
+    "category": "policy_term"
+  },
+  {
+    "term_en": "special election",
+    "term_es": "elección especial",
+    "frequency": 1,
+    "category": "electoral"
+  },
+  {
+    "term_en": "district (congressional)",
+    "term_es": "Distrito",
+    "frequency": 1,
+    "category": "political geography"
+  },
+  {
+    "term_en": "term (of office)",
+    "term_es": "mandato",
+    "frequency": 1,
+    "category": "political/legal"
+  },
+  {
+    "term_en": "noncitizens",
+    "term_es": "no ciudadanos",
+    "frequency": 1,
+    "category": "immigration/legal"
+  },
+  {
+    "term_en": "ice officers",
+    "term_es": "agentes de ICE",
+    "frequency": 1,
+    "category": "government agency"
+  },
+  {
+    "term_en": "overcrowded",
+    "term_es": "sobrepoblados",
+    "frequency": 1,
+    "category": "education"
+  },
+  {
+    "term_en": "vote-by-mail",
+    "term_es": "voto por correo",
+    "frequency": 1,
+    "category": "electoral"
+  },
+  {
+    "term_en": "ballot",
+    "term_es": "boleta",
+    "frequency": 1,
+    "category": "electoral"
+  },
+  {
+    "term_en": "community colleges",
+    "term_es": "colegios comunitarios",
+    "frequency": 1,
+    "category": "education"
+  },
+  {
+    "term_en": "pell grant",
+    "term_es": "Becas Pell",
+    "frequency": 1,
+    "category": "education/federal program"
+  },
+  {
+    "term_en": "cuts (budget/spending cuts)",
+    "term_es": "recortes",
+    "frequency": 1,
+    "category": "fiscal/political"
+  },
+  {
+    "term_en": "long covid",
+    "term_es": "COVID prolongado",
+    "frequency": 1,
+    "category": "medical"
+  },
+  {
+    "term_en": "researchers",
+    "term_es": "investigadores",
+    "frequency": 1,
+    "category": "academic"
+  },
+  {
+    "term_en": "house (of representatives)",
+    "term_es": "Cámara de Representantes",
+    "frequency": 1,
+    "category": "government"
+  },
+  {
+    "term_en": "proof of citizenship",
+    "term_es": "prueba de la ciudadanía",
+    "frequency": 1,
+    "category": "electoral/legal"
+  },
+  {
+    "term_en": "grieving camp",
+    "term_es": "campamento de duelo",
+    "frequency": 1,
+    "category": "health/social services"
+  },
+  {
+    "term_en": "teens",
+    "term_es": "adolescentes",
+    "frequency": 1,
+    "category": "demographic"
+  },
+  {
+    "term_en": "loved ones",
+    "term_es": "seres queridos",
+    "frequency": 1,
+    "category": "general"
+  },
+  {
+    "term_en": "spending plan",
+    "term_es": "plan de gastos",
+    "frequency": 1,
+    "category": "fiscal/political"
+  },
+  {
+    "term_en": "newark airport",
+    "term_es": "aeropuerto de Newark",
+    "frequency": 1,
+    "category": "place name/infrastructure"
+  },
+  {
+    "term_en": "white house",
+    "term_es": "Casa Blanca",
+    "frequency": 1,
+    "category": "government/place name"
+  },
+  {
+    "term_en": "power plant",
+    "term_es": "planta de energía",
+    "frequency": 1,
+    "category": "infrastructure/environment"
+  },
+  {
+    "term_en": "sex offenders",
+    "term_es": "agresores sexuales",
+    "frequency": 1,
+    "category": "legal/criminal"
+  },
+  {
+    "term_en": "lockup (civil commitment facility)",
+    "term_es": "sistema de detención",
+    "frequency": 1,
+    "category": "legal/criminal"
+  },
+  {
+    "term_en": "ex-judge",
+    "term_es": "exmagistrado",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "senate race",
+    "term_es": "candidatura al Senado",
+    "frequency": 1,
+    "category": "electoral"
+  },
+  {
+    "term_en": "progressive (political)",
+    "term_es": "progresista",
+    "frequency": 1,
+    "category": "political"
+  },
+  {
+    "term_en": "federal education funding",
+    "term_es": "fondos federales para la educación",
+    "frequency": 1,
+    "category": "policy"
+  },
+  {
+    "term_en": "one big beautiful bill",
+    "term_es": "Grande y Hermosa Ley",
+    "frequency": 1,
+    "category": "legislation"
+  },
+  {
+    "term_en": "deportation",
+    "term_es": "deportación",
+    "frequency": 1,
+    "category": "immigration"
+  },
+  {
+    "term_en": "detention center",
+    "term_es": "centro de detención",
+    "frequency": 1,
+    "category": "immigration"
+  },
+  {
+    "term_en": "u.s. senate",
+    "term_es": "Senado de Estados Unidos",
+    "frequency": 1,
+    "category": "government"
+  },
+  {
+    "term_en": "pardon",
+    "term_es": "indultar",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "tariffs",
+    "term_es": "tarifas",
+    "frequency": 1,
+    "category": "economic policy"
+  },
+  {
+    "term_en": "debt",
+    "term_es": "deudas",
+    "frequency": 1,
+    "category": "finance"
+  },
+  {
+    "term_en": "real estate scam",
+    "term_es": "estafa inmobiliaria",
+    "frequency": 1,
+    "category": "legal/finance"
+  },
+  {
+    "term_en": "temp workers",
+    "term_es": "trabajadores temporales",
+    "frequency": 1,
+    "category": "labor"
+  },
+  {
+    "term_en": "staffing agencies",
+    "term_es": "agencias de trabajo temporal",
+    "frequency": 1,
+    "category": "labor"
+  },
+  {
+    "term_en": "problem gambling",
+    "term_es": "problemas con el juego",
+    "frequency": 1,
+    "category": "public health"
+  },
+  {
+    "term_en": "calls for help",
+    "term_es": "llamadas de ayuda",
+    "frequency": 1,
+    "category": "public health"
+  },
+  {
+    "term_en": "shooting",
+    "term_es": "tiroteo",
+    "frequency": 1,
+    "category": "crime/public safety"
+  },
+  {
+    "term_en": "courthouse",
+    "term_es": "tribunales",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "uncommitted",
+    "term_es": "no comprometidos",
+    "frequency": 1,
+    "category": "electoral"
+  },
+  {
+    "term_en": "hispanic women's resource centers",
+    "term_es": "Centro de Recursos para Mujeres Hispanas",
+    "frequency": 1,
+    "category": "NJ institution"
+  },
+  {
+    "term_en": "latino action network",
+    "term_es": "Latino Action Network",
+    "frequency": 1,
+    "category": "NJ institution"
+  },
+  {
+    "term_en": "senate appropriations and budget committee",
+    "term_es": "Comité de Asignaciones y Presupuesto del Senado",
+    "frequency": 1,
+    "category": "government"
+  },
+  {
+    "term_en": "appropriations",
+    "term_es": "asignaciones",
+    "frequency": 1,
+    "category": "policy"
+  },
+  {
+    "term_en": "billions",
+    "term_es": "miles de millones",
+    "frequency": 1,
+    "category": "numeric convention"
+  },
+  {
+    "term_en": "ice jail",
+    "term_es": "cárcel para el ICE",
+    "frequency": 1,
+    "category": "government_agency"
+  },
+  {
+    "term_en": "n.j. state police",
+    "term_es": "Policía Estatal de NJ",
+    "frequency": 1,
+    "category": "government_agency"
+  },
+  {
+    "term_en": "head start",
+    "term_es": "programa Head Start",
+    "frequency": 1,
+    "category": "government_program"
+  },
+  {
+    "term_en": "aaa",
+    "term_es": "AAA",
+    "frequency": 1,
+    "category": "organization"
+  },
+  {
+    "term_en": "budget bill",
+    "term_es": "proyecto de ley presupuestario",
+    "frequency": 1,
+    "category": "legal_policy"
+  },
+  {
+    "term_en": "bills",
+    "term_es": "proyectos de ley",
+    "frequency": 1,
+    "category": "legal_policy"
+  },
+  {
+    "term_en": "safe zones",
+    "term_es": "zonas seguras",
+    "frequency": 1,
+    "category": "legal_policy"
+  },
+  {
+    "term_en": "voting restrictions",
+    "term_es": "restricciones al voto",
+    "frequency": 1,
+    "category": "legal_policy"
+  },
+  {
+    "term_en": "school guidance",
+    "term_es": "normativa escolar",
+    "frequency": 1,
+    "category": "legal_policy"
+  },
+  {
+    "term_en": "raids",
+    "term_es": "redadas",
+    "frequency": 1,
+    "category": "law_enforcement"
+  },
+  {
+    "term_en": "racial profiling",
+    "term_es": "perfiles raciales",
+    "frequency": 1,
+    "category": "law_enforcement"
+  },
+  {
+    "term_en": "police presence",
+    "term_es": "presencia policial",
+    "frequency": 1,
+    "category": "law_enforcement"
+  },
+  {
+    "term_en": "gang activity",
+    "term_es": "actividad de pandillas",
+    "frequency": 1,
+    "category": "law_enforcement"
+  },
+  {
+    "term_en": "undocumented",
+    "term_es": "indocumentadas",
+    "frequency": 1,
+    "category": "immigration"
+  },
+  {
+    "term_en": "mental health",
+    "term_es": "salud mental",
+    "frequency": 1,
+    "category": "medical"
+  },
+  {
+    "term_en": "bullying",
+    "term_es": "acoso",
+    "frequency": 1,
+    "category": "social"
+  },
+  {
+    "term_en": "latino voters",
+    "term_es": "votantes latinos",
+    "frequency": 1,
+    "category": "demographics"
+  },
+  {
+    "term_en": "minority motorists",
+    "term_es": "conductores de minorías",
+    "frequency": 1,
+    "category": "demographics"
+  },
+  {
+    "term_en": "unsheltered homeless population",
+    "term_es": "población de personas sin hogar",
+    "frequency": 1,
+    "category": "social_services"
+  },
+  {
+    "term_en": "governor's race",
+    "term_es": "carrera por la gobernación",
+    "frequency": 1,
+    "category": "politics"
+  },
+  {
+    "term_en": "fourth of july",
+    "term_es": "4 de julio",
+    "frequency": 1,
+    "category": "cultural"
+  },
+  {
+    "term_en": "parade",
+    "term_es": "desfile",
+    "frequency": 1,
+    "category": "cultural"
+  },
+  {
+    "term_en": "drivers",
+    "term_es": "conductores",
+    "frequency": 1,
+    "category": "general"
+  },
+  {
+    "term_en": "new jersey (spelled out)",
+    "term_es": "Nueva Jersey",
+    "frequency": 1,
+    "category": "place_name"
+  },
+  {
+    "term_en": "u.s. senate",
+    "term_es": "Senado estadounidense",
+    "frequency": 1,
+    "category": "government institution"
+  },
+  {
+    "term_en": "presidential race",
+    "term_es": "contienda presidencial",
+    "frequency": 1,
+    "category": "electoral/political"
+  },
+  {
+    "term_en": "registered voters",
+    "term_es": "votantes registrados",
+    "frequency": 1,
+    "category": "electoral/political"
+  },
+  {
+    "term_en": "hospital care at home",
+    "term_es": "atención hospitalaria a domicilio",
+    "frequency": 1,
+    "category": "medical"
+  },
+  {
+    "term_en": "social justice",
+    "term_es": "justicia social",
+    "frequency": 1,
+    "category": "policy/legal"
+  },
+  {
+    "term_en": "governor (race/office)",
+    "term_es": "gobernación",
+    "frequency": 1,
+    "category": "government office"
+  },
+  {
+    "term_en": "forum",
+    "term_es": "foro",
+    "frequency": 1,
+    "category": "civic/event"
+  },
+  {
+    "term_en": "state legislators",
+    "term_es": "legisladores estatales",
+    "frequency": 1,
+    "category": "government"
+  },
+  {
+    "term_en": "policy (legislative)",
+    "term_es": "medida",
+    "frequency": 1,
+    "category": "policy/legal"
+  },
+  {
+    "term_en": "going broke / bankruptcy",
+    "term_es": "la quiebra",
+    "frequency": 1,
+    "category": "financial/legal"
+  },
+  {
+    "term_en": "merger",
+    "term_es": "fusión",
+    "frequency": 1,
+    "category": "institutional"
+  },
+  {
+    "term_en": "massive merger",
+    "term_es": "megafusión",
+    "frequency": 1,
+    "category": "institutional"
+  },
+  {
+    "term_en": "immigrant advocates",
+    "term_es": "defensores de los inmigrantes",
+    "frequency": 1,
+    "category": "immigration/advocacy"
+  },
+  {
+    "term_en": "administration (political)",
+    "term_es": "administración",
+    "frequency": 1,
+    "category": "government"
+  },
+  {
+    "term_en": "press conference",
+    "term_es": "rueda de prensa",
+    "frequency": 1,
+    "category": "media/civic"
+  },
+  {
+    "term_en": "city hall",
+    "term_es": "alcaldía",
+    "frequency": 1,
+    "category": "government institution"
+  },
+  {
+    "term_en": "search warrant",
+    "term_es": "orden de registro",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "equity",
+    "term_es": "equidad",
+    "frequency": 1,
+    "category": "policy/social"
+  },
+  {
+    "term_en": "end of life (medical context)",
+    "term_es": "final de la vida",
+    "frequency": 1,
+    "category": "medical"
+  },
+  {
+    "term_en": "end of life options",
+    "term_es": "opciones de cuidados al final de la vida",
+    "frequency": 1,
+    "category": "medical"
+  },
+  {
+    "term_en": "new jersey (full)",
+    "term_es": "Nueva Jersey",
+    "frequency": 1,
+    "category": "place name"
+  },
+  {
+    "term_en": "nj (abbreviation)",
+    "term_es": "NJ",
+    "frequency": 1,
+    "category": "place name"
+  },
+  {
+    "term_en": "raid",
+    "term_es": "redada",
+    "frequency": 1,
+    "category": "law enforcement"
+  },
+  {
+    "term_en": "newark public schools",
+    "term_es": "Escuelas Públicas de Newark",
+    "frequency": 1,
+    "category": "NJ institution"
+  },
+  {
+    "term_en": "overreach",
+    "term_es": "extralimitación",
+    "frequency": 1,
+    "category": "policy term"
+  },
+  {
+    "term_en": "special election",
+    "term_es": "elecciones especiales",
+    "frequency": 1,
+    "category": "political"
+  },
+  {
+    "term_en": "rep.",
+    "term_es": "representante",
+    "frequency": 1,
+    "category": "government title"
+  },
+  {
+    "term_en": "black (residents)",
+    "term_es": "afroamericanos",
+    "frequency": 1,
+    "category": "racial identity"
+  },
+  {
+    "term_en": "black (women)",
+    "term_es": "negras",
+    "frequency": 1,
+    "category": "racial identity"
+  },
+  {
+    "term_en": "english language learners",
+    "term_es": "estudiantes de inglés",
+    "frequency": 1,
+    "category": "education"
+  },
+  {
+    "term_en": "use of force",
+    "term_es": "uso de la fuerza",
+    "frequency": 1,
+    "category": "law enforcement"
+  },
+  {
+    "term_en": "use of force incidents",
+    "term_es": "incidentes de uso de la fuerza",
+    "frequency": 1,
+    "category": "law enforcement"
+  },
+  {
+    "term_en": "governor hopefuls",
+    "term_es": "candidatos a la gobernación",
+    "frequency": 1,
+    "category": "political"
+  },
+  {
+    "term_en": "crackdown",
+    "term_es": "represión",
+    "frequency": 1,
+    "category": "policy term"
+  },
+  {
+    "term_en": "the garden state",
+    "term_es": "el Estado Jardín",
+    "frequency": 1,
+    "category": "NJ place name"
+  },
+  {
+    "term_en": "sanctuary cities",
+    "term_es": "ciudades santuario",
+    "frequency": 1,
+    "category": "policy term"
+  },
+  {
+    "term_en": "immigrant jail",
+    "term_es": "cárcel para inmigrantes",
+    "frequency": 1,
+    "category": "law enforcement"
+  },
+  {
+    "term_en": "drink container",
+    "term_es": "envase de bebida",
+    "frequency": 1,
+    "category": "legislative"
+  },
+  {
+    "term_en": "vulnerable students",
+    "term_es": "alumnos vulnerables",
+    "frequency": 1,
+    "category": "education"
+  },
+  {
+    "term_en": "democrat",
+    "term_es": "demócrata",
+    "frequency": 1,
+    "category": "political"
+  },
+  {
+    "term_en": "unemployment rate",
+    "term_es": "tasa de desempleo",
+    "frequency": 1,
+    "category": "economic/labor"
+  },
+  {
+    "term_en": "divorce rate",
+    "term_es": "tasa de divorcio",
+    "frequency": 1,
+    "category": "demographic"
+  },
+  {
+    "term_en": "police training conference",
+    "term_es": "conferencia de capacitación policial",
+    "frequency": 1,
+    "category": "law enforcement"
+  },
+  {
+    "term_en": "late (deceased)",
+    "term_es": "difunto",
+    "frequency": 1,
+    "category": "obituary"
+  },
+  {
+    "term_en": "data shows",
+    "term_es": "según los datos",
+    "frequency": 1,
+    "category": "journalistic attribution"
+  },
+  {
+    "term_en": "district initiatives",
+    "term_es": "iniciativas del distrito",
+    "frequency": 1,
+    "category": "education"
+  },
+  {
+    "term_en": "cops",
+    "term_es": "policías",
+    "frequency": 1,
+    "category": "law enforcement"
+  },
+  {
+    "term_en": "protected status",
+    "term_es": "estatus de protección",
+    "frequency": 1,
+    "category": "immigration/legal"
+  },
+  {
+    "term_en": "migrant workers",
+    "term_es": "trabajadores migrantes",
+    "frequency": 1,
+    "category": "labor/immigration"
+  },
+  {
+    "term_en": "organizers",
+    "term_es": "organizadores",
+    "frequency": 1,
+    "category": "civil society"
+  },
+  {
+    "term_en": "school system",
+    "term_es": "sistema escolar",
+    "frequency": 1,
+    "category": "education"
+  },
+  {
+    "term_en": "neighborhood schools",
+    "term_es": "escuelas de los vecindarios",
+    "frequency": 1,
+    "category": "education"
+  },
+  {
+    "term_en": "housing crisis",
+    "term_es": "crisis de vivienda",
+    "frequency": 1,
+    "category": "housing policy"
+  },
+  {
+    "term_en": "syphilis",
+    "term_es": "sífilis",
+    "frequency": 1,
+    "category": "medical"
+  },
+  {
+    "term_en": "maternal health",
+    "term_es": "atención de salud materna",
+    "frequency": 1,
+    "category": "medical"
+  },
+  {
+    "term_en": "implicit bias",
+    "term_es": "prejuicios implícitos",
+    "frequency": 1,
+    "category": "medical/policy"
+  },
+  {
+    "term_en": "doula",
+    "term_es": "doula",
+    "frequency": 1,
+    "category": "medical"
+  },
+  {
+    "term_en": "pay-to-play laws",
+    "term_es": "leyes contra el pago para obtener beneficios",
+    "frequency": 1,
+    "category": "legal/policy"
+  },
+  {
+    "term_en": "methane gas plant",
+    "term_es": "planta de gas metano",
+    "frequency": 1,
+    "category": "energy/environment"
+  },
+  {
+    "term_en": "statewide rate",
+    "term_es": "porcentaje estatal",
+    "frequency": 1,
+    "category": "statistics"
+  },
+  {
+    "term_en": "commissioner",
+    "term_es": "comisionado",
+    "frequency": 1,
+    "category": "government"
+  },
+  {
+    "term_en": "ocean county",
+    "term_es": "condado de Ocean",
+    "frequency": 1,
+    "category": "NJ place name"
+  },
+  {
+    "term_en": "technology platform",
+    "term_es": "plataforma tecnológica",
+    "frequency": 1,
+    "category": "technology"
+  },
+  {
+    "term_en": "nj",
+    "term_es": "NJ",
+    "frequency": 1,
+    "category": "NJ place name"
+  },
+  {
+    "term_en": "flood-prone lands",
+    "term_es": "tierras vulnerables a inundaciones",
+    "frequency": 1,
+    "category": "environmental"
+  },
+  {
+    "term_en": "motor vehicle commission",
+    "term_es": "Comisión de Vehículos Motorizados",
+    "frequency": 1,
+    "category": "government agency"
+  },
+  {
+    "term_en": "demand",
+    "term_es": "demanda",
+    "frequency": 1,
+    "category": "legal/policy"
+  },
+  {
+    "term_en": "green burial",
+    "term_es": "entierro 'verde'",
+    "frequency": 1,
+    "category": "cultural/environmental"
+  },
+  {
+    "term_en": "eco-friendly",
+    "term_es": "ecológica",
+    "frequency": 1,
+    "category": "environmental"
+  },
+  {
+    "term_en": "e-bike riders",
+    "term_es": "ciclistas de e-bikes",
+    "frequency": 1,
+    "category": "technical"
+  },
+  {
+    "term_en": "deportation plan",
+    "term_es": "plan de deportación",
+    "frequency": 1,
+    "category": "immigration/policy"
+  },
+  {
+    "term_en": "panel",
+    "term_es": "Junta",
+    "frequency": 1,
+    "category": "government"
+  },
+  {
+    "term_en": "truant children",
+    "term_es": "menores que faltaran a clase",
+    "frequency": 1,
+    "category": "legal/educational"
+  },
+  {
+    "term_en": "utility regulator",
+    "term_es": "agencia reguladora de servicios públicos",
+    "frequency": 1,
+    "category": "government agency"
+  },
+  {
+    "term_en": "gas rate hikes",
+    "term_es": "aumentos en las tarifas del gas",
+    "frequency": 1,
+    "category": "utility/policy"
+  },
+  {
+    "term_en": "rate hikes",
+    "term_es": "aumentos en las tarifas",
+    "frequency": 1,
+    "category": "utility/policy"
+  },
+  {
+    "term_en": "school board",
+    "term_es": "Junta Escolar",
+    "frequency": 1,
+    "category": "government/education"
+  },
+  {
+    "term_en": "school board member",
+    "term_es": "Miembro de la Junta Escolar",
+    "frequency": 1,
+    "category": "government/education"
+  },
+  {
+    "term_en": "steps down",
+    "term_es": "renuncia a su cargo",
+    "frequency": 1,
+    "category": "institutional"
+  },
+  {
+    "term_en": "global studies",
+    "term_es": "Global Studies",
+    "frequency": 1,
+    "category": "NJ institution"
+  },
+  {
+    "term_en": "religious charities",
+    "term_es": "organizaciones religiosas",
+    "frequency": 1,
+    "category": "institutional"
+  },
+  {
+    "term_en": "churches",
+    "term_es": "iglesias",
+    "frequency": 1,
+    "category": "institutional"
+  },
+  {
+    "term_en": "federal prison",
+    "term_es": "prisión federal",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "bribery (sentences)",
+    "term_es": "corrupción",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "bribes",
+    "term_es": "sobornos",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "trial",
+    "term_es": "juicio",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "parole",
+    "term_es": "libertad condicional",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "parole violators",
+    "term_es": "violadores de la libertad condicional",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "aca health insurance",
+    "term_es": "seguro médico ACA",
+    "frequency": 1,
+    "category": "policy/health"
+  },
+  {
+    "term_en": "legislature",
+    "term_es": "legislatura",
+    "frequency": 1,
+    "category": "government"
+  },
+  {
+    "term_en": "school board",
+    "term_es": "Junta de Educación",
+    "frequency": 1,
+    "category": "government/education"
+  },
+  {
+    "term_en": "the fed",
+    "term_es": "La Reserva Federal",
+    "frequency": 1,
+    "category": "government/finance"
+  },
+  {
+    "term_en": "charter school",
+    "term_es": "escuela autónoma",
+    "frequency": 1,
+    "category": "education"
+  },
+  {
+    "term_en": "school business administrator",
+    "term_es": "gerente de administración escolar",
+    "frequency": 1,
+    "category": "education"
+  },
+  {
+    "term_en": "running mate",
+    "term_es": "compañero de fórmula",
+    "frequency": 1,
+    "category": "politics"
+  },
+  {
+    "term_en": "nominee for governor",
+    "term_es": "candidata a la gobernación",
+    "frequency": 1,
+    "category": "politics"
+  },
+  {
+    "term_en": "poll",
+    "term_es": "encuesta",
+    "frequency": 1,
+    "category": "politics"
+  },
+  {
+    "term_en": "election",
+    "term_es": "elecciones",
+    "frequency": 1,
+    "category": "politics"
+  },
+  {
+    "term_en": "voters",
+    "term_es": "votantes",
+    "frequency": 1,
+    "category": "politics"
+  },
+  {
+    "term_en": "mortgages",
+    "term_es": "hipotecas",
+    "frequency": 1,
+    "category": "finance"
+  },
+  {
+    "term_en": "cut rates",
+    "term_es": "recortó las tasas",
+    "frequency": 1,
+    "category": "finance"
+  },
+  {
+    "term_en": "solar eclipse",
+    "term_es": "eclipse solar",
+    "frequency": 1,
+    "category": "science"
+  },
+  {
+    "term_en": "masks",
+    "term_es": "mascarillas",
+    "frequency": 1,
+    "category": "health"
+  },
+  {
+    "term_en": "gang",
+    "term_es": "pandilla",
+    "frequency": 1,
+    "category": "crime"
+  },
+  {
+    "term_en": "boardwalk",
+    "term_es": "malecón",
+    "frequency": 1,
+    "category": "NJ place/institution"
+  },
+  {
+    "term_en": "rutgers-eagleton (poll)",
+    "term_es": "Rutgers-Eagleton",
+    "frequency": 1,
+    "category": "NJ institution"
+  },
+  {
+    "term_en": "behind bars",
+    "term_es": "en prisión",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "holidays",
+    "term_es": "días festivos",
+    "frequency": 1,
+    "category": "general"
+  },
+  {
+    "term_en": "poverty",
+    "term_es": "pobreza",
+    "frequency": 1,
+    "category": "social"
+  },
+  {
+    "term_en": "bribery",
+    "term_es": "soborno",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "convicted",
+    "term_es": "declarado culpable",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "charges",
+    "term_es": "cargos",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "federal corruption trial",
+    "term_es": "juicio federal por corrupción",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "border security bill",
+    "term_es": "proyecto de ley de seguridad fronteriza",
+    "frequency": 1,
+    "category": "policy"
+  },
+  {
+    "term_en": "vote (noun)",
+    "term_es": "votación",
+    "frequency": 1,
+    "category": "policy"
+  },
+  {
+    "term_en": "republicans",
+    "term_es": "republicanos",
+    "frequency": 1,
+    "category": "politics"
+  },
+  {
+    "term_en": "democrats",
+    "term_es": "demócratas",
+    "frequency": 1,
+    "category": "politics"
+  },
+  {
+    "term_en": "appeals court",
+    "term_es": "Tribunal de apelaciones",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "rules in favor of",
+    "term_es": "falla a favor de",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "temp worker law",
+    "term_es": "ley de trabajadores temporales",
+    "frequency": 1,
+    "category": "labor/policy"
+  },
+  {
+    "term_en": "school shootings",
+    "term_es": "tiroteos en las escuelas",
+    "frequency": 1,
+    "category": "public safety"
+  },
+  {
+    "term_en": "njsea",
+    "term_es": "NJSEA",
+    "frequency": 1,
+    "category": "NJ institution"
+  },
+  {
+    "term_en": "fifa world cup",
+    "term_es": "Copa Mundial de la FIFA",
+    "frequency": 1,
+    "category": "proper noun"
+  },
+  {
+    "term_en": "recalls (product)",
+    "term_es": "productos retirados del mercado",
+    "frequency": 1,
+    "category": "consumer/regulatory"
+  },
+  {
+    "term_en": "skills exam",
+    "term_es": "examen de habilidades",
+    "frequency": 1,
+    "category": "education"
+  },
+  {
+    "term_en": "teachers' certifications",
+    "term_es": "certificaciones de maestros",
+    "frequency": 1,
+    "category": "education"
+  },
+  {
+    "term_en": "us supreme court",
+    "term_es": "Corte Suprema de EE. UU.",
+    "frequency": 1,
+    "category": "government"
+  },
+  {
+    "term_en": "u.s. supreme court",
+    "term_es": "Corte Suprema de Estados Unidos",
+    "frequency": 1,
+    "category": "government"
+  },
+  {
+    "term_en": "racial profiling",
+    "term_es": "perfil racial",
+    "frequency": 1,
+    "category": "legal/immigration"
+  },
+  {
+    "term_en": "immigration enforcement",
+    "term_es": "operaciones de inmigración",
+    "frequency": 1,
+    "category": "immigration"
+  },
+  {
+    "term_en": "mercury contamination",
+    "term_es": "contaminación por mercurio",
+    "frequency": 1,
+    "category": "environmental"
+  },
+  {
+    "term_en": "project 2025",
+    "term_es": "Proyecto 2025",
+    "frequency": 1,
+    "category": "policy"
+  },
+  {
+    "term_en": "playbook",
+    "term_es": "plan de acción",
+    "frequency": 1,
+    "category": "policy"
+  },
+  {
+    "term_en": "cut jobs",
+    "term_es": "eliminar puestos de trabajo",
+    "frequency": 1,
+    "category": "labor"
+  },
+  {
+    "term_en": "feds",
+    "term_es": "autoridades federales",
+    "frequency": 1,
+    "category": "government"
+  },
+  {
+    "term_en": "due process",
+    "term_es": "debido proceso",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "deport",
+    "term_es": "deportar",
+    "frequency": 1,
+    "category": "immigration"
+  },
+  {
+    "term_en": "flu season",
+    "term_es": "temporada de gripe",
+    "frequency": 1,
+    "category": "medical"
+  },
+  {
+    "term_en": "college degree",
+    "term_es": "título universitario",
+    "frequency": 1,
+    "category": "education"
+  },
+  {
+    "term_en": "high-paying jobs",
+    "term_es": "trabajos bien remunerados",
+    "frequency": 1,
+    "category": "labor"
+  },
+  {
+    "term_en": "high-demand",
+    "term_es": "alta demanda",
+    "frequency": 1,
+    "category": "labor"
+  },
+  {
+    "term_en": "poverty level",
+    "term_es": "pobreza",
+    "frequency": 1,
+    "category": "socioeconomic"
+  },
+  {
+    "term_en": "transportation (infrastructure)",
+    "term_es": "transporte",
+    "frequency": 1,
+    "category": "infrastructure"
+  },
+  {
+    "term_en": "invisible pain day",
+    "term_es": "Día del Dolor Invisible",
+    "frequency": 1,
+    "category": "proper noun/health program"
+  },
+  {
+    "term_en": "safety (public)",
+    "term_es": "seguridad",
+    "frequency": 1,
+    "category": "public safety"
+  },
+  {
+    "term_en": "threats (school)",
+    "term_es": "amenazas",
+    "frequency": 1,
+    "category": "public safety"
+  },
+  {
+    "term_en": "government documents",
+    "term_es": "documentos gubernamentales",
+    "frequency": 1,
+    "category": "government"
+  },
+  {
+    "term_en": "tax credit program",
+    "term_es": "programa de crédito fiscal",
+    "frequency": 1,
+    "category": "financial_policy"
+  },
+  {
+    "term_en": "senate bill",
+    "term_es": "proyecto de ley del Senado",
+    "frequency": 1,
+    "category": "legal_policy"
+  },
+  {
+    "term_en": "neighborhoods",
+    "term_es": "vecindarios",
+    "frequency": 1,
+    "category": "general"
+  },
+  {
+    "term_en": "humanitarian parole",
+    "term_es": "permiso humanitario",
+    "frequency": 1,
+    "category": "immigration"
+  },
+  {
+    "term_en": "new arrivals",
+    "term_es": "recién llegados",
+    "frequency": 1,
+    "category": "immigration"
+  },
+  {
+    "term_en": "business advocates",
+    "term_es": "líderes empresariales",
+    "frequency": 1,
+    "category": "general"
+  },
+  {
+    "term_en": "early detection",
+    "term_es": "detección precoz",
+    "frequency": 1,
+    "category": "medical"
+  },
+  {
+    "term_en": "insurance",
+    "term_es": "seguros",
+    "frequency": 1,
+    "category": "financial_policy"
+  },
+  {
+    "term_en": "alzheimer's",
+    "term_es": "el Alzheimer",
+    "frequency": 1,
+    "category": "medical"
+  },
+  {
+    "term_en": "guns",
+    "term_es": "armas",
+    "frequency": 1,
+    "category": "legal_policy"
+  },
+  {
+    "term_en": "ramapo fault",
+    "term_es": "falla geológica Ramapo",
+    "frequency": 1,
+    "category": "geography"
+  },
+  {
+    "term_en": "earthquakes",
+    "term_es": "terremotos",
+    "frequency": 1,
+    "category": "geography"
+  },
+  {
+    "term_en": "attorney general",
+    "term_es": "fiscal general",
+    "frequency": 1,
+    "category": "government"
+  },
+  {
+    "term_en": "ouster",
+    "term_es": "destitución",
+    "frequency": 1,
+    "category": "legal_policy"
+  },
+  {
+    "term_en": "court losses",
+    "term_es": "derrotas judiciales",
+    "frequency": 1,
+    "category": "legal_policy"
+  },
+  {
+    "term_en": "challenges",
+    "term_es": "impugnaciones",
+    "frequency": 1,
+    "category": "legal_policy"
+  },
+  {
+    "term_en": "transgender student policy",
+    "term_es": "política transgénero",
+    "frequency": 1,
+    "category": "education"
+  },
+  {
+    "term_en": "repealing",
+    "term_es": "derogar",
+    "frequency": 1,
+    "category": "legal_policy"
+  },
+  {
+    "term_en": "colonoscopy",
+    "term_es": "colonoscopia",
+    "frequency": 1,
+    "category": "medical"
+  },
+  {
+    "term_en": "colon cancer",
+    "term_es": "cáncer de colon",
+    "frequency": 1,
+    "category": "medical"
+  },
+  {
+    "term_en": "counties",
+    "term_es": "condados",
+    "frequency": 1,
+    "category": "place_name"
+  },
+  {
+    "term_en": "e-zpass",
+    "term_es": "E-ZPass",
+    "frequency": 1,
+    "category": "transportation"
+  },
+  {
+    "term_en": "scam",
+    "term_es": "estafa",
+    "frequency": 1,
+    "category": "general"
+  },
+  {
+    "term_en": "tolls",
+    "term_es": "peajes",
+    "frequency": 1,
+    "category": "transportation"
+  },
+  {
+    "term_en": "social media",
+    "term_es": "redes sociales",
+    "frequency": 1,
+    "category": "general"
+  },
+  {
+    "term_en": "sightings",
+    "term_es": "presencia",
+    "frequency": 1,
+    "category": "immigration"
+  },
+  {
+    "term_en": "immigration agencies",
+    "term_es": "agencias de inmigración",
+    "frequency": 1,
+    "category": "immigration"
+  },
+  {
+    "term_en": "housing affordability",
+    "term_es": "asequibilidad de la vivienda",
+    "frequency": 1,
+    "category": "policy"
+  },
+  {
+    "term_en": "affordable",
+    "term_es": "asequible",
+    "frequency": 1,
+    "category": "policy"
+  },
+  {
+    "term_en": "police killing",
+    "term_es": "asesinato policial",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "crisis response effort",
+    "term_es": "iniciativa de respuesta a la crisis",
+    "frequency": 1,
+    "category": "policy"
+  },
+  {
+    "term_en": "college student",
+    "term_es": "estudiante universitaria",
+    "frequency": 1,
+    "category": "education"
+  },
+  {
+    "term_en": "federal workers",
+    "term_es": "trabajadores federales",
+    "frequency": 1,
+    "category": "government"
+  },
+  {
+    "term_en": "administrative leave",
+    "term_es": "licencia administrativa",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "student behavior plans",
+    "term_es": "planes de comportamiento estudiantil",
+    "frequency": 1,
+    "category": "education"
+  },
+  {
+    "term_en": "business groups",
+    "term_es": "grupos empresariales",
+    "frequency": 1,
+    "category": "business"
+  },
+  {
+    "term_en": "excessive heat",
+    "term_es": "calor excesivo",
+    "frequency": 1,
+    "category": "policy"
+  },
+  {
+    "term_en": "congressional hispanic caucus",
+    "term_es": "Caucus Hispano del Congreso",
+    "frequency": 1,
+    "category": "government"
+  },
+  {
+    "term_en": "immigration detention",
+    "term_es": "detención de inmigrantes",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "vaccination",
+    "term_es": "vacunación",
+    "frequency": 1,
+    "category": "medical"
+  },
+  {
+    "term_en": "aca",
+    "term_es": "ACA",
+    "frequency": 1,
+    "category": "policy"
+  },
+  {
+    "term_en": "health insurance",
+    "term_es": "seguro de salud",
+    "frequency": 1,
+    "category": "policy"
+  },
+  {
+    "term_en": "state bans",
+    "term_es": "prohibiciones estatales",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "care for transgender minors",
+    "term_es": "cuidado para menores transgénero",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "sen.",
+    "term_es": "Senador",
+    "frequency": 1,
+    "category": "government"
+  },
+  {
+    "term_en": "corruption trial",
+    "term_es": "juicio por corrupción",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "reelection",
+    "term_es": "reelección",
+    "frequency": 1,
+    "category": "politics"
+  },
+  {
+    "term_en": "files to seek reelection",
+    "term_es": "inscribe su candidatura para la reelección",
+    "frequency": 1,
+    "category": "politics"
+  },
+  {
+    "term_en": "running for governor",
+    "term_es": "postulando para gobernador",
+    "frequency": 1,
+    "category": "politics"
+  },
+  {
+    "term_en": "drone reports",
+    "term_es": "informes sobre drones",
+    "frequency": 1,
+    "category": "technology"
+  },
+  {
+    "term_en": "promotion ceremony",
+    "term_es": "ceremonia de ascensos",
+    "frequency": 1,
+    "category": "government"
+  },
+  {
+    "term_en": "live event",
+    "term_es": "evento en vivo",
+    "frequency": 1,
+    "category": "journalism"
+  },
+  {
+    "term_en": "sheriff",
+    "term_es": "sheriff",
+    "frequency": 1,
+    "category": "government title"
+  },
+  {
+    "term_en": "cape may",
+    "term_es": "Cape May",
+    "frequency": 1,
+    "category": "NJ place name"
+  },
+  {
+    "term_en": "county line",
+    "term_es": "estructura única de votación primaria",
+    "frequency": 1,
+    "category": "NJ political term"
+  },
+  {
+    "term_en": "first lady",
+    "term_es": "primera dama",
+    "frequency": 1,
+    "category": "government title"
+  },
+  {
+    "term_en": "property-tax relief",
+    "term_es": "alivio de impuestos a la propiedad",
+    "frequency": 1,
+    "category": "legal/policy term"
+  },
+  {
+    "term_en": "anchor (program)",
+    "term_es": "Anchor",
+    "frequency": 1,
+    "category": "NJ government program"
+  },
+  {
+    "term_en": "fraudulent applications",
+    "term_es": "solicitudes fraudulentas",
+    "frequency": 1,
+    "category": "legal term"
+  },
+  {
+    "term_en": "school bus reforms",
+    "term_es": "reformas del transporte escolar",
+    "frequency": 1,
+    "category": "policy term"
+  },
+  {
+    "term_en": "kids with disabilities",
+    "term_es": "niños con discapacidades",
+    "frequency": 1,
+    "category": "legal/policy term"
+  },
+  {
+    "term_en": "no strings attached",
+    "term_es": "sin condiciones",
+    "frequency": 1,
+    "category": "policy/idiomatic"
+  },
+  {
+    "term_en": "apply (to a program)",
+    "term_es": "aplicar",
+    "frequency": 1,
+    "category": "bureaucratic term"
+  },
+  {
+    "term_en": "clean water",
+    "term_es": "agua potable",
+    "frequency": 1,
+    "category": "technical term"
+  },
+  {
+    "term_en": "prisons",
+    "term_es": "prisiones",
+    "frequency": 1,
+    "category": "legal term"
+  },
+  {
+    "term_en": "congestion hike",
+    "term_es": "tarifas por congestión",
+    "frequency": 1,
+    "category": "policy/transportation"
+  },
+  {
+    "term_en": "riders",
+    "term_es": "pasajeros",
+    "frequency": 1,
+    "category": "transportation term"
+  },
+  {
+    "term_en": "majority hispanic areas",
+    "term_es": "zonas mayormente hispanas",
+    "frequency": 1,
+    "category": "demographic term"
+  },
+  {
+    "term_en": "public records act",
+    "term_es": "ley de registros públicos",
+    "frequency": 1,
+    "category": "legal/policy term"
+  },
+  {
+    "term_en": "federal appeals court",
+    "term_es": "Tribunal federal de apelaciones",
+    "frequency": 1,
+    "category": "legal institution"
+  },
+  {
+    "term_en": "daca",
+    "term_es": "DACA",
+    "frequency": 1,
+    "category": "government program"
+  },
+  {
+    "term_en": "catholic clergy sex abuse",
+    "term_es": "abusos sexuales del clero católico",
+    "frequency": 1,
+    "category": "legal/social term"
+  },
+  {
+    "term_en": "domestic workers' rights law",
+    "term_es": "ley de derechos de trabajadores domésticos",
+    "frequency": 1,
+    "category": "legal/policy term"
+  },
+  {
+    "term_en": "takes effect",
+    "term_es": "entra en vigor",
+    "frequency": 1,
+    "category": "legal phrase"
+  },
+  {
+    "term_en": "nonprofit",
+    "term_es": "organización sin fines de lucro",
+    "frequency": 1,
+    "category": "organizational term"
+  },
+  {
+    "term_en": "racial trauma",
+    "term_es": "trauma racial",
+    "frequency": 1,
+    "category": "social/medical term"
+  },
+  {
+    "term_en": "public officials",
+    "term_es": "funcionarios públicos",
+    "frequency": 1,
+    "category": "government term"
+  },
+  {
+    "term_en": "prosecutor",
+    "term_es": "fiscal",
+    "frequency": 1,
+    "category": "legal title"
+  },
+  {
+    "term_en": "war veterans",
+    "term_es": "veteranos de guerra",
+    "frequency": 1,
+    "category": "social/government term"
+  },
+  {
+    "term_en": "air strikes",
+    "term_es": "ataques aéreos",
+    "frequency": 1,
+    "category": "military term"
+  },
+  {
+    "term_en": "déjà vu",
+    "term_es": "algo ya vivido",
+    "frequency": 1,
+    "category": "idiomatic/cultural"
+  },
+  {
+    "term_en": "dnc",
+    "term_es": "DNC",
+    "frequency": 1,
+    "category": "political_organization"
+  },
+  {
+    "term_en": "medicaid cuts",
+    "term_es": "recortes de Medicaid",
+    "frequency": 1,
+    "category": "policy_term"
+  },
+  {
+    "term_en": "rent control",
+    "term_es": "control de alquileres",
+    "frequency": 1,
+    "category": "legal_policy"
+  },
+  {
+    "term_en": "senate seat",
+    "term_es": "Senado",
+    "frequency": 1,
+    "category": "political_institution"
+  },
+  {
+    "term_en": "bid for senate seat",
+    "term_es": "candidatura al Senado",
+    "frequency": 1,
+    "category": "political_term"
+  },
+  {
+    "term_en": "uncommitted delegates",
+    "term_es": "delegados no comprometidos",
+    "frequency": 1,
+    "category": "political_term"
+  },
+  {
+    "term_en": "housing costs",
+    "term_es": "vivienda",
+    "frequency": 1,
+    "category": "policy_term"
+  },
+  {
+    "term_en": "training",
+    "term_es": "capacitación",
+    "frequency": 1,
+    "category": "workforce_term"
+  },
+  {
+    "term_en": "population growth",
+    "term_es": "crecimiento demográfico",
+    "frequency": 1,
+    "category": "demographic_term"
+  },
+  {
+    "term_en": "english as a new language",
+    "term_es": "inglés como nueva lengua",
+    "frequency": 1,
+    "category": "education_program"
+  },
+  {
+    "term_en": "police shooting",
+    "term_es": "tiroteo policial",
+    "frequency": 1,
+    "category": "legal_criminal"
+  },
+  {
+    "term_en": "bill",
+    "term_es": "acción judicial",
+    "frequency": 1,
+    "category": "legal_term"
+  },
+  {
+    "term_en": "extreme heat",
+    "term_es": "calor extremo",
+    "frequency": 1,
+    "category": "policy_term"
+  },
+  {
+    "term_en": "olympians",
+    "term_es": "atletas Olímpicos",
+    "frequency": 1,
+    "category": "sports_term"
+  },
+  {
+    "term_en": "street ball",
+    "term_es": "baloncesto callejero",
+    "frequency": 1,
+    "category": "sports_term"
+  },
+  {
+    "term_en": "state tourney",
+    "term_es": "torneo estatal",
+    "frequency": 1,
+    "category": "sports_term"
+  },
+  {
+    "term_en": "censorship",
+    "term_es": "censura",
+    "frequency": 1,
+    "category": "policy_term"
+  },
+  {
+    "term_en": "fight book bans act",
+    "term_es": "ley Lucha Contra la Prohibición de Libros",
+    "frequency": 1,
+    "category": "legislation"
+  },
+  {
+    "term_en": "d.r. immigrant",
+    "term_es": "inmigrante dominicano",
+    "frequency": 1,
+    "category": "geographic_demonym"
+  },
+  {
+    "term_en": "latino students",
+    "term_es": "estudiantes latinos",
+    "frequency": 1,
+    "category": "demographic_term"
+  },
+  {
+    "term_en": "representation",
+    "term_es": "representación",
+    "frequency": 1,
+    "category": "political_term"
+  },
+  {
+    "term_en": "food prices",
+    "term_es": "precios de los alimentos",
+    "frequency": 1,
+    "category": "economic"
+  },
+  {
+    "term_en": "drug overdoses",
+    "term_es": "sobredosis de drogas",
+    "frequency": 1,
+    "category": "medical"
+  },
+  {
+    "term_en": "immigration system",
+    "term_es": "sistema migratorio",
+    "frequency": 1,
+    "category": "immigration"
+  },
+  {
+    "term_en": "presidential race",
+    "term_es": "campaña presidencial",
+    "frequency": 1,
+    "category": "politics"
+  },
+  {
+    "term_en": "immigrants without legal status",
+    "term_es": "inmigrantes sin estatus legal",
+    "frequency": 1,
+    "category": "immigration"
+  },
+  {
+    "term_en": "legal status",
+    "term_es": "estatus legal",
+    "frequency": 1,
+    "category": "immigration"
+  },
+  {
+    "term_en": "court order",
+    "term_es": "orden judicial",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "high school",
+    "term_es": "escuela secundaria",
+    "frequency": 1,
+    "category": "education"
+  },
+  {
+    "term_en": "disparities",
+    "term_es": "disparidades",
+    "frequency": 1,
+    "category": "general"
+  },
+  {
+    "term_en": "water system pipes",
+    "term_es": "tuberías del sistema de agua",
+    "frequency": 1,
+    "category": "infrastructure"
+  },
+  {
+    "term_en": "rules take effect",
+    "term_es": "normas entren en vigor",
+    "frequency": 1,
+    "category": "legal_policy"
+  },
+  {
+    "term_en": "black americans",
+    "term_es": "afroamericanos",
+    "frequency": 1,
+    "category": "demographic"
+  },
+  {
+    "term_en": "gun violence",
+    "term_es": "violencia armada",
+    "frequency": 1,
+    "category": "public_safety"
+  },
+  {
+    "term_en": "study finds",
+    "term_es": "según un estudio",
+    "frequency": 1,
+    "category": "media_convention"
+  },
+  {
+    "term_en": "report finds",
+    "term_es": "según un informe",
+    "frequency": 1,
+    "category": "media_convention"
+  },
+  {
+    "term_en": "sexual harassment complaint",
+    "term_es": "denuncia de abuso sexual",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "alleged",
+    "term_es": "presunto",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "undocumented immigrants",
+    "term_es": "inmigrantes indocumentados",
+    "frequency": 1,
+    "category": "immigration"
+  },
+  {
+    "term_en": "state and local taxes",
+    "term_es": "impuestos estatales y locales",
+    "frequency": 1,
+    "category": "economic"
+  },
+  {
+    "term_en": "immigration lawyers",
+    "term_es": "abogados de inmigración",
+    "frequency": 1,
+    "category": "immigration"
+  },
+  {
+    "term_en": "federal report",
+    "term_es": "informe federal",
+    "frequency": 1,
+    "category": "government"
+  },
+  {
+    "term_en": "excessive force",
+    "term_es": "uso excesivo de la fuerza",
+    "frequency": 1,
+    "category": "legal_policy"
+  },
+  {
+    "term_en": "unlawful searches",
+    "term_es": "registros ilegales",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "unlawful arrests",
+    "term_es": "arrestos ilegales",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "haitians",
+    "term_es": "haitianos",
+    "frequency": 1,
+    "category": "demographic"
+  },
+  {
+    "term_en": "voting immigrants",
+    "term_es": "electores inmigrantes",
+    "frequency": 1,
+    "category": "politics"
+  },
+  {
+    "term_en": "portable showers",
+    "term_es": "duchas portátiles",
+    "frequency": 1,
+    "category": "social_services"
+  },
+  {
+    "term_en": "people in need",
+    "term_es": "personas necesitadas",
+    "frequency": 1,
+    "category": "social_services"
+  },
+  {
+    "term_en": "harmful conduct",
+    "term_es": "conducta perjudicial",
+    "frequency": 1,
+    "category": "legal_policy"
+  },
+  {
+    "term_en": "post-covid",
+    "term_es": "después de COVID",
+    "frequency": 1,
+    "category": "medical"
+  },
+  {
+    "term_en": "court hearings",
+    "term_es": "audiencias judiciales",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "suing",
+    "term_es": "demandando",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "challenge (legal)",
+    "term_es": "impugnación",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "legal travails",
+    "term_es": "problemas legales",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "deportation plan",
+    "term_es": "plan de deportaciones",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "federal appeals court",
+    "term_es": "Corte federal de apelaciones",
+    "frequency": 1,
+    "category": "government_institution"
+  },
+  {
+    "term_en": "top court",
+    "term_es": "máximo tribunal",
+    "frequency": 1,
+    "category": "government_institution"
+  },
+  {
+    "term_en": "feds",
+    "term_es": "El gobierno",
+    "frequency": 1,
+    "category": "government_institution"
+  },
+  {
+    "term_en": "mayors",
+    "term_es": "alcaldes",
+    "frequency": 1,
+    "category": "government_institution"
+  },
+  {
+    "term_en": "police",
+    "term_es": "policía",
+    "frequency": 1,
+    "category": "government_institution"
+  },
+  {
+    "term_en": "nj (spelled out in headline)",
+    "term_es": "Nueva Jersey",
+    "frequency": 1,
+    "category": "place_name"
+  },
+  {
+    "term_en": "nj (abbreviated in headline)",
+    "term_es": "NJ",
+    "frequency": 1,
+    "category": "place_name"
+  },
+  {
+    "term_en": "newark",
+    "term_es": "Newark",
+    "frequency": 1,
+    "category": "place_name"
+  },
+  {
+    "term_en": "rutgers",
+    "term_es": "Rutgers",
+    "frequency": 1,
+    "category": "place_name"
+  },
+  {
+    "term_en": "school board elections",
+    "term_es": "elecciones de la junta escolar",
+    "frequency": 1,
+    "category": "education"
+  },
+  {
+    "term_en": "preschool enrollment",
+    "term_es": "matrícula preescolar",
+    "frequency": 1,
+    "category": "education"
+  },
+  {
+    "term_en": "districts",
+    "term_es": "distritos",
+    "frequency": 1,
+    "category": "education"
+  },
+  {
+    "term_en": "fafsa",
+    "term_es": "FAFSA",
+    "frequency": 1,
+    "category": "education"
+  },
+  {
+    "term_en": "high school exit exam",
+    "term_es": "examen de salida de la escuela secundaria",
+    "frequency": 1,
+    "category": "education"
+  },
+  {
+    "term_en": "protected status",
+    "term_es": "estatus de protección temporal",
+    "frequency": 1,
+    "category": "immigration"
+  },
+  {
+    "term_en": "mixed-status families",
+    "term_es": "familias de estatus migratorio mixto",
+    "frequency": 1,
+    "category": "immigration"
+  },
+  {
+    "term_en": "immigration policies",
+    "term_es": "políticas de inmigración",
+    "frequency": 1,
+    "category": "immigration"
+  },
+  {
+    "term_en": "public charge rules",
+    "term_es": "reglas de carga pública",
+    "frequency": 1,
+    "category": "immigration"
+  },
+  {
+    "term_en": "pregnancy complications",
+    "term_es": "complicaciones durante el embarazo",
+    "frequency": 1,
+    "category": "medical"
+  },
+  {
+    "term_en": "placenta",
+    "term_es": "placenta",
+    "frequency": 1,
+    "category": "medical"
+  },
+  {
+    "term_en": "weight-loss drugs",
+    "term_es": "medicamentos de pérdida de peso",
+    "frequency": 1,
+    "category": "medical"
+  },
+  {
+    "term_en": "wegovy",
+    "term_es": "Wegovy",
+    "frequency": 1,
+    "category": "medical"
+  },
+  {
+    "term_en": "pregnancies",
+    "term_es": "embarazos",
+    "frequency": 1,
+    "category": "medical"
+  },
+  {
+    "term_en": "budget cuts",
+    "term_es": "recortes presupuestarios",
+    "frequency": 1,
+    "category": "policy"
+  },
+  {
+    "term_en": "privacy law",
+    "term_es": "ley de privacidad",
+    "frequency": 1,
+    "category": "policy"
+  },
+  {
+    "term_en": "us policy",
+    "term_es": "política estadounidense",
+    "frequency": 1,
+    "category": "policy"
+  },
+  {
+    "term_en": "public assistance",
+    "term_es": "asistencia pública",
+    "frequency": 1,
+    "category": "policy"
+  },
+  {
+    "term_en": "voters",
+    "term_es": "electores",
+    "frequency": 1,
+    "category": "political"
+  },
+  {
+    "term_en": "youth vote",
+    "term_es": "votación de los jóvenes",
+    "frequency": 1,
+    "category": "political"
+  },
+  {
+    "term_en": "wind farms",
+    "term_es": "parques eólicos",
+    "frequency": 1,
+    "category": "energy"
+  },
+  {
+    "term_en": "clam fishing industry",
+    "term_es": "industria pesquera de almejas",
+    "frequency": 1,
+    "category": "industry"
+  },
+  {
+    "term_en": "dismissed",
+    "term_es": "desestimar",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "bias incidents",
+    "term_es": "incidentes prejuiciosos",
+    "frequency": 1,
+    "category": "legal_policy"
+  },
+  {
+    "term_en": "blacks",
+    "term_es": "negros",
+    "frequency": 1,
+    "category": "demographic"
+  },
+  {
+    "term_en": "hispanics",
+    "term_es": "hispanos",
+    "frequency": 1,
+    "category": "demographic"
+  },
+  {
+    "term_en": "school lunch",
+    "term_es": "almuerzo escolar",
+    "frequency": 1,
+    "category": "education"
+  },
+  {
+    "term_en": "cultural staples",
+    "term_es": "alimentos básicos de otras culturas",
+    "frequency": 1,
+    "category": "food_culture"
+  },
+  {
+    "term_en": "electricity bills",
+    "term_es": "precios de electricidad",
+    "frequency": 1,
+    "category": "utility"
+  },
+  {
+    "term_en": "data center",
+    "term_es": "centros de datos",
+    "frequency": 1,
+    "category": "technology"
+  },
+  {
+    "term_en": "nj legislature",
+    "term_es": "Legislatura de NJ",
+    "frequency": 1,
+    "category": "government"
+  },
+  {
+    "term_en": "bills (legislative)",
+    "term_es": "proyectos de ley",
+    "frequency": 1,
+    "category": "legislative"
+  },
+  {
+    "term_en": "final passage",
+    "term_es": "paso final",
+    "frequency": 1,
+    "category": "legislative"
+  },
+  {
+    "term_en": "school district",
+    "term_es": "Distrito escolar",
+    "frequency": 1,
+    "category": "education_government"
+  },
+  {
+    "term_en": "state aid",
+    "term_es": "ayuda estatal",
+    "frequency": 1,
+    "category": "government_policy"
+  },
+  {
+    "term_en": "ex-school officials",
+    "term_es": "exfuncionarios escolares",
+    "frequency": 1,
+    "category": "government"
+  },
+  {
+    "term_en": "mega millions",
+    "term_es": "Mega Millions",
+    "frequency": 1,
+    "category": "proper_name"
+  },
+  {
+    "term_en": "tax bill (amount owed)",
+    "term_es": "suma de impuestos",
+    "frequency": 1,
+    "category": "financial"
+  },
+  {
+    "term_en": "english learners",
+    "term_es": "estudiantes de inglés",
+    "frequency": 1,
+    "category": "education"
+  },
+  {
+    "term_en": "school campuses",
+    "term_es": "campus escolares",
+    "frequency": 1,
+    "category": "education"
+  },
+  {
+    "term_en": "truck drivers",
+    "term_es": "conductores de camiones",
+    "frequency": 1,
+    "category": "occupation"
+  },
+  {
+    "term_en": "kitchen workers",
+    "term_es": "trabajadores de cocina",
+    "frequency": 1,
+    "category": "occupation"
+  },
+  {
+    "term_en": "extreme-heat rules",
+    "term_es": "normas para el calor extremo",
+    "frequency": 1,
+    "category": "labor_policy"
+  },
+  {
+    "term_en": "social equity fee",
+    "term_es": "cuota de equidad social",
+    "frequency": 1,
+    "category": "cannabis_policy"
+  },
+  {
+    "term_en": "cannabis advocates",
+    "term_es": "defensores del cannabis",
+    "frequency": 1,
+    "category": "advocacy"
+  },
+  {
+    "term_en": "homeless",
+    "term_es": "personas sin hogar",
+    "frequency": 1,
+    "category": "social_services"
+  },
+  {
+    "term_en": "primary election",
+    "term_es": "Elecciones primarias",
+    "frequency": 1,
+    "category": "political_term"
+  },
+  {
+    "term_en": "senate race",
+    "term_es": "carrera por el Senado",
+    "frequency": 1,
+    "category": "political_term"
+  },
+  {
+    "term_en": "house race",
+    "term_es": "carrera por la Cámara de Representantes",
+    "frequency": 1,
+    "category": "political_term"
+  },
+  {
+    "term_en": "feds",
+    "term_es": "Autoridades federales",
+    "frequency": 1,
+    "category": "government_agency"
+  },
+  {
+    "term_en": "immigration jails",
+    "term_es": "capacidad de detención de inmigrantes",
+    "frequency": 1,
+    "category": "legal_term"
+  },
+  {
+    "term_en": "towns",
+    "term_es": "Ciudades y pueblos",
+    "frequency": 1,
+    "category": "political_term"
+  },
+  {
+    "term_en": "rules",
+    "term_es": "normas",
+    "frequency": 1,
+    "category": "legal_term"
+  },
+  {
+    "term_en": "federal funds",
+    "term_es": "Fondos federales",
+    "frequency": 1,
+    "category": "government_agency"
+  },
+  {
+    "term_en": "medical debt",
+    "term_es": "deudas médicas",
+    "frequency": 1,
+    "category": "medical_term"
+  },
+  {
+    "term_en": "new jerseyans",
+    "term_es": "personas en NJ",
+    "frequency": 1,
+    "category": "geography"
+  },
+  {
+    "term_en": "sober home",
+    "term_es": "Centro de sobriedad",
+    "frequency": 1,
+    "category": "social_services"
+  },
+  {
+    "term_en": "addiction recovery industry",
+    "term_es": "industria de rehabilitación de adicciones",
+    "frequency": 1,
+    "category": "social_services"
+  },
+  {
+    "term_en": "lawmakers",
+    "term_es": "Legisladores",
+    "frequency": 1,
+    "category": "political_term"
+  },
+  {
+    "term_en": "tax hikes",
+    "term_es": "alzas de impuestos",
+    "frequency": 1,
+    "category": "legal_term"
+  },
+  {
+    "term_en": "state budget",
+    "term_es": "presupuesto estatal",
+    "frequency": 1,
+    "category": "legal_term"
+  },
+  {
+    "term_en": "home rule",
+    "term_es": "autonomía local",
+    "frequency": 1,
+    "category": "political_term"
+  },
+  {
+    "term_en": "reading reform",
+    "term_es": "reforma de la lectura",
+    "frequency": 1,
+    "category": "education_policy"
+  },
+  {
+    "term_en": "25-year high",
+    "term_es": "nivel más alto en 25 años",
+    "frequency": 1,
+    "category": "general"
+  },
+  {
+    "term_en": "board of elections",
+    "term_es": "Junta Electoral",
+    "frequency": 1,
+    "category": "government_agency"
+  },
+  {
+    "term_en": "presidential year",
+    "term_es": "año de elecciones presidenciales",
+    "frequency": 1,
+    "category": "political_term"
+  },
+  {
+    "term_en": "ghost town",
+    "term_es": "ciudad fantasma",
+    "frequency": 1,
+    "category": "general"
+  },
+  {
+    "term_en": "nonprofit",
+    "term_es": "agencia",
+    "frequency": 1,
+    "category": "institution"
+  },
+  {
+    "term_en": "sen.",
+    "term_es": "senadora",
+    "frequency": 1,
+    "category": "political titles"
+  },
+  {
+    "term_en": "rep.",
+    "term_es": "congresista",
+    "frequency": 1,
+    "category": "political titles"
+  },
+  {
+    "term_en": "gov.",
+    "term_es": "gobernador",
+    "frequency": 1,
+    "category": "political titles"
+  },
+  {
+    "term_en": "ballot",
+    "term_es": "boleta electoral",
+    "frequency": 1,
+    "category": "political terms"
+  },
+  {
+    "term_en": "nj legislature",
+    "term_es": "Legislatura de Nueva Jersey",
+    "frequency": 1,
+    "category": "government institutions"
+  },
+  {
+    "term_en": "compassionate release",
+    "term_es": "liberación compasiva",
+    "frequency": 1,
+    "category": "legal terms"
+  },
+  {
+    "term_en": "prisoners",
+    "term_es": "reclusos",
+    "frequency": 1,
+    "category": "legal terms"
+  },
+  {
+    "term_en": "homeless",
+    "term_es": "sin hogar",
+    "frequency": 1,
+    "category": "social policy terms"
+  },
+  {
+    "term_en": "anti-abortion states",
+    "term_es": "estados anti-aborto",
+    "frequency": 1,
+    "category": "political terms"
+  },
+  {
+    "term_en": "health travel advisory",
+    "term_es": "advertencia sanitaria para viajar",
+    "frequency": 1,
+    "category": "health policy terms"
+  },
+  {
+    "term_en": "postpartum stroke",
+    "term_es": "derrame cerebral posparto",
+    "frequency": 1,
+    "category": "medical terms"
+  },
+  {
+    "term_en": "disability",
+    "term_es": "discapacidad",
+    "frequency": 1,
+    "category": "medical terms"
+  },
+  {
+    "term_en": "pregnant",
+    "term_es": "embarazadas",
+    "frequency": 1,
+    "category": "medical terms"
+  },
+  {
+    "term_en": "chronic absenteeism",
+    "term_es": "ausentismo crónico",
+    "frequency": 1,
+    "category": "education terms"
+  },
+  {
+    "term_en": "nursing crisis",
+    "term_es": "crisis de enfermeras",
+    "frequency": 1,
+    "category": "healthcare terms"
+  },
+  {
+    "term_en": "burnout",
+    "term_es": "agotamiento",
+    "frequency": 1,
+    "category": "workplace terms"
+  },
+  {
+    "term_en": "retirement",
+    "term_es": "jubilaciones",
+    "frequency": 1,
+    "category": "workforce terms"
+  },
+  {
+    "term_en": "retail associates",
+    "term_es": "socios de ventas",
+    "frequency": 1,
+    "category": "employment terms"
+  },
+  {
+    "term_en": "travel insurance",
+    "term_es": "seguro de viaje",
+    "frequency": 1,
+    "category": "travel terms"
+  },
+  {
+    "term_en": "bus companies",
+    "term_es": "compañías de autobuses",
+    "frequency": 1,
+    "category": "transportation"
+  },
+  {
+    "term_en": "hunger-relief groups",
+    "term_es": "grupos de ayuda contra el hambre",
+    "frequency": 1,
+    "category": "social services"
+  },
+  {
+    "term_en": "essex county",
+    "term_es": "condado de Essex",
+    "frequency": 1,
+    "category": "NJ place names"
+  },
+  {
+    "term_en": "religious education",
+    "term_es": "educación religiosa",
+    "frequency": 1,
+    "category": "education"
+  },
+  {
+    "term_en": "newark public schools",
+    "term_es": "Las escuelas de Newark",
+    "frequency": 1,
+    "category": "institution"
+  },
+  {
+    "term_en": "school community",
+    "term_es": "comunidad escolar",
+    "frequency": 1,
+    "category": "education"
+  },
+  {
+    "term_en": "stillbirth",
+    "term_es": "mortinatalidad",
+    "frequency": 1,
+    "category": "medical"
+  },
+  {
+    "term_en": "energy crisis",
+    "term_es": "crisis energética",
+    "frequency": 1,
+    "category": "policy/environment"
+  },
+  {
+    "term_en": "candidates for governor",
+    "term_es": "candidatos a la gobernación",
+    "frequency": 1,
+    "category": "government"
+  },
+  {
+    "term_en": "hispanic heritage",
+    "term_es": "herencia hispana",
+    "frequency": 1,
+    "category": "cultural"
+  },
+  {
+    "term_en": "parking tickets",
+    "term_es": "multas de aparcamiento",
+    "frequency": 1,
+    "category": "legal/municipal"
+  },
+  {
+    "term_en": "flood insurance",
+    "term_es": "seguro contra inundaciones",
+    "frequency": 1,
+    "category": "insurance/policy"
+  },
+  {
+    "term_en": "homeowners",
+    "term_es": "propietarios de viviendas",
+    "frequency": 1,
+    "category": "housing"
+  },
+  {
+    "term_en": "child vaccination",
+    "term_es": "vacunación infantil",
+    "frequency": 1,
+    "category": "medical/policy"
+  },
+  {
+    "term_en": "exemptions",
+    "term_es": "exenciones",
+    "frequency": 1,
+    "category": "legal/policy"
+  },
+  {
+    "term_en": "prison compound",
+    "term_es": "complejo carcelario",
+    "frequency": 1,
+    "category": "criminal justice"
+  },
+  {
+    "term_en": "watchdog",
+    "term_es": "organismo de vigilancia",
+    "frequency": 1,
+    "category": "government/oversight"
+  },
+  {
+    "term_en": "budget priorities",
+    "term_es": "prioridades presupuestarias",
+    "frequency": 1,
+    "category": "government/fiscal"
+  },
+  {
+    "term_en": "governor",
+    "term_es": "gobernador",
+    "frequency": 1,
+    "category": "government"
+  },
+  {
+    "term_en": "report",
+    "term_es": "informe",
+    "frequency": 1,
+    "category": "journalism"
+  },
+  {
+    "term_en": "flood-prone",
+    "term_es": "propensos a inundaciones",
+    "frequency": 1,
+    "category": "environment/housing"
+  },
+  {
+    "term_en": "mental health",
+    "term_es": "enfermedades mentales",
+    "frequency": 1,
+    "category": "medical"
+  },
+  {
+    "term_en": "substance use",
+    "term_es": "uso de sustancias",
+    "frequency": 1,
+    "category": "medical/social"
+  },
+  {
+    "term_en": "domestic disputes",
+    "term_es": "disputas domésticas",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "state program",
+    "term_es": "programa estatal",
+    "frequency": 1,
+    "category": "government"
+  },
+  {
+    "term_en": "crisis response",
+    "term_es": "respuestas a la crisis",
+    "frequency": 1,
+    "category": "policy/emergency services"
+  },
+  {
+    "term_en": "healthcare",
+    "term_es": "cuidado médico",
+    "frequency": 1,
+    "category": "health_term"
+  },
+  {
+    "term_en": "masking",
+    "term_es": "uso de mascarillas",
+    "frequency": 1,
+    "category": "health_term"
+  },
+  {
+    "term_en": "pre-pandemic levels",
+    "term_es": "niveles de la pre-pandemia",
+    "frequency": 1,
+    "category": "health_term"
+  },
+  {
+    "term_en": "abortion",
+    "term_es": "aborto",
+    "frequency": 1,
+    "category": "health_term"
+  },
+  {
+    "term_en": "visitor restrictions",
+    "term_es": "restricciones para visitantes",
+    "frequency": 1,
+    "category": "health_term"
+  },
+  {
+    "term_en": "reproductive rights",
+    "term_es": "derechos reproductivos",
+    "frequency": 1,
+    "category": "political_term"
+  },
+  {
+    "term_en": "midterms",
+    "term_es": "elecciones intermedias",
+    "frequency": 1,
+    "category": "electoral_term"
+  },
+  {
+    "term_en": "governor's race",
+    "term_es": "contienda por la gobernación",
+    "frequency": 1,
+    "category": "electoral_term"
+  },
+  {
+    "term_en": "gubernatorial candidates",
+    "term_es": "candidatos a la gobernación",
+    "frequency": 1,
+    "category": "electoral_term"
+  },
+  {
+    "term_en": "senate democrats",
+    "term_es": "Senadores demócratas",
+    "frequency": 1,
+    "category": "government_body"
+  },
+  {
+    "term_en": "house republicans",
+    "term_es": "Republicanos de la Cámara",
+    "frequency": 1,
+    "category": "government_body"
+  },
+  {
+    "term_en": "school board",
+    "term_es": "Junta",
+    "frequency": 1,
+    "category": "government_body"
+  },
+  {
+    "term_en": "sen.",
+    "term_es": "senador",
+    "frequency": 1,
+    "category": "government_body"
+  },
+  {
+    "term_en": "election bill",
+    "term_es": "ley electoral",
+    "frequency": 1,
+    "category": "legal_term"
+  },
+  {
+    "term_en": "court system",
+    "term_es": "sistema judicial",
+    "frequency": 1,
+    "category": "legal_term"
+  },
+  {
+    "term_en": "bribery conviction",
+    "term_es": "condena por soborno",
+    "frequency": 1,
+    "category": "legal_term"
+  },
+  {
+    "term_en": "policy",
+    "term_es": "reglas",
+    "frequency": 1,
+    "category": "legal_term"
+  },
+  {
+    "term_en": "child migrants",
+    "term_es": "niños migrantes",
+    "frequency": 1,
+    "category": "immigration_term"
+  },
+  {
+    "term_en": "immigrant",
+    "term_es": "inmigrante",
+    "frequency": 1,
+    "category": "immigration_term"
+  },
+  {
+    "term_en": "trump cuts",
+    "term_es": "recortes de Trump",
+    "frequency": 1,
+    "category": "political_term"
+  },
+  {
+    "term_en": "taxes",
+    "term_es": "impuestos",
+    "frequency": 1,
+    "category": "economic_term"
+  },
+  {
+    "term_en": "cost of doing business",
+    "term_es": "costo de hacer negocios",
+    "frequency": 1,
+    "category": "economic_term"
+  },
+  {
+    "term_en": "survey",
+    "term_es": "encuesta",
+    "frequency": 1,
+    "category": "journalism_term"
+  },
+  {
+    "term_en": "teen novel",
+    "term_es": "novela para adolescentes",
+    "frequency": 1,
+    "category": "education_term"
+  },
+  {
+    "term_en": "controversial books",
+    "term_es": "libros controvertidos",
+    "frequency": 1,
+    "category": "education_term"
+  },
+  {
+    "term_en": "teacher",
+    "term_es": "maestra",
+    "frequency": 1,
+    "category": "education_term"
+  },
+  {
+    "term_en": "wall",
+    "term_es": "muro",
+    "frequency": 1,
+    "category": "political_term"
+  },
+  {
+    "term_en": "invasive",
+    "term_es": "invasoras",
+    "frequency": 1,
+    "category": "science_term"
+  },
+  {
+    "term_en": "local news",
+    "term_es": "medios de comunicación locales",
+    "frequency": 1,
+    "category": "media"
+  },
+  {
+    "term_en": "tax return",
+    "term_es": "reembolso",
+    "frequency": 1,
+    "category": "tax/financial"
+  },
+  {
+    "term_en": "bill (legislative)",
+    "term_es": "proyecto de ley",
+    "frequency": 1,
+    "category": "legislative"
+  },
+  {
+    "term_en": "federal funding cuts",
+    "term_es": "recortes a la financiación federal",
+    "frequency": 1,
+    "category": "policy/financial"
+  },
+  {
+    "term_en": "child welfare system",
+    "term_es": "sistema de bienestar infantil",
+    "frequency": 1,
+    "category": "social services"
+  },
+  {
+    "term_en": "anchor (property tax relief program)",
+    "term_es": "programa Anchor",
+    "frequency": 1,
+    "category": "NJ-specific program"
+  },
+  {
+    "term_en": "property-tax relief",
+    "term_es": "alivio fiscal",
+    "frequency": 1,
+    "category": "tax/financial"
+  },
+  {
+    "term_en": "unhoused",
+    "term_es": "personas sin hogar",
+    "frequency": 1,
+    "category": "social services"
+  },
+  {
+    "term_en": "resource fair",
+    "term_es": "feria de recursos",
+    "frequency": 1,
+    "category": "social services"
+  },
+  {
+    "term_en": "grocery prices",
+    "term_es": "precios de los alimentos",
+    "frequency": 1,
+    "category": "economic"
+  },
+  {
+    "term_en": "snap benefits",
+    "term_es": "beneficios de SNAP",
+    "frequency": 1,
+    "category": "government program"
+  },
+  {
+    "term_en": "counseling",
+    "term_es": "consejería",
+    "frequency": 1,
+    "category": "mental health"
+  },
+  {
+    "term_en": "therapy",
+    "term_es": "terapia",
+    "frequency": 1,
+    "category": "mental health"
+  },
+  {
+    "term_en": "aid-in-dying law",
+    "term_es": "ley que permite la muerte asistida",
+    "frequency": 1,
+    "category": "legal/medical"
+  },
+  {
+    "term_en": "gas prices",
+    "term_es": "precios de la gasolina",
+    "frequency": 1,
+    "category": "economic"
+  },
+  {
+    "term_en": "mental health support",
+    "term_es": "apoyo en salud mental",
+    "frequency": 1,
+    "category": "mental health"
+  },
+  {
+    "term_en": "sense of belonging",
+    "term_es": "sentido de pertenencia",
+    "frequency": 1,
+    "category": "social/educational"
+  },
+  {
+    "term_en": "immigration agency",
+    "term_es": "agencia de inmigración",
+    "frequency": 1,
+    "category": "government agency"
+  },
+  {
+    "term_en": "parole program",
+    "term_es": "permiso humanitario",
+    "frequency": 1,
+    "category": "immigration/legal"
+  },
+  {
+    "term_en": "u.s. house republicans",
+    "term_es": "Republicanos de la Cámara de Representantes de EE. UU.",
+    "frequency": 1,
+    "category": "government/political"
+  },
+  {
+    "term_en": "holiday season",
+    "term_es": "temporada navideña",
+    "frequency": 1,
+    "category": "cultural"
+  },
+  {
+    "term_en": "test scores",
+    "term_es": "puntajes de exámenes",
+    "frequency": 1,
+    "category": "education"
+  },
+  {
+    "term_en": "learning loss",
+    "term_es": "pérdida de aprendizaje",
+    "frequency": 1,
+    "category": "education"
+  },
+  {
+    "term_en": "scholarship",
+    "term_es": "beca",
+    "frequency": 1,
+    "category": "education"
+  },
+  {
+    "term_en": "sen. / senator",
+    "term_es": "senador",
+    "frequency": 1,
+    "category": "government"
+  },
+  {
+    "term_en": "administration (murphy administration)",
+    "term_es": "Administración de Murphy",
+    "frequency": 1,
+    "category": "government"
+  },
+  {
+    "term_en": "nominee",
+    "term_es": "candidato",
+    "frequency": 1,
+    "category": "government"
+  },
+  {
+    "term_en": "bill (nj bill)",
+    "term_es": "proyecto de ley",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "criminal probe",
+    "term_es": "investigación criminal",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "housing discrimination",
+    "term_es": "discriminación de vivienda",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "legal challenge",
+    "term_es": "impugnación legal",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "behind bars",
+    "term_es": "tras las rejas",
+    "frequency": 1,
+    "category": "legal"
+  },
+  {
+    "term_en": "daca recipient",
+    "term_es": "beneficiaria de DACA",
+    "frequency": 1,
+    "category": "immigration"
+  },
+  {
+    "term_en": "undocumented",
+    "term_es": "indocumentados",
+    "frequency": 1,
+    "category": "immigration"
+  },
+  {
+    "term_en": "detainees",
+    "term_es": "detenidos",
+    "frequency": 1,
+    "category": "immigration"
+  },
+  {
+    "term_en": "migrant jail",
+    "term_es": "cárcel para inmigrantes",
+    "frequency": 1,
+    "category": "immigration"
+  },
+  {
+    "term_en": "u.s. citizens",
+    "term_es": "ciudadanos estadounidenses",
+    "frequency": 1,
+    "category": "immigration"
+  },
+  {
+    "term_en": "deadline",
+    "term_es": "plazo límite",
+    "frequency": 1,
+    "category": "general"
+  },
+  {
+    "term_en": "wiggle room",
+    "term_es": "flexibilidad",
+    "frequency": 1,
+    "category": "general"
+  },
+  {
+    "term_en": "student loans",
+    "term_es": "préstamos estudiantiles",
+    "frequency": 1,
+    "category": "finance"
+  },
+  {
+    "term_en": "student loan borrowers",
+    "term_es": "personas con préstamos estudiantiles",
+    "frequency": 1,
+    "category": "finance"
+  },
+  {
+    "term_en": "credit scores",
+    "term_es": "puntajes de crédito",
+    "frequency": 1,
+    "category": "finance"
+  },
+  {
+    "term_en": "tariffs",
+    "term_es": "aranceles",
+    "frequency": 1,
+    "category": "economics"
+  },
+  {
+    "term_en": "across-the-board tariffs",
+    "term_es": "aranceles generalizados",
+    "frequency": 1,
+    "category": "economics"
+  },
+  {
+    "term_en": "social media companies",
+    "term_es": "redes sociales",
+    "frequency": 1,
+    "category": "technology"
+  },
+  {
+    "term_en": "diet products",
+    "term_es": "productos dietéticos",
+    "frequency": 1,
+    "category": "health"
+  },
+  {
+    "term_en": "misinformation",
+    "term_es": "desinformación",
+    "frequency": 1,
+    "category": "media"
+  },
+  {
+    "term_en": "q&a",
+    "term_es": "Preguntas y respuestas",
+    "frequency": 1,
+    "category": "journalism format"
+  },
+  {
+    "term_en": "sainthood",
+    "term_es": "santidad",
+    "frequency": 1,
+    "category": "religion"
+  },
+  {
+    "term_en": "crashes",
+    "term_es": "accidentes",
+    "frequency": 1,
+    "category": "transportation"
+  },
+  {
+    "term_en": "surge",
+    "term_es": "aumento",
+    "frequency": 1,
+    "category": "policy_trend"
+  }
+]

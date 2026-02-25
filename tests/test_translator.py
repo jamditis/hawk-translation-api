@@ -6,6 +6,7 @@ import pytest
 from workers.translator import (
     SUPPORTED_TARGET_LANGUAGES,
     translate_segments,
+    SPANISH_STYLE_RULES,
 )
 
 SUPPORTED_LANGUAGES = ["es", "pt", "ht", "zh", "ko", "ar", "fr", "pl", "hi", "ur"]
@@ -104,3 +105,38 @@ def test_parse_error_does_not_retry():
         result = translate_segments(segments, target_language="ko")
     assert mock_run.call_count == 1  # no retries on parse error
     assert result[0]["needs_review"] is True
+
+
+def test_spanish_prompt_includes_style_rules():
+    """Spanish translations inject Yuli's STNS style guide into the prompt."""
+    segments = [make_segment("The mayor spoke today.")]
+    with patch("workers.translator.run_claude_p", return_value=json.dumps(["El alcalde habló hoy."])) as mock_run:
+        translate_segments(segments, target_language="es")
+    prompt_arg = mock_run.call_args[0][0]
+    assert "EE. UU." in prompt_arg
+    assert "mil millones" in prompt_arg
+    assert "permiso humanitario" in prompt_arg
+    assert "expresó" in prompt_arg
+
+
+def test_non_spanish_prompt_excludes_style_rules():
+    """Non-Spanish languages use the generic prompt without Spanish-specific rules."""
+    segments = [make_segment("The mayor spoke today.")]
+    with patch("workers.translator.run_claude_p", return_value=json.dumps(["Le maire a parlé aujourd'hui."])) as mock_run:
+        translate_segments(segments, target_language="fr")
+    prompt_arg = mock_run.call_args[0][0]
+    assert "EE. UU." not in prompt_arg
+    assert "mil millones" not in prompt_arg
+    assert "French" in prompt_arg
+
+
+def test_spanish_style_rules_constant_has_required_sections():
+    """The SPANISH_STYLE_RULES constant covers all key sections from Yuli's guide."""
+    assert "QUOTES" in SPANISH_STYLE_RULES
+    assert "ACRONYMS" in SPANISH_STYLE_RULES
+    assert "NUMBERS" in SPANISH_STYLE_RULES
+    assert "UNITED STATES" in SPANISH_STYLE_RULES
+    assert "MEASUREMENTS" in SPANISH_STYLE_RULES
+    assert "STATE NAMES" in SPANISH_STYLE_RULES
+    assert "EE. UU." in SPANISH_STYLE_RULES
+    assert "billón" in SPANISH_STYLE_RULES

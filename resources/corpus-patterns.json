@@ -1,0 +1,994 @@
+{
+  "observations": [
+    {
+      "area": "numbers",
+      "observation": "Large numbers use 'mil millones' for billions and 'millones' spelled out. Dollar amounts keep the $ sign. Critically: thousands separator is a comma (US convention, not Spanish) and decimal separator is a period (US convention, not Spanish). Percentages attach the % sign directly to the number.",
+      "examples": [
+        "$3.3 mil millones",
+        "$25.5 mil millones",
+        "$6.3 mil millones",
+        "$56,000 en préstamos estudiantiles",
+        "19,933 permisos",
+        "24,450 enfermeras",
+        "$15.49 por hora",
+        "menos del 10%",
+        "el 22% de la población"
+      ],
+      "consistent": true,
+      "recommendation": "Lock in US number formatting conventions throughout: comma as thousands separator, period as decimal. Use 'mil millones' for billions, 'millones' spelled out for millions. Keep $ sign with no space before the number. This is consistent across all 10 articles and should be codified as a deliberate style choice for NJ-audience readers."
+    },
+    {
+      "area": "united_states",
+      "observation": "Every instance uses the full 'Estados Unidos' or the adjectival form 'estadounidense'. No abbreviated forms (EE. UU., EEUU, EUA, EE.UU.) appear anywhere in the excerpts.",
+      "examples": [
+        "la Corte Suprema de Estados Unidos",
+        "Departamento de Salud y Servicios Humanos de Estados Unidos (appears twice)",
+        "la Oficina de Estadísticas Laborales de Estados Unidos",
+        "senador estadounidense Robert Menéndez",
+        "los estadounidenses negros, latinos y asiáticos"
+      ],
+      "consistent": true,
+      "recommendation": "Always spell out 'Estados Unidos' in body text. Never use abbreviations. 'Estadounidense' as adjective is correct and consistent — keep it."
+    },
+    {
+      "area": "acronyms",
+      "observation": "No consistent pattern. SNAP is explained by spelling out the full Spanish name first, then using the acronym — but without the 'por sus siglas en inglés' formula. The HRSA entry gives a Spanish translation in parentheses after the English name, also without 'por sus siglas en inglés'. NJ abbreviation is kept for publication names. Bill numbers are kept in English format.",
+      "examples": [
+        "formalmente llamado el Programa de Asistencia de Nutrición Suplementaria. El programa, ampliamente conocido como SNAP",
+        "Health Resources and Services Administration (Administración Federal de Recursos y Servicios Sanitarios)",
+        "NJ Advance Media, NJ Monitor, NJ Spotlight News (NJ kept in publication names)",
+        "A-2280/S-1311 (bill number kept as-is)"
+      ],
+      "consistent": false,
+      "recommendation": "Establish a two-pass rule: (1) On first use of any English acronym, provide the Spanish expansion in parentheses — e.g., 'SNAP (Programa de Asistencia de Nutrición Suplementaria)'. Add 'por sus siglas en inglés' only when the acronym itself is not widely known — SNAP and FBI probably don't need it; HRSA does. (2) For publication names and bill numbers, keep the English/official form unchanged. The current practice inconsistently omits the formula — standardize it."
+    },
+    {
+      "area": "state_names",
+      "observation": "Spanish-form state names are used consistently throughout body text. 'Nueva Jersey' appears in every article. 'Nueva York' appears in a reference to The New York Times, but 'The New York Times' itself is kept in English as a proper publication name. 'NJ' is used only in publication names and article headlines, not standalone in body text.",
+      "examples": [
+        "en Nueva Jersey (appears in every article)",
+        "al The New York Times (publication name kept in English)",
+        "NJ Advance Media, NJ.com (abbreviation only in bylines/publication names)"
+      ],
+      "consistent": true,
+      "recommendation": "Always use 'Nueva Jersey' in body text. Keep 'NJ' only when it is part of an official publication or organization name. Apply the same rule to other states: 'Nueva York', 'California' (unchanged), 'Pennsylvania' (unchanged — no Spanish form in common use)."
+    },
+    {
+      "area": "attribution",
+      "observation": "A good variety of attribution verbs appears across the articles. 'Afirmó' is the most frequent. 'Dijo' appears but less often than 'afirmó', which is the inverse of typical English journalism where 'said' dominates. 'Señaló', 'mencionó', 'advierte', and 'explicaron' add variety. Translators are actively avoiding 'dijo' monotony.",
+      "examples": [
+        "afirmó (multiple instances — most common)",
+        "dijo Brooke Rollins",
+        "señala un nuevo informe / El informe señala",
+        "mencionó Sires en una entrevista",
+        "advierte que los recortes federales",
+        "explicaron los funcionarios",
+        "indicó el sitio web de la escuela"
+      ],
+      "consistent": true,
+      "recommendation": "The variety is good and consistent with Spanish journalism style, where 'dijo' alone reads as flat. Codify a preferred list: afirmó (statements/quotes), señaló (points/observations), mencionó (in interview context), explicó/explicaron (explanatory context), advirtió (warnings). Reserve 'dijo' for brief, neutral attributions."
+    },
+    {
+      "area": "measurements",
+      "observation": "US units are kept as-is with no metric conversion. Wages are in dollars per hour, not converted. Time is in 12-hour a.m./p.m. format with periods. No feet, miles, or pounds appear in these excerpts, but dollar-per-hour wages are a proxy and they stay in US form.",
+      "examples": [
+        "$15.49 por hora",
+        "$13.40 por hora",
+        "11:30 a.m. (12-hour format with periods)"
+      ],
+      "consistent": true,
+      "recommendation": "Keep US measurements unchanged — no metric conversion. This is correct for a US-audience publication. Use 'a.m.' and 'p.m.' with periods and lowercase. If feet/miles/pounds appear in future articles, keep them in US form and do not add metric equivalents."
+    },
+    {
+      "area": "other",
+      "observation": "Several additional patterns are consistent across articles: (1) 'chárter' is used as a Hispanicized adaptation with an accent mark, not 'charter'. (2) Parenthetical glosses add context for US-specific terms: '(chárter) (autónoma)'. (3) English publication names, brand names, and program names (STEMCivics, NJ FamilyCare, NJ.com) are always kept in English. (4) The $ sign is used rather than spelling out 'dólares'. (5) 'Centavos' is used for cents rather than the cent symbol. (6) Spanish quotation marks are not used — standard straight quotes appear throughout.",
+      "examples": [
+        "escuela chárter (autónoma) (Hispanicized with accent + gloss)",
+        "NJ FamilyCare (English program name kept)",
+        "STEMCivics (English name kept)",
+        "$15.49 ($ sign, not 'dólares')",
+        "36 centavos (spelled out, not ¢)",
+        "Trenton Stem-to-Civics chárter School (mixed — 'chárter' Hispanicized but school name kept)"
+      ],
+      "consistent": true,
+      "recommendation": "Codify these as explicit rules: (1) Anglicisms used as nouns get a Spanish accent if needed ('chárter') and an optional parenthetical gloss on first use. (2) Proper names — publications, programs, organizations — are never translated. (3) Use $ sign, not 'dólares'. (4) Spell out 'centavos' for sub-dollar amounts. (5) Use straight quotes, not angle quotes (« »)."
+    },
+    {
+      "area": "numbers",
+      "observation": "Dollar amounts are written two ways, sometimes within the same article: '$X millones' (dollar sign + numeral + 'millones') and 'X millones de dólares' (spelled out). Percentages use the % symbol with numerals. Large round numbers use word form (millones, not 1,000,000).",
+      "examples": [
+        "más de $20 millones en ayuda estatal",
+        "más de 20 millones de dólares en ayuda estatal",
+        "una caída de $4 millones",
+        "un aumento del 25% en los impuestos"
+      ],
+      "consistent": false,
+      "recommendation": "Standardize on one form. '$X millones' is shorter and cleaner for inline use; 'X millones de dólares' works better when the currency context isn't obvious. Pick one and apply consistently. The Neptune article uses both forms to describe the same figure, which is the clearest example of the inconsistency to fix."
+    },
+    {
+      "area": "united_states",
+      "observation": "Always written as 'Estados Unidos' (full form). No abbreviated forms (EE. UU., EEUU, EUA, EE.UU.) appear in any article. Both with and without definite article: 'los Estados Unidos' and 'de Estados Unidos'.",
+      "examples": [
+        "inmigrantes que ingresaron ilegalmente a los Estados Unidos",
+        "Servicio de Control de Inmigración y Aduanas (ICE, por sus siglas en inglés) de Estados Unidos",
+        "el Servicio de Inmigración y Control de Aduanas de Estados Unidos"
+      ],
+      "consistent": true,
+      "recommendation": "Confirm 'Estados Unidos' as the standard. No abbreviations. Article usage ('los Estados Unidos' vs. 'de Estados Unidos') follows normal Spanish grammar and needs no rule."
+    },
+    {
+      "area": "acronyms",
+      "observation": "Standard pattern on first use: Spanish expanded name + (ACRONYM, por sus siglas en inglés). After first use, acronym alone. One exception: NOAA is introduced with the English name first, then Spanish translation, then acronym — reversing the normal order. ICE has an inconsistency: two different Spanish translations appear across articles ('Servicio de Control de Inmigración y Aduanas' vs. 'Servicio de Inmigración y Control de Aduanas'). ACA is translated to 'Ley de Atención Médica Asequible' without the 'por sus siglas en inglés' formula.",
+      "examples": [
+        "Centros para el Control y la Prevención de Enfermedades (CDC, por sus siglas en inglés)",
+        "Acción Diferida para los Llegados en la Infancia (DACA, por sus siglas en inglés)",
+        "vacuna contra el sarampión, las paperas y la rubéola (MMR, por sus siglas en inglés)",
+        "National Oceanic and Atmosphere Administration (Administración Nacional Oceánica y Atmosférica, NOAA por sus siglas en inglés) [English first — inconsistent]",
+        "Servicio de Control de Inmigración y Aduanas (ICE, por sus siglas en inglés) [article 6]",
+        "Servicio de Inmigración y Control de Aduanas de Estados Unidos [same article, no expansion]",
+        "Affordable Care Act (Ley de Atención Médica Asequible) [no 'por sus siglas en inglés']"
+      ],
+      "consistent": false,
+      "recommendation": "Standardize the pattern as: [Spanish expansion] ([ACRONYM], por sus siglas en inglés). Spanish name always comes before the English acronym. Lock down a single canonical Spanish translation for ICE — 'Servicio de Inmigración y Control de Aduanas' is the widely used official form. Add ACA to the 'por sus siglas en inglés' treatment for consistency."
+    },
+    {
+      "area": "state_names",
+      "observation": "Spanish forms used consistently throughout all body text. 'Nueva Jersey' appears in every article that names the state. 'Dakota del Norte' uses the Spanish form. 'NJ' abbreviation appears in headlines and source attributions but not in running prose.",
+      "examples": [
+        "según un proyecto de ley promulgado... por el gobernador Phil Murphy [Nueva Jersey implied throughout]",
+        "el presupuesto para el año fiscal 2027... del gobierno estatal de Nueva Jersey",
+        "un tribunal federal en Dakota del Norte",
+        "Headlines: '¿Qué ciudades de Nueva Jersey...' and 'Estas ciudades de NJ...'"
+      ],
+      "consistent": true,
+      "recommendation": "Confirm rule: Spanish geographic names in body text ('Nueva Jersey', 'Nueva York', 'Dakota del Norte'). 'NJ' abbreviation acceptable in headlines for space, not in prose."
+    },
+    {
+      "area": "attribution",
+      "observation": "Good variety of attribution verbs across articles. 'Dijo' is most frequent but not overused. Other verbs appear naturally in context. No mechanically alternated rotation detected — choices appear to match register and meaning.",
+      "examples": [
+        "dijo Gilmartin",
+        "afirmó Courtney Gilmartin",
+        "explicó [Gilmartin]",
+        "señalaron los funcionarios",
+        "dijeron los funcionarios de Allentown",
+        "sostuvo [Platkin]",
+        "argumentaron [los abogados]",
+        "advierten [defensores]"
+      ],
+      "consistent": true,
+      "recommendation": "No change needed. Verb variety is appropriate and context-driven. Confirm that 'sostuvo' and 'argumentaron' are reserved for legal/formal contexts where someone is making a formal case, not casual statements."
+    },
+    {
+      "area": "measurements",
+      "observation": "Limited measurement data in these excerpts. Sea level rise article uses metric ('un metro de agua') without providing a US customary equivalent. No feet, miles, or pounds appear in the sample. The metric-only usage in the NOAA article may reflect the source data being metric.",
+      "examples": [
+        "¿Cómo se vería la orilla del lago Como bajo un metro de agua?"
+      ],
+      "consistent": true,
+      "recommendation": "Insufficient data to establish a firm rule. Flag for further review with more articles. Tentative: when the original source uses metric (as NOAA sea level data does), keep metric. When the original source uses US customary (feet, miles, pounds), consider adding metric equivalents in parentheses — but confirm with translators whether NJ Spanish-language readers expect conversions."
+    },
+    {
+      "area": "other",
+      "observation": "Time format uses 'p.m.' with periods, not 'pm'. Legislation bill numbers kept in English alphanumeric format. Standard straight quotation marks used, not Spanish angle quotes (« »). Dates follow Spanish format (day + 'de' + month + 'de' + year). 'El año fiscal' and budget terminology translated consistently.",
+      "examples": [
+        "las 11:59 p.m. del 30 de junio",
+        "La legislación, A1475",
+        "\"El control coercitivo es realmente como la base...\" [straight quotes, not « »]",
+        "el 1 de julio de 2026",
+        "el año fiscal 2027"
+      ],
+      "consistent": true,
+      "recommendation": "Confirm: p.m./a.m. with periods. Straight quotation marks (not angle quotes) — consistent with AP Spanish style for US publications. Bill numbers in English format. Date format: día de mes de año."
+    },
+    {
+      "area": "numbers",
+      "observation": "Dollar amounts use $ sign with period as decimal separator and comma as thousands separator. Millions written as 'millones'. One billion expressed as '1,000 millones' (not 'billón', which means 10^12 in Latin American Spanish). One instance of '$2,000 dólares' redundantly combines $ sign and the word 'dólares'. Percentages use % symbol. Fractions appear in prose ('un tercio') rather than as percentages when the original source uses them.",
+      "examples": [
+        "$927 millones",
+        "$5.8 millones",
+        "más de $1,000 millones",
+        "$100,000",
+        "$2,000 dólares por trabajador",
+        "3% de los residentes",
+        "casi un tercio de los estadounidenses"
+      ],
+      "consistent": false,
+      "recommendation": "Use $ sign alone — never add 'dólares' word after $ symbol. Use 'millones' for millions. Use 'mil millones' or '[number] millones' for billions. Period for decimals, comma for thousands. % symbol for percentages."
+    },
+    {
+      "area": "united_states",
+      "observation": "Every instance uses 'Estados Unidos' in full. No abbreviated form (EE. UU., EEUU, EUA) appears anywhere in the corpus.",
+      "examples": [
+        "a Estados Unidos",
+        "en todo Estados Unidos",
+        "en el resto de Estados Unidos",
+        "en Nueva Jersey y en el resto de Estados Unidos"
+      ],
+      "consistent": true,
+      "recommendation": "Always write 'Estados Unidos' in full. Do not use EE. UU., EEUU, or EUA."
+    },
+    {
+      "area": "acronyms",
+      "observation": "CDC is expanded on first use with the format: [full Spanish name] ([acronym], por sus siglas en inglés) — the acronym appears inside the parenthetical, not before it. Other acronyms (LGBTQ+, COVID-19, H-1B) are kept without expansion. 'NJ' appears without expansion only in publication names and bylines, not in body text. ICE, FBI, and other law enforcement agencies not present in this corpus.",
+      "examples": [
+        "los Centros para el Control y la Prevención de Enfermedades (CDC, por sus siglas en inglés)",
+        "COVID-19 [no expansion]",
+        "H-1B [no expansion]",
+        "LGBTQ+ [no expansion]",
+        "NJ Advance Media para NJ.com [byline only]"
+      ],
+      "consistent": false,
+      "recommendation": "Expand government and health agency acronyms on first use as: [full Spanish name] ([acronym], por sus siglas en inglés). Visa categories (H-1B), internationally recognized identifiers (COVID-19, LGBTQ+), and NJ in publication names are acceptable without expansion. Build a reference list for recurring agencies (ICE, FBI, CDC) since this corpus only shows one example."
+    },
+    {
+      "area": "state_names",
+      "observation": "New Jersey is always 'Nueva Jersey' in body text without exception. City names are kept in English. Ohio appears as 'Ohio' (no Spanish form exists). The abbreviation 'NJ' appears only in publication names and bylines, never in body copy.",
+      "examples": [
+        "629,000 residentes de Nueva Jersey",
+        "Long Branch, Nueva Jersey",
+        "Columbus, Ohio",
+        "NJ Advance Media para NJ.com [byline, not body]"
+      ],
+      "consistent": true,
+      "recommendation": "Always use 'Nueva Jersey' in body text. City names stay in English. 'NJ' is acceptable only in publication names or bylines."
+    },
+    {
+      "area": "attribution",
+      "observation": "Good verb variety throughout. 'Dijo' is most frequent for direct quotes. 'Afirmó' used for declarative statements. 'Explicó' for elaborations or context-giving remarks. 'Informó' for factual reporting attribution. 'Señaló'/'señala' reserved for written documents and reports. 'Indicó' not observed in this corpus.",
+      "examples": [
+        "dijo Murphy en un comunicado de prensa",
+        "afirmó Auger",
+        "afirmó Nancy Francese",
+        "explicó Bruno, director ejecutivo",
+        "señala el informe",
+        "informó el Pew Research Center",
+        "informaron funcionarios"
+      ],
+      "consistent": true,
+      "recommendation": "Continue rotating: dijo (neutral quotes), afirmó (declarative statements), explicó (elaborations), señaló/señala (written sources and reports), informó (factual attribution). Avoid repeating the same verb in adjacent paragraphs."
+    },
+    {
+      "area": "measurements",
+      "observation": "No metric conversions found. US measurements are kept as-is. City blocks use 'cuadras' rather than meters. Regional distance expressed in travel time rather than miles.",
+      "examples": [
+        "10 cuadras de su casa",
+        "dos horas al sur"
+      ],
+      "consistent": true,
+      "recommendation": "Keep US measurements (miles, feet, pounds) without metric conversion. Use 'cuadras' for city blocks. Time-based distance references ('X horas al sur') are acceptable for regional context. If specific mileage figures appear, retain them in miles without conversion."
+    },
+    {
+      "area": "other",
+      "observation": "'County' is consistently translated as 'condado'. 'Garden State' is translated to 'Estado Jardín'. Institutional titles (Gobernador, Legislatura) are capitalized when used as proper institutional references but lowercase when descriptive. Dates follow day + spelled-out month + year. Time written as '3:00 p.m.' with periods. Rebranded platform names handled with inline parenthetical on first reference. 'Web' capitalized following older RAE style.",
+      "examples": [
+        "condado de Somerset",
+        "condado de Bergen",
+        "Estado Jardín",
+        "el Gobernador y la Legislatura [institutional]",
+        "gobernador Phil Murphy [descriptive]",
+        "el miércoles 20 de noviembre de 2024",
+        "3:00 p.m.",
+        "X (anteriormente Twitter)",
+        "página Web de noticias"
+      ],
+      "consistent": false,
+      "recommendation": "Translate 'county' as 'condado'. Translate 'Garden State' as 'Estado Jardín'. Capitalize institutional titles (Gobernador, Legislatura) when used as proper nouns; lowercase when used descriptively before a name. Use day-month-year with spelled-out month. Use 'p.m.'/'a.m.' with periods. Add parenthetical clarification for rebranded names on first reference. Consider standardizing 'web' to lowercase (current RAE preference), as 'Web' capitalized is increasingly dated."
+    },
+    {
+      "area": "numbers",
+      "observation": "Large dollar amounts consistently written as '$X,XXX millones' — dollar sign retained, US-style comma as thousands separator, 'millones' spelled out. Percentages use '%' immediately after the digit with no space. Four-digit+ numbers use commas (American style, not European periods).",
+      "examples": [
+        "$3,300 millones",
+        "$207 millones",
+        "$1,700 millones",
+        "$432 millones",
+        "$18 millones",
+        "2,356 personas",
+        "4,105",
+        "200,000 unidades",
+        "26,000 empleos",
+        "43%",
+        "32%",
+        "10 centavos"
+      ],
+      "consistent": true,
+      "recommendation": "Confirm rule: dollar sign retained, comma as thousands separator, 'millones'/'millardos' spelled out (never use English 'billion'), percent sign with no space. Do not convert dollars to other currencies."
+    },
+    {
+      "area": "united_states",
+      "observation": "Two forms appear: 'EE. UU.' (spaced, with periods) used when abbreviated, and 'Estados Unidos' used in full-form contexts. No instances of 'EEUU', 'EUA', or 'EE.UU.' without spaces were observed. Both forms appear in the same corpus without apparent rule governing which to use when.",
+      "examples": [
+        "Candidatos del Senado de EE. UU.",
+        "Representante de EE. UU. Andy Kim",
+        "agentes del Servicio de Inmigración y Control de Aduanas de Estados Unidos (ICE)"
+      ],
+      "consistent": true,
+      "recommendation": "Standardize on 'EE. UU.' (spaced, with periods) as the abbreviated form per Real Academia Española guidance. Use 'Estados Unidos' on first reference in body text; 'EE. UU.' on subsequent references or in headlines where space is tight."
+    },
+    {
+      "area": "acronyms",
+      "observation": "Inconsistent treatment across three patterns: (1) English acronym retained with '(por sus siglas en inglés)' — ICE; (2) Spanish translation given with acronym and 'por sus siglas en inglés' — COAH; (3) Spanish translation only, no acronym retained, no siglas note — Office of Homeless Services, Anti-Bullying Task Force. The siglas formula itself also varies: 'ICE, por sus siglas en inglés' vs. 'o COAH por sus siglas en inglés'.",
+      "examples": [
+        "Servicio de Inmigración y Control de Aduanas de Estados Unidos (ICE, por sus siglas en inglés)",
+        "Council on Affordable Housing (Consejo de Vivienda Asequible o COAH por sus siglas en inglés)",
+        "Office of Homeless Services (Oficina de Servicios para Personas sin Hogar) [no siglas note]",
+        "New Jersey Anti-Bullying Task Force (Grupo de Trabajo contra el Acoso de Nueva Jersey) [no siglas note]"
+      ],
+      "consistent": false,
+      "recommendation": "Establish a single rule: on first use, give the Spanish translation first, then retain the English acronym in parentheses with ', por sus siglas en inglés' — e.g., 'Servicio de Inmigración y Control de Aduanas (ICE, por sus siglas en inglés)'. Only retain the acronym if it will be reused in the article. If the acronym is not reused, use the Spanish translation alone."
+    },
+    {
+      "area": "state_names",
+      "observation": "Spanish-form state names are used consistently throughout body text — 'Nueva Jersey' and 'Nueva York' appear in every article that names them. English forms ('New Jersey', 'New York') appear only as parts of publication names or proper brand names, never as standalone geographic references. 'NJ' abbreviation appears in headlines only.",
+      "examples": [
+        "la cantidad más alta de personas sin hogar de cualquier municipio en Nueva Jersey",
+        "en todo Nueva Jersey, el acoso va en aumento",
+        "Nueva Jersey y Nueva York",
+        "NJ Spotlight News [publication name — kept in English]",
+        "NorthJersey.com [brand name — kept in English]"
+      ],
+      "consistent": true,
+      "recommendation": "Confirm rule: always use 'Nueva Jersey' and 'Nueva York' in body text. 'NJ' is acceptable in headlines for space. English forms only when they are part of a proper publication or organization name."
+    },
+    {
+      "area": "attribution",
+      "observation": "Good variety of attribution verbs across the corpus. 'Dijo' is the baseline, but translators actively rotate through several others. Verbs of explanation ('explicó', 'informó') appear in legal/government contexts; stronger verbs ('declaró', 'afirmó') appear in direct-quote contexts; neutral alternates ('comentó', 'señaló') appear for general statements.",
+      "examples": [
+        "dijo (baseline, most common)",
+        "afirmó — Dylan article, immigration forum",
+        "comentó — homeless services director",
+        "señaló — affordable housing senator",
+        "declaró — Newark mayor Baraka",
+        "informó — federal prosecutor article",
+        "explicó — mortgage fraud article"
+      ],
+      "consistent": true,
+      "recommendation": "The variety is good practice. Document the register distinctions: 'declaró' for formal/official statements, 'afirmó' for emphatic personal statements, 'señaló' for pointing out data or context, 'comentó' for informal or conversational quotes, 'informó'/'explicó' for officials relaying information. Avoid over-rotating — use the verb that fits the quote's tone."
+    },
+    {
+      "area": "measurements",
+      "observation": "US measurements retained without metric conversion. The one clear example keeps miles as miles and adds driving time for practical context. No instances of converting to kilometers, kilograms, or other metric units were found.",
+      "examples": [
+        "a unas 30 millas y 50 minutos en carro al sur de Montclair"
+      ],
+      "consistent": true,
+      "recommendation": "Confirm rule: retain US measurements (miles, feet, pounds, Fahrenheit) as-is for New Jersey journalism audiences. Adding practical context (driving time alongside distance) is good practice and should be encouraged."
+    },
+    {
+      "area": "other",
+      "observation": "'Estado Jardín' is used as a colloquial equivalent of 'Garden State', appearing twice across different articles and writers — suggesting it is an established term in the house style, not a one-off translator choice.",
+      "examples": [
+        "el compañero demócrata acusado Robert Menéndez... el estado del jardín",
+        "las posibles indemnizaciones para los afroamericanos en el Estado Jardín"
+      ],
+      "consistent": true,
+      "recommendation": "Codify 'Estado Jardín' as the accepted Spanish equivalent of 'Garden State' when used as a nickname for New Jersey. Note the inconsistency in capitalization ('el estado del jardín' vs. 'el Estado Jardín') — standardize on title case when used as a proper nickname: 'el Estado Jardín'."
+    },
+    {
+      "area": "other",
+      "observation": "English proper nouns — organization names, venue names, publication names, brand names — are kept in their original English form with a Spanish translation in parentheses on first use. Subsequent references typically drop the parenthetical. The pattern is consistent across all articles.",
+      "examples": [
+        "Ethnic and Community Media Expo (Exposición de Medios Étnicos y Comunitarios)",
+        "Center for Cooperative Media (Centro de Medios Cooperativos)",
+        "Office of Homeless Services (Oficina de Servicios para Personas sin Hogar)",
+        "Council on Affordable Housing (Consejo de Vivienda Asequible o COAH...)",
+        "New Jersey Anti-Bullying Task Force (Grupo de Trabajo contra el Acoso de Nueva Jersey)",
+        "Tourism Economics, propiedad de Oxford Economics [no translation — brand name]"
+      ],
+      "consistent": true,
+      "recommendation": "Confirm rule: English organization/event names appear in original form first, followed by a Spanish translation in parentheses. On second reference, use either the Spanish translation or the English acronym (if established). Pure brand names with no descriptive meaning (MetLife, TAPinto) are not translated."
+    },
+    {
+      "area": "numbers",
+      "observation": "Dollar amounts use dollar sign + numeral + 'millones' (not 'millón de dólares'). Percentages use period as decimal separator, consistent with US formatting rather than Spanish convention (comma). Thousands use comma separator. 'Decenas de miles de dólares' used for vague large amounts.",
+      "examples": [
+        "$893 millones en los últimos tres años",
+        "la tasa de desempleo durante julio fue del 6.3%",
+        "92,209 de los residentes negros",
+        "50,000 residentes",
+        "decenas de miles de dólares"
+      ],
+      "consistent": true,
+      "recommendation": "Adopt US numeric conventions throughout: period for decimal, comma for thousands, dollar sign before numeral. Write 'X millones de dólares' or '$X millones' — both appear but the latter is more common. Confirm 'millones' (not 'millón de dólares') for amounts over 1M."
+    },
+    {
+      "area": "united_states",
+      "observation": "All instances use 'Estados Unidos' spelled out — no abbreviated form (EE. UU., EEUU, EUA) appears anywhere in the 10 excerpts.",
+      "examples": [
+        "La economía de Estados Unidos se mantiene estable",
+        "La tasa de desempleo en Estados Unidos ascendió a 4.2%"
+      ],
+      "consistent": true,
+      "recommendation": "Always write 'Estados Unidos' in full. Prohibit all abbreviated forms. 'EE. UU.' and variants never appear — this appears to be a firm convention."
+    },
+    {
+      "area": "acronyms",
+      "observation": "Two distinct patterns: (1) High-recognition agencies — FBI, ICE, NAACP — are used as-is with no expansion. (2) Less-recognized organizations get English name first, Spanish translation in parentheses, sometimes with 'por sus siglas en inglés' for the Spanish-language acronym. English → Spanish translation is provided, not the other way around.",
+      "examples": [
+        "el FBI señala que Nueva Jersey ocupa el segundo lugar",
+        "Si un migrante en Nueva Jersey es detenido por ICE",
+        "la NAACP y la Fundación Latino Action Network",
+        "Immigration and American Citizenship Organization (Organización de Inmigración y Ciudadanía Estadounidense o IACO, por sus siglas en inglés)",
+        "New Jersey State League of Municipalities (Liga de Municipios del Estado de Nueva Jersey)",
+        "Joint Committee on the Public Schools (Comité Conjunto de las Escuelas Públicas)"
+      ],
+      "consistent": false,
+      "recommendation": "Formalize the two-tier rule: FBI, ICE, NAACP and other widely-known acronyms need no expansion. Unfamiliar organizations: English name + '(Spanish name)' on first use; if the Spanish name generates its own acronym, add 'o [ACRONYM], por sus siglas en inglés' inside the parentheses. 'Por sus siglas en inglés' refers to the English acronym being borrowed — use only when the article will continue using the English acronym."
+    },
+    {
+      "area": "state_names",
+      "observation": "Inconsistent. Most articles use 'Nueva Jersey' and 'Nueva York' (Spanish forms). However, the NJ Spotlight News segregation article uses 'New Jersey' in both the headline and body text throughout — and the editor's note. This appears to be a source-outlet pattern rather than a translator choice.",
+      "examples": [
+        "Los residentes afroamericanos de Nueva Jersey tienen una de las tasas de divorcio más bajas",
+        "Personas en busca de empleo hacen cola... en el distrito neoyorquino de Brooklyn",
+        "El sistema escolar segregado de New Jersey comienza con las escuelas de los vecindarios (headline)",
+        "el mandato legal de New Jersey que obliga a que los estudiantes asistan"
+      ],
+      "consistent": false,
+      "recommendation": "Establish 'Nueva Jersey' and 'Nueva York' as the required Spanish forms. The Spotlight News article's use of 'New Jersey' throughout is an inconsistency to correct in future translations. Exception: English-language proper names that include the state (e.g., 'NJ Spotlight News', 'NJ Advance Media', 'NJ News Commons') should be left in English."
+    },
+    {
+      "area": "attribution",
+      "observation": "Good verb variety across articles: dijo, afirmó, declaró, señala, indica, observó, informó. 'Dijo' is most common for direct quotes; present-tense verbs (señala, indica) appear for citing ongoing institutional sources (agency reports, studies).",
+      "examples": [
+        "dijo el jueves Joe Pagliuca, cuñado de Cruz",
+        "afirmó Kelly en declaraciones públicas",
+        "declaró Pagliuca, 45, de Boston",
+        "el FBI señala que Nueva Jersey ocupa el segundo lugar",
+        "indica la agencia, los consumidores perdieron",
+        "observó Kelly",
+        "informó The Root"
+      ],
+      "consistent": true,
+      "recommendation": "Current variety is good practice. Codify the present/past tense distinction: use present tense (señala, indica, afirma) when attributing to published reports or studies; use preterite (dijo, afirmó, declaró) for spoken quotes. Add 'agregó' and 'explicó' to the approved list for variety."
+    },
+    {
+      "area": "measurements",
+      "observation": "US customary units are kept throughout — no metric conversion. 'Milla' is used (the Spanish word for mile) rather than converting to kilometers. 'Acres' is kept in English with no conversion.",
+      "examples": [
+        "a un cuarto de milla de distancia",
+        "Los 24 acres de terreno están limitados"
+      ],
+      "consistent": true,
+      "recommendation": "Keep US customary units as-is. Use the Spanish word where one exists ('milla', 'pie', 'libra') rather than the English term, but do not convert to metric. For 'acres', there is no common Spanish equivalent — keep as 'acres'."
+    },
+    {
+      "area": "other",
+      "observation": "Years: inconsistent use of the definite article 'el' before years. Some articles write 'el 2023', 'el 2022'; others write 'en 2012', 'desde 2015' without the article. Both forms appear even within the same articles.",
+      "examples": [
+        "la tasa de divorcio para todos los residentes fue de 8.4% en el 2023",
+        "según datos del Departamento de Salud del estado, y el número de diagnósticos de sífilis congénita se triplicó durante ese periodo",
+        "fueron inundadas hasta sus segundos pisos por la supertormenta Sandy en 2012",
+        "La tierra ha estado vacía desde 2015"
+      ],
+      "consistent": false,
+      "recommendation": "Standardize year references. Caribbean and some Latin American Spanish conventions use 'el año' or 'en el 2023'; neutral/international Spanish omits the article ('en 2023'). Choose one and apply it consistently — 'en 2023' (no article) is more neutral and consistent with AP style adapted for Spanish."
+    },
+    {
+      "area": "other",
+      "observation": "Ages are formatted in AP style: numeral + comma after name, city of residence. English publication names, byline credits, and NJ-branded service names are always kept in English.",
+      "examples": [
+        "declaró Pagliuca, 45, de Boston",
+        "NJ Advance Media para NJ.com",
+        "Jon Hurdle, NJ Spotlight News",
+        "NJ News Commons"
+      ],
+      "consistent": true,
+      "recommendation": "Keep AP age format. English publication names, news service brands, and byline affiliations should remain in English — they are proper nouns, not translated terms."
+    },
+    {
+      "area": "other",
+      "observation": "Translation credits appear at the end of articles in both Spanish and English, naming the translator, institution (Centro de Medios Cooperativos de la Universidad Estatal de Montclair), and funder (Consorcio de Información Cívica de NJ). The boilerplate is bilingual.",
+      "examples": [
+        "Esta traducción fue proporcionada por Mariela Santos-Muñiz, en asociación con el Centro de Medios Cooperativos de la Universidad Estatal de Montclair, y cuenta con el apoyo financiero del Consorcio de Información Cívica de NJ.",
+        "This translation was provided by Mariela Santos-Muñiz..."
+      ],
+      "consistent": true,
+      "recommendation": "The bilingual credit block is an established pattern — preserve it in the API output. Translator name, institution, and funder should be variable fields in the translation job metadata so the credit block can be generated automatically per job."
+    }
+  ],
+  "by_area": {
+    "numbers": [
+      {
+        "area": "numbers",
+        "observation": "Large numbers use 'mil millones' for billions and 'millones' spelled out. Dollar amounts keep the $ sign. Critically: thousands separator is a comma (US convention, not Spanish) and decimal separator is a period (US convention, not Spanish). Percentages attach the % sign directly to the number.",
+        "examples": [
+          "$3.3 mil millones",
+          "$25.5 mil millones",
+          "$6.3 mil millones",
+          "$56,000 en préstamos estudiantiles",
+          "19,933 permisos",
+          "24,450 enfermeras",
+          "$15.49 por hora",
+          "menos del 10%",
+          "el 22% de la población"
+        ],
+        "consistent": true,
+        "recommendation": "Lock in US number formatting conventions throughout: comma as thousands separator, period as decimal. Use 'mil millones' for billions, 'millones' spelled out for millions. Keep $ sign with no space before the number. This is consistent across all 10 articles and should be codified as a deliberate style choice for NJ-audience readers."
+      },
+      {
+        "area": "numbers",
+        "observation": "Dollar amounts are written two ways, sometimes within the same article: '$X millones' (dollar sign + numeral + 'millones') and 'X millones de dólares' (spelled out). Percentages use the % symbol with numerals. Large round numbers use word form (millones, not 1,000,000).",
+        "examples": [
+          "más de $20 millones en ayuda estatal",
+          "más de 20 millones de dólares en ayuda estatal",
+          "una caída de $4 millones",
+          "un aumento del 25% en los impuestos"
+        ],
+        "consistent": false,
+        "recommendation": "Standardize on one form. '$X millones' is shorter and cleaner for inline use; 'X millones de dólares' works better when the currency context isn't obvious. Pick one and apply consistently. The Neptune article uses both forms to describe the same figure, which is the clearest example of the inconsistency to fix."
+      },
+      {
+        "area": "numbers",
+        "observation": "Dollar amounts use $ sign with period as decimal separator and comma as thousands separator. Millions written as 'millones'. One billion expressed as '1,000 millones' (not 'billón', which means 10^12 in Latin American Spanish). One instance of '$2,000 dólares' redundantly combines $ sign and the word 'dólares'. Percentages use % symbol. Fractions appear in prose ('un tercio') rather than as percentages when the original source uses them.",
+        "examples": [
+          "$927 millones",
+          "$5.8 millones",
+          "más de $1,000 millones",
+          "$100,000",
+          "$2,000 dólares por trabajador",
+          "3% de los residentes",
+          "casi un tercio de los estadounidenses"
+        ],
+        "consistent": false,
+        "recommendation": "Use $ sign alone — never add 'dólares' word after $ symbol. Use 'millones' for millions. Use 'mil millones' or '[number] millones' for billions. Period for decimals, comma for thousands. % symbol for percentages."
+      },
+      {
+        "area": "numbers",
+        "observation": "Large dollar amounts consistently written as '$X,XXX millones' — dollar sign retained, US-style comma as thousands separator, 'millones' spelled out. Percentages use '%' immediately after the digit with no space. Four-digit+ numbers use commas (American style, not European periods).",
+        "examples": [
+          "$3,300 millones",
+          "$207 millones",
+          "$1,700 millones",
+          "$432 millones",
+          "$18 millones",
+          "2,356 personas",
+          "4,105",
+          "200,000 unidades",
+          "26,000 empleos",
+          "43%",
+          "32%",
+          "10 centavos"
+        ],
+        "consistent": true,
+        "recommendation": "Confirm rule: dollar sign retained, comma as thousands separator, 'millones'/'millardos' spelled out (never use English 'billion'), percent sign with no space. Do not convert dollars to other currencies."
+      },
+      {
+        "area": "numbers",
+        "observation": "Dollar amounts use dollar sign + numeral + 'millones' (not 'millón de dólares'). Percentages use period as decimal separator, consistent with US formatting rather than Spanish convention (comma). Thousands use comma separator. 'Decenas de miles de dólares' used for vague large amounts.",
+        "examples": [
+          "$893 millones en los últimos tres años",
+          "la tasa de desempleo durante julio fue del 6.3%",
+          "92,209 de los residentes negros",
+          "50,000 residentes",
+          "decenas de miles de dólares"
+        ],
+        "consistent": true,
+        "recommendation": "Adopt US numeric conventions throughout: period for decimal, comma for thousands, dollar sign before numeral. Write 'X millones de dólares' or '$X millones' — both appear but the latter is more common. Confirm 'millones' (not 'millón de dólares') for amounts over 1M."
+      }
+    ],
+    "united_states": [
+      {
+        "area": "united_states",
+        "observation": "Every instance uses the full 'Estados Unidos' or the adjectival form 'estadounidense'. No abbreviated forms (EE. UU., EEUU, EUA, EE.UU.) appear anywhere in the excerpts.",
+        "examples": [
+          "la Corte Suprema de Estados Unidos",
+          "Departamento de Salud y Servicios Humanos de Estados Unidos (appears twice)",
+          "la Oficina de Estadísticas Laborales de Estados Unidos",
+          "senador estadounidense Robert Menéndez",
+          "los estadounidenses negros, latinos y asiáticos"
+        ],
+        "consistent": true,
+        "recommendation": "Always spell out 'Estados Unidos' in body text. Never use abbreviations. 'Estadounidense' as adjective is correct and consistent — keep it."
+      },
+      {
+        "area": "united_states",
+        "observation": "Always written as 'Estados Unidos' (full form). No abbreviated forms (EE. UU., EEUU, EUA, EE.UU.) appear in any article. Both with and without definite article: 'los Estados Unidos' and 'de Estados Unidos'.",
+        "examples": [
+          "inmigrantes que ingresaron ilegalmente a los Estados Unidos",
+          "Servicio de Control de Inmigración y Aduanas (ICE, por sus siglas en inglés) de Estados Unidos",
+          "el Servicio de Inmigración y Control de Aduanas de Estados Unidos"
+        ],
+        "consistent": true,
+        "recommendation": "Confirm 'Estados Unidos' as the standard. No abbreviations. Article usage ('los Estados Unidos' vs. 'de Estados Unidos') follows normal Spanish grammar and needs no rule."
+      },
+      {
+        "area": "united_states",
+        "observation": "Every instance uses 'Estados Unidos' in full. No abbreviated form (EE. UU., EEUU, EUA) appears anywhere in the corpus.",
+        "examples": [
+          "a Estados Unidos",
+          "en todo Estados Unidos",
+          "en el resto de Estados Unidos",
+          "en Nueva Jersey y en el resto de Estados Unidos"
+        ],
+        "consistent": true,
+        "recommendation": "Always write 'Estados Unidos' in full. Do not use EE. UU., EEUU, or EUA."
+      },
+      {
+        "area": "united_states",
+        "observation": "Two forms appear: 'EE. UU.' (spaced, with periods) used when abbreviated, and 'Estados Unidos' used in full-form contexts. No instances of 'EEUU', 'EUA', or 'EE.UU.' without spaces were observed. Both forms appear in the same corpus without apparent rule governing which to use when.",
+        "examples": [
+          "Candidatos del Senado de EE. UU.",
+          "Representante de EE. UU. Andy Kim",
+          "agentes del Servicio de Inmigración y Control de Aduanas de Estados Unidos (ICE)"
+        ],
+        "consistent": true,
+        "recommendation": "Standardize on 'EE. UU.' (spaced, with periods) as the abbreviated form per Real Academia Española guidance. Use 'Estados Unidos' on first reference in body text; 'EE. UU.' on subsequent references or in headlines where space is tight."
+      },
+      {
+        "area": "united_states",
+        "observation": "All instances use 'Estados Unidos' spelled out — no abbreviated form (EE. UU., EEUU, EUA) appears anywhere in the 10 excerpts.",
+        "examples": [
+          "La economía de Estados Unidos se mantiene estable",
+          "La tasa de desempleo en Estados Unidos ascendió a 4.2%"
+        ],
+        "consistent": true,
+        "recommendation": "Always write 'Estados Unidos' in full. Prohibit all abbreviated forms. 'EE. UU.' and variants never appear — this appears to be a firm convention."
+      }
+    ],
+    "acronyms": [
+      {
+        "area": "acronyms",
+        "observation": "No consistent pattern. SNAP is explained by spelling out the full Spanish name first, then using the acronym — but without the 'por sus siglas en inglés' formula. The HRSA entry gives a Spanish translation in parentheses after the English name, also without 'por sus siglas en inglés'. NJ abbreviation is kept for publication names. Bill numbers are kept in English format.",
+        "examples": [
+          "formalmente llamado el Programa de Asistencia de Nutrición Suplementaria. El programa, ampliamente conocido como SNAP",
+          "Health Resources and Services Administration (Administración Federal de Recursos y Servicios Sanitarios)",
+          "NJ Advance Media, NJ Monitor, NJ Spotlight News (NJ kept in publication names)",
+          "A-2280/S-1311 (bill number kept as-is)"
+        ],
+        "consistent": false,
+        "recommendation": "Establish a two-pass rule: (1) On first use of any English acronym, provide the Spanish expansion in parentheses — e.g., 'SNAP (Programa de Asistencia de Nutrición Suplementaria)'. Add 'por sus siglas en inglés' only when the acronym itself is not widely known — SNAP and FBI probably don't need it; HRSA does. (2) For publication names and bill numbers, keep the English/official form unchanged. The current practice inconsistently omits the formula — standardize it."
+      },
+      {
+        "area": "acronyms",
+        "observation": "Standard pattern on first use: Spanish expanded name + (ACRONYM, por sus siglas en inglés). After first use, acronym alone. One exception: NOAA is introduced with the English name first, then Spanish translation, then acronym — reversing the normal order. ICE has an inconsistency: two different Spanish translations appear across articles ('Servicio de Control de Inmigración y Aduanas' vs. 'Servicio de Inmigración y Control de Aduanas'). ACA is translated to 'Ley de Atención Médica Asequible' without the 'por sus siglas en inglés' formula.",
+        "examples": [
+          "Centros para el Control y la Prevención de Enfermedades (CDC, por sus siglas en inglés)",
+          "Acción Diferida para los Llegados en la Infancia (DACA, por sus siglas en inglés)",
+          "vacuna contra el sarampión, las paperas y la rubéola (MMR, por sus siglas en inglés)",
+          "National Oceanic and Atmosphere Administration (Administración Nacional Oceánica y Atmosférica, NOAA por sus siglas en inglés) [English first — inconsistent]",
+          "Servicio de Control de Inmigración y Aduanas (ICE, por sus siglas en inglés) [article 6]",
+          "Servicio de Inmigración y Control de Aduanas de Estados Unidos [same article, no expansion]",
+          "Affordable Care Act (Ley de Atención Médica Asequible) [no 'por sus siglas en inglés']"
+        ],
+        "consistent": false,
+        "recommendation": "Standardize the pattern as: [Spanish expansion] ([ACRONYM], por sus siglas en inglés). Spanish name always comes before the English acronym. Lock down a single canonical Spanish translation for ICE — 'Servicio de Inmigración y Control de Aduanas' is the widely used official form. Add ACA to the 'por sus siglas en inglés' treatment for consistency."
+      },
+      {
+        "area": "acronyms",
+        "observation": "CDC is expanded on first use with the format: [full Spanish name] ([acronym], por sus siglas en inglés) — the acronym appears inside the parenthetical, not before it. Other acronyms (LGBTQ+, COVID-19, H-1B) are kept without expansion. 'NJ' appears without expansion only in publication names and bylines, not in body text. ICE, FBI, and other law enforcement agencies not present in this corpus.",
+        "examples": [
+          "los Centros para el Control y la Prevención de Enfermedades (CDC, por sus siglas en inglés)",
+          "COVID-19 [no expansion]",
+          "H-1B [no expansion]",
+          "LGBTQ+ [no expansion]",
+          "NJ Advance Media para NJ.com [byline only]"
+        ],
+        "consistent": false,
+        "recommendation": "Expand government and health agency acronyms on first use as: [full Spanish name] ([acronym], por sus siglas en inglés). Visa categories (H-1B), internationally recognized identifiers (COVID-19, LGBTQ+), and NJ in publication names are acceptable without expansion. Build a reference list for recurring agencies (ICE, FBI, CDC) since this corpus only shows one example."
+      },
+      {
+        "area": "acronyms",
+        "observation": "Inconsistent treatment across three patterns: (1) English acronym retained with '(por sus siglas en inglés)' — ICE; (2) Spanish translation given with acronym and 'por sus siglas en inglés' — COAH; (3) Spanish translation only, no acronym retained, no siglas note — Office of Homeless Services, Anti-Bullying Task Force. The siglas formula itself also varies: 'ICE, por sus siglas en inglés' vs. 'o COAH por sus siglas en inglés'.",
+        "examples": [
+          "Servicio de Inmigración y Control de Aduanas de Estados Unidos (ICE, por sus siglas en inglés)",
+          "Council on Affordable Housing (Consejo de Vivienda Asequible o COAH por sus siglas en inglés)",
+          "Office of Homeless Services (Oficina de Servicios para Personas sin Hogar) [no siglas note]",
+          "New Jersey Anti-Bullying Task Force (Grupo de Trabajo contra el Acoso de Nueva Jersey) [no siglas note]"
+        ],
+        "consistent": false,
+        "recommendation": "Establish a single rule: on first use, give the Spanish translation first, then retain the English acronym in parentheses with ', por sus siglas en inglés' — e.g., 'Servicio de Inmigración y Control de Aduanas (ICE, por sus siglas en inglés)'. Only retain the acronym if it will be reused in the article. If the acronym is not reused, use the Spanish translation alone."
+      },
+      {
+        "area": "acronyms",
+        "observation": "Two distinct patterns: (1) High-recognition agencies — FBI, ICE, NAACP — are used as-is with no expansion. (2) Less-recognized organizations get English name first, Spanish translation in parentheses, sometimes with 'por sus siglas en inglés' for the Spanish-language acronym. English → Spanish translation is provided, not the other way around.",
+        "examples": [
+          "el FBI señala que Nueva Jersey ocupa el segundo lugar",
+          "Si un migrante en Nueva Jersey es detenido por ICE",
+          "la NAACP y la Fundación Latino Action Network",
+          "Immigration and American Citizenship Organization (Organización de Inmigración y Ciudadanía Estadounidense o IACO, por sus siglas en inglés)",
+          "New Jersey State League of Municipalities (Liga de Municipios del Estado de Nueva Jersey)",
+          "Joint Committee on the Public Schools (Comité Conjunto de las Escuelas Públicas)"
+        ],
+        "consistent": false,
+        "recommendation": "Formalize the two-tier rule: FBI, ICE, NAACP and other widely-known acronyms need no expansion. Unfamiliar organizations: English name + '(Spanish name)' on first use; if the Spanish name generates its own acronym, add 'o [ACRONYM], por sus siglas en inglés' inside the parentheses. 'Por sus siglas en inglés' refers to the English acronym being borrowed — use only when the article will continue using the English acronym."
+      }
+    ],
+    "state_names": [
+      {
+        "area": "state_names",
+        "observation": "Spanish-form state names are used consistently throughout body text. 'Nueva Jersey' appears in every article. 'Nueva York' appears in a reference to The New York Times, but 'The New York Times' itself is kept in English as a proper publication name. 'NJ' is used only in publication names and article headlines, not standalone in body text.",
+        "examples": [
+          "en Nueva Jersey (appears in every article)",
+          "al The New York Times (publication name kept in English)",
+          "NJ Advance Media, NJ.com (abbreviation only in bylines/publication names)"
+        ],
+        "consistent": true,
+        "recommendation": "Always use 'Nueva Jersey' in body text. Keep 'NJ' only when it is part of an official publication or organization name. Apply the same rule to other states: 'Nueva York', 'California' (unchanged), 'Pennsylvania' (unchanged — no Spanish form in common use)."
+      },
+      {
+        "area": "state_names",
+        "observation": "Spanish forms used consistently throughout all body text. 'Nueva Jersey' appears in every article that names the state. 'Dakota del Norte' uses the Spanish form. 'NJ' abbreviation appears in headlines and source attributions but not in running prose.",
+        "examples": [
+          "según un proyecto de ley promulgado... por el gobernador Phil Murphy [Nueva Jersey implied throughout]",
+          "el presupuesto para el año fiscal 2027... del gobierno estatal de Nueva Jersey",
+          "un tribunal federal en Dakota del Norte",
+          "Headlines: '¿Qué ciudades de Nueva Jersey...' and 'Estas ciudades de NJ...'"
+        ],
+        "consistent": true,
+        "recommendation": "Confirm rule: Spanish geographic names in body text ('Nueva Jersey', 'Nueva York', 'Dakota del Norte'). 'NJ' abbreviation acceptable in headlines for space, not in prose."
+      },
+      {
+        "area": "state_names",
+        "observation": "New Jersey is always 'Nueva Jersey' in body text without exception. City names are kept in English. Ohio appears as 'Ohio' (no Spanish form exists). The abbreviation 'NJ' appears only in publication names and bylines, never in body copy.",
+        "examples": [
+          "629,000 residentes de Nueva Jersey",
+          "Long Branch, Nueva Jersey",
+          "Columbus, Ohio",
+          "NJ Advance Media para NJ.com [byline, not body]"
+        ],
+        "consistent": true,
+        "recommendation": "Always use 'Nueva Jersey' in body text. City names stay in English. 'NJ' is acceptable only in publication names or bylines."
+      },
+      {
+        "area": "state_names",
+        "observation": "Spanish-form state names are used consistently throughout body text — 'Nueva Jersey' and 'Nueva York' appear in every article that names them. English forms ('New Jersey', 'New York') appear only as parts of publication names or proper brand names, never as standalone geographic references. 'NJ' abbreviation appears in headlines only.",
+        "examples": [
+          "la cantidad más alta de personas sin hogar de cualquier municipio en Nueva Jersey",
+          "en todo Nueva Jersey, el acoso va en aumento",
+          "Nueva Jersey y Nueva York",
+          "NJ Spotlight News [publication name — kept in English]",
+          "NorthJersey.com [brand name — kept in English]"
+        ],
+        "consistent": true,
+        "recommendation": "Confirm rule: always use 'Nueva Jersey' and 'Nueva York' in body text. 'NJ' is acceptable in headlines for space. English forms only when they are part of a proper publication or organization name."
+      },
+      {
+        "area": "state_names",
+        "observation": "Inconsistent. Most articles use 'Nueva Jersey' and 'Nueva York' (Spanish forms). However, the NJ Spotlight News segregation article uses 'New Jersey' in both the headline and body text throughout — and the editor's note. This appears to be a source-outlet pattern rather than a translator choice.",
+        "examples": [
+          "Los residentes afroamericanos de Nueva Jersey tienen una de las tasas de divorcio más bajas",
+          "Personas en busca de empleo hacen cola... en el distrito neoyorquino de Brooklyn",
+          "El sistema escolar segregado de New Jersey comienza con las escuelas de los vecindarios (headline)",
+          "el mandato legal de New Jersey que obliga a que los estudiantes asistan"
+        ],
+        "consistent": false,
+        "recommendation": "Establish 'Nueva Jersey' and 'Nueva York' as the required Spanish forms. The Spotlight News article's use of 'New Jersey' throughout is an inconsistency to correct in future translations. Exception: English-language proper names that include the state (e.g., 'NJ Spotlight News', 'NJ Advance Media', 'NJ News Commons') should be left in English."
+      }
+    ],
+    "attribution": [
+      {
+        "area": "attribution",
+        "observation": "A good variety of attribution verbs appears across the articles. 'Afirmó' is the most frequent. 'Dijo' appears but less often than 'afirmó', which is the inverse of typical English journalism where 'said' dominates. 'Señaló', 'mencionó', 'advierte', and 'explicaron' add variety. Translators are actively avoiding 'dijo' monotony.",
+        "examples": [
+          "afirmó (multiple instances — most common)",
+          "dijo Brooke Rollins",
+          "señala un nuevo informe / El informe señala",
+          "mencionó Sires en una entrevista",
+          "advierte que los recortes federales",
+          "explicaron los funcionarios",
+          "indicó el sitio web de la escuela"
+        ],
+        "consistent": true,
+        "recommendation": "The variety is good and consistent with Spanish journalism style, where 'dijo' alone reads as flat. Codify a preferred list: afirmó (statements/quotes), señaló (points/observations), mencionó (in interview context), explicó/explicaron (explanatory context), advirtió (warnings). Reserve 'dijo' for brief, neutral attributions."
+      },
+      {
+        "area": "attribution",
+        "observation": "Good variety of attribution verbs across articles. 'Dijo' is most frequent but not overused. Other verbs appear naturally in context. No mechanically alternated rotation detected — choices appear to match register and meaning.",
+        "examples": [
+          "dijo Gilmartin",
+          "afirmó Courtney Gilmartin",
+          "explicó [Gilmartin]",
+          "señalaron los funcionarios",
+          "dijeron los funcionarios de Allentown",
+          "sostuvo [Platkin]",
+          "argumentaron [los abogados]",
+          "advierten [defensores]"
+        ],
+        "consistent": true,
+        "recommendation": "No change needed. Verb variety is appropriate and context-driven. Confirm that 'sostuvo' and 'argumentaron' are reserved for legal/formal contexts where someone is making a formal case, not casual statements."
+      },
+      {
+        "area": "attribution",
+        "observation": "Good verb variety throughout. 'Dijo' is most frequent for direct quotes. 'Afirmó' used for declarative statements. 'Explicó' for elaborations or context-giving remarks. 'Informó' for factual reporting attribution. 'Señaló'/'señala' reserved for written documents and reports. 'Indicó' not observed in this corpus.",
+        "examples": [
+          "dijo Murphy en un comunicado de prensa",
+          "afirmó Auger",
+          "afirmó Nancy Francese",
+          "explicó Bruno, director ejecutivo",
+          "señala el informe",
+          "informó el Pew Research Center",
+          "informaron funcionarios"
+        ],
+        "consistent": true,
+        "recommendation": "Continue rotating: dijo (neutral quotes), afirmó (declarative statements), explicó (elaborations), señaló/señala (written sources and reports), informó (factual attribution). Avoid repeating the same verb in adjacent paragraphs."
+      },
+      {
+        "area": "attribution",
+        "observation": "Good variety of attribution verbs across the corpus. 'Dijo' is the baseline, but translators actively rotate through several others. Verbs of explanation ('explicó', 'informó') appear in legal/government contexts; stronger verbs ('declaró', 'afirmó') appear in direct-quote contexts; neutral alternates ('comentó', 'señaló') appear for general statements.",
+        "examples": [
+          "dijo (baseline, most common)",
+          "afirmó — Dylan article, immigration forum",
+          "comentó — homeless services director",
+          "señaló — affordable housing senator",
+          "declaró — Newark mayor Baraka",
+          "informó — federal prosecutor article",
+          "explicó — mortgage fraud article"
+        ],
+        "consistent": true,
+        "recommendation": "The variety is good practice. Document the register distinctions: 'declaró' for formal/official statements, 'afirmó' for emphatic personal statements, 'señaló' for pointing out data or context, 'comentó' for informal or conversational quotes, 'informó'/'explicó' for officials relaying information. Avoid over-rotating — use the verb that fits the quote's tone."
+      },
+      {
+        "area": "attribution",
+        "observation": "Good verb variety across articles: dijo, afirmó, declaró, señala, indica, observó, informó. 'Dijo' is most common for direct quotes; present-tense verbs (señala, indica) appear for citing ongoing institutional sources (agency reports, studies).",
+        "examples": [
+          "dijo el jueves Joe Pagliuca, cuñado de Cruz",
+          "afirmó Kelly en declaraciones públicas",
+          "declaró Pagliuca, 45, de Boston",
+          "el FBI señala que Nueva Jersey ocupa el segundo lugar",
+          "indica la agencia, los consumidores perdieron",
+          "observó Kelly",
+          "informó The Root"
+        ],
+        "consistent": true,
+        "recommendation": "Current variety is good practice. Codify the present/past tense distinction: use present tense (señala, indica, afirma) when attributing to published reports or studies; use preterite (dijo, afirmó, declaró) for spoken quotes. Add 'agregó' and 'explicó' to the approved list for variety."
+      }
+    ],
+    "measurements": [
+      {
+        "area": "measurements",
+        "observation": "US units are kept as-is with no metric conversion. Wages are in dollars per hour, not converted. Time is in 12-hour a.m./p.m. format with periods. No feet, miles, or pounds appear in these excerpts, but dollar-per-hour wages are a proxy and they stay in US form.",
+        "examples": [
+          "$15.49 por hora",
+          "$13.40 por hora",
+          "11:30 a.m. (12-hour format with periods)"
+        ],
+        "consistent": true,
+        "recommendation": "Keep US measurements unchanged — no metric conversion. This is correct for a US-audience publication. Use 'a.m.' and 'p.m.' with periods and lowercase. If feet/miles/pounds appear in future articles, keep them in US form and do not add metric equivalents."
+      },
+      {
+        "area": "measurements",
+        "observation": "Limited measurement data in these excerpts. Sea level rise article uses metric ('un metro de agua') without providing a US customary equivalent. No feet, miles, or pounds appear in the sample. The metric-only usage in the NOAA article may reflect the source data being metric.",
+        "examples": [
+          "¿Cómo se vería la orilla del lago Como bajo un metro de agua?"
+        ],
+        "consistent": true,
+        "recommendation": "Insufficient data to establish a firm rule. Flag for further review with more articles. Tentative: when the original source uses metric (as NOAA sea level data does), keep metric. When the original source uses US customary (feet, miles, pounds), consider adding metric equivalents in parentheses — but confirm with translators whether NJ Spanish-language readers expect conversions."
+      },
+      {
+        "area": "measurements",
+        "observation": "No metric conversions found. US measurements are kept as-is. City blocks use 'cuadras' rather than meters. Regional distance expressed in travel time rather than miles.",
+        "examples": [
+          "10 cuadras de su casa",
+          "dos horas al sur"
+        ],
+        "consistent": true,
+        "recommendation": "Keep US measurements (miles, feet, pounds) without metric conversion. Use 'cuadras' for city blocks. Time-based distance references ('X horas al sur') are acceptable for regional context. If specific mileage figures appear, retain them in miles without conversion."
+      },
+      {
+        "area": "measurements",
+        "observation": "US measurements retained without metric conversion. The one clear example keeps miles as miles and adds driving time for practical context. No instances of converting to kilometers, kilograms, or other metric units were found.",
+        "examples": [
+          "a unas 30 millas y 50 minutos en carro al sur de Montclair"
+        ],
+        "consistent": true,
+        "recommendation": "Confirm rule: retain US measurements (miles, feet, pounds, Fahrenheit) as-is for New Jersey journalism audiences. Adding practical context (driving time alongside distance) is good practice and should be encouraged."
+      },
+      {
+        "area": "measurements",
+        "observation": "US customary units are kept throughout — no metric conversion. 'Milla' is used (the Spanish word for mile) rather than converting to kilometers. 'Acres' is kept in English with no conversion.",
+        "examples": [
+          "a un cuarto de milla de distancia",
+          "Los 24 acres de terreno están limitados"
+        ],
+        "consistent": true,
+        "recommendation": "Keep US customary units as-is. Use the Spanish word where one exists ('milla', 'pie', 'libra') rather than the English term, but do not convert to metric. For 'acres', there is no common Spanish equivalent — keep as 'acres'."
+      }
+    ],
+    "other": [
+      {
+        "area": "other",
+        "observation": "Several additional patterns are consistent across articles: (1) 'chárter' is used as a Hispanicized adaptation with an accent mark, not 'charter'. (2) Parenthetical glosses add context for US-specific terms: '(chárter) (autónoma)'. (3) English publication names, brand names, and program names (STEMCivics, NJ FamilyCare, NJ.com) are always kept in English. (4) The $ sign is used rather than spelling out 'dólares'. (5) 'Centavos' is used for cents rather than the cent symbol. (6) Spanish quotation marks are not used — standard straight quotes appear throughout.",
+        "examples": [
+          "escuela chárter (autónoma) (Hispanicized with accent + gloss)",
+          "NJ FamilyCare (English program name kept)",
+          "STEMCivics (English name kept)",
+          "$15.49 ($ sign, not 'dólares')",
+          "36 centavos (spelled out, not ¢)",
+          "Trenton Stem-to-Civics chárter School (mixed — 'chárter' Hispanicized but school name kept)"
+        ],
+        "consistent": true,
+        "recommendation": "Codify these as explicit rules: (1) Anglicisms used as nouns get a Spanish accent if needed ('chárter') and an optional parenthetical gloss on first use. (2) Proper names — publications, programs, organizations — are never translated. (3) Use $ sign, not 'dólares'. (4) Spell out 'centavos' for sub-dollar amounts. (5) Use straight quotes, not angle quotes (« »)."
+      },
+      {
+        "area": "other",
+        "observation": "Time format uses 'p.m.' with periods, not 'pm'. Legislation bill numbers kept in English alphanumeric format. Standard straight quotation marks used, not Spanish angle quotes (« »). Dates follow Spanish format (day + 'de' + month + 'de' + year). 'El año fiscal' and budget terminology translated consistently.",
+        "examples": [
+          "las 11:59 p.m. del 30 de junio",
+          "La legislación, A1475",
+          "\"El control coercitivo es realmente como la base...\" [straight quotes, not « »]",
+          "el 1 de julio de 2026",
+          "el año fiscal 2027"
+        ],
+        "consistent": true,
+        "recommendation": "Confirm: p.m./a.m. with periods. Straight quotation marks (not angle quotes) — consistent with AP Spanish style for US publications. Bill numbers in English format. Date format: día de mes de año."
+      },
+      {
+        "area": "other",
+        "observation": "'County' is consistently translated as 'condado'. 'Garden State' is translated to 'Estado Jardín'. Institutional titles (Gobernador, Legislatura) are capitalized when used as proper institutional references but lowercase when descriptive. Dates follow day + spelled-out month + year. Time written as '3:00 p.m.' with periods. Rebranded platform names handled with inline parenthetical on first reference. 'Web' capitalized following older RAE style.",
+        "examples": [
+          "condado de Somerset",
+          "condado de Bergen",
+          "Estado Jardín",
+          "el Gobernador y la Legislatura [institutional]",
+          "gobernador Phil Murphy [descriptive]",
+          "el miércoles 20 de noviembre de 2024",
+          "3:00 p.m.",
+          "X (anteriormente Twitter)",
+          "página Web de noticias"
+        ],
+        "consistent": false,
+        "recommendation": "Translate 'county' as 'condado'. Translate 'Garden State' as 'Estado Jardín'. Capitalize institutional titles (Gobernador, Legislatura) when used as proper nouns; lowercase when used descriptively before a name. Use day-month-year with spelled-out month. Use 'p.m.'/'a.m.' with periods. Add parenthetical clarification for rebranded names on first reference. Consider standardizing 'web' to lowercase (current RAE preference), as 'Web' capitalized is increasingly dated."
+      },
+      {
+        "area": "other",
+        "observation": "'Estado Jardín' is used as a colloquial equivalent of 'Garden State', appearing twice across different articles and writers — suggesting it is an established term in the house style, not a one-off translator choice.",
+        "examples": [
+          "el compañero demócrata acusado Robert Menéndez... el estado del jardín",
+          "las posibles indemnizaciones para los afroamericanos en el Estado Jardín"
+        ],
+        "consistent": true,
+        "recommendation": "Codify 'Estado Jardín' as the accepted Spanish equivalent of 'Garden State' when used as a nickname for New Jersey. Note the inconsistency in capitalization ('el estado del jardín' vs. 'el Estado Jardín') — standardize on title case when used as a proper nickname: 'el Estado Jardín'."
+      },
+      {
+        "area": "other",
+        "observation": "English proper nouns — organization names, venue names, publication names, brand names — are kept in their original English form with a Spanish translation in parentheses on first use. Subsequent references typically drop the parenthetical. The pattern is consistent across all articles.",
+        "examples": [
+          "Ethnic and Community Media Expo (Exposición de Medios Étnicos y Comunitarios)",
+          "Center for Cooperative Media (Centro de Medios Cooperativos)",
+          "Office of Homeless Services (Oficina de Servicios para Personas sin Hogar)",
+          "Council on Affordable Housing (Consejo de Vivienda Asequible o COAH...)",
+          "New Jersey Anti-Bullying Task Force (Grupo de Trabajo contra el Acoso de Nueva Jersey)",
+          "Tourism Economics, propiedad de Oxford Economics [no translation — brand name]"
+        ],
+        "consistent": true,
+        "recommendation": "Confirm rule: English organization/event names appear in original form first, followed by a Spanish translation in parentheses. On second reference, use either the Spanish translation or the English acronym (if established). Pure brand names with no descriptive meaning (MetLife, TAPinto) are not translated."
+      },
+      {
+        "area": "other",
+        "observation": "Years: inconsistent use of the definite article 'el' before years. Some articles write 'el 2023', 'el 2022'; others write 'en 2012', 'desde 2015' without the article. Both forms appear even within the same articles.",
+        "examples": [
+          "la tasa de divorcio para todos los residentes fue de 8.4% en el 2023",
+          "según datos del Departamento de Salud del estado, y el número de diagnósticos de sífilis congénita se triplicó durante ese periodo",
+          "fueron inundadas hasta sus segundos pisos por la supertormenta Sandy en 2012",
+          "La tierra ha estado vacía desde 2015"
+        ],
+        "consistent": false,
+        "recommendation": "Standardize year references. Caribbean and some Latin American Spanish conventions use 'el año' or 'en el 2023'; neutral/international Spanish omits the article ('en 2023'). Choose one and apply it consistently — 'en 2023' (no article) is more neutral and consistent with AP style adapted for Spanish."
+      },
+      {
+        "area": "other",
+        "observation": "Ages are formatted in AP style: numeral + comma after name, city of residence. English publication names, byline credits, and NJ-branded service names are always kept in English.",
+        "examples": [
+          "declaró Pagliuca, 45, de Boston",
+          "NJ Advance Media para NJ.com",
+          "Jon Hurdle, NJ Spotlight News",
+          "NJ News Commons"
+        ],
+        "consistent": true,
+        "recommendation": "Keep AP age format. English publication names, news service brands, and byline affiliations should remain in English — they are proper nouns, not translated terms."
+      },
+      {
+        "area": "other",
+        "observation": "Translation credits appear at the end of articles in both Spanish and English, naming the translator, institution (Centro de Medios Cooperativos de la Universidad Estatal de Montclair), and funder (Consorcio de Información Cívica de NJ). The boilerplate is bilingual.",
+        "examples": [
+          "Esta traducción fue proporcionada por Mariela Santos-Muñiz, en asociación con el Centro de Medios Cooperativos de la Universidad Estatal de Montclair, y cuenta con el apoyo financiero del Consorcio de Información Cívica de NJ.",
+          "This translation was provided by Mariela Santos-Muñiz..."
+        ],
+        "consistent": true,
+        "recommendation": "The bilingual credit block is an established pattern — preserve it in the API output. Translator name, institution, and funder should be variable fields in the translation job metadata so the credit block can be generated automatically per job."
+      }
+    ]
+  }
+}

@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spanish translation style guide — Hawk News Service</title>
+  <meta name="description" content="A style guide and glossary for English-to-Spanish journalism translation, developed by Yuli Delgado and the Spanish Translation News Service at the Center for Cooperative Media.">
+  <meta property="og:title" content="Spanish translation style guide — Hawk News Service">
+  <meta property="og:description" content="Style rules and 266-term glossary for English-to-Spanish journalism translation, built from 506 professionally translated NJ news articles.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://hawknewsservice.org/style-guide">
+  <meta property="og:image" content="https://hawknewsservice.org/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Spanish translation style guide — Hawk News Service">
+  <meta name="twitter:description" content="Style rules and 266-term glossary for English-to-Spanish journalism translation.">
+  <meta name="twitter:image" content="https://hawknewsservice.org/og-image.png">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%231a6b4a'/><text x='16' y='23' font-family='serif' font-size='18' font-weight='700' fill='white' text-anchor='middle'>H</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f8f8f6;
+      --surface: #ffffff;
+      --text: #0e1a12;
+      --text-muted: #4a6b55;
+      --text-faint: #597164;
+      --accent: #1a6b4a;
+      --accent-light: #e8f5ee;
+      --accent-dark: #0e3d2a;
+      --border: #d8e0da;
+      --shadow: 0 2px 12px rgba(14,26,18,.07);
+      --shadow-lg: 0 6px 28px rgba(14,26,18,.11);
+      --radius: 8px;
+      --cat-immigration: #7c3700; --cat-immigration-bg: #fff4ec;
+      --cat-government: #0d3f7c; --cat-government-bg: #edf3fc;
+      --cat-education: #4a1f7a; --cat-education-bg: #f4effe;
+      --cat-medical: #7c1f1f; --cat-medical-bg: #fef0f0;
+      --cat-legal: #1a4d3a; --cat-legal-bg: #eaf5ee;
+      --cat-housing: #0f4f54; --cat-housing-bg: #e8f7f8;
+      --cat-other: #4a4a3a; --cat-other-bg: #f5f5f0;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 18px; line-height: 1.8; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
+    a { color: var(--accent); }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+    @keyframes fadeSlideIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+    .site-nav { background: #fff; border-bottom: 1px solid var(--border); animation: fadeSlideIn .4s ease 0s both; position: relative; z-index: 100; }
+    .nav-inner { max-width: 1080px; margin: 0 auto; padding: 0 2rem; height: 52px; display: flex; align-items: center; }
+    .nav-wordmark { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 1.15rem; font-weight: 600; color: var(--accent); text-decoration: none; flex-shrink: 0; padding-right: 1.5rem; border-right: 1px solid var(--border); }
+    .nav-links { flex: 1; display: flex; align-items: center; justify-content: center; gap: .7rem; font-family: 'DM Sans', system-ui, sans-serif; font-size: .8rem; letter-spacing: .02em; flex-wrap: wrap; }
+    .nav-links a { color: rgba(14,26,18,.65); text-decoration: none; transition: color .15s; padding-bottom: 2px; border-bottom: 2px solid transparent; white-space: nowrap; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 500; }
+    .nav-sep { color: var(--border); }
+
+    header { background: var(--accent); padding: 5rem 2rem 4rem; text-align: center; animation: fadeSlideIn .4s ease .1s both; }
+    header h1 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(2.2rem, 5.5vw, 3.6rem); font-weight: 600; color: #fff; line-height: 1.15; margin-bottom: .75rem; }
+    .header-sub { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.2rem; font-style: italic; color: rgba(255,255,255,.85); font-weight: 300; max-width: 580px; margin: 0 auto 2rem; }
+    .header-meta { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; }
+    .header-chip { background: rgba(255,255,255,.15); color: rgba(255,255,255,.9); border: 1px solid rgba(255,255,255,.2); border-radius: 20px; padding: .25rem .85rem; font-family: 'DM Sans', sans-serif; font-size: .78rem; }
+
+    .section { max-width: 1080px; margin: 0 auto; padding: 4rem 2rem; }
+    .section + .section { border-top: 1px solid var(--border); }
+    .section-eyebrow { font-family: 'DM Sans', system-ui, sans-serif; font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: .5rem; }
+    .section-title { font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 600; line-height: 1.2; margin-bottom: 1rem; }
+    .section-lead { font-size: 1.05rem; color: var(--text-muted); max-width: 680px; margin-bottom: 2.5rem; line-height: 1.75; }
+
+    .credit-card { background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--accent); border-radius: var(--radius); padding: 1.75rem 2rem; display: flex; gap: 1.5rem; align-items: flex-start; box-shadow: var(--shadow); animation: fadeSlideIn .5s ease .2s both; }
+    .credit-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; color: #fff; font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; flex-shrink: 0; }
+    .credit-body h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: .2rem; }
+    .credit-body p { font-size: .9rem; color: var(--text-muted); line-height: 1.5; }
+    .credit-body a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--border); }
+    .credit-body a:hover { border-bottom-color: var(--accent); }
+
+    .pipeline { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin: 2.5rem 0; position: relative; }
+    .pipeline-step { background: var(--surface); border: 1px solid var(--border); padding: 1.5rem 1.25rem; text-align: center; position: relative; animation: fadeSlideIn .5s ease both; }
+    .pipeline-step:nth-child(1) { animation-delay: .1s; border-radius: 8px 0 0 8px; }
+    .pipeline-step:nth-child(2) { animation-delay: .2s; border-left: none; border-radius: 0; }
+    .pipeline-step:nth-child(3) { animation-delay: .3s; border-left: none; border-radius: 0; }
+    .pipeline-step:nth-child(4) { animation-delay: .4s; border-left: none; border-radius: 0 8px 8px 0; background: var(--accent-light); border-color: var(--accent); }
+    .pipeline-arrow { position: absolute; right: -12px; top: 50%; transform: translateY(-50%); color: var(--accent); font-size: 1.2rem; z-index: 2; background: var(--bg); line-height: 1; }
+    .pipeline-icon { font-size: 1.75rem; margin-bottom: .5rem; display: block; }
+    .pipeline-number { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 600; color: var(--accent); line-height: 1; margin-bottom: .2rem; }
+    .pipeline-label { font-family: 'DM Sans', sans-serif; font-size: .78rem; font-weight: 500; color: var(--text); line-height: 1.3; }
+    .pipeline-sub { font-family: 'DM Sans', sans-serif; font-size: .68rem; color: var(--text-faint); margin-top: .25rem; line-height: 1.3; }
+
+    .findings-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; }
+    .finding-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem 1.5rem; animation: fadeSlideIn .5s ease both; }
+    .finding-card.highlight { border-color: var(--accent); background: var(--accent-light); }
+    .finding-area { font-family: 'DM Sans', sans-serif; font-size: .67rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: .4rem; }
+    .finding-card h4 { font-size: 1rem; font-weight: 600; margin-bottom: .4rem; line-height: 1.3; }
+    .finding-card p { font-size: .85rem; color: var(--text-muted); line-height: 1.5; }
+    .finding-example { margin-top: .6rem; background: rgba(14,26,18,.05); border-radius: 4px; padding: .35rem .6rem; font-family: 'DM Sans', sans-serif; font-size: .78rem; color: var(--text); }
+    .finding-example code { font-family: monospace; font-size: .82em; }
+
+    .rules-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.25rem; }
+    .rule-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); animation: fadeSlideIn .5s ease both; }
+    .rule-card-head { background: var(--accent); padding: .85rem 1.25rem; }
+    .rule-card-head span { font-family: 'DM Sans', sans-serif; font-size: .8rem; font-weight: 600; color: #fff; letter-spacing: .03em; }
+    .rule-card-body { padding: 1.1rem 1.25rem; }
+    .rule-card-body ul { list-style: none; padding: 0; }
+    .rule-card-body li { font-size: .88rem; line-height: 1.55; padding: .3rem 0; border-bottom: 1px solid var(--border); color: var(--text); display: flex; gap: .5rem; align-items: flex-start; }
+    .rule-card-body li:last-child { border-bottom: none; }
+    .rule-card-body li::before { content: '→'; color: var(--accent); flex-shrink: 0; font-size: .8rem; margin-top: .1rem; }
+    .rule-card-body code { font-family: monospace; font-size: .85em; background: var(--accent-light); color: var(--accent-dark); padding: .1em .35em; border-radius: 3px; }
+
+    .glossary-controls { display: flex; gap: .75rem; flex-wrap: wrap; margin-bottom: 1.25rem; align-items: center; }
+    .glossary-search { flex: 1; min-width: 220px; height: 40px; border: 1px solid var(--border); border-radius: 6px; padding: 0 1rem; font-family: 'DM Sans', sans-serif; font-size: .9rem; color: var(--text); background: var(--surface); outline: none; transition: border-color .15s; }
+    .glossary-search:focus { border-color: var(--accent); }
+    .glossary-filter { height: 40px; border: 1px solid var(--border); border-radius: 6px; padding: 0 .75rem; font-family: 'DM Sans', sans-serif; font-size: .85rem; color: var(--text); background: var(--surface); outline: none; cursor: pointer; }
+    .glossary-count { font-family: 'DM Sans', sans-serif; font-size: .82rem; color: var(--text-faint); white-space: nowrap; align-self: center; }
+    .glossary-table-wrap { overflow-x: auto; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); }
+    table { width: 100%; border-collapse: collapse; background: var(--surface); font-size: .88rem; }
+    thead th { background: var(--accent); color: #fff; font-family: 'DM Sans', sans-serif; font-size: .75rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; padding: .75rem 1rem; text-align: left; white-space: nowrap; cursor: pointer; user-select: none; }
+    thead th:hover { background: var(--accent-dark); }
+    thead th.sorted-asc::after { content: ' ↑'; opacity: .7; }
+    thead th.sorted-desc::after { content: ' ↓'; opacity: .7; }
+    tbody tr { border-bottom: 1px solid var(--border); transition: background .1s; }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: var(--accent-light); }
+    tbody td { padding: .65rem 1rem; line-height: 1.4; vertical-align: middle; }
+    .td-en { font-weight: 500; color: var(--text); min-width: 160px; }
+    .td-es { color: var(--accent-dark); font-style: italic; min-width: 160px; }
+    .td-cat { min-width: 120px; }
+    .td-freq { text-align: center; min-width: 60px; }
+    .cat-badge { display: inline-block; padding: .15rem .5rem; border-radius: 3px; font-family: 'DM Sans', sans-serif; font-size: .68rem; font-weight: 600; letter-spacing: .03em; white-space: nowrap; }
+    .freq-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--border); margin-right: 2px; }
+    .freq-dot.active { background: var(--accent); }
+    .glossary-empty { text-align: center; padding: 3rem; color: var(--text-faint); font-family: 'DM Sans', sans-serif; font-size: .9rem; display: none; }
+
+    footer { border-top: 1px solid var(--border); padding: 2.5rem 2rem; text-align: center; font-family: 'DM Sans', sans-serif; font-size: .8rem; color: var(--text-faint); }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 700px) {
+      .pipeline { grid-template-columns: 1fr 1fr; gap: .5rem; }
+      .pipeline-step { border-radius: var(--radius) !important; border: 1px solid var(--border) !important; }
+      .pipeline-arrow { display: none; }
+      .pipeline-step:nth-child(4) { background: var(--accent-light); }
+      .credit-card { flex-direction: column; gap: 1rem; }
+      header h1 { font-size: 2rem; }
+    }
+    @media (max-width: 480px) {
+      .pipeline { grid-template-columns: 1fr; }
+      .section { padding: 2.5rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="explainer.html" class="nav-wordmark">Hawk</a>
+      <div class="nav-links">
+        <a href="explainer.html">How it works</a>
+        <span class="nav-sep">·</span>
+        <a href="style-guide.html" class="active">Style guide</a>
+        <span class="nav-sep">·</span>
+        <a href="mockups/index.html">Overview</a>
+        <a href="mockups/review.html">Review</a>
+        <a href="mockups/dashboard.html">Dashboard</a>
+        <a href="mockups/glossary.html">Glossary</a>
+        <a href="mockups/wp-plugin.html">WP plugin</a>
+      </div>
+    </div>
+  </nav>
+
+  <header>
+    <h1>Spanish translation style guide</h1>
+    <p class="header-sub">Style rules and glossary for English-to-Spanish journalism translation, developed from years of professional practice.</p>
+    <div class="header-meta">
+      <span class="header-chip">506 translated articles analyzed</span>
+      <span class="header-chip">266 glossary terms</span>
+      <span class="header-chip">NJ journalism, 2022–2025</span>
+      <span class="header-chip">US Hispanic audience</span>
+    </div>
+  </header>
+
+  <div class="section" style="padding-bottom: 0;">
+    <div class="section-eyebrow">About this guide</div>
+    <h2 class="section-title">Created by Yuli Delgado &amp; the Spanish Translation News Service</h2>
+    <p class="section-lead">This style guide was developed by Yuli Delgado through her work leading the Spanish Translation News Service (STNS) at the Center for Cooperative Media, Montclair State University. It reflects translation decisions made across hundreds of professionally translated NJ news articles and is designed for newsrooms doing English-to-Spanish journalism translation for US Hispanic audiences.</p>
+    <div class="credit-card">
+      <div class="credit-avatar">Y</div>
+      <div class="credit-body">
+        <h3>Yuli Delgado — Spanish Translation News Service</h3>
+        <p>Yuli runs the <a href="https://centerforcooperativemedia.org/spanishtranslation/" target="_blank" rel="noopener">Spanish Translation News Service</a> at the <a href="https://centerforcooperativemedia.org" target="_blank" rel="noopener">Center for Cooperative Media</a>, which translates NJ journalism into Spanish for partner newsrooms and communities across the state. The style guide and glossary on this page represent the editorial standards developed through that work.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-eyebrow">Methodology</div>
+    <h2 class="section-title">How the glossary was built</h2>
+    <p class="section-lead">The glossary was extracted from the STNS translation archive using a three-phase corpus analysis pipeline. Every term pair reflects a real translation decision made by a professional translator.</p>
+    <div class="pipeline">
+      <div class="pipeline-step">
+        <span class="pipeline-icon">📋</span>
+        <div class="pipeline-number">720</div>
+        <div class="pipeline-label">Articles in the STNS archive</div>
+        <div class="pipeline-sub">NJ partner newsrooms, 2022–2025</div>
+        <div class="pipeline-arrow">→</div>
+      </div>
+      <div class="pipeline-step">
+        <span class="pipeline-icon">📄</span>
+        <div class="pipeline-number">506</div>
+        <div class="pipeline-label">Human-verified translations</div>
+        <div class="pipeline-sub">Reviewed Google Docs, read via Drive API</div>
+        <div class="pipeline-arrow">→</div>
+      </div>
+      <div class="pipeline-step">
+        <span class="pipeline-icon">🔍</span>
+        <div class="pipeline-number">3</div>
+        <div class="pipeline-label">Analysis phases</div>
+        <div class="pipeline-sub">Terminology · style patterns · synthesis</div>
+        <div class="pipeline-arrow">→</div>
+      </div>
+      <div class="pipeline-step">
+        <span class="pipeline-icon">📖</span>
+        <div class="pipeline-number">266</div>
+        <div class="pipeline-label">Glossary terms documented</div>
+        <div class="pipeline-sub">Ranked by frequency across the corpus</div>
+      </div>
+    </div>
+    <p style="font-size:.88rem; color:var(--text-faint); font-family:'DM Sans',sans-serif; line-height:1.5;">214 articles were not included — older documents no longer accessible via their original Drive links. Only confirmed professionally translated articles from the STNS Airtable base were used. The Hawk translation API applies this glossary to every Spanish machine draft before human review.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-eyebrow">What the corpus found</div>
+    <h2 class="section-title">Key patterns across 506 articles</h2>
+    <p class="section-lead">Analyzing the full archive revealed consistent practices — and some interesting differences from written rules. These findings come from how translators actually wrote, not from prescriptive guidelines.</p>
+    <div class="findings-grid">
+      <div class="finding-card highlight">
+        <div class="finding-area">United States</div>
+        <h4>"Estados Unidos" in prose, not "EE. UU."</h4>
+        <p>In running body text, translators consistently wrote "Estados Unidos" or "estadounidense" — not the abbreviated form. "EE. UU." is appropriate for tight contexts (datelines, headlines) but prose prefers the full form.</p>
+        <div class="finding-example"><code>la Corte Suprema de Estados Unidos</code><br><code>el Departamento de Salud estadounidense</code></div>
+      </div>
+      <div class="finding-card">
+        <div class="finding-area">Numbers</div>
+        <h4>"Mil millones" for billions, never "billón"</h4>
+        <p>Translators correctly avoided "billón" (which means a trillion in Spanish) and consistently wrote "mil millones" for 1 billion. Dollar amounts kept the $ sign.</p>
+        <div class="finding-example"><code>$3,300 millones</code> · <code>$25.5 mil millones</code></div>
+      </div>
+      <div class="finding-card">
+        <div class="finding-area">Attribution</div>
+        <h4>"Afirmó" leads, "dijo" varies</h4>
+        <p>The most frequent attribution verb beyond "dijo" was "afirmó." Translators showed good variety: señaló, indicó, explicó, añadió, and sostuvo all appeared regularly.</p>
+        <div class="finding-example"><code>afirmó</code> · <code>señaló</code> · <code>explicó</code> · <code>añadió</code></div>
+      </div>
+      <div class="finding-card">
+        <div class="finding-area">State names</div>
+        <h4>"Nueva Jersey" is universal</h4>
+        <p>Every article used "Nueva Jersey" in body text. Other Spanish-form state names appeared correctly. Publication names (NJ.com, NorthJersey.com) stayed in English.</p>
+        <div class="finding-example"><code>en Nueva Jersey</code> · <code>en Nueva York</code></div>
+      </div>
+      <div class="finding-card">
+        <div class="finding-area">Measurements</div>
+        <h4>US units throughout — no metric conversion</h4>
+        <p>Wages, distances, and temperatures all stayed in US format. This is consistent with the guide's rule: keep US measurements for a US Hispanic audience.</p>
+        <div class="finding-example"><code>$15.49 por hora</code> · <code>$13.40 por hora</code></div>
+      </div>
+      <div class="finding-card">
+        <div class="finding-area">Vocabulary</div>
+        <h4>"Chárter" — Hispanicized spelling</h4>
+        <p>Charter schools appear as "escuelas chárter" (with accent) — a consistent Hispanicization not explicitly in the existing style guide. Worth adding as a rule.</p>
+        <div class="finding-example"><code>escuelas chárter</code></div>
+      </div>
+      <div class="finding-card">
+        <div class="finding-area">Acronyms</div>
+        <h4>Mixed first-use patterns</h4>
+        <p>Acronym expansion on first use was inconsistent. SNAP sometimes appeared with full Spanish expansion; ICE was almost always used as-is. The guide rule exists but practice varied.</p>
+        <div class="finding-example"><code>ICE</code> · <code>SNAP (formalmente llamado el Programa...)</code></div>
+      </div>
+      <div class="finding-card">
+        <div class="finding-area">Immigration terms</div>
+        <h4>"Redadas de ICE" — most frequent phrase</h4>
+        <p>The most frequent domain-specific phrase in the corpus after place names. "Inmigrantes sin estatus legal" was preferred over "indocumentados" in several articles.</p>
+        <div class="finding-example"><code>redadas de ICE</code> · <code>agentes de ICE</code></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-eyebrow">Style rules</div>
+    <h2 class="section-title">Translation rules by category</h2>
+    <p class="section-lead">These rules come from Yuli Delgado's original style guide for the STNS project, based on the RAE, Fundéu, and federal bilingual style standards. The Hawk API applies these rules to every Spanish machine draft before human review.</p>
+    <div class="rules-grid">
+      <div class="rule-card" style="animation-delay:.05s">
+        <div class="rule-card-head"><span>Quotes</span></div>
+        <div class="rule-card-body"><ul>
+          <li>Introduce quotes with a colon: <code>El informe señala: "Los resultados..."</code></li>
+          <li>Capitalize the first word of the quoted text</li>
+          <li>Add a period after quotes ending in ! or ?: <code>"¡Es urgente!".</code></li>
+        </ul></div>
+      </div>
+      <div class="rule-card" style="animation-delay:.1s">
+        <div class="rule-card-head"><span>Numbers &amp; money</span></div>
+        <div class="rule-card-body"><ul>
+          <li>Numerals for 10 and above; spell out 1–9</li>
+          <li>1 billion = <code>mil millones</code> (never "billón")</li>
+          <li>1.3 billion = <code>1,300 millones</code> (not "1.3 mil millones")</li>
+          <li>Money: US punctuation — <code>$1,276.50</code></li>
+          <li>Avoid starting a sentence with a numeral</li>
+        </ul></div>
+      </div>
+      <div class="rule-card" style="animation-delay:.15s">
+        <div class="rule-card-head"><span>Acronyms (siglas)</span></div>
+        <div class="rule-card-body"><ul>
+          <li>First use: full Spanish name + <code>(ICE, por sus siglas en inglés)</code></li>
+          <li>In headings: full name only; expand in body text</li>
+          <li>Proper-noun acronyms with 4+ letters: first letter only — <code>Unesco</code></li>
+          <li>Subsequent uses: acronym alone, no plural "s"</li>
+        </ul></div>
+      </div>
+      <div class="rule-card" style="animation-delay:.2s">
+        <div class="rule-card-head"><span>United States</span></div>
+        <div class="rule-card-body"><ul>
+          <li>In prose: prefer <code>Estados Unidos</code> or <code>estadounidense</code></li>
+          <li>In datelines or headlines: <code>EE. UU.</code> (spaces after each period)</li>
+          <li>Never: EEUU, EUA, USA, or EE.UU. (no spaces)</li>
+        </ul></div>
+      </div>
+      <div class="rule-card" style="animation-delay:.25s">
+        <div class="rule-card-head"><span>State names</span></div>
+        <div class="rule-card-body"><ul>
+          <li>Use Spanish forms: <code>Nueva Jersey</code>, <code>Nueva York</code>, <code>Nuevo México</code>, <code>Pensilvania</code>, <code>Oregón</code>, <code>Míchigan</code>, <code>Hawái</code>, <code>Luisiana</code>, <code>Misuri</code>, <code>Misisipi</code></li>
+          <li>California, Florida, Alaska, Texas: same in Spanish</li>
+        </ul></div>
+      </div>
+      <div class="rule-card" style="animation-delay:.3s">
+        <div class="rule-card-head"><span>Grammar rules</span></div>
+        <div class="rule-card-body"><ul>
+          <li>No Oxford comma before "y" or "o" in lists</li>
+          <li>Never use <code>y/o</code> — use only "o"</li>
+          <li>Prefixes attach directly: <code>expresidente</code>, <code>sociocultural</code></li>
+          <li>Hyphen before proper nouns/acronyms: <code>anti-Brexit</code>, <code>pro-LGTBQ</code></li>
+        </ul></div>
+      </div>
+      <div class="rule-card" style="animation-delay:.35s">
+        <div class="rule-card-head"><span>Measurements</span></div>
+        <div class="rule-card-body"><ul>
+          <li>Keep US measurements: feet, miles, pounds, Fahrenheit</li>
+          <li>Do not convert to metric — this is a US Hispanic audience</li>
+        </ul></div>
+      </div>
+      <div class="rule-card" style="animation-delay:.4s">
+        <div class="rule-card-head"><span>Attribution verbs</span></div>
+        <div class="rule-card-body"><ul>
+          <li>Vary "dijo" with: <code>expresó</code>, <code>mencionó</code>, <code>comentó</code>, <code>afirmó</code>, <code>declaró</code>, <code>manifestó</code>, <code>señaló</code>, <code>explicó</code>, <code>añadió</code>, <code>sostuvo</code></li>
+          <li>"Afirmó" is the most frequent choice in the corpus</li>
+        </ul></div>
+      </div>
+      <div class="rule-card" style="animation-delay:.45s">
+        <div class="rule-card-head"><span>Key fixed translations</span></div>
+        <div class="rule-card-body"><ul>
+          <li>"Humanitarian parole" → <code>permiso humanitario</code></li>
+          <li>ICE → <code>Servicio de Control de Inmigración y Aduanas</code></li>
+          <li>ACLU → <code>Unión Estadounidense por las Libertades Civiles</code></li>
+          <li>GOP → <code>republicano</code></li>
+          <li>Charter schools → <code>escuelas chárter</code></li>
+        </ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-eyebrow">Glossary</div>
+    <h2 class="section-title">English → Spanish term glossary</h2>
+    <p class="section-lead">266 term pairs extracted from 506 professionally translated articles. Frequency reflects how many distinct articles used each translation choice. Click any column header to sort.</p>
+    <div class="glossary-controls">
+      <input class="glossary-search" type="search" placeholder="Search terms..." id="glossSearch" aria-label="Search glossary">
+      <select class="glossary-filter" id="glossCat" aria-label="Filter by category">
+        <option value="">All categories</option>
+        <option value="immigration">Immigration</option>
+        <option value="government">Government</option>
+        <option value="education">Education</option>
+        <option value="legal">Legal</option>
+        <option value="medical">Medical</option>
+        <option value="housing">Housing</option>
+        <option value="other">Other</option>
+      </select>
+      <span class="glossary-count" id="glossCount"></span>
+    </div>
+    <div class="glossary-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th data-col="term_en" class="sorted-asc">English term</th>
+            <th data-col="term_es">Spanish translation</th>
+            <th data-col="category">Category</th>
+            <th data-col="frequency">Frequency</th>
+          </tr>
+        </thead>
+        <tbody id="glossBody"></tbody>
+      </table>
+      <div class="glossary-empty" id="glossEmpty">No terms match your search.</div>
+    </div>
+    <p style="margin-top:1rem; font-size:.82rem; color:var(--text-faint); font-family:'DM Sans',sans-serif;">Frequency = number of distinct articles in the corpus where this translation appeared. Terms with frequency ≥ 2 reflect consistent choices across multiple articles and translators.</p>
+  </div>
+
+  <footer>
+    <p>Style guide by <a href="https://centerforcooperativemedia.org/spanishtranslation/" target="_blank" rel="noopener">Yuli Delgado / Spanish Translation News Service</a> · <a href="https://centerforcooperativemedia.org" target="_blank" rel="noopener">Center for Cooperative Media, Montclair State University</a></p>
+    <p style="margin-top:.4rem;">Hawk News Service · <a href="explainer.html">How it works</a> · <a href="site/api-reference.html">API reference</a></p>
+  </footer>
+
+  <script>
+    const TERMS = [{"term_en":"ice","term_es":"ICE","frequency":13,"category":"government agency"},{"term_en":"affordable housing","term_es":"vivienda asequible","frequency":6,"category":"housing policy"},{"term_en":"new jersey","term_es":"Nueva Jersey","frequency":6,"category":"place name"},{"term_en":"budget","term_es":"presupuesto","frequency":4,"category":"government"},{"term_en":"immigrants","term_es":"inmigrantes","frequency":4,"category":"immigration"},{"term_en":"latinos","term_es":"latinos","frequency":4,"category":"demographic"},{"term_en":"nj","term_es":"Nueva Jersey","frequency":4,"category":"place_name"},{"term_en":"real id","term_es":"Real ID","frequency":4,"category":"government program"},{"term_en":"advocates","term_es":"defensores","frequency":3,"category":"civil society"},{"term_en":"bill","term_es":"proyecto de ley","frequency":3,"category":"legislative"},{"term_en":"county","term_es":"condado","frequency":3,"category":"government"},{"term_en":"deadline","term_es":"fecha l\u00edmite","frequency":3,"category":"general_term"},{"term_en":"ice raids","term_es":"redadas de ICE","frequency":3,"category":"immigration enforcement"},{"term_en":"medicaid","term_es":"Medicaid","frequency":3,"category":"government_program"},{"term_en":"migrants","term_es":"migrantes","frequency":3,"category":"immigration"},{"term_en":"n.j.","term_es":"NJ","frequency":3,"category":"geographic_abbreviation"},{"term_en":"residents","term_es":"residentes","frequency":3,"category":"general_term"},{"term_en":"school district","term_es":"distrito escolar","frequency":3,"category":"education"},{"term_en":"school districts","term_es":"distritos escolares","frequency":3,"category":"education"},{"term_en":"absenteeism","term_es":"ausentismo","frequency":2,"category":"education"},{"term_en":"ai","term_es":"IA","frequency":2,"category":"technology"},{"term_en":"atlantic county","term_es":"condado de Atlantic","frequency":2,"category":"NJ place name"},{"term_en":"bill (legislation)","term_es":"proyecto de ley","frequency":2,"category":"legislative terms"},{"term_en":"climate change","term_es":"cambio clim\u00e1tico","frequency":2,"category":"environmental"},{"term_en":"deportations","term_es":"deportaciones","frequency":2,"category":"immigration_legal"},{"term_en":"federal lawsuit","term_es":"demanda federal","frequency":2,"category":"legal"},{"term_en":"flu","term_es":"gripe","frequency":2,"category":"health_term"},{"term_en":"food pantry","term_es":"despensa de alimentos","frequency":2,"category":"social services"},{"term_en":"gop","term_es":"republicano","frequency":2,"category":"political"},{"term_en":"governor candidates","term_es":"candidatos a la gobernaci\u00f3n","frequency":2,"category":"electoral/political"},{"term_en":"graduation rates","term_es":"tasas de graduaci\u00f3n","frequency":2,"category":"education"},{"term_en":"health officials","term_es":"funcionarios de salud","frequency":2,"category":"government"},{"term_en":"ice agents","term_es":"agentes de ICE","frequency":2,"category":"government_agency"},{"term_en":"immigrant advocates","term_es":"defensores de inmigrantes","frequency":2,"category":"immigration"},{"term_en":"immigration","term_es":"inmigraci\u00f3n","frequency":2,"category":"immigration"},{"term_en":"immigration agents","term_es":"agentes de inmigraci\u00f3n","frequency":2,"category":"government_agency"},{"term_en":"jersey shore","term_es":"Jersey Shore","frequency":2,"category":"place"},{"term_en":"jobs","term_es":"puestos de trabajo","frequency":2,"category":"labor"},{"term_en":"lawmakers","term_es":"legisladores","frequency":2,"category":"political_term"},{"term_en":"legal immigrants","term_es":"inmigrantes legales","frequency":2,"category":"immigration"},{"term_en":"mayor","term_es":"alcalde","frequency":2,"category":"politics"},{"term_en":"measles","term_es":"saram\u00pi\u00f3n","frequency":2,"category":"medical_term"},{"term_en":"medical bills","term_es":"facturas m\u00e9dicas","frequency":2,"category":"health/finance"},{"term_en":"migrant crisis","term_es":"crisis migratoria","frequency":2,"category":"policy terms"},{"term_en":"nj transit","term_es":"NJ Transit","frequency":2,"category":"government_agency"},{"term_en":"north jersey","term_es":"norte de Nueva Jersey","frequency":2,"category":"NJ place/institution"},{"term_en":"primary","term_es":"primarias","frequency":2,"category":"electoral/political"},{"term_en":"racial bias","term_es":"sesgo racial","frequency":2,"category":"policy"},{"term_en":"renters","term_es":"inquilinos","frequency":2,"category":"legal_term"},{"term_en":"rsv","term_es":"VRS","frequency":2,"category":"medical"},{"term_en":"school board","term_es":"junta escolar","frequency":2,"category":"educational institution"},{"term_en":"segregation","term_es":"segregaci\u00f3n","frequency":2,"category":"social terms"},{"term_en":"timeline","term_es":"cronolog\u00eda","frequency":2,"category":"journalism"},{"term_en":"transgender","term_es":"transg\u00e9nero","frequency":2,"category":"social"},{"term_en":"trump administration","term_es":"administraci\u00f3n Trump","frequency":2,"category":"government"},{"term_en":"u.s. supreme court","term_es":"Corte Suprema de EE. UU.","frequency":2,"category":"government"},{"term_en":"whooping cough","term_es":"tos ferina","frequency":2,"category":"medical"},{"term_en":"administrative leave","term_es":"licencia administrativa","frequency":1,"category":"legal"},{"term_en":"alleged","term_es":"presunto","frequency":1,"category":"legal"},{"term_en":"alzheimer's","term_es":"el Alzheimer","frequency":1,"category":"medical"},{"term_en":"appeals court","term_es":"Tribunal de apelaciones","frequency":1,"category":"legal"},{"term_en":"attorney general","term_es":"fiscal general","frequency":1,"category":"government"},{"term_en":"behind bars","term_es":"en prisi\u00f3n","frequency":1,"category":"legal"},{"term_en":"bird flu","term_es":"gripe aviar","frequency":1,"category":"medical_term"},{"term_en":"board of elections","term_es":"Junta Electoral","frequency":1,"category":"government_agency"},{"term_en":"bribery","term_es":"soborno","frequency":1,"category":"legal"},{"term_en":"budget bill","term_es":"proyecto de ley presupuestario","frequency":1,"category":"legal_policy"},{"term_en":"challenge (legal)","term_es":"impugnaci\u00f3n","frequency":1,"category":"legal"},{"term_en":"charter school","term_es":"escuela aut\u00f3noma","frequency":1,"category":"education"},{"term_en":"charter schools","term_es":"escuelas ch\u00e1rter","frequency":1,"category":"education"},{"term_en":"child welfare system","term_es":"sistema de bienestar infantil","frequency":1,"category":"social services"},{"term_en":"coercive control","term_es":"control coercitivo","frequency":1,"category":"legal"},{"term_en":"college degree","term_es":"t\u00edtulo universitario","frequency":1,"category":"education"},{"term_en":"colon cancer","term_es":"c\u00e1ncer de colon","frequency":1,"category":"medical"},{"term_en":"commissioner","term_es":"comisionado","frequency":1,"category":"government"},{"term_en":"community colleges","term_es":"colegios comunitarios","frequency":1,"category":"education"},{"term_en":"congressional hispanic caucus","term_es":"Caucus Hispano del Congreso","frequency":1,"category":"government"},{"term_en":"convicted","term_es":"declarado culpable","frequency":1,"category":"legal"},{"term_en":"corruption trial","term_es":"juicio por corrupci\u00f3n","frequency":1,"category":"legal"},{"term_en":"court order","term_es":"orden judicial","frequency":1,"category":"legal"},{"term_en":"criminal probe","term_es":"investigaci\u00f3n criminal","frequency":1,"category":"legal"},{"term_en":"daca","term_es":"DACA","frequency":1,"category":"government program"},{"term_en":"daca recipients","term_es":"beneficiarios de DACA","frequency":1,"category":"immigration"},{"term_en":"data center","term_es":"centros de datos","frequency":1,"category":"technology"},{"term_en":"deport","term_es":"deportar","frequency":1,"category":"immigration"},{"term_en":"deportation","term_es":"deportaci\u00f3n","frequency":1,"category":"immigration"},{"term_en":"detainees","term_es":"detenidos","frequency":1,"category":"immigration"},{"term_en":"detention center","term_es":"centro de detenci\u00f3n","frequency":1,"category":"immigration"},{"term_en":"domestic violence","term_es":"violencia dom\u00e9stica","frequency":1,"category":"legal"},{"term_en":"doula","term_es":"doula","frequency":1,"category":"medical"},{"term_en":"drug overdoses","term_es":"sobredosis de drogas","frequency":1,"category":"medical"},{"term_en":"due process","term_es":"debido proceso","frequency":1,"category":"legal"},{"term_en":"english language learners","term_es":"estudiantes de ingl\u00e9s","frequency":1,"category":"education"},{"term_en":"fafsa","term_es":"FAFSA","frequency":1,"category":"education"},{"term_en":"federal workers","term_es":"trabajadores federales","frequency":1,"category":"government"},{"term_en":"flu season","term_es":"temporada de gripe","frequency":1,"category":"medical"},{"term_en":"governor","term_es":"gobernador","frequency":1,"category":"government"},{"term_en":"gun carry permits","term_es":"permisos para portar armas","frequency":1,"category":"legal"},{"term_en":"head start","term_es":"programa Head Start","frequency":1,"category":"government_program"},{"term_en":"health care access","term_es":"acceso a la atenci\u00f3n m\u00e9dica","frequency":1,"category":"medical"},{"term_en":"high school","term_es":"escuela secundaria","frequency":1,"category":"education"},{"term_en":"hospital care at home","term_es":"atenci\u00f3n hospitalaria a domicilio","frequency":1,"category":"medical"},{"term_en":"house (of representatives)","term_es":"C\u00e1mara de Representantes","frequency":1,"category":"government"},{"term_en":"housing appraisals","term_es":"valoraciones de viviendas","frequency":1,"category":"legal"},{"term_en":"housing crisis","term_es":"crisis de vivienda","frequency":1,"category":"housing policy"},{"term_en":"housing discrimination","term_es":"discriminaci\u00f3n de vivienda","frequency":1,"category":"legal"},{"term_en":"humanitarian parole","term_es":"permiso humanitario","frequency":1,"category":"immigration"},{"term_en":"immigrants without legal status","term_es":"inmigrantes sin estatus legal","frequency":1,"category":"immigration"},{"term_en":"immigration detention","term_es":"detenci\u00f3n de inmigrantes","frequency":1,"category":"legal"},{"term_en":"immigration enforcement","term_es":"operaciones de inmigraci\u00f3n","frequency":1,"category":"immigration"},{"term_en":"immigration lawyers","term_es":"abogados de inmigraci\u00f3n","frequency":1,"category":"immigration"},{"term_en":"immigration policies","term_es":"pol\u00edticas de inmigraci\u00f3n","frequency":1,"category":"immigration"},{"term_en":"immigration system","term_es":"sistema migratorio","frequency":1,"category":"immigration"},{"term_en":"learning loss","term_es":"p\u00e9rdida de aprendizaje","frequency":1,"category":"education"},{"term_en":"legal status","term_es":"estatus legal","frequency":1,"category":"immigration"},{"term_en":"legislature","term_es":"legislatura","frequency":1,"category":"government"},{"term_en":"long covid","term_es":"COVID prolongado","frequency":1,"category":"medical"},{"term_en":"maternal health","term_es":"atenci\u00f3n de salud materna","frequency":1,"category":"medical"},{"term_en":"medicaid cuts","term_es":"recortes a Medicaid","frequency":1,"category":"government_program"},{"term_en":"medical debt","term_es":"deuda m\u00e9dica","frequency":1,"category":"medical_term"},{"term_en":"mental health","term_es":"salud mental","frequency":1,"category":"medical"},{"term_en":"migrant jail","term_es":"c\u00e1rcel para inmigrantes","frequency":1,"category":"immigration"},{"term_en":"mixed-status families","term_es":"familias de estatus migratorio mixto","frequency":1,"category":"immigration"},{"term_en":"motor vehicle commission","term_es":"Comisi\u00f3n de Veh\u00edculos Motorizados","frequency":1,"category":"government agency"},{"term_en":"n.j. state police","term_es":"Polic\u00eda Estatal de NJ","frequency":1,"category":"government_agency"},{"term_en":"new arrivals","term_es":"reci\u00e9n llegados","frequency":1,"category":"immigration"},{"term_en":"nj legislature","term_es":"Legislatura de NJ","frequency":1,"category":"government"},{"term_en":"nursing shortage","term_es":"escasez de enfermeras","frequency":1,"category":"medical"},{"term_en":"parole","term_es":"libertad condicional","frequency":1,"category":"legal"},{"term_en":"police killing","term_es":"asesinato policial","frequency":1,"category":"legal"},{"term_en":"presidential immunity","term_es":"inmunidad presidencial","frequency":1,"category":"legal"},{"term_en":"presidential race","term_es":"contienda presidencial","frequency":1,"category":"electoral/political"},{"term_en":"protected status","term_es":"estatus de protecci\u00f3n temporal","frequency":1,"category":"immigration"},{"term_en":"registered voters","term_es":"votantes registrados","frequency":1,"category":"electoral/political"},{"term_en":"rent control","term_es":"control de alquileres","frequency":1,"category":"legal_policy"},{"term_en":"ruling","term_es":"fallo","frequency":1,"category":"legal"},{"term_en":"rutgers","term_es":"Rutgers","frequency":1,"category":"place_name"},{"term_en":"safe zones","term_es":"zonas seguras","frequency":1,"category":"legal_policy"},{"term_en":"scholarship","term_es":"beca","frequency":1,"category":"education"},{"term_en":"school board elections","term_es":"elecciones de la junta escolar","frequency":1,"category":"education"},{"term_en":"school lunch","term_es":"almuerzo escolar","frequency":1,"category":"education"},{"term_en":"search warrant","term_es":"orden de registro","frequency":1,"category":"legal"},{"term_en":"senior care","term_es":"cuidado de adultos mayores","frequency":1,"category":"medical"},{"term_en":"snap benefits","term_es":"beneficios de SNAP","frequency":1,"category":"government program"},{"term_en":"snap funding","term_es":"fondos del SNAP","frequency":1,"category":"government_program"},{"term_en":"state legislators","term_es":"legisladores estatales","frequency":1,"category":"government"},{"term_en":"syphilis","term_es":"s\u00edfilis","frequency":1,"category":"medical"},{"term_en":"test scores","term_es":"puntajes de ex\u00e1menes","frequency":1,"category":"education"},{"term_en":"trial","term_es":"juicio","frequency":1,"category":"legal"},{"term_en":"u.s. senate","term_es":"Senado de Estados Unidos","frequency":1,"category":"government"},{"term_en":"undocumented","term_es":"indocumentadas","frequency":1,"category":"immigration"},{"term_en":"undocumented immigrants","term_es":"inmigrantes indocumentados","frequency":1,"category":"immigration"},{"term_en":"unhoused","term_es":"personas sin hogar","frequency":1,"category":"social services"},{"term_en":"vaccination","term_es":"vacunaci\u00f3n","frequency":1,"category":"medical"},{"term_en":"voting restrictions","term_es":"restricciones al voto","frequency":1,"category":"legal_policy"},{"term_en":"weight-loss drugs","term_es":"medicamentos de p\u00e9rdida de peso","frequency":1,"category":"medical"}];
+
+    function esc(s) {
+      return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    function normCat(raw) {
+      const r = (raw || '').toLowerCase();
+      if (r.includes('immigr') || r.includes('deport') || r.includes('migrant') || r.includes('detain') || r.includes('daca') || r.includes('asylum')) return 'immigration';
+      if (r.includes('education') || r.includes('school') || r.includes('student') || r.includes('college') || r.includes('fafsa') || r.includes('teacher')) return 'education';
+      if (r.includes('legal') || r.includes('law') || r.includes('court') || r.includes('trial') || r.includes('prison') || r.includes('brib') || r.includes('criminal') || r.includes('warrant') || r.includes('convict')) return 'legal';
+      if (r.includes('medical') || r.includes('health') || r.includes('hospital') || r.includes('disease') || r.includes('flu') || r.includes('cancer') || r.includes('drug') || r.includes('covid') || r.includes('alzheimer') || r.includes('doula') || r.includes('maternal') || r.includes('nurs') || r.includes('vaccination')) return 'medical';
+      if (r.includes('housing') || r.includes('rent') || r.includes('tenant') || r.includes('apprais')) return 'housing';
+      if (r.includes('government') || r.includes('agency') || r.includes('program') || r.includes('federal') || r.includes('legislat') || r.includes('governor') || r.includes('political') || r.includes('electoral') || r.includes('budget') || r.includes('senator') || r.includes('congress') || r.includes('administr')) return 'government';
+      return 'other';
+    }
+
+    const CAT_COLORS = {
+      immigration: ['var(--cat-immigration)', 'var(--cat-immigration-bg)'],
+      government:  ['var(--cat-government)', 'var(--cat-government-bg)'],
+      education:   ['var(--cat-education)', 'var(--cat-education-bg)'],
+      legal:       ['var(--cat-legal)', 'var(--cat-legal-bg)'],
+      medical:     ['var(--cat-medical)', 'var(--cat-medical-bg)'],
+      housing:     ['var(--cat-housing)', 'var(--cat-housing-bg)'],
+      other:       ['var(--cat-other)', 'var(--cat-other-bg)'],
+    };
+
+    let sortCol = 'term_en', sortDir = 1;
+    const MAX_FREQ = 13;
+
+    function render() {
+      const q = document.getElementById('glossSearch').value.trim().toLowerCase();
+      const catFilter = document.getElementById('glossCat').value;
+
+      let data = TERMS.filter(t => {
+        if (catFilter && normCat(t.category) !== catFilter) return false;
+        if (!q) return true;
+        return t.term_en.includes(q) || t.term_es.toLowerCase().includes(q) || t.category.toLowerCase().includes(q);
+      });
+
+      data.sort((a, b) => {
+        const va = sortCol === 'frequency' ? a[sortCol] : (a[sortCol] || '').toLowerCase();
+        const vb = sortCol === 'frequency' ? b[sortCol] : (b[sortCol] || '').toLowerCase();
+        return va < vb ? -sortDir : va > vb ? sortDir : 0;
+      });
+
+      document.getElementById('glossCount').textContent = data.length + ' term' + (data.length !== 1 ? 's' : '');
+
+      const tbody = document.getElementById('glossBody');
+      const empty = document.getElementById('glossEmpty');
+
+      if (data.length === 0) {
+        while (tbody.firstChild) tbody.removeChild(tbody.firstChild);
+        empty.style.display = 'block';
+        return;
+      }
+      empty.style.display = 'none';
+
+      const fragment = document.createDocumentFragment();
+      data.forEach(t => {
+        const cat = normCat(t.category);
+        const [fg, bg] = CAT_COLORS[cat] || CAT_COLORS.other;
+        const label = t.category.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+        const dots = Math.ceil(t.frequency / MAX_FREQ * 5);
+
+        const tr = document.createElement('tr');
+
+        const tdEn = document.createElement('td');
+        tdEn.className = 'td-en';
+        tdEn.textContent = t.term_en;
+        tr.appendChild(tdEn);
+
+        const tdEs = document.createElement('td');
+        tdEs.className = 'td-es';
+        tdEs.textContent = t.term_es;
+        tr.appendChild(tdEs);
+
+        const tdCat = document.createElement('td');
+        tdCat.className = 'td-cat';
+        const badge = document.createElement('span');
+        badge.className = 'cat-badge';
+        badge.style.color = fg;
+        badge.style.background = bg;
+        badge.textContent = label;
+        tdCat.appendChild(badge);
+        tr.appendChild(tdCat);
+
+        const tdFreq = document.createElement('td');
+        tdFreq.className = 'td-freq';
+        tdFreq.title = t.frequency + ' article' + (t.frequency !== 1 ? 's' : '');
+        for (let i = 0; i < 5; i++) {
+          const dot = document.createElement('span');
+          dot.className = 'freq-dot' + (i < dots ? ' active' : '');
+          tdFreq.appendChild(dot);
+        }
+        tr.appendChild(tdFreq);
+
+        fragment.appendChild(tr);
+      });
+
+      while (tbody.firstChild) tbody.removeChild(tbody.firstChild);
+      tbody.appendChild(fragment);
+    }
+
+    document.querySelectorAll('thead th[data-col]').forEach(th => {
+      th.addEventListener('click', () => {
+        const col = th.dataset.col;
+        sortDir = (sortCol === col) ? sortDir * -1 : (col === 'frequency' ? -1 : 1);
+        sortCol = col;
+        document.querySelectorAll('thead th').forEach(h => h.classList.remove('sorted-asc', 'sorted-desc'));
+        th.classList.add(sortDir === 1 ? 'sorted-asc' : 'sorted-desc');
+        render();
+      });
+    });
+
+    document.getElementById('glossSearch').addEventListener('input', render);
+    document.getElementById('glossCat').addEventListener('change', render);
+    render();
+  </script>
+</body>
+</html>
