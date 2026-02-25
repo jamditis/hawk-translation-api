@@ -57,6 +57,13 @@
     .nav-links a:hover { color: var(--text); }
     .nav-links a.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 500; }
     .nav-sep { color: var(--border); }
+    .nav-label { color: var(--text-faint); font-size: .73rem; }
+
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: .5rem; margin-left: auto; -webkit-tap-highlight-color: transparent; }
+    .nav-toggle span { display: block; width: 20px; height: 2px; background: var(--text); margin: 4px 0; border-radius: 2px; transition: transform .2s, opacity .2s; }
+    .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
     header { background: var(--accent); padding: 5rem 2rem 4rem; text-align: center; animation: fadeSlideIn .4s ease .1s both; }
     header h1 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(2.2rem, 5.5vw, 3.6rem); font-weight: 600; color: #fff; line-height: 1.15; margin-bottom: .75rem; }
@@ -137,6 +144,21 @@
     footer a { color: var(--accent); text-decoration: none; }
     footer a:hover { text-decoration: underline; }
 
+    @media (max-width: 768px) {
+      .nav-toggle { display: block; }
+      .nav-inner { position: relative; }
+      .nav-links {
+        display: none; position: absolute; top: 52px; left: 0; right: 0;
+        background: #fff; border-bottom: 1px solid var(--border);
+        box-shadow: var(--shadow-lg); flex-direction: column;
+        align-items: stretch; padding: .75rem 1.5rem; gap: 0; z-index: 200;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: .65rem 0; border-bottom: 1px solid var(--border); font-size: .85rem; }
+      .nav-links a:last-child { border-bottom: none; }
+      .nav-sep, .nav-label { display: none; }
+    }
+
     @media (max-width: 700px) {
       .pipeline { grid-template-columns: 1fr 1fr; gap: .5rem; }
       .pipeline-step { border-radius: var(--radius) !important; border: 1px solid var(--border) !important; }
@@ -153,18 +175,26 @@
 </head>
 <body>
 
-  <nav class="site-nav">
+  <nav class="site-nav" role="navigation" aria-label="Hawk site navigation">
     <div class="nav-inner">
       <a href="explainer.html" class="nav-wordmark">Hawk</a>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
       <div class="nav-links">
         <a href="explainer.html">How it works</a>
         <span class="nav-sep">·</span>
         <a href="style-guide.html" class="active">Style guide</a>
         <span class="nav-sep">·</span>
+        <span class="nav-label">Mockups:</span>
         <a href="mockups/index.html">Overview</a>
+        <span class="nav-sep">·</span>
         <a href="mockups/review.html">Review</a>
+        <span class="nav-sep">·</span>
         <a href="mockups/dashboard.html">Dashboard</a>
+        <span class="nav-sep">·</span>
         <a href="mockups/glossary.html">Glossary</a>
+        <span class="nav-sep">·</span>
         <a href="mockups/wp-plugin.html">WP plugin</a>
       </div>
     </div>
@@ -528,6 +558,13 @@
     document.getElementById('glossSearch').addEventListener('input', render);
     document.getElementById('glossCat').addEventListener('change', render);
     render();
+  </script>
+  <script>
+    document.querySelector('.nav-toggle').addEventListener('click', function() {
+      var expanded = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', !expanded);
+      this.closest('.nav-inner').querySelector('.nav-links').classList.toggle('open');
+    });
   </script>
 </body>
 </html>
