@@ -1,5 +1,15 @@
 # Hawk News Service translation API — development context
 
+
+## GitHub Actions suspended (account-wide)
+
+GitHub Actions are disabled on the entire `jamditis` GitHub account until further notice. This means:
+- **No CI/CD pipelines will run** — builds, tests, deploys all fail silently
+- **GitHub Pages deploys won't work** — even "legacy" static deploys that used Actions under the hood
+- **No automated workflows** — PR checks, scheduled jobs, release automation are all dead
+
+**For any project that previously deployed via GitHub Actions or GitHub Pages, you must use an alternative** (manual deploy, Cloudflare Pages, Firebase Hosting, direct FTP, etc.). Do not create or rely on `.github/workflows/` files.
+
 ## What this is
 
 A human translator-centered REST API for translating journalism content into 10 languages. Machine translation and AI quality scoring generate a first draft; **professional human translators** review, edit, and certify the final output. Built for the Center for Cooperative Media's Spanish Translation News Service (STNS) and NJ News Commons partner newsrooms.
