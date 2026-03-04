@@ -144,6 +144,41 @@
     footer a { color: var(--accent); text-decoration: none; }
     footer a:hover { text-decoration: underline; }
 
+    /* ── NAHJ LGBTQIA+ section — visually distinct from Yuli's guide above ── */
+    .nahj-page-break { height: 6px; background: linear-gradient(90deg, #e40303, #ff8c00, #ffed00, #008026, #24408e, #732982); margin: 0; }
+    .nahj-wrapper { background: #f0f7f8; border-top: 3px solid #0d5f6b; }
+    .nahj-section { max-width: 1080px; margin: 0 auto; padding: 4rem 2rem; }
+    .nahj-section + .nahj-section { border-top: 1px solid #b8d4d8; }
+    .nahj-eyebrow { font-family: 'DM Sans', system-ui, sans-serif; font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #0d5f6b; margin-bottom: .5rem; }
+    .nahj-title { font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 600; line-height: 1.2; margin-bottom: 1rem; }
+    .nahj-lead { font-size: 1.05rem; color: #2a5a62; max-width: 680px; margin-bottom: 2.5rem; line-height: 1.75; }
+    .nahj-attribution-banner { background: #fff; border: 2px solid #0d5f6b; border-radius: 8px; padding: 1.5rem 2rem; margin-bottom: 2.5rem; display: flex; gap: 1.25rem; align-items: flex-start; }
+    .nahj-attribution-banner .nahj-attr-icon { font-size: 1.5rem; flex-shrink: 0; line-height: 1; margin-top: .1rem; }
+    .nahj-attribution-banner h3 { font-size: 1rem; font-weight: 700; color: #0d5f6b; margin-bottom: .3rem; font-family: 'DM Sans', sans-serif; }
+    .nahj-attribution-banner p { font-size: .88rem; color: #2a5a62; line-height: 1.55; font-family: 'DM Sans', sans-serif; }
+    .nahj-attribution-banner a { color: #0d5f6b; }
+    .guidance-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; }
+    .guidance-card { background: #fff; border: 1px solid #b8d4d8; border-left: 4px solid #0d5f6b; border-radius: 8px; padding: 1.25rem 1.5rem; }
+    .guidance-card h4 { font-size: .95rem; font-weight: 600; color: #0d5f6b; margin-bottom: .5rem; font-family: 'DM Sans', sans-serif; }
+    .guidance-card p { font-size: .84rem; color: #2a5a62; line-height: 1.6; font-family: 'DM Sans', sans-serif; }
+    .nahj-controls { display: flex; gap: .75rem; flex-wrap: wrap; margin-bottom: 1.25rem; align-items: center; }
+    .nahj-search { flex: 1; min-width: 220px; height: 40px; border: 1px solid #b8d4d8; border-radius: 6px; padding: 0 1rem; font-family: 'DM Sans', sans-serif; font-size: .9rem; color: var(--text); background: #fff; outline: none; transition: border-color .15s; }
+    .nahj-search:focus { border-color: #0d5f6b; }
+    .nahj-filter { height: 40px; border: 1px solid #b8d4d8; border-radius: 6px; padding: 0 .75rem; font-family: 'DM Sans', sans-serif; font-size: .85rem; color: var(--text); background: #fff; outline: none; cursor: pointer; }
+    .nahj-count { font-family: 'DM Sans', sans-serif; font-size: .82rem; color: #4a7a82; white-space: nowrap; align-self: center; }
+    .alpha-bar { display: flex; flex-wrap: wrap; gap: .35rem; margin-bottom: 1.25rem; }
+    .alpha-btn { width: 2rem; height: 2rem; border-radius: 4px; border: 1px solid #b8d4d8; background: #fff; font-family: 'DM Sans', sans-serif; font-size: .78rem; font-weight: 600; color: #0d5f6b; cursor: pointer; transition: background .1s, color .1s; }
+    .alpha-btn:hover, .alpha-btn.active { background: #0d5f6b; color: #fff; border-color: #0d5f6b; }
+    .alpha-btn:disabled { color: #c0d4d8; cursor: default; border-color: #dde8ea; }
+    .alpha-btn:disabled:hover { background: #fff; color: #c0d4d8; }
+    .term-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: .75rem; }
+    .term-entry { background: #fff; border: 1px solid #b8d4d8; border-radius: 6px; padding: 1rem 1.25rem; }
+    .term-entry h4 { font-size: .95rem; font-weight: 700; color: #0d4f57; margin-bottom: .4rem; font-family: 'DM Sans', sans-serif; }
+    .term-entry p { font-size: .82rem; color: #2a5a62; line-height: 1.55; font-family: 'DM Sans', sans-serif; }
+    .term-empty { text-align: center; padding: 3rem; color: #4a7a82; font-family: 'DM Sans', sans-serif; font-size: .9rem; display: none; }
+    .nahj-header-block { background: #0d5f6b; padding: 3rem 2rem 2.5rem; text-align: center; }
+    .nahj-header-block h2 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 600; color: #fff; line-height: 1.2; margin-bottom: .6rem; }
+    .nahj-header-block p { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; color: rgba(255,255,255,.85); font-weight: 300; max-width: 580px; margin: 0 auto; }
     @media (max-width: 768px) {
       .nav-toggle { display: block; }
       .nav-inner { position: relative; }
@@ -196,6 +231,8 @@
         <a href="mockups/glossary.html">Glossary</a>
         <span class="nav-sep">·</span>
         <a href="mockups/wp-plugin.html">WP plugin</a>
+        <span class="nav-sep">·</span>
+        <a href="#nahj-lgbtqia">LGBTQIA+ guide (NAHJ)</a>
       </div>
     </div>
   </nav>
@@ -434,9 +471,63 @@
     <p style="margin-top:1rem; font-size:.82rem; color:var(--text-faint); font-family:'DM Sans',sans-serif;">Frequency = number of distinct articles in the corpus where this translation appeared. Terms with frequency ≥ 2 reflect consistent choices across multiple articles and translators.</p>
   </div>
 
+  <!-- ═══════════════════════════════════════════════════════════════════
+       NAHJ LGBTQIA+ STYLE GUIDE — separate from Yuli Delgado's guide above
+       Source: Asociación Nacional de Periodistas Hispanos (NAHJ) + NLGJA, 2023
+       ═══════════════════════════════════════════════════════════════════ -->
+  <div id="nahj-lgbtqia" class="nahj-page-break" role="separator" aria-label="End of STNS style guide. NAHJ LGBTQIA+ style guide begins below."></div>
+
+  <div class="nahj-header-block">
+    <h2>Guía de Estilo LGBTQIA+</h2>
+    <p>Terminología y consejos de cobertura para comunidades LGBTQIA+</p>
+  </div>
+
+  <div class="nahj-wrapper">
+
+    <div class="nahj-section">
+      <div class="nahj-eyebrow">Guía independiente — fuente externa</div>
+      <h2 class="nahj-title">Manual de Estilo sobre las Comunidades LGBTQIA+</h2>
+      <p class="nahj-lead">Esta sección es un recurso separado de la guía de estilo de Yuli Delgado que aparece arriba. Fue publicada por la Asociación Nacional de Periodistas Hispanos (NAHJ) con el apoyo de la Asociación Nacional de Periodistas Lesbianas y Gays (NLGJA).</p>
+
+      <div class="nahj-attribution-banner" role="note">
+        <div class="nahj-attr-icon">&#9432;</div>
+        <div>
+          <h3>Fuente y atribución — contenido externo</h3>
+          <p>Este manual fue elaborado por NAHJ y NLGJA. <strong>No forma parte del corpus de análisis de Yuli Delgado ni del trabajo del Servicio de Traducción al Español (STNS).</strong> La guía de Yuli documenta decisiones de traducción reales tomadas a través de cientos de artículos periodísticos de NJ. Esta guía es un documento de referencia separado publicado por NAHJ para periodistas que cubren comunidades LGBTQIA+. Se incluye aquí como recurso complementario.
+          <br><br>
+          Fuente original: <a href="https://nahj.org/wp-content/uploads/2023/07/2023-LGBTQIA-Style-Guide-Final-Revised.pdf" target="_blank" rel="noopener">Manual de Estilo sobre las Comunidades LGBTQIA+ (PDF) — NAHJ, 2023</a></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="nahj-section">
+      <div class="nahj-eyebrow">Orientación general</div>
+      <h2 class="nahj-title">Consejos para la cobertura de comunidades LGBTQIA+</h2>
+      <div class="guidance-grid" id="nahj-guidance"></div>
+    </div>
+
+    <div class="nahj-section">
+      <div class="nahj-eyebrow">Terminología</div>
+      <h2 class="nahj-title">Glosario de términos</h2>
+      <p class="nahj-lead">105 términos extraídos del manual NAHJ. Busca por término o definición, filtra por letra.</p>
+
+      <div class="nahj-controls">
+        <input class="nahj-search" type="search" id="nahjSearch" placeholder="Buscar términos o definiciones..." aria-label="Buscar en el glosario LGBTQIA+">
+        <span class="nahj-count" id="nahjCount"></span>
+      </div>
+
+      <div class="alpha-bar" id="nahjAlpha" role="toolbar" aria-label="Filtrar por letra"></div>
+
+      <div class="term-list" id="nahjTerms"></div>
+      <div class="term-empty" id="nahjEmpty">No se encontraron términos.</div>
+    </div>
+
+  </div><!-- /.nahj-wrapper -->
+
   <footer>
     <p>Style guide by <a href="https://centerforcooperativemedia.org/spanishtranslation/" target="_blank" rel="noopener">Yuli Delgado / Spanish Translation News Service</a> · <a href="https://centerforcooperativemedia.org" target="_blank" rel="noopener">Center for Cooperative Media, Montclair State University</a></p>
     <p style="margin-top:.4rem;">Hawk News Service · <a href="explainer.html">How it works</a> · <a href="site/api-reference.html">API reference</a></p>
+    <p style="margin-top:.4rem; font-size:.75rem;">LGBTQIA+ style guide section: <a href="https://nahj.org" target="_blank" rel="noopener">NAHJ</a> + <a href="https://www.nlgja.org" target="_blank" rel="noopener">NLGJA</a>, 2023 — separate from STNS style guide above</p>
   </footer>
 
   <script>
@@ -565,6 +656,201 @@
       this.setAttribute('aria-expanded', !expanded);
       this.closest('.nav-inner').querySelector('.nav-links').classList.toggle('open');
     });
+  </script>
+
+  <!-- NAHJ LGBTQIA+ Style Guide — data and renderer. Separate from TERMS above. -->
+  <script>
+    const NAHJ_GUIDANCE = [
+      { title: "El uso de pronombres de personas trans", content: "Si la persona que es entrevistada es trans o no se identifica con un género u otro, lo adecuado es preguntarle su pronombre preferido. Sea consciente de que el pronombre de la persona tal vez no coincida con su nombre y apariencia física. No suponga que la persona es trans ni lo incluya si no es pertinente a la nota." },
+      { title: "La 'imparcialidad' en el reportaje", content: "Es común entre lxs periodistas incluir la opinión de las personas que están opuestas a la equidad de las personas LGBTQIA+ con sus contrapares heterosexuales y binarias bajo el argumento de la 'imparcialidad'. Sin embargo, incluir la opinión de personas que se oponen a la dignidad y a la igualdad de un grupo solo perpetúa mitos y estigmas. De ser incluidos sus 'argumentos', es importante explicar a lxs lectores por qué no son ciertos o válidos con datos." },
+      { title: "Mención de la orientación sexual o la identidad de género de una fuente", content: "Solo menciona la orientación sexual o la identidad de género de una fuente cuando sea estrictamente necesario. Por ejemplo, en historias de superación, de derechos humanos o de avances médicos. Cuidado con mencionar la orientación sexual o la identidad de género de una fuente en una nota criminal." },
+      { title: "El respeto trasciende la sala de redacción", content: "Es importante que como periodistas no tan solo respetemos a las comunidades LGBTQIA+ en nuestro trabajo, sino en cualquier espacio público, especialmente en las redes sociales. Evitemos comentarios discriminatorios, actitudes irrespetuosas u 'opiniones' ofensivas sobre las personas de identidades u orientaciones sexuales diversas." },
+      { title: "En la cobertura de crímenes de odio", content: "Evite reproducir las referencias estigmatizantes hacia las personas de las comunidades LGBTQIA+ que se desprenden de los informes policiales. Si la Policía describe de forma errónea la identidad de género u orientación sexual de la víctima, las autoridades podrían descartar el agravante de crimen de odio. Contacte y entreviste a personas de las comunidades LGBTQIA+ en la región donde ocurrió el crimen. Respete la identidad de género de la víctima y de las personas involucradas." },
+      { title: "Cuando escribimos sobre legislaciones relacionadas a las comunidades LGBTQIA+", content: "Al reportar sobre proyectos de ley y otras iniciativas legislativas, asegúrese de no reproducir términos y conceptos erróneos. Conocer las definiciones correctas resulta indispensable para evitar tergiversaciones. Se recomienda identificar y corroborar la fiabilidad de las fuentes que cita la propuesta legislativa." }
+    ];
+
+    const NAHJ_TERMS = [
+      { term: "Abiertamente gay/lesbiana/bisexual", def: "Como calificativo, 'abiertamente' por lo general no es relevante; su uso se debe restringir a los casos en que el conocimiento público de la orientación sexual de un individuo es relevante. 'Abiertamente' es el término adecuado, en lugar de 'declarado', 'admitido', 'confesado' o 'practicante'.", letter: "A" },
+      { term: "Activo", def: "En el contexto de la sexualidad, se utiliza para referirse a la persona que asume la función de penetrar durante la actividad sexual. Por lo general, se le estereotipa como una persona masculina y dominante, una noción prejuiciada de la actividad sexual.", letter: "A" },
+      { term: "Afeminado", def: "En el contexto heteronormativo, es un hombre con proyección de género (rasgos, gestos o conducta) considerada socialmente como propia de las mujeres. Es un término que usualmente se utiliza de manera despectiva.", letter: "A" },
+      { term: "Afirmación de género", def: "El proceso a través del cual una persona reconoce, acepta y expresa su identidad de género. Puede incluir cirugías, terapia hormonal, servicios de salud mental y/o cambios de identidad legal. Evite el término 'cambio de sexo'. Vea Terapia de conversión; Transgénero; Transexual.", letter: "A" },
+      { term: "Agénero", def: "La persona que no se identifica con ningún género, entre las categorías masculino o femenino, generalmente asignadas al nacer. Agénero no es lo mismo que no binario. Vea no binario; sexo asignado al nacer.", letter: "A" },
+      { term: "Aliado/a/e", def: "La persona que no se identifica con ninguna de las identidades bajo la sombrilla LGBTQIA+, pero apoya a la comunidad y sus luchas.", letter: "A" },
+      { term: "Andrógino/a/e", def: "La persona que rechaza el modelo de conducta binario y expresa su género a través de apariencias y comportamientos que no están asociados con los estereotipos del género percibido.", letter: "A" },
+      { term: "Asexual", def: "La orientación sexual de una persona que no siente atracción sexual por otras personas, pero sí puede relacionarse afectiva o románticamente. Es el término que representa la 'A' en el acrónimo LGBTQIA+.", letter: "A" },
+      { term: "Bandera de arcoíris", def: "El símbolo de orgullo de las comunidades LGBTQIA+, creada en San Francisco por el artista y activista Gilbert Baker a finales de los 70. La bandera se compone de seis franjas horizontales en el orden rojo, naranja, amarillo, verde, azul y violeta.", letter: "B" },
+      { term: "Bifobia", def: "Un término que se refiere al miedo, odio o aversión a la bisexualidad o personas bisexuales. Vea Bisexual.", letter: "B" },
+      { term: "Bisexual", def: "La persona que puede sentirse atraída sexual o afectivamente hacia personas de ambos sexos. Representa la 'B' en el acrónimo LGBTQIA+.", letter: "B" },
+      { term: "Ceremonia conyugal", def: "Una reunión formal, similar a un matrimonio, que reconoce el compromiso que une a dos personas del mismo sexo. Vea Matrimonio; Matrimonio Civil; Matrimonio Igualitario.", letter: "C" },
+      { term: "Cisgénero", def: "El término para identificar la concordancia entre el sexo que se nos asignó al nacer y nuestra identidad de género.", letter: "C" },
+      { term: "Cirugías de afirmación de género", def: "Una variedad de procedimientos médicos que alinean la incomodidad e incongruencia entre el sexo y el género asignado al nacer con el que la persona se identifica. Vea Afirmación de género; Transgénero; Transexual.", letter: "C" },
+      { term: "Crimen de odio contra una persona de la comunidad LGBTQIA+", def: "Un delito violento motivado por la orientación sexual o la identidad de género real o percibida de la persona. 'Odio' significa prejuicio contra personas o grupos con características específicas definidas por la ley.", letter: "C" },
+      { term: "Cross-dresser", def: "En inglés, la persona que usa ropa generalmente asociada con miembros del sexo opuesto. No necesariamente está relacionado con la orientación sexual o identidad de género. No es sinónimo a transgénero o transformista. Vea Travesti; Transformista; Transgénero.", letter: "C" },
+      { term: "Derechos especiales", def: "Un término politizado que usan las personas opuestas a los derechos civiles de las personas LGBTQIA+. Es preferible decir: 'derechos civiles para la comunidad LGBTQIA+', 'igualdad de derechos' o 'derechos para la comunidad LGBTQIA+'.", letter: "D" },
+      { term: "Disforia de género", def: "Una profunda sensación de incomodidad o aflicción que puede ocurrir cuando la identidad de género de una persona no coincide o difiere del sexo asignado al nacer o de las características físicas relacionadas con el sexo.", letter: "D" },
+      { term: "Doble espíritu", def: "Persona de la comunidad indígena de Norteamérica que posee espíritu masculino y espíritu femenino. Algunos se auto-identifican como lesbiana, gay, bisexual o transgénero. No debe utilizarse como un término generalizado para todas las comunidades indígenas de Norteamérica LGBTQIA+.", letter: "D" },
+      { term: "Don't ask, don't tell", def: "Manera abreviada de referirse al reglamento militar 'No pregunte, no cuente, no averigüe, no acose', establecido en 1993 para las personas gay, lesbianas y bisexuales que sirven en las fuerzas armadas.", letter: "D" },
+      { term: "Down low", def: "En inglés, el término utilizado para referirse a hombres que tienen sexo con otros hombres ocultamente, a menudo mientras mantienen relaciones con mujeres, sin identificarse como gay o bisexual. Emplee el término con precaución.", letter: "D" },
+      { term: "Drag / Draga", def: "Traje del género del sexo opuesto. Vea Transformista; 'Drag king'; 'Drag queen'. 'Drag king': representación artística donde la mujer interpreta una personalidad masculina con exageración. 'Drag queen': representación donde el hombre interpreta una personalidad femenina con exageración.", letter: "D" },
+      { term: "Dyke", def: "En inglés, fue originalmente un término despectivo para una lesbiana con apariencia masculina. Algunas de ellas lo usan con connotaciones positivas. Precaución: sigue siendo extremadamente ofensivo cuando se usa como epíteto. Vea Tortillera/torta; Arepera; Marimacha; Pata.", letter: "D" },
+      { term: "Elle/Elles", def: "Pronombre para referirse en tercera persona sin identificar un género gramatical. Utilizado también para referirse a personas que se autoidentifican como no binarias. Vea Lenguaje inclusivo; No binario; Pronombres.", letter: "E" },
+      { term: "En el armario (en el clóset)", def: "La persona que mantiene en secreto su orientación sexual o identidad de género. Vea Salir del armario (salir del clóset).", letter: "E" },
+      { term: "Esposa / Esposo", def: "Términos aceptables para personas comprometidas o legalmente casadas con su pareja. Es preferible preguntar cuál término prefiere utilizar la persona. Vea Pareja.", letter: "E" },
+      { term: "Estereotipo", def: "La idea vaga y sin juicio crítico, generalmente negativa, acerca de las características, actividades, cualidades o roles asignados a un grupo. En el contexto LGBTQIA+ se relaciona a la identidad de género, orientación sexual, prácticas sexuales, estado de salud, entre otros.", letter: "E" },
+      { term: "Estigma", def: "La desvalorización de las personas de ciertos grupos por una característica que se considera inferior, anormal, diferente, inmoral o peligrosa.", letter: "E" },
+      { term: "Estilo de vida", def: "Un término utilizado para describir de manera despectiva o errónea la orientación sexual o identidad de género de una persona LGBTQIA+. Vea Orientación sexual; Preferencias sexuales.", letter: "E" },
+      { term: "Ex-gay", def: "Término erróneo que se refiere al movimiento que promueve cambiar la orientación de una persona homosexual o lesbiana hacia una heterosexual, basado en perspectivas religiosas. Vea Terapia de conversión.", letter: "E" },
+      { term: "Expresión de género", def: "La manera en que una persona actúa, viste, habla y se comporta para comunicar el género con el que se identifica. La expresión de género es fluida y no corresponde necesariamente al sexo asignado al nacer. Vea Identidad de género.", letter: "E" },
+      { term: "Familia", def: "El término correcto para identificar familias con padres/madres LGBTQIA+. Identifique la orientación de los padres/las madres solo cuando sea relevante. No use el término 'familias homosexuales/gays'.", letter: "F" },
+      { term: "Femme", def: "Una descripción de la expresión de género femenino de una persona LGBTQIA+. Cualquier persona de cualquier identidad de género u orientación sexual puede describir su expresión de género como femme.", letter: "F" },
+      { term: "Gay", def: "Adjetivo de uso común que equivale al término 'homosexual' para referirse a hombres atraídos por otros hombres. Representa la 'G' en el acrónimo LGBTQIA+. Para referirse a la mujer que siente atracción hacia otra mujer, es preferible usar 'lesbiana'. Evite el uso como sustantivo.", letter: "G" },
+      { term: "Género", def: "Las características que social y culturalmente han sido identificadas como 'masculinas' y 'femeninas' en el contexto heteronormativo, basadas típicamente en el sexo asignado. Una persona puede ser agénero, andrógina o no binaria.", letter: "G" },
+      { term: "HAM", def: "Siglas que significan 'de hombre a mujer'. Una persona transgénero que tiene una identidad biológica de varón pero una identidad de género femenino.", letter: "H" },
+      { term: "Heteronormatividad", def: "La expectativa, creencia o estereotipo de que todas las personas son, o deben ser, heterosexuales, o de que esta condición es la única natural, normal o aceptable.", letter: "H" },
+      { term: "Homofobia", def: "Miedo, odio o aversión a la homosexualidad, a gays y a lesbianas. Vea Bifobia; Transfobia.", letter: "H" },
+      { term: "Homosexual", def: "Como sustantivo, una persona que se siente atraída por personas del mismo sexo. Se recomienda utilizar en contextos médicos o en referencia a actividades sexuales. Vea Gay; Lesbiana.", letter: "H" },
+      { term: "HSH", def: "Siglas que significan 'hombres que tienen sexo con hombres'. Término usado generalmente en comunidades de color para describir a hombres que tienen sexo secretamente con otros hombres mientras mantienen relaciones íntimas con mujeres. No es sinónimo de 'bisexual'.", letter: "H" },
+      { term: "Identidad de género", def: "Cómo la persona se siente en su interior y cómo expresa su género a través de su comportamiento y apariencia personal.", letter: "I" },
+      { term: "Intersexual (adjetivo)", def: "Cuando los órganos reproductivos y genitales de una persona no se desarrollan según lo que se considera femenino y masculino. Representa la 'I' en el acrónimo LGBTQIA+.", letter: "I" },
+      { term: "Joto", def: "Término despectivo para los hombres gay, pero últimamente algunos de ellos lo usan con connotaciones positivas. Precaución: sigue siendo extremadamente ofensivo cuando se usa como epíteto. Vea Marica/Maricón.", letter: "J" },
+      { term: "Jotería", def: "Término usado entre la comunidad Latina LGBTQIA+ que significa amistad y confianza entre sí. Utilizado en connotaciones positivas y refleja el orgullo de ser LGBTQIA+.", letter: "J" },
+      { term: "Lesbiana", def: "La mujer que siente atracción sexual y afectiva hacia otra mujer. Representa la 'L' en el acrónimo LGBTQIA+.", letter: "L" },
+      { term: "LGBTQIA+", def: "Siglas que significan 'lesbiana, gay, bisexual, trans, queer, intersexuales, asexuales y otras identidades no heteronormativas'. La letra Q también se coloca al final de LGBT para referirse a una persona que explora su orientación sexual o identidad de género.", letter: "L" },
+      { term: "MAH", def: "Sigla que significa 'de mujer a hombre'. Una persona transgénero que tiene una identidad biológica de mujer pero una identidad de género masculina. Vea Identidad de género e Intersexual.", letter: "M" },
+      { term: "Malgenerizar", def: "Una forma de transfobia que consiste en dirigirse a las personas trans por un género equivocado. Puede ocurrir por accidente cuando se asume el género de una persona por su apariencia o por su nombre.", letter: "M" },
+      { term: "Marica/Maricón", def: "El término despectivo para los hombres gay. Precaución: sigue siendo extremadamente ofensivo cuando se usa como epíteto. Equivalentes derogatorios: joto, afeminado, puñal, 'homo'. Evite usarlo.", letter: "M" },
+      { term: "Marimacha", def: "Palabra usada en varios países de Latinoamérica para referirse a una lesbiana. Evite usarlo. Vea 'Dyke'.", letter: "M" },
+      { term: "Matrimonio", def: "El modo más neutro es evitar cualquier adjetivo que modifica la palabra 'matrimonio'. En situaciones en que sea necesaria una distinción, se puede emplear 'matrimonio entre parejas del mismo sexo' o 'matrimonio del mismo sexo'. Vea Unión civil; Pareja doméstica.", letter: "M" },
+      { term: "Matrimonio igualitario", def: "El matrimonio entre personas del mismo sexo, que reconoce legal o socialmente un matrimonio formado por contrayentes del mismo sexo. Vea Matrimonio; Matrimonio civil; Unión civil.", letter: "M" },
+      { term: "Monosexismo", def: "La estructura social que opera bajo la presunción de que todas las personas son heterosexuales u homosexuales. Monosexismo borra a todas aquellas que no lo son, como las bisexuales.", letter: "M" },
+      { term: "Necrónimo", def: "Significa literalmente 'nombre muerto'. Se usa en referencia al nombre asignado a una persona al nacer, por lo general no utilizado tras una transición de género.", letter: "N" },
+      { term: "No binario/a/e", def: "El adjetivo utilizado por personas que construyen o manifiestan su identidad de género y/o expresión de género fuera de las categorías binarias de género masculino y femenino.", letter: "N" },
+      { term: "Obituarios", def: "Cuando se informa sobre los sobrevivientes de una persona lesbiana, gay, bisexual o transgénero que ha fallecido, mencione a la pareja de la persona fallecida en un orden equivalente al del esposo o la esposa de difuntos heterosexuales.", letter: "O" },
+      { term: "Omnisexual", def: "Una persona que siente atracción hacia personas de todos los géneros y sexos. A diferencia de los pansexuales, reconocen el género de su potencial compañero/a/e.", letter: "O" },
+      { term: "Orientación sexual", def: "La atracción sexual natural. Está relacionada con las personas que nos atraen y que deseamos emocional y sexualmente. Utilice este término en vez de 'preferencia sexual'. Vea Estilo de vida.", letter: "O" },
+      { term: "Orgullo (día y/o desfile del)", def: "El término se refiere al sentido de autoafirmación que sienten muchas personas LGBTQIA+ y alude a las celebraciones que conmemoran las protestas de la taberna Stonewall Inn del 28 de junio de 1969 en Nueva York.", letter: "O" },
+      { term: "Padre/Madre", def: "Además de 'papá' o 'mamá', caracteriza una persona gay, lesbiana, bisexual, o trans criando un hijo o hijos. En una entrevista, se recomienda preguntar qué término prefiere. Vea Familia.", letter: "P" },
+      { term: "Pareja", def: "Término comúnmente aceptable para una persona que se encuentra en una relación gay o lésbica de parejas del mismo sexo. Vea Relaciones gays/lésbicas.", letter: "P" },
+      { term: "Pareja doméstica", def: "Dos cohabitantes que no están casados. Puede estar integrada por personas de sexos opuestos o del mismo sexo. El término se utiliza típicamente en conexión con asuntos legales y de pólizas de seguro.", letter: "P" },
+      { term: "Pansexual", def: "Una persona que siente atracción emocional, sexual o romántica independientemente del género de la persona. A diferencia de los omnisexuales, no toman en cuenta el género de su potencial pareja.", letter: "P" },
+      { term: "Pato", def: "Término despectivo usado en varios países de Latinoamérica para referirse a hombres gay. Evite usarlo.", letter: "P" },
+      { term: "Poliamor/poliamoroso/a", def: "Describe a la persona que mantiene más de una relación íntima y afectiva al mismo tiempo, con el pleno conocimiento de todas las personas involucradas.", letter: "P" },
+      { term: "Polisexual", def: "La persona que siente interés sexual, afectivo y amoroso hacia más de un género, pero no todos. No es lo mismo que pansexualidad u omnisexualidad.", letter: "P" },
+      { term: "Practicante", def: "Evite este término para describir la identidad u orientación sexual de una persona. Vea Orientación sexual; Identidad de género.", letter: "P" },
+      { term: "Preferencia sexual", def: "Preferible evitarla. Implica que la sexualidad es el resultado de una decisión personal. Vea Orientación sexual.", letter: "P" },
+      { term: "Puto", def: "Un término despectivo utilizado para referirse a hombres gay. No debe usarlo.", letter: "P" },
+      { term: "Queen", def: "En inglés, originalmente un término derogatorio alusivo a algún hombre gay afeminado. Hoy en día es aceptado y usado entre la comunidad LGBT. Se considera ofensivo cuando se emplea como epíteto.", letter: "Q" },
+      { term: "Queer", def: "Representa la 'Q' en el acrónimo LGBTQIA+. La identidad queer es un espacio que permite la exploración de género y sexualidad fuera de una etiqueta definida. En inglés era originalmente un término derogatorio. Sigue siendo ofensivo cuando se emplea como epíteto.", letter: "Q" },
+      { term: "Questioning", def: "En inglés, el término utilizado para describir a las personas que están en proceso de explorar su orientación sexual o su identidad de género.", letter: "Q" },
+      { term: "Relaciones gay/lésbica", def: "Se usa terminología variada para describir estas uniones. Si es posible, pregunte a la persona el término que prefiere; si no, 'pareja' es un término aceptable. Vea Pareja.", letter: "R" },
+      { term: "Sacar del armario (del clóset)", def: "Dar a conocer la orientación sexual o identidad de género de alguien que ha elegido mantener en privado esa información, lo cual es una práctica incorrecta porque se violenta la intimidad de la persona. Vea Salir del armario; En el armario.", letter: "S" },
+      { term: "Salir del armario (del clóset)", def: "Aceptación personal y decisión de dejarse saber a otros sobre una orientación sexual o identidad de género previamente oculta. Vea En el armario; Sacar del armario.", letter: "S" },
+      { term: "Sexo asignado al nacer", def: "La frase utilizada para referirse al sexo de una persona designado al nacer, generalmente basada en la anatomía externa, desde una perspectiva exclusivamente biológica.", letter: "S" },
+      { term: "Sodomía", def: "Término usado para describir varios actos sexuales que algunos países consideran ilegales. No es sinónimo de sexo entre personas del mismo sexo. La definición legal difiere de estado a estado.", letter: "S" },
+      { term: "Stonewall", def: "La taberna Stonewall Inn en Greenwich Village, Nueva York, donde hubo protestas el 28 de junio de 1969. Hoy en día Stonewall es considerada la cuna del movimiento contemporáneo por los derechos civiles de la gente LGBTQIA+.", letter: "S" },
+      { term: "Straight", def: "En inglés, una persona heterosexual, cuya orientación sexual y afectiva se dirige hacia una persona del sexo opuesto.", letter: "S" },
+      { term: "Terapia de conversión", def: "Un término erróneo que se refiere a la supuesta psicoterapia destinada a eliminar o suprimir los deseos sexuales que una persona tiene hacia personas del mismo sexo. El consenso profesional es que la orientación sexual no es modificable. Las Naciones Unidas han concluido que estas terapias pueden equivaler a formas de tortura.", letter: "T" },
+      { term: "Tortillera/Torta", def: "Término despectivo usado en varios países de Latinoamérica para referirse a una lesbiana. Evite usarlo. Vea 'dyke'.", letter: "T" },
+      { term: "Transfobia", def: "El miedo, la aversión o rechazo de personas transgénero o transexual. Vea 'transgender'; Transgénero; Transexual.", letter: "T" },
+      { term: "Transformista", def: "Un artista que se viste y actúa de manera comúnmente asociada con personas del género de sexo opuesto. No es sinónimo de transexual o 'cross-dresser'. Vea 'Drag'; 'Drag king/drag queen'.", letter: "T" },
+      { term: "Transgénero", def: "La persona cuya identidad de género, expresión de género o conducta no se ajusta a aquella generalmente asociada con el sexo que se les asignó al nacer. Es indispensable utilizar el lenguaje de género y las etiquetas que la persona prefiere para referirse a sí misma. Incluye a las personas transgénero preoperadas, postoperadas y sin operarse.", letter: "T" },
+      { term: "Transexual", def: "Término usualmente utilizado para designar a las personas que han concluido su transición. Si la persona que está entrevistando se identifica con el término, es recomendable usar el término 'transgénero' en relación a su identidad de género. Vea Transgénero; Cirugía de reasignación de género.", letter: "T" },
+      { term: "Transición", def: "El proceso de cambiar el sexo de una persona, lo cual puede incluir cirugía, terapia hormonal y cambios en la identidad legal.", letter: "T" },
+      { term: "Travesti", def: "Un término que se centra en el acto de vestirse con ropa asociada al género opuesto al de la persona. No es sinónimo de transformista. Evite usarlo. Vea Transgénero; Transexual; 'Cross-dresser'; Transformista.", letter: "T" },
+      { term: "Tranny", def: "Término despectivo para una persona transgénero, aunque últimamente es utilizado con una connotación positiva por algunos. Precaución: aún es extremadamente ofensivo cuando se usa como epíteto.", letter: "T" },
+      { term: "Triángulo rosa", def: "Símbolo que los hombres gay debían portar en los campos de concentración nazis durante la Segunda Guerra Mundial; ahora es incorporado, en ocasiones, en la bandera arcoíris de las comunidades LGBTQIA+.", letter: "T" },
+      { term: "Unión civil", def: "Una unión civil concede algunos de los derechos disponibles a los matrimonios en áreas como impuestos estatales, decisiones médicas y disposición de herencias. No es lo mismo que el matrimonio. Vea Matrimonio; Matrimonio igualitario; Relaciones gay/lésbicas.", letter: "U" },
+      { term: "Uretroplastia", def: "Una cirugía de afirmación de género que crea el canal uretral para la micción de pie. No todas las personas de experiencia trans recurren a este procedimiento.", letter: "U" },
+      { term: "Vaginoplastia", def: "Una cirugía de afirmación de género que construye una vagina mediante tejidos del pene o injertos del colón.", letter: "V" },
+      { term: "Vaginectomía", def: "Una cirugía de afirmación de género que consiste en extirpar la vagina.", letter: "V" },
+      { term: "Variante de género", def: "El término que se refiere a una persona que no se ajusta a las normas del género impuestas por la sociedad o a estereotipos basados en el sexo asignado al nacer.", letter: "V" },
+      { term: "Vendarse el pecho", def: "El proceso en el que se vendan los senos para ceñir, minimizar u ocultar su apariencia para manejar o disminuir la disforia de género.", letter: "V" },
+      { term: "Violencia basada en el prejuicio", def: "Cuando aplica a la violencia contra las personas LGBTQIA+, el concepto se refiere a racionalizaciones de reacciones negativas frente a expresiones de orientaciones sexuales o identidades de género diversas. Este tipo de violencia tiene un impacto simbólico amplificado.", letter: "V" },
+      { term: "Violencia intragénero", def: "La violencia entre parejas del mismo género, incluyendo sexual, física y psicológica, entre otras formas de abuso.", letter: "V" },
+      { term: "Visibilidad", def: "La visibilidad de un grupo en términos de representación en los medios de comunicación y la sociedad en general.", letter: "V" }
+    ];
+
+    // Render general guidance cards
+    (function renderGuidance() {
+      const container = document.getElementById('nahj-guidance');
+      if (!container) return;
+      NAHJ_GUIDANCE.forEach(function(item) {
+        const card = document.createElement('div');
+        card.className = 'guidance-card';
+        const h4 = document.createElement('h4');
+        h4.textContent = item.title;
+        const p = document.createElement('p');
+        p.textContent = item.content;
+        card.appendChild(h4);
+        card.appendChild(p);
+        container.appendChild(card);
+      });
+    })();
+
+    // Alpha bar
+    (function renderAlpha() {
+      const bar = document.getElementById('nahjAlpha');
+      if (!bar) return;
+      const used = new Set(NAHJ_TERMS.map(function(t) { return t.letter; }));
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').forEach(function(ch) {
+        const btn = document.createElement('button');
+        btn.className = 'alpha-btn';
+        btn.textContent = ch;
+        if (!used.has(ch)) {
+          btn.disabled = true;
+        } else {
+          btn.addEventListener('click', function() {
+            const active = btn.classList.contains('active');
+            document.querySelectorAll('.alpha-btn').forEach(function(b) { b.classList.remove('active'); });
+            if (!active) btn.classList.add('active');
+            nahjRender();
+          });
+        }
+        bar.appendChild(btn);
+      });
+    })();
+
+    function nahjRender() {
+      const q = (document.getElementById('nahjSearch').value || '').trim().toLowerCase();
+      const activeLetter = (document.querySelector('.alpha-btn.active') || {}).textContent || '';
+
+      const filtered = NAHJ_TERMS.filter(function(t) {
+        if (activeLetter && t.letter !== activeLetter) return false;
+        if (!q) return true;
+        return t.term.toLowerCase().includes(q) || t.def.toLowerCase().includes(q);
+      });
+
+      const container = document.getElementById('nahjTerms');
+      const empty = document.getElementById('nahjEmpty');
+      const count = document.getElementById('nahjCount');
+
+      count.textContent = filtered.length + ' t\u00e9rmino' + (filtered.length !== 1 ? 's' : '');
+
+      while (container.firstChild) container.removeChild(container.firstChild);
+
+      if (filtered.length === 0) {
+        empty.style.display = 'block';
+        return;
+      }
+      empty.style.display = 'none';
+
+      const frag = document.createDocumentFragment();
+      filtered.forEach(function(t) {
+        const card = document.createElement('div');
+        card.className = 'term-entry';
+        const h4 = document.createElement('h4');
+        h4.textContent = t.term;
+        const p = document.createElement('p');
+        p.textContent = t.def;
+        card.appendChild(h4);
+        card.appendChild(p);
+        frag.appendChild(card);
+      });
+      container.appendChild(frag);
+    }
+
+    document.getElementById('nahjSearch').addEventListener('input', nahjRender);
+    nahjRender();
   </script>
 </body>
 </html>
