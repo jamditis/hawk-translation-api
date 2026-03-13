@@ -145,21 +145,47 @@ identity: joe@officejawn
 
 ## Hook architecture
 
-### SessionStart — load knowledge
+Lesson extraction uses a three-phase approach to avoid the `SessionEnd` timeout constraint (default 1.5s, capped by `CLAUDE_CODE_SESSIONEND_HOOKS_TIMEOUT_MS`). No heavy LLM work happens at session end.
+
+```
+During session:  UserPromptSubmit → detect correction patterns → accumulate candidates
+At session end:  SessionEnd → write candidates + bump validated_count (pure file I/O, <1.5s)
+Next session:    SessionStart → curate pending candidates via claude -p → load lessons
+```
+
+### SessionStart — load knowledge + curate pending lessons
 
 **Trigger:** SessionStart (command hook)
-**Token cost:** Low (runs once)
-**Timeout:** 10s (default is fine — this is fast)
+**Token cost:** Low normally; medium if pending lessons exist from previous session
+**Timeout:** 60s (needs headroom for optional `claude -p` curation)
+
+**Phase 1: Curate pending lessons from previous session**
+
+1. Check for `.autocontext/cache/pending-lessons.json`. If it exists, a previous session flagged lesson candidates.
+2. Call `claude -p` with the curator prompt (see below) and the pending candidates. This runs at session start, where there's no tight timeout.
+3. For each curated lesson:
+   - If approved: add to `lessons.json` with confidence 0.5
+   - If rejected: discard
+   - If duplicate of existing: skip
+4. Delete `pending-lessons.json` after processing.
+5. Regenerate `playbook.md` via `scripts/generate-playbook.py`.
+
+If the user chose "always ask before persisting" in `/autocontext-setup`, the curated lessons are shown via `/autocontext-review` instead of auto-persisting.
+
+If `claude -p` fails or times out, leave `pending-lessons.json` for the next session to retry.
+
+**Phase 2: Load lessons for this session**
 
 1. Check for `.autocontext/lessons.json` in project root. If missing or malformed JSON, warn and skip (don't crash the session).
 2. Filter: `confidence >= confidence_threshold`, `deleted != true`, machine tags match current host
 3. Rank by relevance:
-   - Lessons whose tags match recently changed files rank highest. Uses `git diff --name-only HEAD~5 2>/dev/null` — if this fails (fresh repo, detached HEAD, fewer than 5 commits), falls back to `git diff --name-only HEAD 2>/dev/null`, then skips relevance ranking entirely.
+   - Lessons whose tags match recently changed files rank highest. Uses `git diff --name-only HEAD~5 2>/dev/null` — if this fails (fresh repo, detached HEAD, fewer than 5 commits), falls back to `git diff --name-only HEAD 2>/dev/null`, then skips relevance ranking entirely. This is a heuristic — branch switches and rebases may produce noisy results, which is acceptable.
    - Then by confidence (descending)
    - Then by recency (most recently validated first)
 4. Take top `max_session_lessons` lessons
-5. Write filtered set to `.autocontext/cache/session-lessons.json` (for PreToolUse to read without re-parsing the full file)
-6. Format as a context block injected into the session
+5. Write filtered set to `.autocontext/cache/session-lessons.json` (cached for PreToolUse to read without re-parsing)
+6. Check if merge driver `autocontext-union` is configured in local git config. If not, warn.
+7. Format as a context block injected into the session
 
 Output format:
 ```
@@ -172,10 +198,12 @@ Top lessons for current work area:
 
 ### PreToolUse — catch known mistakes and enforce test quality
 
-**Trigger:** PreToolUse (prompt-based hook)
-**Token cost:** Medium (runs on every tool call, but the hook itself decides relevance)
+**Trigger:** PreToolUse (prompt-based hook, filtered to `Edit`, `Write`, `Bash` only)
+**Token cost:** Medium (runs on Edit/Write/Bash tool calls only — not Read/Glob/Grep/Agent)
 
 This is a **prompt-based hook**, not a command hook. The hook prompt has access to the pending tool call and can reason about whether lessons apply. Command hooks can't do the semantic matching needed here.
+
+**Scope restriction:** Only fires on `Edit`, `Write`, and `Bash` tool calls. `Read`, `Glob`, `Grep`, and `Agent` calls are excluded — they don't modify state and don't benefit from warnings. This keeps token cost proportional to actual changes, not read-heavy exploration.
 
 Hook prompt:
 
@@ -184,27 +212,30 @@ You have access to the following project lessons from .autocontext/cache/session
 When the user is about to edit, write, or run a command, check if any lessons are relevant
 to the file or command being touched. If so, inject a brief warning.
 
-For test files (matching *test*, *spec*, *_test.*, *.test.*), also apply these checks:
+For test files (matching *test*, *spec*, *_test.*, *.test.*), also apply these advisory checks:
 - Are assertions based on desired behavior (from the task/spec), not current implementation output?
 - Is there at least one error/edge case?
 - Would this test fail if the feature broke?
-- Are assertions specific (not bare assert True / is not None / len > 0)?
+- Are mocked return values being used as the expected assertions?
 
 Only inject warnings when genuinely relevant. Do not warn on every tool call.
 Cap at 3 warnings per tool call.
 ```
 
 The prompt-based hook has inherent token cost since it runs through the LLM. To manage this:
+- Only fires on Edit/Write/Bash (not read-only tools)
 - The session-lessons cache (written by SessionStart) keeps the lesson set small
 - The hook prompt itself is short — the lessons are the bulk
 - Users who find the cost too high can disable it in `config.yaml` (`pretooluse_hook: false`)
 
-### PostToolUse — track performance
+### PostToolUse — track performance + deterministic test checks
 
-**Trigger:** PostToolUse (command hook, filtered to test/build commands)
-**Token cost:** Low (only fires when command matches patterns)
+**Trigger:** PostToolUse (command hook)
+**Token cost:** Low (only fires when command/file matches patterns)
 
-The command hook checks if the Bash command matches known test/build patterns: `pytest`, `npm test`, `npm run test`, `npm run build`, `cargo test`, `go test`, `vitest`, `jest`, `make test`.
+Two responsibilities:
+
+**Performance tracking** (fires on Bash commands matching test/build patterns: `pytest`, `npm test`, `npm run test`, `npm run build`, `cargo test`, `go test`, `vitest`, `jest`, `make test`):
 
 1. Parse output for timing information and pass/fail counts
 2. Compare against baselines stored in `config.yaml` under `baselines:`
@@ -213,36 +244,59 @@ The command hook checks if the Bash command matches known test/build patterns: `
 
 Only active when `performance_baselines: true` in config.
 
-### SessionEnd — extract and persist lessons
+**Deterministic test quality checks** (fires on Edit/Write of test files):
+
+After a test file is written or edited, run fast regex checks on the file contents:
+
+| Rule | Detection method |
+|------|-----------------|
+| `no_assert_true` | Regex scan for `assert True`, `assert result is not None`, `assert len(result) > 0`, `self.assertTrue(True)` |
+| `no_happy_path_only` | Count test methods — if all method names start with `test_success` / `test_valid` / `test_happy` and none contain `error` / `fail` / `invalid` / `edge`, flag (advisory — may produce false positives) |
+
+These run on the *resulting* file contents (PostToolUse has the written file), not on the intended input (PreToolUse). This gives accurate detection. No LLM cost.
+
+### UserPromptSubmit — detect lesson candidates
+
+**Trigger:** UserPromptSubmit (command hook)
+**Token cost:** Negligible (fast pattern matching on user message text)
+
+Lightweight correction detection that runs after each user message. No LLM call — just pattern matching.
+
+Scans user message text for correction patterns:
+- "no, use X instead" / "that's wrong" / "don't do that" / "actually it should be"
+- "remember that" / "remember this" / "keep in mind"
+- "the correct way is" / "it needs to be" / "you forgot that"
+
+When a pattern matches:
+1. Extract the user message and the preceding assistant response (for context)
+2. Append a candidate entry to `.autocontext/cache/pending-lessons.json`:
+   ```json
+   {
+     "user_message": "no, POST /api/ideas/ needs a trailing slash",
+     "preceding_context": "I'll call POST /api/ideas without...",
+     "files_touched": ["api/routes.py"],
+     "timestamp": "2026-03-13T22:15:00Z"
+   }
+   ```
+3. No LLM reasoning at this stage — just capture the raw signal
+
+Candidates are curated by `claude -p` at the *next* session's SessionStart (see above).
+
+### SessionEnd — persist session metadata
 
 **Trigger:** SessionEnd (command hook)
-**Token cost:** Medium-high (runs once, invokes `claude -p` subprocess)
-**Timeout:** 120s (extended — transcript analysis takes time)
+**Token cost:** Negligible (pure file I/O)
+**Timeout:** Fits within default 1.5s — no LLM calls
 
-This uses `SessionEnd`, not `Stop`. `Stop` is a decision gate (approve/block); `SessionEnd` fires after the session is confirmed ending and is designed for cleanup and state preservation.
+Pure file operations only:
 
-The hook uses `claude -p` subprocess to analyze the session for lesson candidates. This is the most expensive hook — feeding transcript context to Claude for reasoning. To manage cost:
-- Extract only the last 50 tool calls from the transcript (not the full session)
-- Cap transcript input to 20,000 characters
-- The `claude -p` call has a 90s timeout
+1. Bump `validated_count` and `last_validated` on any lessons from `session-lessons.json` that were loaded this session and not contradicted
+2. Write session metadata to `pending-lessons.json` (append, not overwrite):
+   - Session timestamp, identity, files touched
+   - Any correction candidates accumulated by UserPromptSubmit
+3. Regenerate `playbook.md` via `scripts/generate-playbook.py`
 
-Process:
-
-1. Read the session transcript (available via `$CLAUDE_SESSION_TRANSCRIPT_PATH` or parsed from session data)
-2. Extract the last 50 tool calls and any user corrections
-3. Call `claude -p` with the curator prompt (see below) and the extracted context
-4. Parse the output for lesson candidates
-5. For each candidate, check against existing `lessons.json`:
-   - Exists and agrees: bump `validated_count`, `confidence`, `last_validated`
-   - Exists and contradicts: add a `needs_review: true` flag, don't auto-modify
-   - New: add with confidence 0.5
-   - Tombstoned (`deleted: true`): skip (don't resurrect deleted lessons)
-6. Write updated `lessons.json`
-7. Regenerate `playbook.md` via `scripts/generate-playbook.py`
-
-If `claude -p` times out or fails, the hook exits cleanly — no lessons are lost, the session just doesn't extract new ones.
-
-If the user chose "always ask before persisting" in `/autocontext-setup`, the extracted lessons are written to `.autocontext/cache/pending-lessons.json` instead, and the user runs `/autocontext-review` to approve them.
+No `claude -p` call. No transcript analysis. This fits comfortably in the 1.5s SessionEnd timeout.
 
 ## Curator prompt
 
@@ -317,8 +371,8 @@ lessons.json merge=autocontext-union
 The merge driver (`scripts/merge-driver.sh`):
 1. Parse both versions as JSON arrays
 2. Union by lesson ID (both sides' new lessons get kept)
-3. For lessons modified on both sides (e.g., both bumped `validated_count`), take the higher count and more recent `last_validated`
-4. Preserve tombstones (`deleted: true`) from either side
+3. For lessons modified on both sides: use additive merge for counters (`validated_count` = sum of both increments from common ancestor), take most recent `last_validated`, take higher `confidence`
+4. Preserve tombstones (`deleted: true`) from either side — if either side deleted, it stays deleted
 5. Write merged result
 
 **Setup requirement:** Git merge drivers must be configured in each developer's local `.git/config` — `.gitattributes` only declares which files use the driver. `/autocontext-init` installs the driver automatically. If a developer clones without running init, the SessionStart hook detects the missing merge driver and warns:
@@ -337,7 +391,9 @@ Identity comes from `config.local.yaml` (gitignored), the global `~/.claude/auto
 
 ### Deletion propagation
 
-Deleted lessons use a tombstone pattern: `"deleted": true` stays in the array. The merge driver preserves tombstones from both sides, preventing a deleted lesson from being re-added by another developer's stale copy. Tombstones are pruned (removed from the array entirely) during `/autocontext-review` when both developers have synced.
+Deleted lessons use a tombstone pattern: `"deleted": true` stays in the array. The merge driver preserves tombstones from both sides, preventing a deleted lesson from being re-added by another developer's stale copy.
+
+**Tombstone pruning:** Tombstones are never auto-pruned. They accumulate until manually removed via `/autocontext-review`. This is safer than trying to detect "both devs synced" (which isn't reliably knowable from git state). The review command shows tombstones with a "permanently remove" option. For most projects, tombstone accumulation is negligible — a few deleted lessons per month adds bytes, not kilobytes.
 
 ## Slash commands
 
@@ -402,10 +458,10 @@ Then creates:
 ### /autocontext-review
 
 Interactive lesson curation using AskUserQuestion:
-1. List all lessons sorted by confidence
+1. List all active lessons sorted by confidence
 2. For each, show: text, confidence, validated count, created by, age
 3. Options: approve (bump confidence), edit, delete (tombstone), supersede, skip
-4. Prune old tombstones (lessons deleted >30 days ago on all synced machines)
+4. Show tombstoned lessons separately with option to permanently remove
 5. Regenerate `playbook.md`
 
 ### /autocontext-status
