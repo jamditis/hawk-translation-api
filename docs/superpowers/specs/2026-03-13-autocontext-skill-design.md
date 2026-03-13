@@ -63,10 +63,10 @@ Key fields:
 
 Uses time-based decay (not session-count-based, which would require a global counter synced across machines):
 
-- New auto-extracted lesson: confidence 0.5
+- New auto-extracted lesson: confidence 0.5, `last_validated` set to `created` timestamp
 - Each session that uses the lesson and it proves correct: +0.1 (cap at 1.0)
 - Each session where the lesson was wrong or irrelevant: -0.2
-- Not validated in 60 days: decay by 0.1 per 30 days (based on `last_validated` timestamp vs current date)
+- Not validated in 60 days: decay by 0.1 per 30 days (based on `last_validated` timestamp vs current date). If `last_validated` is missing or null, treat as `created` date.
 - Below 0.3: filtered from SessionStart injection (still in file, available via `/autocontext-review`)
 - Superseded: kept in array with `deleted: true`, moved to `archive/superseded.json` during next `/autocontext-review`
 
@@ -123,13 +123,26 @@ max_session_lessons: 15          # Max lessons injected at session start
 confidence_threshold: 0.3        # Min confidence to inject
 staleness_days: 60               # Days before confidence decay starts
 performance_baselines: true      # Enable PostToolUse performance tracking
+pretooluse_hook: true            # Enable PreToolUse prompt-based hook (has token cost)
+
+# Test/build commands that trigger performance tracking
+baseline_commands:
+  - pytest
+  - "npm test"
+  - "npm run test"
+  - "npm run build"
+  - "cargo test"
+  - vitest
+
+# Performance baselines (auto-populated by PostToolUse hook)
+baselines: {}
 
 builtin_rules:
-  tautological_test_check: true
-  no_mock_everything: true
-  no_happy_path_only: true
-  no_assert_true: true
-  test_independence: true
+  tautological_test_check: true  # Advisory (prompt-based, has token cost)
+  no_mock_everything: true       # Advisory (prompt-based)
+  no_happy_path_only: true       # Deterministic (name regex, may false-positive)
+  no_assert_true: true           # Deterministic (regex)
+  test_independence: true        # Advisory (prompt-based)
 ```
 
 ```yaml
@@ -141,7 +154,7 @@ identity: joe@officejawn
 **Identity resolution order:**
 1. `config.local.yaml` → `identity` (if set)
 2. `~/.claude/autocontext.yaml` → `identity` (global default from `/autocontext-setup`)
-3. Fallback: `$(git config user.email)@$(hostname)`
+3. If neither is set: `/autocontext-setup` prompts the user to choose an identity before proceeding. No automatic fallback to hostname/email — identity must be an explicit, user-chosen value since it's committed to shared `lessons.json`.
 
 ## Hook architecture
 
@@ -179,7 +192,7 @@ If `claude -p` fails or times out, leave `pending-lessons.json` for the next ses
 1. Check for `.autocontext/lessons.json` in project root. If missing or malformed JSON, warn and skip (don't crash the session).
 2. Filter: `confidence >= confidence_threshold`, `deleted != true`, machine tags match current host
 3. Rank by relevance:
-   - Lessons whose tags match recently changed files rank highest. Uses `git diff --name-only HEAD~5 2>/dev/null` — if this fails (fresh repo, detached HEAD, fewer than 5 commits), falls back to `git diff --name-only HEAD 2>/dev/null`, then skips relevance ranking entirely. This is a heuristic — branch switches and rebases may produce noisy results, which is acceptable.
+   - Lessons whose tags match recently changed files rank highest. Uses `git diff --name-only HEAD~5..HEAD 2>/dev/null` (explicit commit range, not working tree diff) — if this fails (fresh repo, detached HEAD, fewer than 5 commits), falls back to `git diff --name-only HEAD^..HEAD 2>/dev/null`, then skips relevance ranking entirely. This is a heuristic — branch switches and rebases may produce noisy results, which is acceptable.
    - Then by confidence (descending)
    - Then by recency (most recently validated first)
 4. Take top `max_session_lessons` lessons
@@ -212,7 +225,7 @@ You have access to the following project lessons from .autocontext/cache/session
 When the user is about to edit, write, or run a command, check if any lessons are relevant
 to the file or command being touched. If so, inject a brief warning.
 
-For test files (matching *test*, *spec*, *_test.*, *.test.*), also apply these advisory checks:
+For test files (matching these patterns: files in `tests/` or `__tests__/` directories, files ending in `_test.py`, `.test.ts`, `.test.js`, `.spec.ts`, `.spec.js`, or files named `test_*.py`), also apply these advisory checks:
 - Are assertions based on desired behavior (from the task/spec), not current implementation output?
 - Is there at least one error/edge case?
 - Would this test fail if the feature broke?
@@ -317,6 +330,7 @@ Reject if:
 - Too vague to act on ("be careful with X" without specifics)
 - Contradicts existing knowledge without strong evidence
 - About a one-time task that won't recur
+- Contains secrets, API keys, tokens, passwords, or PII — NEVER include credentials or personally identifiable information in lesson text. Describe the pattern without the actual value.
 
 For each lesson, output JSON:
 {"lessons": [
@@ -369,11 +383,22 @@ lessons.json merge=autocontext-union
 ```
 
 The merge driver (`scripts/merge-driver.sh`):
-1. Parse both versions as JSON arrays
+1. Parse all three versions (ancestor, ours, theirs) as JSON arrays
 2. Union by lesson ID (both sides' new lessons get kept)
-3. For lessons modified on both sides: use additive merge for counters (`validated_count` = sum of both increments from common ancestor), take most recent `last_validated`, take higher `confidence`
-4. Preserve tombstones (`deleted: true`) from either side — if either side deleted, it stays deleted
-5. Write merged result
+3. For lessons modified on both sides, resolve per field:
+
+| Field | Resolution | Rationale |
+|-------|-----------|-----------|
+| `validated_count` | Additive (sum of both increments from ancestor) | Both devs may have validated independently |
+| `confidence` | Higher value | More evidence = higher confidence |
+| `last_validated` | Most recent | Latest validation is most relevant |
+| `deleted` | `true` wins (if either side deleted) | Deletion is intentional |
+| `supersedes` | Non-null wins; if both non-null, flag `needs_review` | Conflicting supersession needs human decision |
+| `text`, `context` | If different, flag `needs_review: true` | Content changes need human review |
+| `tags` | Union of both tag sets | Tags are additive |
+| `category` | If different, flag `needs_review: true` | Category changes need human review |
+
+4. Write merged result
 
 **Setup requirement:** Git merge drivers must be configured in each developer's local `.git/config` — `.gitattributes` only declares which files use the driver. `/autocontext-init` installs the driver automatically. If a developer clones without running init, the SessionStart hook detects the missing merge driver and warns:
 

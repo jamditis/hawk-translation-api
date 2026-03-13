@@ -25,7 +25,7 @@ Evaluated three approaches on 2026-03-13:
 Patterns worth adopting:
 - **Structured lessons with metadata** — not just text, but generation/score/staleness tracking (`ApplicabilityMeta`)
 - **Curator gating** — not everything gets persisted, a validation step filters garbage
-- **Knowledge directory per project** — `knowledge/<project>/lessons.json`, `playbook.md`, `hints.md`
+- **Knowledge directory per project** — `.autocontext/lessons.json`, `playbook.md` (our adaptation of AutoContext's `knowledge/<scenario>/` layout)
 - **Staleness tracking** — lessons that haven't been validated recently get deprioritized
 - **Lesson supersession** — new lessons can explicitly replace outdated ones
 
